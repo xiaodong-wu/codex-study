@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 09 章 · 域名:给页面一个家 · Codex 口语化编程教程</title>
+<meta name="description" content="在 Cloudflare Registrar 买一个域名,配 DNS,绑定到 Vercel,自动启用 HTTPS。避开备案陷阱。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 09 章 · 域名" data-chapter="09-domain">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 09 章 · 让世界看到你</span>
+    <h1>域名:给页面一个家</h1>
+    <p class="chapter-lede">
+      上一章你拿到的 <code>my-product-site.vercel.app</code> 已经很好用了,但还差一点"真实感"。这一章我们花十几块钱、十几分钟,让你的网址变成 <code>https://你的产品名.com</code>——发名片、发朋友圈、说出口都体面。
+    </p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章完成后你将拥有</strong>
+        一个属于你的域名(比如 <code>jiaoxingmao.com</code>),绑定到上一章的 Vercel 网站,自动启用 HTTPS。年费约 80–120 元人民币起(取决于后缀)。耗时约 30 分钟,主要花在等 DNS 生效。
+      </div>
+    </div>
+
+    <h2 id="what">第一步 · 域名到底是什么</h2>
+
+    <p>把网站想象成你的小店,域名就是<strong>这家店的招牌</strong>。<code>my-product-site.vercel.app</code> 像是 Vercel 给你分配的一个商场柜台编号 "B-2105",能用,但客户不好记;<code>jiaoxingmao.com</code> 就是你自己挂上去的招牌。</p>
+
+    <p>域名分前缀和后缀(技术上叫"二级域名 + 顶级域名"),后缀决定了价格:</p>
+
+    <ul>
+      <li><strong>.com / .net / .org</strong>:经典款,适合任何用途。.com 年费 60–80 元起,任何品牌都不会出错</li>
+      <li><strong>.app / .dev / .io</strong>:科技/产品味,适合 SaaS、App。年费 100–180 元起</li>
+      <li><strong>.me / .so / .xyz</strong>:个人/创意项目,价格便宜。.xyz 第一年低至 10 元</li>
+      <li><strong>.cn</strong>:中国后缀,<strong>必须实名认证 + 备案才能解析</strong>,本教程不推荐——除非你愿意花两周走流程</li>
+    </ul>
+
+    <h2 id="where-to-buy">第二步 · 在哪里买?</h2>
+
+    <p>这件事比你想象的更影响整个体验。本教程的强推荐是 <strong>Cloudflare Registrar</strong>,其他选项排序如下:</p>
+
+    <table>
+      <thead>
+        <tr><th>注册商</th><th>推荐度</th><th>原因</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Cloudflare Registrar</strong></td>
+          <td><span class="tag tag--ok">极力推荐</span></td>
+          <td>成本价销售(不赚差价)、自带顶级 DNS、不强推附加服务、无续费陷阱</td>
+        </tr>
+        <tr>
+          <td>Namecheap</td>
+          <td><span class="tag tag--ok">可选</span></td>
+          <td>界面对新手友好,价格中等,偶有促销</td>
+        </tr>
+        <tr>
+          <td>Porkbun</td>
+          <td><span class="tag tag--ok">可选</span></td>
+          <td>价格透明,DNS 管理好用</td>
+        </tr>
+        <tr>
+          <td>GoDaddy</td>
+          <td><span class="tag tag--mute">不推荐</span></td>
+          <td>首年低价、续费翻倍,而且会卖给你一堆没用的附加服务</td>
+        </tr>
+        <tr>
+          <td>阿里云 / 腾讯云</td>
+          <td><span class="tag tag--warn">劝退</span></td>
+          <td>会引导你走备案流程,卡 2-4 周。除非你确定要做面向国内的合规产品,否则千万绕开</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout--danger">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">备案是什么,以及我们为什么绕开它</div>
+        <div class="callout__body">
+          <p>"备案"是中国大陆要求<strong>使用大陆服务器</strong>的网站完成的工业和信息化部审核流程,需要提供身份证、人脸识别、网站说明,审核 2-4 周。<strong>关键:只有当你把网站托管在大陆服务器上时,才需要备案。</strong></p>
+          <p>我们的网站托管在 Vercel(美国/全球节点),即使绑定一个 .com 域名,也<strong>不需要备案就能在国内访问</strong>。只要域名注册商不在大陆(比如 Cloudflare 在美国),整个流程零阻力。</p>
+          <p>如果你买的是大陆注册商的域名,他们会强制要求你备案才能"解析"——这就是为什么我们绕开它。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="buy">第三步 · 在 Cloudflare 买一个域名</h2>
+
+    <h3 id="cf-signup">1. 注册 Cloudflare 账号</h3>
+    <p>打开 <a href="https://dash.cloudflare.com/sign-up" target="_blank" rel="noopener">dash.cloudflare.com/sign-up</a>,用邮箱注册,验证。</p>
+
+    <h3 id="cf-search">2. 搜索域名</h3>
+    <p>登录后,左侧导航点 <strong>Domain Registration → Register Domains</strong>。在搜索框里输入你想要的域名(不带后缀),回车。</p>
+    <p>Cloudflare 会列出可用的所有后缀和价格(以美元计)。挑一个你喜欢的。<strong>不要犹豫太久</strong>——好域名通常 5 分钟内就被别人抢了。</p>
+
+    <h3 id="cf-checkout">3. 结账</h3>
+    <p>把域名加到购物车,选 <strong>1 year</strong>(后续可以续),填写信用卡或 PayPal 完成付款。</p>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">付款方式</div>
+        <div class="callout__body">
+          <p>Cloudflare 接受国际 Visa / Mastercard、PayPal。国内储蓄卡可能不支持,信用卡需要开通"境外支付"。如果你没有可用的国际卡,可以用 Namecheap 作为备选(支持支付宝)。</p>
+        </div>
+      </div>
+    </div>
+
+    <p>付款完成后,Cloudflare 会发邮件确认。它会自动把这个域名加到你的 Cloudflare 账号下,并把 DNS 也托管在 Cloudflare 上——这正是我们想要的。</p>
+
+    <h2 id="connect">第四步 · 把域名绑定到 Vercel 网站</h2>
+
+    <p>这一步实际只需要在 Vercel 和 Cloudflare 各做几次点击。</p>
+
+    <h3 id="vercel-add-domain">1. 在 Vercel 添加域名</h3>
+    <p>进 Vercel Dashboard,点开你的 <code>my-product-site</code> 项目,左侧导航 <strong>Settings → Domains</strong>。在输入框里填上你刚买的域名,比如 <code>jiaoxingmao.com</code>,点 <strong>Add</strong>。</p>
+    <p>Vercel 会给你两个 DNS 配置项,大致长这样:</p>
+
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">DNS 配置(示例,以 Vercel 实际给的为准)</span>
+      </div>
+<pre>类型: A
+名称: @
+值:  76.76.21.21
+
+类型: CNAME
+名称: www
+值:  cname.vercel-dns.com</pre>
+    </div>
+
+    <p>把这两条记录截图或者保留这个窗口,我们要拿去 Cloudflare 填。</p>
+
+    <h3 id="cf-dns">2. 在 Cloudflare 配 DNS</h3>
+    <p>回到 Cloudflare,左侧 <strong>Websites</strong> 里点你的域名,进入它的管理页。左侧选 <strong>DNS → Records</strong>。</p>
+    <p>点 <strong>Add record</strong>,按 Vercel 给你的配置填两条记录:</p>
+    <ul>
+      <li>第一条:<strong>Type</strong> = A,<strong>Name</strong> = @,<strong>IPv4 address</strong> = 76.76.21.21,<strong>Proxy status</strong> = <span class="tag tag--mute">DNS only</span>(关闭"代理"那个小橙云)</li>
+      <li>第二条:<strong>Type</strong> = CNAME,<strong>Name</strong> = www,<strong>Target</strong> = cname.vercel-dns.com,<strong>Proxy status</strong> = <span class="tag tag--mute">DNS only</span></li>
+    </ul>
+
+    <div class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/chapters/09-cloudflare-dns.svg" alt="Cloudflare DNS 配置界面示意图,展示两条记录与 DNS only 状态" />
+      </div>
+      <div class="figure__cap"><b>你应该看到的:</b>两行记录都填好后的 DNS Records 列表。<strong>代理状态(Proxy status)那一列必须是灰色的"DNS only"</strong>,不能点亮成橙色的小云。</div>
+    </div>
+
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">那个橙色的小云要关掉</div>
+        <div class="callout__body">
+          <p>Cloudflare 默认会让你的 DNS 走它的代理(那个橙色小云图标)。<strong>这一步先把它关掉(变成灰色)</strong>,只让 Cloudflare 做纯 DNS 解析。如果开着代理,跟 Vercel 的 SSL 协商会出问题,你的网站会变成一个"Bad Gateway"红色错误。</p>
+          <p>等域名能正常访问之后,如果你想要更快的访问体验,可以再考虑开启代理——但需要做一些额外配置,本章不展开。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 id="wait">3. 等待 DNS 生效</h3>
+    <p>填完两条记录,回到 Vercel 的 Domains 页面。它会显示 <strong>Pending</strong>(等待中),几秒到几十分钟后会自动变成 <strong>Valid Configuration</strong>(配置有效)。</p>
+    <p>这段等待时间叫做 <strong>DNS 传播</strong>(DNS propagation):全球的 DNS 服务器要一段时间才能知道"这个域名指到这台服务器了"。绝大多数情况下 1-10 分钟搞定,偶尔需要 30 分钟,极端情况会到 24 小时(但这种很罕见)。</p>
+
+    <h3 id="https">4. HTTPS 自动启用</h3>
+    <p>不需要你做任何事。一旦 DNS 生效,Vercel 会自动通过 Let's Encrypt 申请一张 SSL 证书,把你的域名升级到 <code>https://</code>。整个过程零成本、零配置。</p>
+    <p>打开你的浏览器,访问 <code>https://你的域名.com</code>。如果看到你的网站,而且地址栏左边有一个绿色的锁形图标——<strong>恭喜,大功告成</strong>。</p>
+
+    <h2 id="verify">第五步 · 验证一下</h2>
+
+    <p>关掉浏览器所有标签页,重新打开,试这几个地址,应该都能打开同一个网站:</p>
+    <ul>
+      <li><code>https://你的域名.com</code></li>
+      <li><code>https://www.你的域名.com</code></li>
+      <li><code>http://你的域名.com</code>(应该自动跳转到 https)</li>
+      <li>原本的 <code>https://my-product-site.vercel.app</code>(它仍然可用)</li>
+    </ul>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">这是一个值得庆祝的时刻</div>
+        <div class="callout__body">
+          <p>三章前你还在装 Node.js,现在你拥有了一个属于自己的、随时能改、自动更新、有 HTTPS、能让任何人访问的网站。这就是 2026 年零基础造产品的实际感受。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="exercise">动手试试</h2>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21v-4a4 4 0 0 1 4-4h14"/><polyline points="21 21 21 13 17 13"/><path d="M21 3v4a4 4 0 0 1-4 4H3"/><polyline points="3 3 3 11 7 11"/></svg>
+        <span>动手试试</span>
+      </div>
+      <div class="exercise__title">把你的域名印一份"名片"</div>
+      <div class="exercise__body">
+        <p>这件事意外地重要——它让你的"产品有了门面"这件事变得真实。</p>
+        <ol class="exercise__steps">
+          <li>把你的新域名链接发到至少 5 个朋友的私聊</li>
+          <li>在朋友圈或 X 发一条"我做了一个【产品名】,链接在这里"</li>
+          <li>记录下打开的人数和反馈——这是你的 day-1 用户</li>
+        </ol>
+        <p>顺便告诉自己:从此之后,你给别人介绍你的产品时,说的是 <strong>"jiaoxingmao.com"</strong>,而不是 "my-product-site-xxx.vercel.app"。</p>
+      </div>
+      <div class="exercise__done"><strong>完成标志:</strong>至少一个朋友打开过你的新域名并告诉你"打开了"。</div>
+    </div>
+
+    <h2 id="pitfalls">常见踩坑</h2>
+
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary>填完 DNS 之后访问域名是 "Bad Gateway" 或一片红</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>Cloudflare 红色 522 / 521 错误,或 "Origin Web Server Error"。</dd>
+            <dt>原因</dt>
+            <dd>九成是 Cloudflare 那个橙色代理小云没关掉。</dd>
+            <dt>解决</dt>
+            <dd>回 DNS Records,把两条记录的代理状态都改成 <strong>DNS only</strong>(灰色小云)。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Vercel 一直显示 Pending,十几分钟了还没变 Valid</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>Vercel Domains 页面长时间显示 Pending。</dd>
+            <dt>原因</dt>
+            <dd>DNS 配置可能填错了,或者 DNS 传播正在进行。</dd>
+            <dt>解决</dt>
+            <dd>1)在 Cloudflare DNS Records 里仔细核对 A 记录的 IP 和 CNAME 的目标值,跟 Vercel 给的对得一字不差;2)在 <a href="https://dnschecker.org" target="_blank" rel="noopener">dnschecker.org</a> 输入你的域名,看全球各节点的解析结果是否一致;3)耐心等 30 分钟。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>www 子域能打开,但裸域(没 www 的那个)打不开</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd><code>www.你的域名.com</code> OK,<code>你的域名.com</code> 报错。</dd>
+            <dt>原因</dt>
+            <dd>A 记录可能没配,或者 Name 字段填错了(应该是 <code>@</code>,意为"根域名")。</dd>
+            <dt>解决</dt>
+            <dd>检查 Cloudflare DNS 里那条 A 记录的 Name 字段是不是 <code>@</code>。如果是 <code>jiaoxingmao.com</code> 之类的完整域名,大概也对(Cloudflare 会理解为等价),但 <code>@</code> 是最稳的写法。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>HTTPS 一直没启用,地址栏锁是灰的或红的</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>能打开,但浏览器警告"非安全连接"。</dd>
+            <dt>原因</dt>
+            <dd>SSL 证书还在签发中,或者 DNS 没完全生效。</dd>
+            <dt>解决</dt>
+            <dd>等 5-10 分钟,Vercel 会自动签发。如果超过 30 分钟还没好,在 Vercel Domains 页面点你的域名后面的"刷新"按钮,或干脆 Remove 再 Add 一次。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>付款的时候信用卡被拒</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>Cloudflare 提示 "Card declined"。</dd>
+            <dt>原因</dt>
+            <dd>国内信用卡可能没开通"国际支付"或"小额扣款验证"。</dd>
+            <dt>解决</dt>
+            <dd>1)联系发卡行开通国际支付;2)改用 PayPal 中转;3)换用 Namecheap(支持支付宝)。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>我手滑买到了 .cn 域名,被要求实名 + 备案</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>买了 .cn,注册商让你提交实名材料、备案才能解析。</dd>
+            <dt>原因</dt>
+            <dd>.cn 是 CNNIC 管理的,有法定要求。</dd>
+            <dt>解决</dt>
+            <dd>如果你确实要做面向国内的合规产品,按流程走 2-4 周;如果只是想要个能用的网址,放弃 .cn,重新买一个 .com / .me / .xyz。.cn 那笔钱当学费认了——这就是为什么我们前面强烈不推荐 .cn。</dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        买域名、配 DNS、绑定到 Vercel、自动启用 HTTPS。<strong>这是 0→1 产品发布的完整闭环</strong>。从下一章起我们讲怎么让这个产品慢慢长大:加访问统计、做 SEO、收集反馈、迭代。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./08-deploy.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 上线:让世界看到你</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./10-operations.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">上线之后 →</div>
+      </a>
+    </nav>
+
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

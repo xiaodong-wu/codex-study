@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 04 章 · 浏览器、标注和电脑操作 · Codex 口语化教程</title>
+<meta name="description" content="Codex 桌面端 App 的图形化能力说明:内置浏览器、页面标注、Browser Use、Chrome 扩展、Computer Use、Appshots 和图片生成。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 04 章 · 浏览器、标注和电脑操作" data-chapter="app-04-visual">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 04 章 · 图形化协作</span>
+    <h1>浏览器、标注和电脑操作</h1>
+    <p class="chapter-lede">有些问题很难用语言说清楚:按钮挤了、卡片歪了、弹窗挡住了、某个桌面软件里才会复现。Codex App 的图形化能力,就是为这种“我看见了,但我讲不专业”的场景准备的。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/browser-computer.svg" alt="Codex App 内置浏览器标注和 Computer Use 操作桌面应用的示意图" loading="lazy" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>两类能力:</b>网页问题先用内置浏览器;桌面应用问题再考虑 Computer Use。</figcaption>
+    </figure>
+
+    <h2 id="browser">内置浏览器:边看网页边改</h2>
+    <p>内置浏览器适合预览网页,尤其是你正在做的网站。典型流程是:</p>
+    <ol>
+      <li>在内置终端启动本地预览服务器。</li>
+      <li>打开内置浏览器,访问本地地址,比如 <code>http://localhost:3000</code>。</li>
+      <li>看到问题后,在页面上直接标注。</li>
+      <li>回到线程里说:“请处理我刚才在浏览器里留的评论。”</li>
+      <li>改完再打开页面复查。</li>
+    </ol>
+    <p>这比你说“页面有点怪”强很多。你圈在哪里,Codex 就知道从哪里下手。</p>
+
+    <h2 id="open-browser">怎么打开内置浏览器</h2>
+    <p>你通常有三种入口:</p>
+    <ul>
+      <li>点击线程里出现的本地 URL。</li>
+      <li>从工具栏打开浏览器,手动输入地址。</li>
+      <li>用快捷键打开浏览器面板:macOS 通常是 <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>,Windows 以快捷键设置页为准。</li>
+    </ul>
+    <p>内置浏览器最适合 <code>localhost</code> 这类本地预览,以及不需要登录的公开页面。它不带你的 Cookie、扩展和登录状态,这反而更安全。</p>
+
+    <h2 id="annotations">页面标注怎么写才有用</h2>
+    <p>标注不要写“改好看点”。这句话太宽。你可以这样写:</p>
+    <ul>
+      <li>“这个按钮在手机宽度下文字换行了,请优先保持一行。”</li>
+      <li>“这里的卡片上下间距太挤,请增加一点呼吸感。”</li>
+      <li>“这个弹窗盖住了下面的价格,请让它不挡住关键信息。”</li>
+      <li>“这块文字读起来像广告,请改成教程口吻。”</li>
+    </ul>
+    <p>如果标注工具里能调字体、颜色、间距这类样式反馈,你可以先在页面上试一下效果,再把评论发给 Codex。</p>
+
+    <h2 id="annotation-steps">标注操作的标准流程</h2>
+    <ol>
+      <li>打开页面,切到你要检查的状态,比如手机宽度、空数据、错误提示。</li>
+      <li>进入 Annotation 模式。</li>
+      <li>点具体元素;如果要圈一块区域,按住 Shift 再点选区域。</li>
+      <li>写评论,用“现象 + 目标”表达,不要只写“丑”。</li>
+      <li>回到线程,让 Codex “处理浏览器评论,范围尽量小”。</li>
+    </ol>
+    <p>如果你只是想快速发一条评论,某些版本里可以按住 Cmd 点击直接发送。具体快捷方式以你 App 里提示为准。</p>
+
+    <h2 id="browser-use">Browser Use:让 Codex 自己点网页</h2>
+    <p>如果你想让 Codex 自己打开页面、点击、输入、检查状态,可以让它使用 Browser Use。新手可以先记这条规则:</p>
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">本地网页优先用 @Browser</div>
+        <div class="callout__body">你正在开发的网站、无需登录的公开页面、文件预览,都适合内置浏览器。需要登录态、浏览器插件、你已经登录的账号时,再考虑 Chrome 扩展。</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">Browser Use 示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请使用 @Browser 打开 http://localhost:3000,检查首页在手机宽度下有没有文字溢出、按钮换行或卡片重叠。发现问题后先列出清单,我确认后再修改。</div>
+      <div class="prompt-card__note">先让它“检查并列清单”,比直接“检查并修复”更适合新手。</div>
+    </div>
+
+    <h2 id="developer-mode">Developer mode:网页疑难杂症再开</h2>
+    <p>有些问题只看页面还不够,比如:</p>
+    <ul>
+      <li>页面加载很慢,不知道卡在哪个请求。</li>
+      <li>控制台有红色错误,但你不知道哪个脚本引起。</li>
+      <li>样式被某条 CSS 覆盖,肉眼看不出来。</li>
+    </ul>
+    <p>这时可以在 Browser 设置里开启 Developer mode,让 Codex 使用更深的浏览器调试能力。它更强,也更敏感,因为能看控制台、网络、页面结构等内部信息。只在需要诊断时开,并且看清它要访问哪个网站。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">开发者模式诊断</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请使用 @Browser 检查当前页面的控制台错误和网络请求。只做只读诊断,先列出最可能原因和证据,不要修改文件。</div>
+      <div class="prompt-card__note">先“只读诊断”,能防止它边查边改,把问题来源搅混。</div>
+    </div>
+
+    <h2 id="chrome">Chrome 扩展:用你自己的浏览器状态</h2>
+    <p>内置浏览器不带你的登录状态、Cookie、扩展和历史标签页。如果任务必须用你已经登录的 Chrome,就需要 Chrome 扩展或相关设置。</p>
+    <p>但这也更敏感。因为网页会把 Codex 的点击当成你的点击。涉及账号、付款、隐私设置时,你要在旁边看着,不要让它自己乱点。</p>
+
+    <h2 id="chrome-setup">Chrome 扩展怎么安全使用</h2>
+    <p>Chrome 扩展通常通过 Plugins 里添加 Chrome 插件来设置。装好后,Chrome 扩展图标应该显示 Connected。</p>
+    <p>安全上记住三点:</p>
+    <ul>
+      <li><strong>网站权限按域名批准。</strong>不确定就只允许当前任务,不要 Always allow。</li>
+      <li><strong>浏览历史很敏感。</strong>只有任务真的需要时才允许 Codex 使用。</li>
+      <li><strong>多 Chrome 资料要确认。</strong>你可能装在 A 资料里,但当前打开的是 B 资料。</li>
+    </ul>
+    <p>如果 Chrome 连不上,先看扩展是否 Connected、插件是否启用、网站是否在 blocklist,再重启 Chrome 和 Codex。</p>
+
+    <h2 id="computer-use">Computer Use:让 Codex 操作桌面应用</h2>
+    <p>Computer Use 是更进一步的能力:Codex 可以看见并操作 macOS 或 Windows 上的图形界面。它适合:</p>
+    <ul>
+      <li>测试一个桌面 App 或模拟器流程。</li>
+      <li>复现只有图形界面里才出现的问题。</li>
+      <li>帮你点设置页面、查看某个软件里的状态。</li>
+      <li>跨多个 App 做一个短流程。</li>
+    </ul>
+    <p>macOS 上通常需要屏幕录制和辅助功能权限。Windows 上要让目标应用保持在当前桌面可见,因为 Codex 会操作前台界面。</p>
+
+    <h2 id="computer-use-setup">Computer Use 第一次设置</h2>
+    <p>第一次用时,按这个顺序来:</p>
+    <ol>
+      <li>在 Settings 里打开 Computer Use 并安装相关插件。</li>
+      <li>macOS 按提示授予 Screen Recording 和 Accessibility 权限。</li>
+      <li>只打开这次任务需要的 App,其他敏感窗口先关掉。</li>
+      <li>让 Codex 只操作一个清晰流程,不要一口气跨很多软件。</li>
+      <li>它请求使用某个 App 时,先确认 App 名称是不是你想给的。</li>
+    </ol>
+    <p>Windows 上 Computer Use 会操作当前桌面前台,所以它工作时你最好别同时用鼠标键盘抢操作。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">Computer Use 示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请使用 @Computer 打开目标应用,只复现我描述的这个流程:点击“设置”→ 打开“账户”→ 截取错误信息。先不要修改任何文件,也不要点击涉及账号或付款的按钮。</div>
+      <div class="prompt-card__note">Computer Use 的提示词要更窄,最好明确“只做什么”和“不要碰什么”。</div>
+    </div>
+
+    <h2 id="appshots">Appshots:把当前窗口发给 Codex</h2>
+    <p>Appshots 可以把 Mac 上最前面的窗口作为上下文发给 Codex。适合你正在看一个错误弹窗、设计稿、说明页,懒得描述时。</p>
+    <p>你可以把它理解成“更顺手的截图 + 文本”。但敏感内容一样要小心:不该给人的窗口,也不要发给 Codex。</p>
+
+    <h2 id="appshots-steps">Appshots 怎么用</h2>
+    <p>macOS 上可以按两个 Command 键,或你自己设置的 Appshots 快捷键,把最前面的窗口发给 Codex。它通常会捕获窗口图片,有些 App 还能提供可读文本。</p>
+    <p>适合这样说:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">Appshot 示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我刚发了一张 appshot。请先用人话描述你看到了什么,然后指出这个错误/界面状态可能和当前项目的哪些文件有关。先不要修改文件。</div>
+      <div class="prompt-card__note">先让它复述看到了什么,可以确认它没有误读窗口内容。</div>
+    </div>
+
+    <h2 id="image-generation">图片生成和非代码文件</h2>
+    <p>Codex App 也能处理不只是代码的任务。你可以让它生成或编辑图片资产,也可以让它产出 PDF、表格、文档、演示文稿这类文件。说需求时要补三样东西:</p>
+    <ul>
+      <li>你要的文件类型:图片、PDF、Excel、PPT 等。</li>
+      <li>内容结构:有哪些章节、列、图表或页面。</li>
+      <li>验收标准:你最在意排版、数据准确、还是能不能打印。</li>
+    </ul>
+    <p>如果它生成了文件,让它告诉你保存在哪里,并说明它怎么检查过。</p>
+
+    <h2 id="safety">图形化能力的安全边界</h2>
+    <ul>
+      <li>网页和桌面应用里的内容都可能被 Codex 看到,敏感窗口先关掉。</li>
+      <li>涉及账号、支付、隐私、安全设置,人在旁边看着。</li>
+      <li>不要让 Codex 在你不理解的情况下批量点击。</li>
+      <li>它点错窗口时,立刻停止任务。</li>
+    </ul>
+
+    <h2 id="when-not-to-use">什么时候不要用图形化能力</h2>
+    <p>有些场景更适合文字、文件或插件,不要强行让 Codex 看屏幕:</p>
+    <ul>
+      <li>要分析一个很长的文档:优先传文件或用对应插件。</li>
+      <li>要处理数据库或表格:优先用结构化工具,别让它肉眼抄屏幕。</li>
+      <li>要改代码:优先让它读文件和看 diff,屏幕只当补充证据。</li>
+      <li>涉及密码、支付、账号安全:你自己操作,Codex 只在旁边解释。</li>
+    </ul>
+    <p>图形化能力是“看见问题”的工具,不是“放弃审查”的理由。</p>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>这一章的判断题</strong>
+        本地网页用 @Browser,登录网站用 Chrome,桌面 App 用 Computer Use,临时窗口上下文用 Appshots。越接近真实账号和系统操作,权限越窄、人在旁边。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./03-review-terminal-git.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 看改动、跑命令和保存</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./05-automations-skills.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">自动化、技能和外部工具 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

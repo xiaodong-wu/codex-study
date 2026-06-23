@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 11 章 · 进阶方向 · Codex 口语化编程教程</title>
+<meta name="description" content="Codex CLI 教程进阶路线:多页站点、表单后端、Supabase 数据库、登录、AI 功能、付费和 SaaS 起步。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 11 章 · 进阶方向" data-chapter="11-next-steps">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 11 章 · 让世界看到你</span>
+    <h1>进阶方向</h1>
+    <p class="chapter-lede">你现在已经能做出一个完整的、有域名的、能更新的产品官网。如果你还想再进一步——加表单后端、接数据库、做用户登录、真正长成一个 SaaS——这一章给你方向和起步资源。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 5h7l2 3h7v9h-7l-2-3H4"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章学完后你会拥有</strong>
+        一张“从静态官网继续往产品走”的路线图。你不需要马上全做,只要知道下一步有哪些门,先推开哪一扇。
+      </div>
+    </div>
+
+    <h2 id="multi-page">11.1 从一页扩到多页</h2>
+    <p>一页官网适合验证想法,但如果你想把项目讲完整,迟早会遇到“这一页塞不下”的问题。</p>
+    <p>最常见的扩展是这几页:</p>
+    <ul>
+      <li><strong>About</strong>:讲你是谁、为什么做这个项目。</li>
+      <li><strong>FAQ</strong>:把用户反复问的问题集中回答。</li>
+      <li><strong>Blog</strong>:写教程、案例、更新记录,顺便做 SEO。</li>
+      <li><strong>Pricing</strong>:如果你已经开始收费,单独讲价格和套餐。</li>
+      <li><strong>Contact</strong>:放邮箱、表单、社交账号或预约链接。</li>
+    </ul>
+    <p>纯静态站不需要复杂路由。你可以直接建多个 HTML 文件,比如 <code>about.html</code>、<code>faq.html</code>、<code>blog.html</code>,导航栏里互相链接就行。等页面很多了,再考虑 Next.js、Astro 这类框架。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">扩成多页站点</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我现在有一个静态产品官网,想把它从单页扩展成多页站点。请先给我一个页面结构建议,至少包含:
+1. 首页
+2. About
+3. FAQ
+4. Contact
+
+要求:
+- 先不要改代码
+- 说明每一页解决什么问题
+- 说明导航栏应该怎么调整
+- 如果继续用纯 HTML,请给出最简单的文件结构</div>
+      <div class="prompt-card__note">先让 Codex 设计信息结构,再让它建文件。新手不要一上来就问“帮我上 Next.js”,除非你真的需要。</div>
+    </div>
+
+    <h2 id="form-backend">11.2 让表单真的能收到邮箱</h2>
+    <p>前面做的表单大概率只是“长得像能提交”。真正要收到邮箱,需要一个地方帮你接住表单数据。</p>
+    <p>新手可以按复杂度这样选:</p>
+    <table>
+      <thead><tr><th>方式</th><th>适合谁</th><th>你要做什么</th></tr></thead>
+      <tbody>
+        <tr><td>Tally</td><td>想最快收到反馈,不想写后端</td><td>建一个表单,把链接或嵌入代码放到网站里</td></tr>
+        <tr><td>Formspree</td><td>想保留自己页面里的原生表单</td><td>注册后拿到 endpoint,把 <code>form action</code> 指向它</td></tr>
+        <tr><td>Resend</td><td>已经有一点后端,想自己发邮件</td><td>写一个 API 接口,用密钥发邮件</td></tr>
+      </tbody>
+    </table>
+    <p>价格和免费额度会变,动手前一定打开官网确认。学习阶段别急着绑信用卡,先用能免费试的方案把流程跑通。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">接入表单服务</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我想让当前网站的联系表单真的能收到消息。请帮我比较 Tally、Formspree、Resend 三种方案。
+
+请按这个格式回答:
+1. 哪个最适合零基础
+2. 哪个最适合保留当前页面样式
+3. 哪个适合以后做成正式产品
+4. 每个方案需要我在官网准备什么
+
+先不要改代码,我选完方案再继续。</div>
+      <div class="prompt-card__note">第三方服务经常涉及账号、密钥、额度和隐私条款。让 Codex 先列步骤,你去官网操作,再回来让它接代码。</div>
+    </div>
+
+    <h2 id="database">11.3 接入数据库:Supabase 入门</h2>
+    <p>数据库听起来很吓人,其实它就是“有结构的表格”。如果你的项目开始需要保存数据,比如留言、订单、用户收藏、报名记录,就要考虑数据库了。</p>
+    <p>Supabase 常被新手用来起步,因为它把数据库、登录、接口和后台管理界面打包在一起。你可以先在网页后台建表,不用一开始就学复杂数据库命令。</p>
+    <p>最小学习路径是:</p>
+    <ol>
+      <li>建一个 Supabase 项目。</li>
+      <li>建一张表,比如 <code>leads</code>。</li>
+      <li>表里放 <code>name</code>、<code>email</code>、<code>message</code>、<code>created_at</code>。</li>
+      <li>拿到项目 URL 和公开 anon key。</li>
+      <li>让前端把表单数据写入这张表。</li>
+    </ol>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">不要把服务端密钥放进前端</div>
+        <div class="callout__body">Supabase 会给不同权限的 key。公开 anon key 可以按规则暴露给前端,但 service role key 绝对不要放进 HTML、JS 或 GitHub 仓库里。拿不准时,直接问 Codex:“这个 key 可以放前端吗?”</div>
+      </div>
+    </div>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">设计第一张表</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我想用 Supabase 保存当前网站的联系表单提交。请先帮我设计第一张表。
+
+要求:
+- 表名简单清楚
+- 字段包含姓名、邮箱、留言、提交时间
+- 说明每个字段的类型
+- 说明哪些字段必填
+- 说明 Row Level Security 应该怎么处理
+
+先只做表结构说明,不要写代码。</div>
+      <div class="prompt-card__note">数据库第一步不是写代码,是把“要存什么”想清楚。字段乱了,后面功能都会别扭。</div>
+    </div>
+
+    <h2 id="auth">11.4 加上用户登录</h2>
+    <p>登录系统不是每个项目都需要。只有当你要做“每个用户看到自己的东西”时,才值得加登录。</p>
+    <p>比如:</p>
+    <ul>
+      <li>用户能保存自己的收藏。</li>
+      <li>用户能管理自己的订单或资料。</li>
+      <li>用户登录后看到会员内容。</li>
+      <li>管理员和普通用户权限不同。</li>
+    </ul>
+    <p>如果你只是一个介绍页、预约页、作品集,先别加登录。登录会带来密码找回、邮件验证、隐私合规、权限判断这些后续工作。</p>
+    <table>
+      <thead><tr><th>方案</th><th>适合场景</th><th>一句话判断</th></tr></thead>
+      <tbody>
+        <tr><td>Supabase Auth</td><td>你已经用 Supabase 做数据库</td><td>少接一个服务,后台统一</td></tr>
+        <tr><td>Clerk</td><td>你想要更完整的登录 UI 和用户管理</td><td>体验好,但要确认免费额度和品牌露出</td></tr>
+      </tbody>
+    </table>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">判断要不要登录</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">基于当前项目,请帮我判断现在需不需要用户登录。
+
+请从这几个角度分析:
+1. 哪些功能必须登录
+2. 哪些功能不用登录也能做
+3. 如果加登录,会增加哪些维护成本
+4. 现在更适合 Supabase Auth 还是 Clerk
+
+最后给我一个明确建议:现在加 / 以后加 / 不建议加。</div>
+      <div class="prompt-card__note">很多新手会把登录当成“高级感”。其实登录是成本,不是装饰。能不加就先不加。</div>
+    </div>
+
+    <h2 id="ai-features">11.5 给产品加上 AI 能力</h2>
+    <p>等你的网页能展示、能收集、能保存之后,可以考虑加 AI 功能。最小的 AI 功能不一定是聊天机器人,反而可能是一个很小的按钮。</p>
+    <p>比如:</p>
+    <ul>
+      <li>把用户输入的一段话总结成三条要点。</li>
+      <li>把客服留言改写得更礼貌。</li>
+      <li>把一段中文翻译成英文。</li>
+      <li>根据用户选项生成一份建议清单。</li>
+      <li>给管理员自动归类反馈。</li>
+    </ul>
+    <p>这里要记住一个硬规则:API Key 不要放在浏览器前端。AI API 通常要走后端接口,由后端保存密钥,前端只调用你自己的接口。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">设计第一个 AI 功能</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我想给当前项目加一个很小的 AI 功能。请先帮我设计 5 个候选功能,要求:
+1. 每个功能一句话能讲明白
+2. 不需要复杂账号系统
+3. API Key 不暴露在前端
+4. 每个功能说明前端、后端分别要做什么
+
+最后推荐最适合新手做的一个。</div>
+      <div class="prompt-card__note">先做“按钮级 AI”,别一上来做完整 AI 产品。小功能跑通后,你会更理解模型、接口、费用和安全边界。</div>
+    </div>
+
+    <h2 id="saas-path">11.6 走向 SaaS 的下一步</h2>
+    <p>SaaS 不是“有登录、有数据库、有付款”就算完成。真正的 SaaS 是:有人持续用,你持续维护,它持续解决一个具体问题。</p>
+    <p>如果你要往 SaaS 走,通常会慢慢补这几块:</p>
+    <table>
+      <thead><tr><th>模块</th><th>常见工具</th><th>先做到什么程度</th></tr></thead>
+      <tbody>
+        <tr><td>付费</td><td>Stripe Payment Links / Checkout / Billing</td><td>先做一次性支付或一个最简单订阅</td></tr>
+        <tr><td>邮件</td><td>Resend / Buttondown / ConvertKit</td><td>先发欢迎邮件和重要通知</td></tr>
+        <tr><td>客服</td><td>邮箱 / Tally / Crisp / Intercom</td><td>先让用户能找到你</td></tr>
+        <tr><td>后台</td><td>Supabase Dashboard / 自建 Admin 页</td><td>先能看订单、留言、用户列表</td></tr>
+        <tr><td>日志</td><td>Vercel Logs / Sentry</td><td>先知道哪里报错</td></tr>
+      </tbody>
+    </table>
+    <p>收费功能尤其要慢一点。支付涉及税务、退款、隐私和服务条款,不是只接个按钮。最稳的顺序是:先手动收款验证需求,再接 Stripe 这类正式支付工具。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">制定 SaaS 路线图</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我想把当前项目慢慢做成一个小 SaaS。请帮我做一份 4 周路线图。
+
+要求:
+- 每周只做一个主题
+- 第 1 周必须还能保持纯静态或低代码
+- 不要一上来就接复杂支付
+- 每周写清“完成标志”
+- 标出哪些地方需要我去第三方服务官网注册或拿 key</div>
+      <div class="prompt-card__note">路线图的价值是帮你克制。SaaS 最怕“今天接登录,明天接支付,后天重构框架”,最后什么都没稳定。</div>
+    </div>
+
+    <h2 id="resources">11.7 推荐资源</h2>
+    <p>学到这里,你已经不适合再“从零教程”里打转了。下一步应该按问题找资源。</p>
+    <ul>
+      <li><strong>想继续做网页</strong>:学 HTML、CSS、JavaScript 的基础语法,但边做边学,不要先啃完整教材。</li>
+      <li><strong>想做数据库和登录</strong>:看 Supabase 官方文档里的 quickstart,跟着做一个最小表单。</li>
+      <li><strong>想做 AI 功能</strong>:看 OpenAI 官方 API 文档,先跑通一个后端接口,再接到网页。</li>
+      <li><strong>想做付费</strong>:看 Stripe Checkout 或 Payment Links,先理解支付流程和测试模式。</li>
+      <li><strong>想提升审美</strong>:多看真实产品官网,让 Codex 拆解“它为什么好看”。</li>
+    </ul>
+    <p>最推荐的学习方式不是收藏 100 个链接,而是保留一个“问题清单”。每次卡住,把问题写成一句人话,让 Codex 帮你把它拆成关键词、官方文档入口和最小实验。</p>
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">给你的项目选一个进阶方向</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>从多页、表单、数据库、登录、AI、付费里选一个方向。</li>
+          <li>用本章对应的提示词让 Codex 给你三种方案。</li>
+          <li>只选最小方案,不要选“最完整”的。</li>
+          <li>让 Codex 列出会改哪些文件和你需要准备哪些账号。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你有一张下一步路线图,并且知道第一小时要做什么。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经走完了第一圈</strong>
+        现在你不只是“会让 Codex 写页面”,而是知道一个网站怎么继续长成产品。下一步别贪多,选一个方向,做一个最小实验。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./10-operations.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 上线之后</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="../appendix/a-prompt-library.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">附录 A · 提示词库 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

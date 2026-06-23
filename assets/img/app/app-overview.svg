@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Codex 桌面端 App 界面示意图</title>
+  <desc id="desc">示意 Codex App 的侧边栏、线程区、输入框、Diff 面板和终端区域。</desc>
+  <rect width="960" height="540" rx="28" fill="#faf8f4"/>
+  <rect x="56" y="54" width="848" height="432" rx="20" fill="#fff" stroke="#e8e4dc"/>
+  <rect x="56" y="54" width="172" height="432" rx="20" fill="#f4f1ea"/>
+  <rect x="56" y="54" width="172" height="48" rx="20" fill="#eceefb"/>
+  <circle cx="92" cy="78" r="12" fill="#3e4ecc"/>
+  <text x="114" y="84" font-family="PingFang SC, Arial, sans-serif" font-size="18" font-weight="700" fill="#1f2230">项目</text>
+  <rect x="82" y="130" width="112" height="12" rx="6" fill="#cfd3ee"/>
+  <rect x="82" y="162" width="92" height="12" rx="6" fill="#d9d5cd"/>
+  <rect x="82" y="194" width="124" height="12" rx="6" fill="#d9d5cd"/>
+  <text x="82" y="248" font-family="PingFang SC, Arial, sans-serif" font-size="14" fill="#4a4e5c">线程列表</text>
+  <rect x="250" y="80" width="354" height="40" rx="12" fill="#f4f1ea"/>
+  <text x="272" y="106" font-family="PingFang SC, Arial, sans-serif" font-size="17" font-weight="700" fill="#1f2230">对话线程</text>
+  <rect x="250" y="148" width="300" height="58" rx="14" fill="#eceefb"/>
+  <text x="272" y="181" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#2a37a0">你: 帮我检查这个项目</text>
+  <rect x="250" y="226" width="354" height="90" rx="14" fill="#fff" stroke="#e8e4dc"/>
+  <text x="272" y="258" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#1f2230">Codex: 我先读项目结构...</text>
+  <text x="272" y="288" font-family="PingFang SC, Arial, sans-serif" font-size="14" fill="#8b8f9c">计划、命令、结果都会出现在这里</text>
+  <rect x="250" y="404" width="354" height="52" rx="14" fill="#fff" stroke="#cfd3ee"/>
+  <text x="272" y="436" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#8b8f9c">输入你想让 Codex 做的事...</text>
+  <rect x="632" y="80" width="232" height="168" rx="14" fill="#1c1f2b"/>
+  <text x="654" y="112" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#ffb37b">Diff 面板</text>
+  <rect x="654" y="136" width="148" height="10" rx="5" fill="#9bd68f"/>
+  <rect x="654" y="162" width="184" height="10" rx="5" fill="#8fb6ff"/>
+  <rect x="654" y="188" width="120" height="10" rx="5" fill="#e8704a"/>
+  <text x="654" y="224" font-family="PingFang SC, Arial, sans-serif" font-size="13" fill="#e7e9f1">看它改了哪些文件</text>
+  <rect x="632" y="276" width="232" height="180" rx="14" fill="#f4f1ea" stroke="#e8e4dc"/>
+  <text x="654" y="310" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f2230">内置终端</text>
+  <rect x="654" y="336" width="160" height="10" rx="5" fill="#cfd3ee"/>
+  <rect x="654" y="362" width="116" height="10" rx="5" fill="#d9d5cd"/>
+  <rect x="654" y="388" width="188" height="10" rx="5" fill="#d9d5cd"/>
+  <text x="654" y="428" font-family="PingFang SC, Arial, sans-serif" font-size="13" fill="#4a4e5c">运行测试 / 启动预览</text>
+</svg>

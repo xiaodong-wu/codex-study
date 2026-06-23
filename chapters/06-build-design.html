@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 06 章 · 让它好看 · Codex 口语化编程教程</title>
+<meta name="description" content="Codex CLI 产品官网设计教程:升级首屏、配色、字体、图片、排版精修、移动端适配和参考网站换皮练习。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 06 章 · 让它好看" data-chapter="06-build-design">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 06 章 · 实战 Part 2</span>
+    <h1>让它好看</h1>
+    <p class="chapter-lede">骨架有了,内容差不多了。这一章我们调外观——配色、字体、图片、动效、移动端体验。用一句话让设计感升级,是 Codex 最擅长的事之一。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章学完后你会拥有</strong>
+        一套把页面“从能用变成像样”的口语化方法:用参考说风格,用感觉说配色,用检查清单逼 Codex 修移动端和细节。
+      </div>
+    </div>
+
+    <h2 id="hero-upgrade">6.1 升级首屏(Hero)</h2>
+    <p>首屏就是用户打开页面第一眼看到的地方。它决定别人愿不愿意继续往下看。</p>
+    <p>一个像样的首屏通常有四样东西:</p>
+    <ul>
+      <li><strong>一句大标题</strong>:说清你提供什么。</li>
+      <li><strong>一段副文案</strong>:解释给谁用、为什么有用。</li>
+      <li><strong>一个主按钮</strong>:让用户知道下一步点哪里。</li>
+      <li><strong>一点可信感</strong>:截图、数字、客户语录、使用场景都可以。</li>
+    </ul>
+    <p>不要一上来让 Codex “做得高级”。这句话太空。你可以这样说:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">升级首屏</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请只升级首页首屏。目标是让用户 5 秒内看懂:
+1. 这个产品是什么
+2. 给谁用
+3. 点哪个按钮继续
+
+保持当前内容不变太多,重点调整标题层次、按钮样式、首屏留白和视觉重心。改完请告诉我具体改了哪些 CSS。</div>
+      <div class="prompt-card__note">“只升级首屏”能避免 Codex 顺手把整页都重做。</div>
+    </div>
+
+    <h2 id="color">6.2 配色:描述感觉,不要给十六进制</h2>
+    <p>如果你不是设计师,不要硬报色号。你很可能会给出一组互相打架的颜色。</p>
+    <p>更好的办法是描述感觉:</p>
+    <ul>
+      <li>“像清晨阳光照进咖啡店,暖一点,不要黄得刺眼。”</li>
+      <li>“像专业 SaaS 工具,干净、可信、少装饰。”</li>
+      <li>“像年轻运动品牌,有活力,但不要满屏荧光色。”</li>
+    </ul>
+    <p>Codex 会把这些感觉翻译成具体色值。你看到效果后再反馈:“再暖一点”“对比度高一点”“按钮更明显一点”。</p>
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">一页网站先限制 3 种主色</div>
+        <div class="callout__body">背景色、文字色、按钮/强调色。颜色越多越容易像拼贴海报,新手先克制。</div>
+      </div>
+    </div>
+
+    <h2 id="font">6.3 字体:中文怎么选</h2>
+    <p>中文网页最容易踩的坑是字体文件太大。一个完整中文字体可能几十 MB,加载慢,还可能有授权问题。</p>
+    <p>新手优先用系统字体栈。意思是:让 Mac、Windows、手机各自用自己系统里好看的中文字体。它不惊艳,但稳。</p>
+    <p>你可以让 Codex 这样处理:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">字体调整</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请优化中文排版,但不要引入外部中文字体文件。使用系统字体栈,重点调整标题字号、正文行高、段落间距和按钮文字大小,让手机和电脑上都舒服。</div>
+      <div class="prompt-card__note">“不要引入外部中文字体文件”能避免页面突然变重。</div>
+    </div>
+
+    <h2 id="image">6.4 图片:从哪里来,怎么用</h2>
+    <p>图片不是装饰,它应该帮用户理解产品。选图时问自己:这张图是在说明产品、场景、结果,还是只是为了填空?</p>
+    <p>图片来源有三种:</p>
+    <ul>
+      <li><strong>自己拍</strong>:最真实,尤其适合服务、店铺、课程、作品集。</li>
+      <li><strong>免版权图库</strong>:适合临时占位,但要避免太像库存照片。</li>
+      <li><strong>AI 生成</strong>:适合做背景、插画、图标、占位资产,但要检查细节。</li>
+    </ul>
+    <p>无论来源,都要让 Codex 加上 <code>alt</code> 文本。这样搜索引擎和读屏工具都能理解图片。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">替换图片</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请帮我检查当前页面的图片使用。每张图都要说明它服务哪个内容。如果有纯装饰或很像库存照片的图,请给出替换建议。不要直接联网下载图片,先给我清单。</div>
+      <div class="prompt-card__note">先要清单,再替换。图片很容易牵涉版权和风格,不要让 Codex 自动乱找。</div>
+    </div>
+
+    <h2 id="layout">6.5 排版精修</h2>
+    <p>页面从“能看”到“像样”,很多时候不是差一个大设计,而是差几十个小细节。</p>
+    <p>你可以按这张清单让 Codex 自查:</p>
+    <ul>
+      <li>标题之间层级是否明显。</li>
+      <li>段落行高是否舒服。</li>
+      <li>卡片之间间距是否一致。</li>
+      <li>按钮 hover 是否有反馈。</li>
+      <li>阴影是不是太重。</li>
+      <li>页面左右边距在手机上是否太窄或太宽。</li>
+    </ul>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">排版精修</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请对当前页面做一次排版精修,只改 CSS,不要改文案和结构。重点检查:标题层级、正文行高、卡片间距、按钮状态、移动端边距、阴影轻重。改完列出每一类调整。</div>
+      <div class="prompt-card__note">这类任务适合“只改 CSS”。结构和文案稳定后再做精修。</div>
+    </div>
+
+    <h2 id="mobile">6.6 移动端适配</h2>
+    <p>很多新手只在电脑上看页面,结果发给朋友后才发现手机上按钮换行、卡片挤爆、标题大得吓人。</p>
+    <p>手机端至少检查这些:</p>
+    <ul>
+      <li>首屏标题有没有占满整个屏幕。</li>
+      <li>按钮文字有没有挤成两三行。</li>
+      <li>卡片是不是一列排列,间距是否正常。</li>
+      <li>表单输入框是否好点。</li>
+      <li>横向滚动条有没有出现。</li>
+    </ul>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">手机端适配</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请专门检查并优化手机端显示。以 390px 宽度为参考,确保没有横向滚动,标题不会过大,按钮文字能正常显示,卡片和表单垂直排列。不要改变桌面端布局的大方向。</div>
+      <div class="prompt-card__note">给一个具体宽度,比只说“适配手机”更明确。</div>
+    </div>
+
+    <h2 id="exercise">动手试试</h2>
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">找 3 个参考网站,做一次视觉升级</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>找 3 个你觉得“像样”的真实网站。</li>
+          <li>截图或记录它们的网址。</li>
+          <li>让 Codex 先分析共同点,不要立刻改。</li>
+          <li>确认分析后,让 Codex 只升级首屏和配色。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你的网站第一屏比第 05 章结束时更清楚、更舒服,并且手机端没有横向滚动。</div>
+      </div>
+    </div>
+
+    <div class="pitfall-group" id="pitfalls">
+      <div class="pitfall-group__title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        常见踩坑
+      </div>
+      <details class="pitfall">
+        <summary>Codex 把页面改得很花</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>原因</dt>
+            <dd>你只说了“好看”“高级”,没有说风格和边界。</dd>
+            <dt>解决</dt>
+            <dd>补一句:“请克制一点,不要大面积渐变、不要过多动画、不要改结构,只做排版和配色。”</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>电脑上好看,手机上坏了</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>原因</dt>
+            <dd>只按桌面端做了样式,没有专门检查移动端断点。</dd>
+            <dt>解决</dt>
+            <dd>让 Codex 以 390px 宽度重新检查,重点看横向滚动、按钮换行和卡片堆叠。</dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        用首屏、配色、字体、图片、排版、手机端六个维度指导 Codex 做视觉升级。下一章我们处理更现实的问题:改着改着出错了怎么办。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./05-build-skeleton.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 搭出官网骨架</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./07-debugging.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">当事情出错时 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

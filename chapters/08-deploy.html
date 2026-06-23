@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 08 章 · 上线:让世界看到你 · Codex 口语化编程教程</title>
+<meta name="description" content="把本地的产品官网推到 GitHub,然后用 Vercel 一键部署上线,拿到一个公开访问的 vercel.app 网址。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 08 章 · 上线" data-chapter="08-deploy">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 08 章 · 让世界看到你</span>
+    <h1>上线:让世界看到你</h1>
+    <p class="chapter-lede">
+      到这一章为止,你的网站只活在你自己的电脑里。这一章我们要做两件事:<strong>把代码搬到 GitHub(代码的网盘),再让 Vercel 自动把它部署成一个真实可访问的网址</strong>。完成后,你会拿到一个 <code>https://你的项目名.vercel.app</code> 的链接,把它发给任何人都能打开。
+    </p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章完成后你将拥有</strong>
+        一个公开访问的网址(形如 <code>https://my-product-site.vercel.app</code>)、一个 GitHub 仓库存着你的代码、一套"改完推上去自动上线"的工作流。耗时约 30–45 分钟,绝大部分时间在等下载/邮箱验证。
+    </div>
+    </div>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">为什么我们用 Vercel,不用国内的服务器</div>
+        <div class="callout__body">
+          <p>给零基础读者的最快上线路径,只有两个真实选项:Vercel 和 Cloudflare Pages。两者都<strong>不需要服务器、不需要备案、不需要付钱</strong>,推完代码 60 秒就能拿到公开链接。本教程用 Vercel 作为主路线,因为它的界面对新手最友好。<br/><br/>如果你的目标用户主要在中国大陆,Cloudflare Pages 的访问速度更稳;Vercel 在国内的免费域名 <code>vercel.app</code> 偶尔被劣化,但绑定自己的域名(第 09 章)后能改善很多。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="github">第一步 · 把代码放到 GitHub</h2>
+
+    <p><strong>GitHub 是什么?</strong>它就是"代码的网盘"——只不过这个网盘特别擅长跟踪文件的每一次改动。我们要把第 05 章建好的 <code>my-product-site</code> 这个文件夹,推到 GitHub 上去。</p>
+
+    <h3 id="github-account">1. 注册 GitHub 账号</h3>
+    <p>打开 <a href="https://github.com" target="_blank" rel="noopener">github.com</a>,点右上角 <strong>Sign up</strong>。用邮箱注册一个账号,需要邮箱验证。</p>
+    <p>注册时它会让你选一个 <strong>username</strong>,这个用户名会出现在你日后所有项目的网址里(比如 <code>github.com/<你的username>/my-product-site</code>),所以选一个你愿意公开的名字。</p>
+
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">国内访问 GitHub 偶尔会很慢</div>
+        <div class="callout__body">
+          <p>如果 github.com 打开转圈半天没反应,这是已知的国内访问问题。建议:1)用桌面版 GitHub Desktop 比浏览器/命令行可靠;2)同样,你需要确保自己的网络环境能稳定访问 github.com。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 id="github-desktop">2. 装 GitHub Desktop(不教命令行)</h3>
+    <p>对于零基础读者,我们直接跳过 git 命令行,用图形界面工具 <strong>GitHub Desktop</strong>。它是 GitHub 官方做的,稳定且免费。</p>
+    <ol>
+      <li>打开 <a href="https://desktop.github.com" target="_blank" rel="noopener">desktop.github.com</a></li>
+      <li>点 <strong>Download for [你的系统]</strong>,下载安装包</li>
+      <li>双击安装,启动后用第一步注册的 GitHub 账号登录</li>
+    </ol>
+
+    <h3 id="add-existing">3. 把已有项目加进来</h3>
+    <p>启动 GitHub Desktop 后,选 <strong>Add an Existing Repository from your Hard Drive</strong>(从硬盘添加一个已有仓库),然后选我们的 <code>my-product-site</code> 文件夹。</p>
+    <p>它应该会识别到你在第 05 章已经 <code>git init</code> 过了(那一次让 Codex 帮你做的提交还在),直接把项目加进来。</p>
+
+    <div class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/chapters/08-github-desktop.svg" alt="GitHub Desktop 主界面示意图,高亮 Publish repository 按钮" />
+      </div>
+      <div class="figure__cap"><b>你应该看到的:</b>左侧是项目名 <code>my-product-site</code>,中间显示历史提交(应该有第 05 章那次"叫醒猫官网第一版"),右上有一个 <strong>Publish repository</strong> 按钮。</div>
+    </div>
+
+    <h3 id="publish">4. 点 Publish repository</h3>
+    <p>点右上角的 <strong>Publish repository</strong>。弹窗里:</p>
+    <ul>
+      <li><strong>Name</strong>:已经填好的 <code>my-product-site</code>,可以改</li>
+      <li><strong>Description</strong>:可以填或不填</li>
+      <li><strong>Keep this code private</strong>:勾选与否?<strong>本教程建议先不勾,让它先公开</strong>。原因:Vercel 部署免费版只允许公开仓库(私有仓库要付费)。等熟悉之后你可以选私有,但要换部署路径,本章不展开。</li>
+    </ul>
+    <p>点 <strong>Publish Repository</strong>。等几秒,看到底部状态变成"已推送",就成功了。</p>
+
+    <p>这时候,在浏览器里访问 <code>https://github.com/<你的username>/my-product-site</code>,应该能看到你的 <code>index.html</code> 文件就静静地躺在那里。<strong>这一刻你的代码已经在云端了。</strong></p>
+
+    <h2 id="vercel">第二步 · 用 Vercel 部署上线</h2>
+
+    <h3 id="vercel-signup">1. 注册 Vercel</h3>
+    <p>打开 <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>,点 <strong>Sign Up</strong>。这里有个小窍门:<strong>选 "Continue with GitHub"</strong>,用 GitHub 账号登录。这样 Vercel 一开始就知道你 GitHub 里有哪些项目,后面 Import 一步搞定。</p>
+    <p>第一次登录,Vercel 会让你给它授权访问你的 GitHub 仓库——可以选"All Repositories"(所有仓库)或者"Only Select Repositories"(只授权 my-product-site)。后者更稳妥。</p>
+
+    <h3 id="vercel-import">2. Import 你的仓库</h3>
+    <p>进入 Vercel 的 Dashboard,点 <strong>Add New... → Project</strong>。你会看到 GitHub 上的仓库列表,找到 <code>my-product-site</code>,点 <strong>Import</strong>。</p>
+
+    <div class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/chapters/08-vercel-import.svg" alt="Vercel 导入仓库界面示意图,my-product-site 行被高亮" />
+      </div>
+      <div class="figure__cap"><b>你应该看到的:</b>一个仓库列表,每个仓库后面有一个 <strong>Import</strong> 按钮。点击之后会进入"配置部署"页面。</div>
+    </div>
+
+    <h3 id="vercel-deploy">3. Deploy(只需要点一个按钮)</h3>
+    <p>进入配置页面后,你会看到一堆设置(Framework Preset、Build Command、Output Directory……)。<strong>不要动任何一个</strong>。Vercel 会自动识别我们这是个纯静态 HTML 项目,默认配置就对。</p>
+    <p>直接点页面右下角的大蓝色按钮 <strong>Deploy</strong>。</p>
+    <p>接下来你会看到一个酷炫的进度动画,大约 30 秒到 1 分钟,出现一个庆祝的页面 + 你的网址:</p>
+
+    <div class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/chapters/08-vercel-success.svg" alt="Vercel 部署成功庆祝界面示意图,带 URL 和访问按钮" />
+      </div>
+      <div class="figure__cap"><b>你应该看到的:</b>一个"🎉 Congratulations"页面,中间有一个网址链接(形如 <code>my-product-site-xxx.vercel.app</code>),点击可以打开你的网站。</div>
+    </div>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">恭喜,你的网站现在活在互联网上</div>
+        <div class="callout__body">
+          <p>把这个链接发给任何人(微信、朋友圈、邮件)都能打开。即使把你电脑关机,这个网址也不会消失——Vercel 帮你 7×24 小时托管着。这是教程里最值得截图的一刻。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="update-flow">第三步 · 之后怎么更新</h2>
+
+    <p>这是这一章最妙的地方:<strong>从现在开始,你做任何改动,只需要做两件事:</strong></p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__title">在 Codex 里改东西</div>
+        <p class="step__body">该改的改,该加的加,跟以前一样。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">让 Codex 帮你提交,然后 GitHub Desktop 点 Push</div>
+        <p class="step__body">提交完打开 GitHub Desktop,点右上角 <strong>Push origin</strong>。完成。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">什么都不用做,Vercel 会自动重新部署</div>
+        <p class="step__body">大约 30 秒后,你的 vercel.app 链接打开就是最新版了。</p>
+      </div>
+    </div>
+
+    <p>试着改一个小地方验证一下。在 Codex 里说:</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请把首屏的主标题改成"叫醒猫 · 让猫叫做你的闹钟"(或者你自己改成喜欢的版本)。改完之后请帮我提交一次,信息写"更新首屏文案"。</div>
+      <div class="prompt-card__note">让 Codex 同时完成"改 + 提交"两件事,是非常常见的工作流。它会用 git commit 帮你记录改动。提交完之后由<strong>你自己</strong>去 GitHub Desktop 点 Push——这一步保留给你,可以让你在最终推上去之前多看一眼改动。</div>
+    </div>
+
+    <p>提交完,打开 GitHub Desktop,你应该看到一个"1 个新提交待推送"的提示,点 <strong>Push origin</strong>。</p>
+    <p>然后,等 30 秒,刷新一下你的 vercel.app 链接——首屏文案变了。</p>
+
+    <h2 id="china-access">第四步 · 国内访问问题(必读)</h2>
+
+    <p>你把 vercel.app 链接发到工作群或者朋友圈后,可能会有朋友告诉你"打不开啊"。<strong>这是真实存在的问题</strong>,不是你的网站坏了。</p>
+
+    <p>Vercel 默认提供的 <code>*.vercel.app</code> 域名在中国大陆访问偶尔会被部分运营商劣化。最稳的解决方法是<strong>绑定一个自己的域名</strong>——这正是下一章(第 09 章)的内容。绑了自己的域名之后,国内访问的体验会改善很多。</p>
+
+    <p>如果你的目标用户在大陆且对访问稳定性要求很高,可以考虑改用 <strong>Cloudflare Pages</strong>(操作流程几乎一样)、<strong>Netlify</strong>,或者国内的 <strong>Zeabur</strong>。本教程不在主线展开,附录 D 留了入口。</p>
+
+    <h2 id="exercise">动手试试</h2>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+        <span>动手试试</span>
+      </div>
+      <div class="exercise__title">把你的网站发给三个人</div>
+      <div class="exercise__body">
+        <p>不是说说而已。真的去做。</p>
+        <ol class="exercise__steps">
+          <li>从 Vercel 后台复制你的 <code>https://...vercel.app</code> 链接</li>
+          <li>分别发给 3 个不同的人(家人、朋友、同事都可以)</li>
+          <li>记下他们的第一句反馈是什么——"挺好看的""这个按钮没用""加载太慢"——这些反馈是你下一阶段改进的金矿</li>
+        </ol>
+        <p>很多人在做产品时跳过这一步,只在小群里说"我做了个东西"但从来不实际发链接。<strong>发链接的动作,本身就是一个心理门槛</strong>,你跨过它会从此放心地把更多东西发出去。</p>
+      </div>
+      <div class="exercise__done"><strong>完成标志:</strong>至少 3 个人在你的链接上点过、并且给了一句反馈。</div>
+    </div>
+
+    <h2 id="pitfalls">常见踩坑</h2>
+
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary>GitHub Desktop 登录后看不到我的仓库</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>登录了 GitHub Desktop,但找不到刚才用浏览器创建的账号下的项目。</dd>
+            <dt>原因</dt>
+            <dd>大概率是你登错了账号,或者你的项目还没创建。</dd>
+            <dt>解决</dt>
+            <dd>右上角点你的头像确认是不是你想要的账号。如果是新账号,目前可能空空如也——这正常,我们就是要用这个 GitHub Desktop 把本地项目<strong>第一次推上去</strong>。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Publish 报错 "remote already exists"</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>点 Publish 之后弹错误说远程已存在。</dd>
+            <dt>原因</dt>
+            <dd>之前 Codex 帮你做提交时,可能把远程地址也写了上去。</dd>
+            <dt>解决</dt>
+            <dd>回到 Codex 说:"我的 git 项目报 remote already exists,请帮我移除现有的 remote。"然后回 GitHub Desktop 重试 Publish。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Vercel Import 时看不到我的仓库</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>Vercel 仓库列表里没有 <code>my-product-site</code>。</dd>
+            <dt>原因</dt>
+            <dd>你只授权了部分仓库,这个不在内。</dd>
+            <dt>解决</dt>
+            <dd>在仓库列表上方点 <strong>Adjust GitHub App Permissions</strong>,把 my-product-site 加进去。或者干脆改成"All Repositories"省事。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Vercel 部署完是 404</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>vercel.app 链接打开提示 "404: NOT_FOUND"。</dd>
+            <dt>原因</dt>
+            <dd>九成是你的 <code>index.html</code> 不在仓库根目录,而是被放进了子文件夹。</dd>
+            <dt>解决</dt>
+            <dd>进 Vercel Project Settings → General → Root Directory,改成 <code>index.html</code> 所在的子文件夹路径,再 Redeploy。或者干脆把 <code>index.html</code> 挪回根目录。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Vercel 部署失败,显示"Build error"</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>Deploy 之后显示红色 ERROR,日志里一大堆英文。</dd>
+            <dt>原因</dt>
+            <dd>对纯静态 HTML 项目来说,这种情况很少出现。如果出现,通常是某次 Codex 改完代码留下了语法错误。</dd>
+            <dt>解决</dt>
+            <dd>把红色日志里前 10 行复制下来,丢回 Codex 说:"Vercel 部署失败,日志在这里,请帮我看看哪里出问题了。"它会读你的代码定位问题。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Push 之后 Vercel 没自动重新部署</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>明明 Push 上去了,等了几分钟 Vercel 上的链接还是旧的。</dd>
+            <dt>原因</dt>
+            <dd>可能 GitHub 那次推送出错(常见于网络问题),实际没推上去;也可能你看的是浏览器缓存。</dd>
+            <dt>解决</dt>
+            <dd>1)去 github.com 上你的项目页,看最新一次提交是不是已经在那;2)强制刷新浏览器(<kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>R</kbd> 或 <kbd>Ctrl</kbd>+<kbd>F5</kbd>);3)Vercel Dashboard 里手动点 Redeploy。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>朋友说 vercel.app 链接打不开</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>你自己能打开,朋友打不开。</dd>
+            <dt>原因</dt>
+            <dd>多半是国内某些运营商对 <code>*.vercel.app</code> 的访问劣化。</dd>
+            <dt>解决</dt>
+            <dd>这是已知问题,不能让 Vercel 替我们解决。最有效的办法是<strong>下一章的内容</strong>:绑一个自己的域名,通常就能稳定打开。</dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        把代码推到 GitHub、用 Vercel 一键部署上线、之后改完再 Push 就自动更新。整个工作流叫做 <strong>"持续部署"</strong>——你不用关心服务器、不用关心 SSL 证书、不用关心备份。下一章,让 vercel.app 后缀变成你自己的域名。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./07-debugging.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 当事情出错时</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./09-domain.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">域名:给页面一个家 →</div>
+      </a>
+    </nav>
+
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

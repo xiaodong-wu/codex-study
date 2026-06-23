@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 02 章 · 把工具装到电脑里 · Codex 口语化编程教程</title>
+<meta name="description" content="从打开终端、安装 Node.js、安装 OpenAI Codex CLI、登录,到首次对话的全过程,含 Mac 和 Windows 双路径与全部踩坑。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 02 章 · 把工具装到电脑里" data-chapter="02-setup">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 02 章 · 入门起步</span>
+    <h1>把工具装到电脑里</h1>
+    <p class="chapter-lede">
+      这是整本教程里<strong>劝退率最高的一章</strong>,因为它处于"还没尝到甜头"和"已经面对一堆陌生界面"的中间。所以我会拆得很细,你只要按顺序往下做即可。卡住的话——这一章末尾的「常见踩坑」十有八九能救你。
+    </p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10z"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章完成后你将拥有</strong>
+        一个能在终端里跑起来的 Codex CLI、一个用来跟它对话的账号,以及一段属于你和 Codex 的"第一次对话"截图。耗时约 30–60 分钟,主要花在等下载。
+      </div>
+    </div>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">在你动手之前</div>
+        <div class="callout__body">
+          <p>本章基于 Codex CLI 截至 <strong>2026 年 5 月</strong> 的版本(v0.119.x 系列)。如果你看到的界面和教程描述不完全一致,先按本章思路尝试,再去附录 D 查看勘误。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="step-1-terminal">第一步 · 认识"终端"</h2>
+    <p>你即将要用一个叫做<strong>终端</strong>的东西。它就是电脑里那块黑乎乎的、只能用键盘打字的窗口。它有名字:</p>
+    <ul>
+      <li>Mac 上叫 <strong>终端 / Terminal</strong></li>
+      <li>Windows 上叫 <strong>Windows PowerShell</strong> 或 <strong>终端</strong></li>
+    </ul>
+    <p>它在我们这本书里的角色:你的<strong>客厅</strong>。本教程里所有的"打开 Codex 跟它聊天"、"安装工具"、"启动网页预览"都发生在这间客厅里。</p>
+
+    <h3 id="open-terminal-mac">Mac:怎么打开终端</h3>
+    <p>按 <kbd>⌘</kbd> + <kbd>Space</kbd>,在弹出的搜索框里输入 <code>终端</code>(或 <code>Terminal</code>),回车。出现一个黑底或白底的窗口,里面有一行字以你的电脑名字开头、以 <code>$</code> 或 <code>%</code> 结尾。这就对了。</p>
+
+    <div class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/chapters/02-terminal-mac.svg" alt="Mac 终端首次打开的样貌示意图" />
+      </div>
+      <div class="figure__cap"><b>你应该看到的:</b>一个独立的窗口,里面有一行类似 <code>wuxiaodong@MacBook ~ %</code> 的提示符,后面有一个会闪烁的小方块光标。</div>
+    </div>
+
+    <h3 id="open-terminal-win">Windows:怎么打开终端</h3>
+    <p>按 <kbd>⊞ Win</kbd> 键,输入 <code>powershell</code>,回车。出现一个蓝色或黑色背景的窗口。如果你的系统是 Windows 11,推荐你输入 <code>终端</code>(系统自带的 Windows Terminal 比 PowerShell 体验更现代)。</p>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">不用害怕,这玩意儿安全</div>
+        <div class="callout__body">
+          <p>在终端里输入的每一行命令,只有你按下回车才会执行。错了没关系,几乎不会"把电脑搞坏"。最坏的情况就是它告诉你"command not found"——意思是它没听懂——你重新输入即可。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="step-2-node">第二步 · 安装 Node.js</h2>
+    <p>Codex CLI 是用一个叫做 <strong>Node.js</strong> 的工具发布出来的。所以我们先得装它。</p>
+    <p>把 Node.js 想象成<strong>一台咖啡机</strong>,Codex CLI 是<strong>一种咖啡豆</strong>。你需要先有咖啡机,才能煮出咖啡。</p>
+
+    <h3 id="node-version">需要的版本</h3>
+    <p>本教程发布时,Codex CLI 要求 <strong>Node.js 22 或更高版本</strong>。</p>
+
+    <h3 id="node-install">安装方法(任选一种)</h3>
+    <p><strong>方法 A · 官网下载(推荐给所有新手)</strong></p>
+    <ol>
+      <li>打开 <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a></li>
+      <li>页面会自动识别你的系统,点显示 <strong>LTS</strong> 的那个大按钮(LTS = 长期支持版,稳定)</li>
+      <li>下载完后双击安装,一路点"继续"/"下一步"即可,不需要修改任何选项</li>
+    </ol>
+
+    <p><strong>方法 B · Mac 用户也可以用 Homebrew</strong></p>
+    <p>如果你的 Mac 已经装过 Homebrew,可以在终端里输入这行,然后回车:</p>
+
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">bash</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre><span class="tk-cmt"># 装 Node.js 的最新长期支持版</span>
+brew install node</pre>
+    </div>
+
+    <h3 id="node-verify">怎么确认装好了</h3>
+    <p>回到终端,输入下面这行(<strong>每一个字符都要一样,包括短横</strong>),按回车:</p>
+
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">bash</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre>node --version</pre>
+    </div>
+
+    <p>如果它回了一行 <code>v22.x.x</code> 这样的东西(数字可能不一样,但开头要是 <code>v22</code> 或更高),恭喜你,Node.js 装好了。</p>
+
+    <h2 id="step-3-codex">第三步 · 安装 Codex CLI</h2>
+
+    <div class="callout callout--danger">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">这一步最容易踩的坑:包名一定要带 @openai/</div>
+        <div class="callout__body">
+          <p>正确包名是 <code>@openai/codex</code>。<strong>不带 <code>@openai/</code> 前缀的 <code>codex</code> 是另一个 2012 年的无关项目,装下来啥也不能干。</strong></p>
+          <p>下面这条命令,你可以直接复制,不要手敲(避免抄错)。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">bash</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre><span class="tk-cmt"># 把 Codex CLI 装到电脑里,任何地方都能用</span>
+npm install -g @openai/codex</pre>
+    </div>
+
+    <p>按回车后,终端里会刷过一大堆字。这是它在下载文件,正常现象。<strong>等到提示符再次出现、光标变成可以输入的状态</strong>,就装好了。</p>
+    <p>验证一下:</p>
+
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">bash</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre>codex --version</pre>
+    </div>
+
+    <p>看到 <code>codex 0.119.x</code>(数字可能不同)就算成功了。</p>
+
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">中国大陆网络可能很慢或超时</div>
+        <div class="callout__body">
+          <p>如果上面那条命令转了很久(超过 3 分钟)还没动静,大概率是 npm 默认源被墙到了。可以切换到国内镜像源(下面这条只需运行<strong>一次</strong>):</p>
+          <p style="margin-top:8px;"><code>npm config set registry https://registry.npmmirror.com</code></p>
+          <p>换好之后,重新跑一次安装命令。但要注意:镜像同步可能有几小时的延迟,极端情况下镜像上的最新版还没同步过来,这时你可能需要切回官方源。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="step-4-login">第四步 · 登录 Codex</h2>
+
+    <p>装好之后,Codex 还不知道你是谁、能用谁的额度。我们要"登录"一下。在终端里输入:</p>
+
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">bash</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre>codex login</pre>
+    </div>
+
+    <p>它会让你二选一:</p>
+    <ul>
+      <li><strong>选项 A:用 ChatGPT 账号登录(推荐)</strong>——它会打开浏览器,你正常用 ChatGPT 账号登录就行。前提是这个账号有 Codex 使用权限。套餐和额度会变化,以 OpenAI 官方页面和你账号里显示的权限为准。</li>
+      <li><strong>选项 B:用 API Key 登录</strong>——如果你不订阅 ChatGPT,可以去 <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a> 申请一个 API Key,贴回终端。这种方式按使用量计费。</li>
+    </ul>
+
+    <p>本教程的全部内容都按“小项目、小步跑”的方式设计。只要你的账号能正常使用 Codex,就不需要一开始就开很大的权限或很复杂的计费方案。</p>
+
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">网络访问的现实提醒</div>
+        <div class="callout__body">
+          <p>OpenAI 的服务在中国大陆不可直接访问。你需要自行解决可访问 <code>openai.com</code> 的网络环境,本教程不教这一步。如果你的浏览器现在能打开 <a href="https://chat.openai.com" target="_blank" rel="noopener">chat.openai.com</a> 并正常用 ChatGPT,就足够走完整本书。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="step-5-first-chat">第五步 · 第一次和 Codex 对话</h2>
+    <p>现在,把终端 <code>cd</code> 到桌面(随便选个地方),然后输入 <code>codex</code>,回车:</p>
+
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">bash</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre><span class="tk-cmt"># 进入桌面(Mac/Windows 命令略不同,这是 Mac 的)</span>
+cd ~/Desktop
+
+<span class="tk-cmt"># 启动 Codex,进入对话模式</span>
+codex</pre>
+    </div>
+
+    <p>第一次启动会出现一个"欢迎"界面,告诉你它现在的工作目录、用的是哪种审批模式(默认是<strong>工作区可写</strong>,意思是:它能改当前文件夹里的文件,不能改外面的)。</p>
+
+    <p>看到底部出现一个输入框、提示你"按一下回车开始打字"之后,试着说这句话:</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">你好。请用一句话告诉我,你能帮我做什么、不能帮我做什么。然后告诉我此刻你看到的工作目录里有什么文件。</div>
+      <div class="prompt-card__note">第一次对话不要急着让它干活。先让它"自我介绍",顺便确认它确实能看到你的电脑文件。这是一种"握手"。</div>
+    </div>
+
+    <p>它会回你一段话,大致告诉你:它是一个能在终端里读你文件、改你文件、执行命令的 AI 助手,然后列出当前桌面有哪些文件。如果你的对话窗口里出现了类似下面这样的回复,说明一切就绪:</p>
+
+    <div class="dialog">
+      <div class="dialog__bubble dialog__bubble--codex">
+        <div class="dialog__who">Codex</div>
+        我能帮你读取、修改、创建当前文件夹里的文件,执行命令行,以及解释代码。我不能直接打开浏览器,也不能修改这个文件夹外面的东西(除非你授权)。
+        ——
+        此刻我看到的工作目录是 <code>~/Desktop</code>,里面有 3 个项目:<code>screenshots/</code>、<code>简历.pdf</code>、<code>笔记.md</code>。
+      </div>
+    </div>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">这是真实的成就</div>
+        <div class="callout__body">
+          <p>请认真看一下屏幕。你现在拥有了一个能听你说话、能读你电脑文件、能帮你写代码的 AI 助手。<strong>这件事本身就是 2024 年以前不可能的</strong>。先停下来欣赏一下这一刻。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="exercise">动手试试</h2>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span>动手试试</span>
+      </div>
+      <div class="exercise__title">让 Codex 帮你建一个项目文件夹</div>
+      <div class="exercise__body">
+        <p>仍然在 Codex 对话窗口里,把下面这段话发给它:</p>
+        <div class="prompt-card" style="margin:14px 0;">
+          <div class="prompt-card__head">
+            <span class="prompt-card__label">说给 Codex 听</span>
+            <button class="prompt-card__copy" type="button">复制</button>
+          </div>
+          <div class="prompt-card__body">请帮我在当前目录下建一个文件夹叫 <code>my-product-site</code>,里面放一个空的 <code>index.html</code> 文件。完成后告诉我你做了什么。</div>
+          <div class="prompt-card__note">我们故意提"完成后告诉我你做了什么",让 Codex 习惯于在结束时总结。这个习惯越早养成越好。</div>
+        </div>
+        <p><strong>它会先给你看一份"我打算做这些"的预告(我们叫它 plan),并请求你的批准。</strong> 看一眼,如果合理,按 <kbd>y</kbd>(或者点 <kbd>Yes</kbd>)。然后它会把文件夹建出来。</p>
+        <ol class="exercise__steps">
+          <li>打开桌面文件夹,确认 <code>my-product-site/</code> 真的出现了</li>
+          <li>进到里面,确认 <code>index.html</code> 真的存在(虽然里面是空的)</li>
+          <li>回到 Codex 对话窗口,输入 <kbd>/quit</kbd> 退出(我们留着这个文件夹,后面会用)</li>
+        </ol>
+      </div>
+      <div class="exercise__done"><strong>完成标志:</strong>桌面上多了一个 <code>my-product-site</code> 文件夹,里面有一个 <code>index.html</code>。</div>
+    </div>
+
+    <h2 id="pitfalls">常见踩坑全集</h2>
+    <p>到这里,绝大多数读者已经能跑起来了。但如果你卡在某一步,把展开下面对应的卡片对照一下。这些都是真实有人踩过的。</p>
+
+    <div class="pitfall-group">
+      <div class="pitfall-group__title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        12 种常见踩坑(按出现顺序)
+      </div>
+
+      <details class="pitfall">
+        <summary>装完 Node.js 后输入 <code>node --version</code> 显示 command not found</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>终端回复你 <code>command not found: node</code>,或者 <code>'node' 不是内部或外部命令</code>。</dd>
+            <dt>原因</dt>
+            <dd>你的终端不知道 Node.js 装到哪里去了。这种情况几乎只会发生在你跳过了官网安装包的步骤、自己手动解压安装时。</dd>
+            <dt>解决</dt>
+            <dd>关掉当前终端窗口,重新打开一个,再试一次。如果还不行,删掉 Node 重装一次,这次<strong>一定用官网下载的 .pkg / .msi 安装包</strong>,它会替你配置好。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>误装了不带 <code>@openai/</code> 的 <code>codex</code> 包</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd><code>codex --version</code> 显示一个很老的版本号(比如 0.0.x),或者执行 <code>codex</code> 直接报错。</dd>
+            <dt>原因</dt>
+            <dd>你装到了一个 2012 年的同名旧包,它跟 OpenAI 没有任何关系。</dd>
+            <dt>解决</dt>
+            <dd>先卸载错的:<code>npm uninstall -g codex</code>,然后<strong>带前缀</strong>重装:<code>npm install -g @openai/codex</code>。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>npm install 中途报 <code>EACCES</code> 权限错误</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>错误信息里有 <code>EACCES: permission denied</code>。</dd>
+            <dt>原因</dt>
+            <dd>你的电脑禁止 npm 把文件写到全局目录。</dd>
+            <dt>解决</dt>
+            <dd>Mac 用户可以在命令前加 <code>sudo</code>(会让你输入开机密码):<code>sudo npm install -g @openai/codex</code>。Windows 用户右键 PowerShell,选"以管理员身份运行",再装。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>npm 安装卡了几分钟没动,看不到进度</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>跑完命令后终端一动不动,光标也不闪了一样。</dd>
+            <dt>原因</dt>
+            <dd>九成是网络问题。中国大陆访问默认的 npm 官方源经常龟速或超时。</dd>
+            <dt>解决</dt>
+            <dd>先按 <kbd>Ctrl</kbd>+<kbd>C</kbd> 中断,然后跑 <code>npm config set registry https://registry.npmmirror.com</code> 切到国内镜像,再重装。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>装完 Codex 后输入 <code>codex --version</code> 显示 command not found</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>明明刚装好,终端却说找不到 <code>codex</code>。</dd>
+            <dt>原因</dt>
+            <dd>npm 的全局目录没在你的 PATH 里。</dd>
+            <dt>解决</dt>
+            <dd>先重启终端窗口试试。如果还不行,运行 <code>npm bin -g</code>,它会输出一个路径,你需要把这个路径加到 PATH 里——具体怎么加,把上面那条 <code>npm bin -g</code> 的输出和你的系统(Mac/Win)一起告诉 Codex(就用 ChatGPT 网页版也行),让它给你写好一行配置命令。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>登录时浏览器没自动弹出</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd><code>codex login</code> 之后,终端里出现一长串带 <code>https://</code> 的链接,但浏览器没动。</dd>
+            <dt>原因</dt>
+            <dd>有些远程终端 / 公司电脑禁止自动打开浏览器。</dd>
+            <dt>解决</dt>
+            <dd>没关系。复制那段以 <code>https://</code> 开头的长链接,粘贴到你的浏览器地址栏,回车,正常登录。完成后终端会自动检测到。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>登录失败,提示账号没有 Codex 权限</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>用 ChatGPT 账号登录后被告知此账号无 Codex 权限。</dd>
+            <dt>原因</dt>
+            <dd>这个账号当前没有 Codex 使用权限;或者你登录到了另一个账号。部分环境也可能被团队/企业策略限制。</dd>
+            <dt>解决</dt>
+            <dd>先确认账号是否有 Codex 权限。需要 API Key 方式时,去 <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a> 申请 API Key,重跑一次 <code>codex login</code> 选择对应登录方式。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>第一次 <code>codex</code> 启动很慢、转半天才进入对话界面</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>启动后等了 30 秒以上才进入"可以打字"的状态。</dd>
+            <dt>原因</dt>
+            <dd>第一次启动需要做一些初始化(扫一遍工作目录、加载配置)。如果工作目录是个超大文件夹(比如桌面塞了上千个文件),会慢一些。</dd>
+            <dt>解决</dt>
+            <dd>下次启动前,先 <code>cd</code> 到一个干净的子文件夹(比如我们刚建的 <code>my-product-site</code>)再启动 Codex,会快得多。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Codex 提示"network error"或一直转圈圈</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>发送消息后等了很久没回应,或者直接报错说连不上。</dd>
+            <dt>原因</dt>
+            <dd>OpenAI 的服务器从你的网络环境过不去。</dd>
+            <dt>解决</dt>
+            <dd>这是网络环境问题,本教程不展开。请确保你的浏览器现在能打开 <code>chat.openai.com</code> 并正常用 ChatGPT,Codex 才能正常工作。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>从教程复制命令到终端后报"语法错误"</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>明明复制了命令,粘贴执行却报奇怪的错。</dd>
+            <dt>原因</dt>
+            <dd>从某些场景复制时,英文引号 <code>"</code> 可能被自动替换成了中文引号 <code>"</code> <code>"</code>,终端看不懂。</dd>
+            <dt>解决</dt>
+            <dd>本教程的代码块都用"复制"按钮,它复制的一定是纯 ASCII 字符,不会有这个问题。<strong>不要手敲,不要从微信/Word 复制</strong>。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Windows 沙盒功能提示 experimental</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>Windows 启动 Codex 时看到一句小字提示"Windows sandbox is experimental"。</dd>
+            <dt>原因</dt>
+            <dd>2026 年早期 Codex CLI 在 Windows 上的沙盒实现还在打磨阶段。</dd>
+            <dt>解决</dt>
+            <dd>对零基础读者无影响,继续用即可。如果你以后做的项目对安全特别敏感,可以考虑在 WSL2(Windows 下的 Linux 子系统)里跑 Codex,体验更稳。这件事不在本教程范围。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>公司电脑根本不让我装东西</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>npm 装不了、PowerShell 提示"组策略禁止"。</dd>
+            <dt>原因</dt>
+            <dd>你的公司对设备有管控。</dd>
+            <dt>解决</dt>
+            <dd>本教程的内容对你的私人电脑友好,对公司电脑不友好。建议用你自己的电脑跟着学。</dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        打开终端、装好 Node.js 和 Codex CLI、用账号登录、跟 Codex 说出第一句话、让它替你建文件夹。剩下的章节都建立在"你能跟 Codex 对话"这个基础上,所以这一章是最难的一关,你已经过了。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./01-mindset.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 心态准备</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./03-codex-basics.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">Codex 用法手册 →</div>
+      </a>
+    </nav>
+
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

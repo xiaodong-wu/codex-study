@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 05 章 · 自动化、技能和外部工具 · Codex 口语化教程</title>
+<meta name="description" content="Codex 桌面端 App 的自动化、线程自动化、技能、插件、MCP、记忆、AGENTS.md 和外部工具连接的通俗说明。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 05 章 · 自动化、技能和外部工具" data-chapter="app-05-automation">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 05 章 · 重复工作交出去</span>
+    <h1>自动化、技能和外部工具</h1>
+    <p class="chapter-lede">当你已经会让 Codex 完成一次任务,下一步就是让它“按固定套路重复做”。自动化负责定时回来,技能负责按套路做事,MCP 和插件负责连接外部工具。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/automation-settings.svg" alt="Codex App 自动化、技能、MCP 和设置权限关系示意图" loading="lazy" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>记忆法:</b>自动化是闹钟,技能是菜谱,MCP 是外部工具接口,设置是安全阀门。</figcaption>
+    </figure>
+
+    <h2 id="automations">自动化:让 Codex 定时回来看看</h2>
+    <p>自动化适合这些事情:</p>
+    <ul>
+      <li>每天检查项目有没有新报错。</li>
+      <li>每周整理一次最近改动。</li>
+      <li>每隔几分钟看看一个部署是否完成。</li>
+      <li>定时检查 PR 反馈,有新问题就提醒你。</li>
+    </ul>
+    <p>它跑完后,如果有发现,通常会进入 App 里的待处理区。没发现就可以自动归档,不会一直打扰你。</p>
+
+    <h2 id="triage">Triage:自动化的收件箱</h2>
+    <p>自动化不是每次都应该打扰你。App 里通常会有类似 <strong>Triage</strong> 的待处理区:</p>
+    <ul>
+      <li>有发现的问题,放进 Triage 给你看。</li>
+      <li>没有发现的问题,可以自动归档。</li>
+      <li>你可以筛选未读、已读或历史运行记录。</li>
+    </ul>
+    <p>写自动化提示词时,一定说清楚“什么情况算有发现”。否则它可能每次都产出一篇没必要的报告。</p>
+
+    <h2 id="thread-vs-standalone">线程自动化和普通自动化怎么选</h2>
+    <table>
+      <thead><tr><th>类型</th><th>怎么理解</th><th>适合</th></tr></thead>
+      <tbody>
+        <tr><td>线程自动化</td><td>在同一条对话里定时醒来</td><td>部署等待、长任务跟进、需要保留上下文的循环。</td></tr>
+        <tr><td>普通/项目自动化</td><td>每次按固定提示新跑一次</td><td>日报、周报、巡检、多个项目重复检查。</td></tr>
+      </tbody>
+    </table>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">自动化示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请帮我创建一个每周一上午 9 点运行的项目自动化:检查这个教程站有没有断链、缺失图片、HTML 结构错误。若没有问题就自动归档;若有问题,把清单放到 Triage,并说明优先级。</div>
+      <div class="prompt-card__note">自动化提示词要写“什么时候报告”和“什么时候不用报告”,否则它容易每次都啰嗦。</div>
+    </div>
+
+    <h2 id="durable-prompt">自动化提示词要写得耐用</h2>
+    <p>普通聊天提示词可以依赖上下文,自动化提示词不行。它可能隔几小时、几天后才再次运行,所以要写得像一张工作说明书。</p>
+    <p>一条耐用的自动化提示词通常包含:</p>
+    <ul>
+      <li><strong>检查对象</strong>:哪个项目、哪个页面、哪个数据源。</li>
+      <li><strong>检查频率</strong>:每天、每周、每隔几分钟,或 cron 自定义。</li>
+      <li><strong>判断标准</strong>:什么算正常,什么算异常。</li>
+      <li><strong>输出格式</strong>:清单、表格、优先级、文件链接。</li>
+      <li><strong>停止条件</strong>:什么情况下不用继续提醒。</li>
+    </ul>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">耐用自动化提示词</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请创建一个项目自动化,每周一 09:00 运行。
+
+任务:检查当前教程站是否有断链、缺图、HTML 结构错误、首页状态与 README 不一致。
+
+报告规则:
+- 如果没有问题,自动归档,不用打扰我。
+- 如果有问题,放到 Triage,按 P1/P2/P3 标优先级。
+- 每个问题给出文件路径、现象、建议修复方式。
+- 不要自动提交或推送。</div>
+      <div class="prompt-card__note">这类提示词能反复运行,不依赖“我们刚才聊过什么”。</div>
+    </div>
+
+    <h2 id="worktree-automation">自动化为什么常配 Worktree</h2>
+    <p>如果项目是 Git 仓库,自动化可以跑在后台 Worktree 里。这样它就算改文件,也不会直接撞上你当前正在改的那份。</p>
+    <p>新手规则:自动化如果可能改文件,优先让它在 Worktree 里跑。只是读信息、做报告,Local 也可以。</p>
+
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">自动化也受权限影响</div>
+        <div class="callout__body">自动化会沿用你的默认沙盒和审批设置。不要为了让后台任务省事就给全权限。读报告类任务用只读更安心,会改文件的任务优先放 Worktree。</div>
+      </div>
+    </div>
+
+    <h2 id="skills">技能:把一套做法封成按钮</h2>
+    <p>技能像一张“菜谱”。比如“做一次发布检查”“生成一份周报”“把截图转成 Figma 设计稿”。你可以显式点名技能,也可以让 Codex 根据任务自动选择。</p>
+    <p>使用时通常写成:</p>
+    <div class="code code--inline">
+      <div class="code__bar"><span class="code__bar-lang">text</span><button class="code__copy" type="button">复制</button></div>
+      <pre>$skill-name 请按这个技能的流程处理当前项目</pre>
+    </div>
+    <p>如果一件事你每周都要做,就值得考虑把它整理成技能。</p>
+
+    <h2 id="skills-when">什么时候该用技能</h2>
+    <p>技能适合“步骤固定,但每次材料不同”的任务:</p>
+    <ul>
+      <li>每次发布前都要检查链接、构建、SEO。</li>
+      <li>每次写教程都要按同一套口吻和结构。</li>
+      <li>每次生成文档都要先渲染、再检查版式。</li>
+      <li>每次做设计稿都要先读设计规范。</li>
+    </ul>
+    <p>如果只是一次性的简单任务,直接说给 Codex 听就够。技能是为了复用,不是为了显得高级。</p>
+
+    <h2 id="plugins">插件:把技能和工具打包安装</h2>
+    <p>插件可以包含技能、工具、连接器和界面资源。你可以把它理解成“Codex 的扩展包”。普通读者不需要一开始就会做插件,但要知道:如果某个工作流已经有成熟插件,优先安装插件,别自己从零搭。</p>
+
+    <h2 id="mcp">MCP:让 Codex 连接外部系统</h2>
+    <p>MCP 是一种连接外部工具的方式。比如让 Codex 访问设计工具、项目管理工具、内部文档或其他服务。它不是“上网搜一下”,而是更结构化地拿到你授权的数据和操作能力。</p>
+    <p>新手可以先记一句话:需要私有数据或团队工具时,优先找插件 / MCP / 连接器,不要让 Codex 靠猜。</p>
+
+    <h2 id="tool-choice">技能、插件、MCP 怎么选</h2>
+    <table>
+      <thead><tr><th>你想做什么</th><th>优先选</th><th>原因</th></tr></thead>
+      <tbody>
+        <tr><td>让 Codex 按固定流程写作、检查、生成文件</td><td>技能</td><td>它像流程说明书,最适合复用步骤。</td></tr>
+        <tr><td>安装一整套现成能力</td><td>插件</td><td>插件能把技能、工具、配置打包。</td></tr>
+        <tr><td>访问外部系统或私有数据</td><td>MCP / 连接器</td><td>它提供结构化数据和授权操作。</td></tr>
+        <tr><td>只是问一个一次性问题</td><td>普通提示词</td><td>不要把简单事情复杂化。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="instructions-memory">AGENTS.md 和 Memories:让 Codex 记住规矩</h2>
+    <p><code>AGENTS.md</code> 是项目里的长期说明书。比如你反复提醒 Codex“这个项目不要加新依赖”,就可以把这句话写进去。</p>
+    <p>Memories 则更像“个人偏好”。它在可用时可以帮 Codex 记住跨线程有用的信息。敏感信息不要写进去,项目规则优先放 <code>AGENTS.md</code>。</p>
+
+    <h2 id="agents-examples">AGENTS.md 里适合写什么</h2>
+    <ul>
+      <li>项目怎么启动、怎么测试、怎么构建。</li>
+      <li>文案口吻:口语化、少术语、面向零基础。</li>
+      <li>代码约束:不要新增依赖、不要改全局样式、不要碰某些目录。</li>
+      <li>验收方式:改完必须跑哪些检查。</li>
+      <li>Review 偏好:优先指出风险,再讲总结。</li>
+    </ul>
+    <p>不适合写进去的东西:密码、API Key、私人账号、临时计划。项目规则要长期稳定,不是当天备忘录。</p>
+
+    <h2 id="good-automation">好自动化长什么样</h2>
+    <ul>
+      <li>任务范围清楚:检查什么,不检查什么。</li>
+      <li>输出标准清楚:什么情况报告,什么情况归档。</li>
+      <li>权限保守:默认不要给 full access。</li>
+      <li>先手动跑一次:确认提示词靠谱,再设成定时。</li>
+    </ul>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">把一个重复任务改写成自动化说明</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>选一个你经常重复做的任务,比如检查断链。</li>
+          <li>写清检查对象、频率、报告标准、停止条件。</li>
+          <li>先在普通线程里让 Codex 模拟执行一次。</li>
+          <li>确认输出靠谱后,再创建自动化。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你拥有一条可以反复运行、不会每次乱报告的自动化提示词。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>这一章的核心</strong>
+        自动化解决重复检查,技能解决固定流程,插件打包能力,MCP 连接外部系统。先手动跑通,再定时运行,权限始终保守。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./04-browser-computer-use.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 浏览器、标注和电脑操作</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./06-settings-shortcuts.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">设置、快捷键和安全边界 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

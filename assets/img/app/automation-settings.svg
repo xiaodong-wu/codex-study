@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">自动化、技能和设置示意图</title>
+  <desc id="desc">展示 Codex App 中自动化、技能、MCP、设置和安全权限的关系。</desc>
+  <rect width="960" height="540" rx="28" fill="#faf8f4"/>
+  <text x="74" y="76" font-family="PingFang SC, Arial, sans-serif" font-size="28" font-weight="700" fill="#1f2230">把常做的事，变成可重复的流程</text>
+  <g transform="translate(78 134)">
+    <rect width="230" height="288" rx="18" fill="#fff" stroke="#e8e4dc"/>
+    <text x="28" y="50" font-family="PingFang SC, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2230">自动化</text>
+    <text x="28" y="90" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">定时提醒、检查项目、</text>
+    <text x="28" y="118" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">跑报告、跟进 PR。</text>
+    <rect x="28" y="168" width="174" height="38" rx="10" fill="#eceefb"/>
+    <text x="50" y="193" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#2a37a0">每天 9 点检查</text>
+  </g>
+  <g transform="translate(364 134)">
+    <rect width="230" height="288" rx="18" fill="#fff" stroke="#e8e4dc"/>
+    <text x="28" y="50" font-family="PingFang SC, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2230">技能 / MCP</text>
+    <text x="28" y="90" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">技能像固定套路，</text>
+    <text x="28" y="118" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">MCP 像外部工具接口。</text>
+    <rect x="28" y="168" width="174" height="38" rx="10" fill="#e6f4ed"/>
+    <text x="50" y="193" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f6f4d">$skill-name</text>
+  </g>
+  <g transform="translate(650 134)">
+    <rect width="230" height="288" rx="18" fill="#fff" stroke="#e8e4dc"/>
+    <text x="28" y="50" font-family="PingFang SC, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2230">设置 / 安全</text>
+    <text x="28" y="90" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">审批、沙盒、浏览器、</text>
+    <text x="28" y="118" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">Computer Use 都在这里管。</text>
+    <rect x="28" y="168" width="174" height="38" rx="10" fill="#fbede5"/>
+    <text x="50" y="193" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#8b3a18">先窄后宽</text>
+  </g>
+  <path d="M308 278 C330 278 342 278 364 278" stroke="#cfd3ee" stroke-width="4" stroke-linecap="round"/>
+  <path d="M594 278 C616 278 628 278 650 278" stroke="#cfd3ee" stroke-width="4" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Vercel 导入仓库界面示意图">
+  <defs>
+    <linearGradient id="bg8vi" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#F4EFE6"/>
+      <stop offset="100%" stop-color="#E8E1D3"/>
+    </linearGradient>
+    <linearGradient id="tb8vi" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#EFE9DE"/>
+      <stop offset="100%" stop-color="#D9D1C0"/>
+    </linearGradient>
+    <radialGradient id="r8vi" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#FF7B72"/><stop offset="60%" stop-color="#FC615D"/><stop offset="100%" stop-color="#D9443F"/></radialGradient>
+    <radialGradient id="y8vi" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#FFCF6A"/><stop offset="60%" stop-color="#FDBC40"/><stop offset="100%" stop-color="#D89826"/></radialGradient>
+    <radialGradient id="g8vi" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#4FD75F"/><stop offset="60%" stop-color="#34C748"/><stop offset="100%" stop-color="#1F9A2A"/></radialGradient>
+    <filter id="ws8vi" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#1F2230" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="400" fill="url(#bg8vi)"/>
+
+  <g filter="url(#ws8vi)">
+    <!-- 浏览器窗口 -->
+    <rect x="50" y="40" width="700" height="320" rx="11" fill="#FFFFFF" stroke="#C9C0AF" stroke-width="0.5"/>
+
+    <!-- 标题栏 + 地址栏 -->
+    <path d="M50 51 Q50 40 61 40 L739 40 Q750 40 750 51 L750 90 L50 90 Z" fill="url(#tb8vi)"/>
+    <circle cx="75" cy="55" r="6.5" fill="url(#r8vi)"/>
+    <circle cx="96" cy="55" r="6.5" fill="url(#y8vi)"/>
+    <circle cx="117" cy="55" r="6.5" fill="url(#g8vi)"/>
+
+    <!-- 地址栏 -->
+    <rect x="180" y="68" width="440" height="22" rx="11" fill="#FFFFFF" stroke="#C9C0AF" stroke-width="0.5"/>
+    <circle cx="195" cy="79" r="4" fill="none" stroke="#5F5751" stroke-width="1"/>
+    <text x="210" y="83" font-family="system-ui, sans-serif" font-size="11" fill="#5F5751">vercel.com/new</text>
+
+    <!-- 内容区 -->
+    <text x="74" y="125" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1F2230">Import Git Repository</text>
+    <text x="74" y="146" font-family="system-ui, sans-serif" font-size="11.5" fill="#8B8F9C">从 GitHub 选一个仓库部署到 Vercel</text>
+
+    <!-- 搜索 + 筛选条 -->
+    <rect x="74" y="162" width="380" height="30" rx="5" fill="#FAF8F4" stroke="#E0DCD2" stroke-width="0.5"/>
+    <text x="92" y="181" font-family="system-ui, sans-serif" font-size="11.5" fill="#8B8F9C">搜索仓库……</text>
+    <rect x="466" y="162" width="120" height="30" rx="5" fill="#FFFFFF" stroke="#E0DCD2" stroke-width="0.5"/>
+    <text x="478" y="181" font-family="system-ui, sans-serif" font-size="11.5" fill="#1F2230">wuxiaodong ▾</text>
+
+    <!-- 仓库列表 -->
+    <!-- Row 1 - 高亮目标仓库 -->
+    <rect x="74" y="205" width="652" height="44" rx="6" fill="#ECEEFB" stroke="#3E4ECC" stroke-width="1.5"/>
+    <rect x="88" y="217" width="20" height="20" rx="4" fill="#3E4ECC"/>
+    <text x="98" y="232" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
+    <text x="120" y="226" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1F2230">my-product-site</text>
+    <text x="120" y="241" font-family="system-ui, sans-serif" font-size="10.5" fill="#8B8F9C">2 分钟前推送 · main</text>
+    <!-- Import 按钮 -->
+    <rect x="640" y="217" width="74" height="20" rx="5" fill="#000000"/>
+    <text x="677" y="231" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">Import →</text>
+
+    <!-- Row 2 -->
+    <rect x="74" y="257" width="652" height="40" rx="6" fill="#FFFFFF" stroke="#E0DCD2" stroke-width="0.5"/>
+    <rect x="88" y="267" width="20" height="20" rx="4" fill="#D9D1C0"/>
+    <text x="98" y="282" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">D</text>
+    <text x="120" y="276" font-family="system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#1F2230">dotfiles</text>
+    <text x="120" y="289" font-family="system-ui, sans-serif" font-size="10.5" fill="#8B8F9C">3 个月前 · main</text>
+    <rect x="640" y="267" width="74" height="20" rx="5" fill="#FFFFFF" stroke="#1F2230" stroke-width="1"/>
+    <text x="677" y="281" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#1F2230" text-anchor="middle">Import</text>
+
+    <!-- Row 3 -->
+    <rect x="74" y="304" width="652" height="40" rx="6" fill="#FFFFFF" stroke="#E0DCD2" stroke-width="0.5"/>
+    <rect x="88" y="314" width="20" height="20" rx="4" fill="#D9D1C0"/>
+    <text x="98" y="329" font-family="system-ui, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">H</text>
+    <text x="120" y="323" font-family="system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#1F2230">hello-world</text>
+    <text x="120" y="336" font-family="system-ui, sans-serif" font-size="10.5" fill="#8B8F9C">1 年前 · main</text>
+    <rect x="640" y="314" width="74" height="20" rx="5" fill="#FFFFFF" stroke="#1F2230" stroke-width="1"/>
+    <text x="677" y="328" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#1F2230" text-anchor="middle">Import</text>
+
+    <!-- 指引箭头 -->
+    <path d="M724 252 L702 240" stroke="#E8704A" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <polygon points="700,238 706,240 704,246" fill="#E8704A"/>
+    <text x="728" y="262" font-family="system-ui, sans-serif" font-size="10.5" font-weight="600" fill="#E8704A" text-anchor="end">点这个就开始部署</text>
+  </g>
+</svg>

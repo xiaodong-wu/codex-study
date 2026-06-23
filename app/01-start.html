@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 01 章 · 安装、登录和第一句话 · Codex 口语化教程</title>
+<meta name="description" content="Codex 桌面端 App 的零基础上手步骤:下载安装、登录、打开项目文件夹、选择 Local 模式,并发出第一条安全的提示词。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 01 章 · 安装、登录和第一句话" data-chapter="app-01-start">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 01 章 · 第一次打开</span>
+    <h1>安装、登录和第一句话</h1>
+    <p class="chapter-lede">这一章只做一件事:让你从“还没打开过 Codex App”走到“已经选好一个项目,并且让 Codex 帮你读了一遍”。不需要写代码,也不需要知道终端是什么。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/app-overview.svg" alt="Codex App 第一次使用时的界面区域示意图" loading="lazy" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>先有画面感:</b>打开项目后,你主要盯着中间的对话区和右侧的改动区。</figcaption>
+    </figure>
+
+    <h2 id="download">第一步 · 下载和安装</h2>
+    <p>去 OpenAI 官方入口下载 Codex App。macOS 和 Windows 都支持。Windows 用户也可以用 Microsoft Store / winget 安装,但如果你不熟悉命令,直接用图形界面下载就好。</p>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">别从陌生网盘下载</div>
+        <div class="callout__body">Codex 会读你的项目文件,也可能执行命令。安装包一定用官方来源,不要用别人转发的安装包。</div>
+      </div>
+    </div>
+
+    <h2 id="sign-in">第二步 · 登录</h2>
+    <p>打开 App 后,按提示登录。一般有两条路:</p>
+    <ul>
+      <li><strong>ChatGPT 账号登录</strong>:适合大多数用户,功能最完整。</li>
+      <li><strong>API Key 登录</strong>:适合已经在 OpenAI API 里计费的人。某些 App 功能可能不可用,以你实际看到的界面为准。</li>
+    </ul>
+    <p>如果你只是想跟着这套教程走,优先用 ChatGPT 账号登录。</p>
+
+    <h2 id="after-sign-in">登录后先检查三件事</h2>
+    <p>登录成功不代表马上就能开工。你先看三件小事:</p>
+    <ol>
+      <li><strong>账号对不对。</strong>如果你有多个 ChatGPT/OpenAI 账号,确认不是登到了旧账号。</li>
+      <li><strong>项目入口是否可见。</strong>你应该能看到打开文件夹、新建线程或项目列表之类的入口。</li>
+      <li><strong>Settings 能不能打开。</strong>能打开设置,后面权限、浏览器、Computer Use 出问题才有地方调。</li>
+    </ol>
+    <p>如果登录卡住,先不要反复重装。优先检查网络、账号权限、浏览器是否能完成登录流程。企业或团队账号还要确认管理员是否开放 Codex Local。</p>
+
+    <h2 id="open-project">第三步 · 选择一个项目文件夹</h2>
+    <p>Codex App 不是对着整个电脑乱看。你要给它一个“工作范围”,也就是一个项目文件夹。</p>
+    <p>零基础读者可以这样做:</p>
+    <ol>
+      <li>在桌面新建一个文件夹,叫 <code>my-first-codex-project</code>。</li>
+      <li>打开 Codex App,选择 <strong>Open folder</strong> 或 <strong>Add project</strong>。</li>
+      <li>选中刚才那个文件夹。</li>
+      <li>新建线程时,先选 <strong>Local</strong>。</li>
+    </ol>
+    <p><strong>Local</strong> 的意思是:Codex 就在这个文件夹里干活。你第一次用,这个最直观。</p>
+
+    <h2 id="permissions">第四步 · 权限先保守一点</h2>
+    <p>看到权限选项时,新手优先选“默认权限”或“工作区可写”这类保守选项。你可以把它理解成:</p>
+    <ul>
+      <li>它能在这个项目文件夹里读写文件。</li>
+      <li>如果要碰项目外的东西,它应该先问你。</li>
+      <li>如果要联网、安装东西、操作桌面应用,也应该有清楚理由。</li>
+    </ul>
+    <p>不要一上来就给全权限。不是因为 Codex 不可信,而是你还不熟,先让它在小范围里工作更安心。</p>
+
+    <h2 id="approval-prompt">看到审批弹窗怎么判断</h2>
+    <p>Codex 想做某些动作时,App 可能会弹出审批。新手按这张表判断:</p>
+    <table>
+      <thead><tr><th>它想做什么</th><th>通常怎么选</th><th>理由</th></tr></thead>
+      <tbody>
+        <tr><td>读取当前项目文件</td><td>可以允许</td><td>这是理解项目的基本动作。</td></tr>
+        <tr><td>修改当前项目文件</td><td>先看它要改哪些文件</td><td>确认范围和你的任务一致。</td></tr>
+        <tr><td>联网或下载依赖</td><td>先让它解释为什么需要</td><td>联网会带来更多不确定性。</td></tr>
+        <tr><td>访问项目外文件</td><td>谨慎,优先拒绝或只允许一次</td><td>新手先把工作限制在项目文件夹内。</td></tr>
+        <tr><td>操作浏览器或桌面 App</td><td>人在旁边看着再允许</td><td>它可能会看到或点击你的真实账号界面。</td></tr>
+      </tbody>
+    </table>
+    <p>看到“允许一次”和“本次会话一直允许”时,不确定就选“一次”。等你熟了,再给更宽的权限。</p>
+
+    <h2 id="first-message">第五步 · 发出第一句话</h2>
+    <p>第一次发消息,不要说“帮我做一个网站”。先让它读项目、解释项目,这样你会知道它能看见什么。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">第一次开口</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我是零编程基础用户。请你先检查当前项目文件夹,用通俗的话告诉我:
+1. 这里面现在有哪些文件
+2. 每个文件大概是做什么的
+3. 如果我要做一个简单产品官网,下一步应该做什么
+
+这次先不要改任何文件。</div>
+      <div class="prompt-card__note">最后一句“先不要改文件”很重要。它让你先建立信任,再进入真正动手。</div>
+    </div>
+
+    <h2 id="what-to-expect">你应该看到什么</h2>
+    <p>Codex 通常会先读文件,然后给你一段解释。如果它想运行命令或改文件,你可能会看到审批提示。新手可以按这条规则判断:</p>
+    <ul>
+      <li>只是读项目、列文件:通常可以允许。</li>
+      <li>要新建文件或修改文件:先看它打算改什么。</li>
+      <li>要安装软件、联网、改系统设置:先停一下,看理由是否和任务有关。</li>
+    </ul>
+
+    <h2 id="stuck-first-run">第一次卡住时怎么说</h2>
+    <p>第一次使用最容易卡在“我不知道它现在在干嘛”。这时不要连发十句催它,直接让它汇报状态:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">卡住时问状态</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请先暂停继续操作,用三句话告诉我:
+1. 你现在正在做什么
+2. 你是否已经修改了文件
+3. 下一步你准备做什么,是否需要我批准</div>
+      <div class="prompt-card__note">这句话能把局面拉回“可理解”。新手最重要的不是一次成功,而是知道发生了什么。</div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">让 Codex 给你的空文件夹做一份说明</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>新建一个空文件夹并用 Codex App 打开。</li>
+          <li>发送上面的“第一次开口”提示词。</li>
+          <li>确认它没有擅自改文件。</li>
+          <li>把它给你的下一步建议记下来。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你能说清楚“Codex 现在正在看哪个文件夹”。</div>
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./00-overview.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 先看懂 Codex App</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./02-threads-modes.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">项目、线程和三种模式 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

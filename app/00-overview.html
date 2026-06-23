@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 00 章 · 先看懂 Codex 桌面端 · Codex 口语化教程</title>
+<meta name="description" content="面向零编程基础读者的 Codex 桌面端 App 入门:先看懂它是什么、适合谁、和 CLI 有什么区别,以及这套教程怎么读。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 00 章 · 先看懂 Codex 桌面端" data-chapter="app-00-overview">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 00 章 · 桌面端入门</span>
+    <h1>先看懂 Codex 桌面端</h1>
+    <p class="chapter-lede">如果你没有编程基础,我更建议你先从桌面端 App 开始。它不像终端那样黑乎乎一片,你能看到项目、对话、改动、预览和结果。简单说:Codex App 就是一个让你用普通话安排 AI 干活的工作台。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/app-overview.svg" alt="Codex 桌面端 App 的主要区域示意图:项目侧边栏、对话线程、Diff 面板和内置终端" loading="lazy" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>示意图:</b>真实界面会随版本更新,但你可以先记住四块:左边选项目,中间聊天,右边看改动,底部/侧边跑命令。</figcaption>
+    </figure>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">内容依据</div>
+        <div class="callout__body">本套 App 教程按 2026 年 6 月 23 日拉取的 OpenAI Codex 官方手册整理。按钮名字和入口可能更新,但核心概念:项目、线程、模式、审查、权限,会比较稳定。</div>
+      </div>
+    </div>
+
+    <h2 id="what-is-it">它到底是什么</h2>
+    <p>把 Codex App 想成一个“项目管家”。你把一个文件夹交给它,然后用人话说:</p>
+    <ul>
+      <li>“帮我看看这个网站哪里不对。”</li>
+      <li>“把首页文案改得更像给小白看的。”</li>
+      <li>“打开预览页,看看手机端按钮有没有挤在一起。”</li>
+      <li>“每天上午帮我检查一次有没有新的报错。”</li>
+    </ul>
+    <p>它不是只会聊天。它可以读文件、改文件、跑命令、看网页预览、留下改动记录,还可以在你允许的范围内操作浏览器或桌面 App。</p>
+
+    <h2 id="screen-map">打开后先看哪几块</h2>
+    <p>第一次打开 App,别急着找所有按钮。先按这四块看:</p>
+    <table>
+      <thead><tr><th>区域</th><th>你要盯什么</th><th>小白怎么理解</th></tr></thead>
+      <tbody>
+        <tr><td>项目列表</td><td>当前 Codex 正在哪个文件夹里工作</td><td>确认“它在哪个房间干活”。</td></tr>
+        <tr><td>线程对话</td><td>你说了什么、Codex 回了什么、任务是否还在跑</td><td>这是你和它的工作记录。</td></tr>
+        <tr><td>Review / Diff</td><td>新增了什么、删除了什么、哪些文件变了</td><td>这是验收区,别跳过。</td></tr>
+        <tr><td>终端 / 浏览器 / 预览</td><td>命令输出、网页效果、报错信息</td><td>这是证据区,少猜多看。</td></tr>
+      </tbody>
+    </table>
+    <p>你可以把 App 当作一个“可视化驾驶舱”:左边定范围,中间下指令,右边看改动,底部看运行结果。只要这四块关系清楚,界面再复杂也不会慌。</p>
+
+    <h2 id="app-vs-cli">App 和 CLI 怎么选</h2>
+    <table>
+      <thead><tr><th>你现在的状态</th><th>建议先用</th><th>原因</th></tr></thead>
+      <tbody>
+        <tr><td>完全没写过代码</td><td>Codex 桌面端 App</td><td>能看见界面、改动和预览,心理负担小。</td></tr>
+        <tr><td>愿意学一点终端</td><td>CLI 教程</td><td>更轻、更直接,适合理解底层流程。</td></tr>
+        <tr><td>已经有一个项目文件夹</td><td>App 或 CLI 都行</td><td>App 更适合图形化审查,CLI 更适合熟练用户。</td></tr>
+        <tr><td>想让 Codex 同时跑几个任务</td><td>App</td><td>线程、Worktree、自动化这些能力更直观。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="feature-map">你会在 App 里遇到哪些功能</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3 class="feature-card__title">项目和线程</h3>
+        <p class="feature-card__body">项目就是一个文件夹,线程就是一次对话。一个项目里可以有很多线程。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Local / Worktree / Cloud</h3>
+        <p class="feature-card__body">Local 直接改当前项目;Worktree 隔离试验;Cloud 在远程环境跑。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Review 面板</h3>
+        <p class="feature-card__body">看 Codex 改了哪些文件,给某一行留评论,再决定暂存、撤回或提交。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">内置终端</h3>
+        <p class="feature-card__body">不用离开 App,就能启动预览、跑测试、看错误输出。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">内置浏览器</h3>
+        <p class="feature-card__body">打开本地网页,直接在页面上圈出问题,让 Codex 按评论修改。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Computer Use</h3>
+        <p class="feature-card__body">在你允许后,让 Codex 看见并操作桌面应用,适合 GUI 测试和复现问题。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">自动化</h3>
+        <p class="feature-card__body">让 Codex 定时检查、提醒、跑报告,有结果就放进你的待处理区。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">技能、插件和 MCP</h3>
+        <p class="feature-card__body">技能是固定套路,插件是打包安装,MCP 是连接外部工具的方式。</p>
+      </div>
+    </div>
+
+    <h2 id="first-week-scope">第一周先别碰太多</h2>
+    <p>Codex App 功能很多,但新手第一周只要练熟三件事:</p>
+    <ol>
+      <li><strong>让它先解释项目。</strong>任何项目先问“这里有什么文件,各自做什么”。</li>
+      <li><strong>让它小步修改。</strong>一次只改一个区块、一个页面、一个问题。</li>
+      <li><strong>每次看 Diff。</strong>看不懂就让它用人话解释,不要直接全盘接受。</li>
+    </ol>
+    <p>自动化、MCP、Chrome、Computer Use 这些很强,但可以后面再用。你先把“打开项目 → 发指令 → 看改动 → 验收”这条主线跑顺。</p>
+
+    <h2 id="how-to-read">这套 App 教程怎么读</h2>
+    <p>如果你是零基础,按 A0 到 A6 顺序读。每章只记一个核心动作:</p>
+    <ol>
+      <li>A1: 把 App 装好,打开一个项目,发出第一句话。</li>
+      <li>A2: 分清项目、线程和三种模式。</li>
+      <li>A3: 学会看改动,别盲目接受。</li>
+      <li>A4: 用浏览器和桌面操作处理“我看见了,但说不清”的问题。</li>
+      <li>A5: 把重复工作交给自动化、技能和外部工具。</li>
+      <li>A6: 调设置、记快捷键、守住安全边界。</li>
+    </ol>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">第一句可以这么说</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我是零编程基础用户。请先帮我熟悉这个项目:用通俗的话说明它是什么、有哪些文件、我应该先看哪里。先不要改文件。</div>
+      <div class="prompt-card__note">第一次不要急着让 Codex 开改。先让它“带你逛一圈”,你会更有安全感。</div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">用四块区域复述一次 App 界面</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>打开 Codex App 和一个项目。</li>
+          <li>指出项目列表、线程对话、Review 面板、终端/浏览器分别在哪里。</li>
+          <li>问 Codex:“请告诉我你当前能看到哪个项目路径。”</li>
+          <li>确认它回答的路径就是你想让它工作的文件夹。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你能用自己的话说清楚 Codex 现在在哪里工作、你在哪里看改动。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>这一章先记住</strong>
+        Codex App 不是“聊天窗口”,而是项目工作台。你负责定范围、说目标、看结果;Codex 负责读文件、改文件、跑检查,并在需要越界时问你。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev chapter-nav__link--disabled">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 这是 App 教程第一章</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./01-start.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">安装、登录和第一句话 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

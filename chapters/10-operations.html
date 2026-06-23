@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 10 章 · 上线之后 · Codex 口语化编程教程</title>
+<meta name="description" content="产品官网上线后的运营教程:访问统计、Search Console、SEO 最小集、持续迭代、收集反馈和何时停止。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 10 章 · 上线之后" data-chapter="10-operations">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 10 章 · 让世界看到你</span>
+    <h1>上线之后</h1>
+    <p class="chapter-lede">域名能访问只是开始。这一章讲怎么知道有多少人来过、他们关心什么、怎么让搜索引擎找到你、怎么持续迭代而不变成一个"曾经上线过但已经被遗忘"的项目。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-7"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章学完后你会拥有</strong>
+        一套上线后的最小运营流程:看访问、补 SEO、收反馈、每周小迭代,以及判断这个项目还值不值得继续做。
+      </div>
+    </div>
+
+    <h2 id="analytics">10.1 加访问统计</h2>
+    <p>上线后第一件事不是疯狂改页面,而是知道有没有人来过。</p>
+    <p>访问统计不用一上来搞很复杂。你只需要知道:</p>
+    <ul>
+      <li>每天大概多少人访问。</li>
+      <li>他们从哪里来。</li>
+      <li>最常看哪些页面。</li>
+      <li>手机和电脑比例如何。</li>
+    </ul>
+    <p>工具可以选 Plausible、Umami、Vercel Analytics 或你熟悉的其他服务。Google Analytics 也能用,但对新手来说配置和隐私提示会复杂一些。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">选择统计工具</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请根据当前网站情况,给我 3 个访问统计方案。要求:
+1. 新手能配置
+2. 免费或低成本起步
+3. 尽量少影响隐私合规
+4. 说明每个方案需要往 index.html 加什么代码
+
+先不要直接修改文件。</div>
+      <div class="prompt-card__note">统计脚本涉及第三方服务,先选方案再加代码。</div>
+    </div>
+
+    <h2 id="search-console">10.2 让 Google 知道你存在</h2>
+    <p>搜索引擎不会立刻知道你的网站。你需要给它一点提示。</p>
+    <p>最小步骤是:</p>
+    <ol>
+      <li>注册 Google Search Console。</li>
+      <li>验证你的域名或网站所有权。</li>
+      <li>准备 <code>sitemap.xml</code>,告诉搜索引擎有哪些页面。</li>
+      <li>准备 <code>robots.txt</code>,告诉搜索引擎哪些可以抓。</li>
+    </ol>
+    <p>如果你的网站现在只有一页,也可以先做最简单版本。重点是让搜索引擎知道它存在。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">生成 sitemap 和 robots</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请根据当前静态网站结构,生成最小可用的 sitemap.xml 和 robots.txt。假设正式域名是 [填你的域名]。生成前先列出会包含哪些页面。</div>
+      <div class="prompt-card__note">域名要换成你自己的正式域名,不要照抄占位符。</div>
+    </div>
+
+    <h2 id="seo-basics">10.3 SEO 的最小集</h2>
+    <p>SEO 听起来很玄,但新手先做最小集就够:</p>
+    <ul>
+      <li><code>&lt;title&gt;</code>:搜索结果里最醒目的标题。</li>
+      <li><code>&lt;meta name="description"&gt;</code>:一句话说明页面内容。</li>
+      <li>Open Graph 标签:别人把链接发到社交软件时,显示标题、描述和图片。</li>
+      <li>清晰的 H1 / H2:让页面结构像一篇有标题层级的文章。</li>
+    </ul>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">SEO 最小检查</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请检查当前网站的 SEO 最小集:
+1. 每页 title 是否清楚
+2. meta description 是否存在且不重复
+3. H1 是否唯一
+4. 是否需要 og:title / og:description / og:image
+5. 图片 alt 是否合理
+
+先输出检查表,我确认后再补齐。</div>
+      <div class="prompt-card__note">SEO 优先做“能被正确理解”,不要一开始追求复杂技巧。</div>
+    </div>
+
+    <h2 id="iterate">10.4 持续迭代的流程</h2>
+    <p>上线之后,最容易犯的错是两种:要么不再管它,要么每天乱改。</p>
+    <p>更稳的方式是每周一次小迭代:</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step__title">看数据</div>
+        <p class="step__body">看一眼访问量、来源、停留时间、用户反馈。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">选一个问题</div>
+        <p class="step__body">不要同时改十个点。选最影响转化或理解的一处。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">让 Codex 小改</div>
+        <p class="step__body">只改一个区块、一个文案、一个按钮或一个表单。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">提交并部署</div>
+        <p class="step__body">确认效果,做 Git 提交,推送后让 Vercel 自动部署。</p>
+      </div>
+    </div>
+    <p>长期来看,一个能坚持每周小改的网站,比一次性大改后再也不管的网站更有生命力。</p>
+
+    <h2 id="feedback">10.5 收集反馈</h2>
+    <p>早期项目最值钱的不是访问量,而是真人反馈。</p>
+    <p>你可以用三种低成本方式收集:</p>
+    <ul>
+      <li><strong>页面底部加反馈按钮</strong>:跳到 Tally、Typeform 或邮箱。</li>
+      <li><strong>发给 5 个目标用户</strong>:不要只发给会夸你的朋友。</li>
+      <li><strong>问三个固定问题</strong>:看懂了吗?哪里想点?哪里不信?</li>
+    </ul>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">加反馈入口</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请给当前网站底部加一个轻量反馈入口。先给我 3 个方案:mailto 邮箱、Tally 表单、Typeform 表单。说明各自优缺点和需要改哪些 HTML。先不要动手。</div>
+      <div class="prompt-card__note">纯静态站先用外部表单,不用急着搭后端。</div>
+    </div>
+
+    <h2 id="when-to-stop">10.6 何时该停下来</h2>
+    <p>不是每个项目都值得一直做。停下来不是失败,有时是节省时间。</p>
+    <p>你可以用这张清单判断:</p>
+    <ul>
+      <li>有没有真实用户愿意试?</li>
+      <li>有没有人愿意留下联系方式?</li>
+      <li>你自己还愿不愿意每周投入时间?</li>
+      <li>这个问题是不是别人真的痛?</li>
+      <li>你改了几轮后,关键数据有没有变好?</li>
+    </ul>
+    <p>如果连续几周没人反馈、你自己也没兴趣,可以把它当练习项目归档。你已经获得了最重要的东西:一套从想法到上线的经验。</p>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">给你的网站做一次上线后体检</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>检查 title、description、H1。</li>
+          <li>确认是否有反馈入口。</li>
+          <li>列出本周最值得改的一处。</li>
+          <li>让 Codex 只改这一处并提交。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你有一份上线后检查清单,并完成了一次小迭代。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        给网站加最小统计和 SEO,收集真实反馈,每周做一次小迭代,并判断项目是否值得继续投入。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./09-domain.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 域名:给页面一个家</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./11-next-steps.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">进阶方向 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

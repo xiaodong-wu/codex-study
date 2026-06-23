@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 05 章 · 搭出产品官网骨架 · Codex 口语化编程教程</title>
+<meta name="description" content="用 Codex CLI 从一句话需求开始,逐步搭出一个产品官网的五段式骨架:首屏、卖点、功能、定价、表单。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 05 章 · 搭出产品官网骨架" data-chapter="05-build-skeleton">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 05 章 · 实战 Part 1</span>
+    <h1>搭出产品官网骨架</h1>
+    <p class="chapter-lede">
+      这一章我们正式开工。<strong>你即将看着 Codex 把你嘴里说的"我想做一个产品官网"变成一个真的 HTML 文件,然后在浏览器里打开它</strong>。我们不追求一次到位,而是分五段一步步加东西——这也是真实做产品的方式。
+    </p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章完成后你将拥有</strong>
+        一个 <code>index.html</code> 文件,在浏览器里打开能看到一个产品官网,包含五段:首屏(Hero)、卖点、核心功能、定价、联系表单。手机和电脑都能正常显示。耗时约 60–90 分钟。
+      </div>
+    </div>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">关于"我没有真实产品要做"</div>
+        <div class="callout__body">
+          <p>没关系。本章我们假设你正在做一个虚构的小产品 <strong>叫醒猫</strong>——一个早晨准时叫你起床的 App。你可以全程跟着这个虚构例子做,也可以把"叫醒猫"换成你自己心里那个想法,把每条提示词里的产品名和描述替换掉即可。两种走法都行。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="prep">第一步 · 准备工作</h2>
+    <p>打开终端,<code>cd</code> 到我们在第 02 章建好的 <code>my-product-site</code> 文件夹,然后启动 Codex:</p>
+
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">bash</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre>cd ~/Desktop/my-product-site
+codex</pre>
+    </div>
+
+    <p>看到那个熟悉的对话输入框出现后,深呼吸,我们要开始造东西了。</p>
+
+    <h2 id="first-hero">第二步 · 让 Codex 出第一版首屏</h2>
+
+    <p>关键技巧:<strong>第一轮提示词不要给 Codex 太多约束</strong>。你先把脑子里的产品三句话讲清楚,让它先做一个能跑的版本,我们再迭代。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我要做一个产品官网,产品叫"叫醒猫",它是一个能准时叫你起床、还会发各种猫叫声哄你的手机 App。
+
+请帮我在当前目录的 index.html 里,写出一个产品官网,它要包含五段(从上到下):
+
+1. 首屏(Hero):大标题、一句副标题、两个按钮(主按钮"立即下载",次按钮"看看演示")
+2. 三个卖点:配图(用占位灰块即可)+ 简短文案
+3. 三个核心功能介绍
+4. 简单定价:两档,免费版和高级版
+5. 邮箱订阅表单:一个输入框 + 一个按钮
+
+整页只用一个 HTML 文件,样式直接写在 &lt;style&gt; 里,不引外部库。视觉风格我希望像 Stripe 或 Linear 那种简洁、文艺青年喜欢的、不刺眼。
+
+请先做一版给我看,我们再慢慢调。</div>
+      <div class="prompt-card__note">这段话同时讲清楚了角色(我是产品方)、目标(产品官网五段式)、限制(单文件、内联样式、参考风格)。这就是<strong>角色 / 目标 / 限制三句法</strong>。</div>
+    </div>
+
+    <p>按回车发出去。Codex 会先给你一份"我打算这么做"的计划,把 5 个区块列出来征求你同意。看一遍,如果觉得合理,按 <kbd>y</kbd> / 选 <kbd>Yes</kbd> 让它开干。</p>
+
+    <p>它会开始写 <code>index.html</code>。屏幕上会出现一个 <strong>diff 视图</strong>(差异视图),意思是"我即将把这些内容加到/改到文件里",大致长这样:</p>
+
+    <div class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/chapters/05-codex-diff.svg" alt="Codex 提出 diff 时的样貌示意图" />
+      </div>
+      <div class="figure__cap"><b>你应该看到的:</b>一段以 <code>index.html</code> 为标题的代码块,左侧有绿色的 <code>+</code> 号,表示新增的行。下方有"接受/拒绝/查看"按钮。</div>
+    </div>
+
+    <p>看一眼内容,不需要完全看懂(我们这本书的核心就是<strong>你不必看懂代码细节</strong>),只要确认它没有改你不希望它改的东西即可。按"接受"。</p>
+
+    <h2 id="preview">第三步 · 在浏览器里看效果</h2>
+
+    <p>文件已经写好了,我们要打开它看一眼。有两种方法,选你顺手的:</p>
+
+    <h3 id="preview-method-a">方法 A · 直接双击</h3>
+    <p>打开文件管理器,找到桌面上 <code>my-product-site</code> 文件夹里的 <code>index.html</code>,双击它。浏览器会打开它。</p>
+    <p>这是最快的方法。缺点是地址栏开头是 <code>file://</code> 而不是 <code>http://</code>,有些功能(比如表单提交、字体加载)在真实的服务器环境下才能完美工作。但对我们这一章足够。</p>
+
+    <h3 id="preview-method-b">方法 B · 让 Codex 启动一个本地预览服务器</h3>
+    <p>如果你想要更接近"真实网站"的预览,可以让 Codex 帮你跑一个本地服务器。回到 Codex 对话:</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请帮我在当前目录启动一个本地预览服务器,然后告诉我用浏览器打开哪个地址能看到 index.html。服务器跑在后台就行。</div>
+      <div class="prompt-card__note">Codex 会用 <code>python3 -m http.server</code> 这种内置工具帮你起一个本地服务,通常监听 8000 端口。你只需要把它告诉你的地址(比如 <code>http://localhost:8000</code>)粘到浏览器即可。</div>
+    </div>
+
+    <p>无论你用方法 A 还是 B,现在你应该在浏览器里看到了一个像样的产品官网雏形。</p>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">你刚才完成的事情</div>
+        <div class="callout__body">
+          <p>从一句话需求("叫醒猫官网")到浏览器里能看到的页面,你大概花了不到 5 分钟,而且没有写过一行 HTML 代码。这就是口语化编程在 2026 年的真实速度。先把这个时刻记住,后面遇到挫折时可以回来看一眼。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="iterate">第四步 · 迭代:把不顺眼的地方说出来</h2>
+
+    <p>第一版基本不会让你满意。比如:</p>
+    <ul>
+      <li>颜色太普通</li>
+      <li>那三个卖点写的内容是 Codex 瞎编的</li>
+      <li>按钮位置不太对</li>
+      <li>手机上看好像太挤了</li>
+    </ul>
+
+    <p><strong>关键技巧:每次只改一件事。</strong> 一次把五个问题塞给 Codex,它很可能改得稀里哗啦,你最后又得回退。</p>
+
+    <h3 id="iter-1">迭代 1:换文案</h3>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">三个卖点的文案我来改一下,请改成:
+
+1. 标题"喵到你醒"——副文案"提前 5 分钟开始轻柔猫叫,慢慢把你哄醒,不是吵醒"
+2. 标题"100+ 真实猫叫"——副文案"录自全球读者家的真实猫咪,每天换一只"
+3. 标题"不打卡也行"——副文案"不强迫连续打卡,周末睡懒觉这件事我们尊重"
+
+其他部分都不要动。</div>
+      <div class="prompt-card__note">明确说"其他部分不要动",防止 Codex 顺手"美化"了别的你已经满意的地方。</div>
+    </div>
+
+    <h3 id="iter-2">迭代 2:换配色</h3>
+
+    <p>颜色的口语化描述有个小窍门:<strong>描述感觉,而不是给具体色号</strong>。Codex 会自己选合适的搭配。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">配色我希望像清晨被阳光打到一半的猫窝那种感觉:米白底色,主色调用一种温暖的橙色(像猫毛那种),次要色用一种沉静的深灰蓝。整体感觉要温暖、安静、不刺眼。</div>
+      <div class="prompt-card__note">"清晨被阳光打到的猫窝"这种表达听起来抽象,但 Codex 完全能懂——它会自动选出一组协调的颜色。比起你直接给十六进制色号,这种方式往往更好看。</div>
+    </div>
+
+    <h3 id="iter-3">迭代 3:加入定价的实际内容</h3>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">定价区两档我希望长这样:
+
+【免费版】¥0 / 月
+- 5 个常用猫叫
+- 单一闹钟时间
+- 每日一只新猫(广告)
+
+【高级版】¥18 / 月,主推
+- 100+ 全部猫叫
+- 任意闹钟、循环闹钟
+- 无广告,周末模式
+- 优先听新录入的猫
+
+高级版的卡片用主色调高亮一下,并加一个"最受欢迎"小标签。</div>
+      <div class="prompt-card__note">"主推"这个词在产品圈很常见,Codex 知道这意味着定价表里要做视觉突出。模糊词如果你不确定 Codex 是否能理解,后面紧跟一句具体说明就是了。</div>
+    </div>
+
+    <h3 id="iter-4">迭代 4:让手机上也好看</h3>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请让这个页面在手机上也好看:卖点和功能从三列变成单列,定价两张卡片堆叠,首屏标题字号不要太大。改完之后请告诉我你具体改了哪些 CSS 规则,简短列一下就行。</div>
+      <div class="prompt-card__note">最后那句"请告诉我你改了哪些规则"是个很有用的习惯——它强迫 Codex 总结改动,你也能逐步建立对 CSS 的直觉(不需要懂细节,但能识别名字)。</div>
+    </div>
+
+    <h2 id="git-commit">第五步 · 第一次 Git 提交(很重要)</h2>
+
+    <p>当你迭代到一个自己比较满意的版本,<strong>立刻做一次 Git 提交</strong>。Git 是什么?把它想成你写论文时不停按 Ctrl+S 的那个动作,只不过它每按一次会问你"这次改了啥"。这件事的好处:</p>
+    <ul>
+      <li>之后 Codex 不小心改坏了什么,你可以一键回退到这个版本</li>
+      <li>你的代码进了一个时光机,任何一个历史版本都能回去看</li>
+      <li>到了第 08 章上线时,我们就是把 Git 历史推到 GitHub 上去</li>
+    </ul>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请帮我把当前目录初始化为一个 Git 仓库,然后把所有文件提交一次,提交信息(commit message)写"叫醒猫官网第一版"。完成后告诉我成功了没。</div>
+      <div class="prompt-card__note">初始化(<code>git init</code>)只需要做一次。之后每次想保存一个里程碑,你只需要说"帮我提交一次,信息写 XX"即可。</div>
+    </div>
+
+    <p>Codex 会执行 <code>git init</code>、<code>git add .</code>、<code>git commit -m "..."</code> 这一连串操作,然后告诉你做完了。<strong>从现在起,你的项目有了"保存点"。</strong></p>
+
+    <h2 id="exercise">动手试试</h2>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>动手试试</span>
+      </div>
+      <div class="exercise__title">把"叫醒猫"换成你自己的产品</div>
+      <div class="exercise__body">
+        <p>现在你已经看过一遍五段式产品官网的搭建过程。试着用同样的方法,把它替换成<strong>你自己心里那个想做的产品</strong>。你可以给 Codex 这样开场:</p>
+        <div class="prompt-card" style="margin:14px 0;">
+          <div class="prompt-card__head">
+            <span class="prompt-card__label">说给 Codex 听</span>
+            <button class="prompt-card__copy" type="button">复制</button>
+          </div>
+          <div class="prompt-card__body">现在请帮我把这个网站从"叫醒猫"换成我自己的产品。我的产品叫【在这里写产品名】,它的一句话介绍是【在这里写一句话介绍】。目标用户是【在这里写谁会用】。请逐段帮我把首屏、卖点、功能、定价和表单的文案都改成符合我这个新产品的内容,改完展示给我看,我们再迭代。</div>
+          <div class="prompt-card__note">中括号里的内容是给你填的"模板槽位"。这种"模板槽位 + 自由填写"的方式,是你跟 Codex 协作时最好用的格式之一。</div>
+        </div>
+        <ol class="exercise__steps">
+          <li>替换好之后,在浏览器里完整滚动一遍页面</li>
+          <li>挑出 2-3 个最不满意的地方,逐个跟 Codex 说"请改成 XX"</li>
+          <li>最后做一次 Git 提交,信息写"换成 [你的产品名] 第一版"</li>
+        </ol>
+      </div>
+      <div class="exercise__done"><strong>完成标志:</strong>浏览器里看到的是你自己的产品官网,Git 历史里至少有两次提交。</div>
+    </div>
+
+    <h2 id="pitfalls">常见踩坑</h2>
+
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary>Codex 一次改了 6 个地方,我只想改 1 个</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>你只说改一处,但 diff 视图里出现了你没想到的额外改动。</dd>
+            <dt>原因</dt>
+            <dd>它"顺手"做了它认为相关的优化。这种情况很常见。</dd>
+            <dt>解决</dt>
+            <dd>不接受 diff,直接说"请只改 XX,其他保持不变,重新做一次"。或者接受后用一句话回退:"刚才的改动,请只保留 XX 那一部分,其他撤回到改之前。"</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>页面打开是一片白</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>双击 <code>index.html</code> 后浏览器是全白的。</dd>
+            <dt>原因</dt>
+            <dd>大概率是 HTML 文件结构被某次改动改坏了,某个 <code>&lt;style&gt;</code> 或 <code>&lt;div&gt;</code> 闭合错位。</dd>
+            <dt>解决</dt>
+            <dd>回到 Codex 说:"现在浏览器打开 index.html 是一片白,请检查 HTML 结构是否完整。"它会自己 grep / read 文件然后修复。如果还不行,用 <code>git checkout index.html</code> 回退到上一次提交(让 Codex 帮你执行)。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>样式没生效,刷新页面还是旧的</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>明明 Codex 说改完了,浏览器里看不到变化。</dd>
+            <dt>原因</dt>
+            <dd>浏览器缓存了旧版本。</dd>
+            <dt>解决</dt>
+            <dd>按 <kbd>⌘</kbd>+<kbd>⇧</kbd>+<kbd>R</kbd>(Mac)或 <kbd>Ctrl</kbd>+<kbd>F5</kbd>(Windows)强制刷新。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Codex 一直问我细节,我不知道怎么回答</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>Codex 反问"你希望首屏字号是多少?","你的主按钮要不要圆角?"等问题。</dd>
+            <dt>原因</dt>
+            <dd>它在求一个具体决策,但你其实自己也没意见。</dd>
+            <dt>解决</dt>
+            <dd>直接回:"这块你按你的判断来,我看到效果再说。"千万不要硬猜数字,也不要回"你随便"——后者听上去很可爱但效果不好,Codex 会给你一个最保守的中庸答案。"按你的判断来"是更主动的授权。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>本地服务器跑起来后,浏览器打开还是访问不到</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>Codex 说服务跑起来了,但你打开 <code>http://localhost:8000</code> 是"无法访问"。</dd>
+            <dt>原因</dt>
+            <dd>端口可能不是 8000,或者服务在 Codex 退出后被关掉了。</dd>
+            <dt>解决</dt>
+            <dd>看 Codex 输出里写的实际端口号(可能是 8080、5500、3000 之类),用那个。如果服务关了,让 Codex 重新启动一次。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>表单点了"提交"没反应</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>邮箱订阅表单点了之后页面没动静。</dd>
+            <dt>原因</dt>
+            <dd>这一章我们做的是静态官网,表单只是"看起来能填"。后端接收邮箱这件事我们到第 11 章用 Formspree 之类的工具补上。</dd>
+            <dt>解决</dt>
+            <dd>这是正常的。第 11 章会讲怎么真的收到邮箱。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>Codex 把整页样式从内联 &lt;style&gt; 拆到了一个 CSS 文件</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>某次改完后多了一个 <code>style.css</code> 文件,<code>index.html</code> 里的 <code>&lt;style&gt;</code> 部分变空了。</dd>
+            <dt>原因</dt>
+            <dd>Codex 觉得"分离"是更专业的做法,在没有约束的情况下会主动这么改。</dd>
+            <dt>解决</dt>
+            <dd>如果你不喜欢这个改动,直接说:"我希望所有样式还是写在 index.html 的 &lt;style&gt; 里,请把 style.css 合并回去并删掉那个文件。"——其实分离也很 OK,主要看你以后改起来顺不顺手。</dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        从一句话需求到浏览器里能看到的产品官网;按"每次一件事"的方式跟 Codex 迭代;用 Git 给项目留保存点。下一章我们让这个页面更好看一些,第八章我们就要让全世界都能访问到它了。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./04-prompting.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 口语化编程内功</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./06-build-design.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">让它好看 →</div>
+      </a>
+    </nav>
+
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

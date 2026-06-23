@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 04 章 · 口语化编程内功 · Codex 口语化编程教程</title>
+<meta name="description" content="所有的 AI 写代码教程都讲怎么装工具,但很少有人专门讲怎么把脑子里的想法翻译成 AI 听得懂的话。三句话法则、找参考、识别反问,这一章是本教程最有差异化的内容。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 04 章 · 口语化编程内功" data-chapter="04-prompting">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 04 章 · 学会跟 Codex 说话</span>
+    <h1>口语化编程内功</h1>
+    <p class="chapter-lede">
+      所有的"AI 写代码教程"都讲怎么装工具,但很少有人专门讲<strong>怎么把脑子里的想法翻译成 AI 听得懂的话</strong>。这一章不教任何技术,只教你<strong>说话的方式</strong>。它是本教程最有差异化的内容,也是接下来所有实战章节默认你已经掌握的能力。建议晚上找个安静时间慢慢读。
+    </p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章学完后你会拥有</strong>
+        一套属于自己的"提示词肌肉记忆":能用三句话把任何想法说清楚,知道何时用参考代替细节,能识别 Codex 的反问是不是在求决策,绕开五种最常见的反模式。不需要动电脑,只需要读 + 想。
+      </div>
+    </div>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">为什么"口语化编程"是一门内功</div>
+        <div class="callout__body">
+          <p>跟传统编程的"语法"不同,口语化编程没有刚性规则——多说一句 / 少说一句都不会"报错"。但产出的差距能差出 10 倍。本章就是把那 10 倍背后的隐性规律拆开给你看。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="three-sentences">4.1 三句话法则:角色 / 目标 / 限制</h2>
+
+    <p>先看一个典型的"零基础读者第一次发的提示词":</p>
+
+    <div class="callout callout--danger">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">反例 · 模糊到 Codex 无从下手</div>
+        <div class="callout__body">
+          <p style="font-style:italic;">"帮我做一个网站。"</p>
+          <p>Codex 收到这句话,接下来的对话只会是它反问你十几个问题。<strong>你没省时间,反而把"想清楚"这件事推给了下一轮</strong>。</p>
+        </div>
+      </div>
+    </div>
+
+    <p>把上面这句话拆成三个维度,效果立刻变好。这三个维度是:</p>
+
+    <ol>
+      <li><strong>角色</strong>:我是谁,在什么场景下用</li>
+      <li><strong>目标</strong>:这东西要解决什么具体问题</li>
+      <li><strong>限制</strong>:技术 / 视觉 / 时间上不能越过什么边界</li>
+    </ol>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">正例 · 同一个需求,但说清三个维度</div>
+        <div class="callout__body">
+          <p style="font-style:italic;">"我是一个独立咖啡师,有家小店在大学城。我想要一页能放给客人扫码看的菜单——只有一页,手机优先,菜单分三类(咖啡 / 茶 / 糕点),价格用人民币。配色不要太刺眼,我喜欢日式咖啡店的感觉。请先做一版给我看。"</p>
+          <p>Codex 拿到这段话就能直接开始干活,而且 90% 的细节不需要再问。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 id="role">角色:别只说"我",说清楚"什么场景下的我"</h3>
+
+    <p>"我是一个独立咖啡师"——这一句话同时告诉了 Codex 几件事:</p>
+    <ul>
+      <li>这不是一个企业级项目(预算和需求都更轻)</li>
+      <li>用户是来店里的客人(不是网上下单)</li>
+      <li>你可能不太懂代码(它会自动降低专业术语的使用)</li>
+    </ul>
+    <p>新手最常见的错误是把"角色"省掉,直接说目标。结果 Codex 会按"一般人想要一个菜单"的平均水平给你,而不是按"小店老板想要一个能扫码看的菜单"的具体期待。</p>
+
+    <h3 id="goal">目标:做"什么",不是做"得怎么样"</h3>
+
+    <p>目标要写的是<strong>客观的东西</strong>——"一个能扫码的菜单页面",而不是"一个好看的、专业的、上档次的菜单"。"好看"和"专业"是评价词,不是目标本身。把评价词留给迭代阶段去说。</p>
+
+    <h3 id="constraints">限制:把"不要什么"也说清楚</h3>
+
+    <p>限制是最被低估的一项。零基础读者通常只说"我要什么",不说"我不要什么"。后者其实更重要,因为<strong>它能砍掉 80% Codex 可能踩你雷的方向</strong>。</p>
+
+    <p>限制至少要覆盖三块:</p>
+    <ul>
+      <li><strong>技术限制</strong>:只用一个 HTML 文件 / 不接后端 / 不引外部库</li>
+      <li><strong>视觉限制</strong>:手机优先 / 不要花哨动画 / 不要鲜艳红色</li>
+      <li><strong>范围限制</strong>:只做首页 / 不做登录 / 现在不考虑国际化</li>
+    </ul>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听 · 三句法骨架</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我是 [角色:你的身份 + 使用场景]。
+
+我想做 [目标:一个能 ____ 的 ____],它需要做到:
+1. [核心功能 1]
+2. [核心功能 2]
+3. [核心功能 3]
+
+限制:
+- 技术上:[只用一个 HTML 文件 / 不接后端 / 不引外部库]
+- 视觉上:[手机优先 / 配色克制 / 不要花哨动画]
+- 范围上:[只做首页 / 现在不考虑 ____ ]
+
+请先做一个最简单的版本给我看,我们再迭代。</div>
+      <div class="prompt-card__note">这个骨架放在脑子里就行,真用的时候按自己的语气改。"先做最简单的版本"那句是<strong>必须</strong>的——它告诉 Codex 别一次做满,留出迭代空间。</div>
+    </div>
+
+    <h2 id="rough-first">4.2 先描述,再细化:两轮节奏</h2>
+
+    <p>新手有个本能反应:"我得把所有细节一次想清楚,再开口"。这是<strong>错的方向</strong>。</p>
+
+    <p>正确的节奏是<strong>两轮</strong>:</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__title">第一轮:粗描述</div>
+        <p class="step__body">用三句法说清角色 + 目标 + 大方向限制。<strong>故意不给颜色、字号、间距这种细节</strong>,看 Codex 自己怎么发挥。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">第一轮的产出:你看到一个"基线版本"</div>
+        <p class="step__body">它可能不漂亮,但它告诉你 Codex 的"默认理解"是什么。你现在有具体东西可以反应了。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">第二轮:基于基线版本提细化</div>
+        <p class="step__body">"主标题字太小了,放大一点"、"卖点之间间距太挤"、"按钮换成圆角"——每条都针对你看到的现状,不再凭空想象。</p>
+      </div>
+    </div>
+
+    <p>为什么这种节奏比"一次想清楚"好?</p>
+
+    <ul>
+      <li><strong>你的脑子需要参照系</strong>。凭空想"我要什么颜色"会卡 20 分钟;看到一个基线版本之后说"换成更暖的颜色"只要 5 秒。</li>
+      <li><strong>Codex 的"默认理解"通常不差</strong>。它见过几百万张产品官网,自带审美。你不给约束,反而它能发挥得更好。</li>
+      <li><strong>避免"过度规约"的浪费</strong>。你花 20 分钟规定的细节,可能 Codex 第一轮就猜对了——这 20 分钟你白花了。</li>
+    </ul>
+
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">"先粗后细"不是"敷衍提需求"</div>
+        <div class="callout__body">
+          <p>三句法里的<strong>角色和目标</strong>必须清晰,这是"骨"。只有那些"细节型限制"(配色具体色号、字号 px 数、间距像素)在第一轮可以省。骨不清楚,Codex 第一轮就会跑偏得离谱,你想"基于基线版本调"都没机会。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="references">4.3 用"找参考"代替"说细节"</h2>
+
+    <p>这是本章最实用的一招。</p>
+
+    <p>当你想表达<strong>"我想要那种感觉,但说不清楚"</strong>的时候,不要硬描述。直接给一个参考。三种给法:</p>
+
+    <h3 id="ref-url">参考方式一 · URL</h3>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请打开 stripe.com 的首屏,学习它的视觉语言——大字标题、克制的配色、柔和的渐变、CTA 按钮的样子。然后把我们的产品官网首屏改成类似的感觉(只在视觉上参考,文字内容不变)。</div>
+      <div class="prompt-card__note">Codex 知道 Stripe 长什么样,也知道 Linear / Apple / Notion 长什么样。"打开 XX 学习它的视觉语言"是一句非常高效的指令。</div>
+    </div>
+
+    <h3 id="ref-screenshot">参考方式二 · 截图</h3>
+
+    <p>如果是 Codex 不一定见过的小众网站、设计稿、甚至杂志页,你可以截图丢给它。Codex CLI 在 2026 年支持读取图片(贴到对话里就行)。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听 · 配上截图</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">[拖一张截图进对话框]
+
+这张图是我喜欢的视觉风格。请你分析:它的配色用了哪几种颜色?字体的层次怎么排?最让你觉得"高级"的是哪两三个细节?
+
+分析完之后,把这种风格套到我现在的 index.html 上。</div>
+      <div class="prompt-card__note">分两步:先让 Codex 分析,再让它实施。中间停一下,你看一眼它的分析对不对——如果它的分析就跑偏了,实施肯定也跑偏。</div>
+    </div>
+
+    <h3 id="ref-similar">参考方式三 · 类比一个产品</h3>
+
+    <p>当你的产品本身就有"行业标杆"时,直接说类比。这种最省事:</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我想要这个落地页的"卖点区"做得像 Notion 官网那样——三列卡片、每个卡片有图标、副标题克制、整体留白多。</div>
+      <div class="prompt-card__note">"像 Notion 那样"包含了几十条隐性规则,你不需要自己一条条说出来。<strong>但要避免"像苹果那样"这种太宽泛的类比</strong>——苹果的"那样"可以指 iCloud 那种、可以指 Mac 产品页那种、可以指 Apple Music 那种,Codex 会迷茫。说得越具体越好。</div>
+    </div>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">为什么"找参考"经常打败"说细节"</div>
+        <div class="callout__body">
+          <p>因为视觉的好坏是<strong>无数微小决定的合力</strong>:间距差 2px、阴影深一点、行距宽一点——单独说每一项你都没感觉,合在一起才有"高级"。你不可能一条条说出来,但你能感受到。给参考,等于把这堆隐性决定一次性打包了。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="recognize-questions">4.4 当 Codex 反问你时,这是好事</h2>
+
+    <p>有些新手一看到 Codex 反问就慌:"我把它说糊涂了?"——<strong>恰恰相反</strong>。它反问,通常意味着:</p>
+    <ul>
+      <li>它确实需要一个你才能决定的选项</li>
+      <li>它发现你没说清的地方比它瞎猜要好</li>
+    </ul>
+
+    <p>但反问也分两种,你得能区分:</p>
+
+    <h3 id="effective-question">有效反问 · 求一个真决策</h3>
+
+    <p>例子:</p>
+    <blockquote>"这个'立即下载'按钮,你希望它跳到 App Store 链接,还是先弹出一个二维码让用户用手机扫?这两种实现差挺多,我想确认一下再写。"</blockquote>
+
+    <p>这是<strong>有效反问</strong>——两种方案对实现影响不同,Codex 不能替你拍板。<strong>必须正面回答</strong>,不能糊弄过去。</p>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">辨识有效反问的特征</div>
+        <div class="callout__body">
+          <ul>
+            <li>给了你两到三个具体的选项</li>
+            <li>每个选项的差异 Codex 自己说不清(不是它能猜的)</li>
+            <li>选项之间的影响不可逆 / 影响大(选错了后面要重做)</li>
+          </ul>
+          <p>命中这三条,就是有效反问,请认真回。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 id="hedging-question">敷衍反问 · 它在 hedge</h3>
+
+    <p>例子:</p>
+    <blockquote>"你希望首屏标题字号是多少?要不要响应式?按钮要不要加 hover 效果?表单提交要不要错误提示?"</blockquote>
+
+    <p>这是<strong>敷衍反问</strong>——这些它完全可以自己拍板,问你只是为了"把责任分担给你"。<strong>你不能说"32px、要、要、要"逐个回答</strong>——那会让你陷入决策疲劳,而且 90% 的回答你都是随便给的。</p>
+
+    <p>正确的回应方式是<strong>授权</strong>:</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">这些细节你按你的判断来,我看到效果再说。如果有不确定的,先选最克制 / 最常见的方案,后面我会逐项调。</div>
+      <div class="prompt-card__note">"按你的判断来"比"你随便"主动得多。区别在于"按你的判断"是明确授权,"你随便"是放弃决策——Codex 会用最保守的中庸答案回敬你,产出会变得很普通。</div>
+    </div>
+
+    <h3 id="reject-questions">什么时候直接拒绝反问</h3>
+
+    <p>偶尔 Codex 会问一些<strong>它自己应该知道的问题</strong>——比如"这个文件目前长什么样?"。直接告诉它:</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">这个文件就在当前目录,你自己读一下就知道。不需要问我。</div>
+      <div class="prompt-card__note">你不是它的字典。提醒它自己用工具去查,通常能让对话更高效。</div>
+    </div>
+
+    <h2 id="dont-do">4.5 五件事不要做</h2>
+
+    <p>下面这五件事是新手最常踩的反模式。如果你犯了其中一条,Codex 不会报错,但产出质量会肉眼可见地下降。</p>
+
+    <h3 id="dont-1">反模式 1 · 一次扔十个需求</h3>
+
+    <div class="callout callout--danger">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">反例</div>
+        <div class="callout__body">
+          <p style="font-style:italic;">"请把首屏标题改大、配色换成蓝色、定价区高级版加个'最受欢迎'标签、表单加邮箱验证、首屏背景加一张猫的图片、底部加 social 链接、还有手机上的字小一点。"</p>
+        </div>
+      </div>
+    </div>
+
+    <p>Codex 会全做一遍,但<strong>每一项的质量都比单独做时低</strong>——它的"注意力预算"被分散了。更糟糕的是,如果其中一个改坏了,你不知道是哪个改动引发的,回退也回退不干净。</p>
+
+    <p>正确做法:<strong>排队,一次一件</strong>。先发改首屏标题这条,看效果,确认满意,再发下一条。你的目标不是节省时间,而是<strong>每一步都可控可回退</strong>。</p>
+
+    <h3 id="dont-2">反模式 2 · 在 Codex 写代码时打断</h3>
+
+    <p>当 Codex 已经开始写文件(diff 视图在出现),你看到一半发现"哎不对,我刚才说的不对"——<strong>等它写完再说</strong>。中途按 Esc 打断,文件可能处于半成品状态,既不是改前也不是改后。然后你想纠正,它得先收拾烂摊子,效率反而低。</p>
+
+    <p>正确做法:让它把这一轮干完,然后说"这一轮的方向不对,请回到上一版本,我们重新来"。Git 会救你。</p>
+
+    <h3 id="dont-3">反模式 3 · 说"你随便"</h3>
+
+    <p>这是最常见的礼貌陷阱。你想表达"我没意见",但 Codex 听到的是"你给我一个无功无过的答案"。结果就是页面变得平庸——居中、灰色、圆角、内边距 24px,什么都对,什么都没特点。</p>
+
+    <p>正确说法:</p>
+    <ul>
+      <li>"按你的判断来,如果有疑问选最克制的方案"</li>
+      <li>"我没强烈偏好,你按 [某个参考] 的风格做"</li>
+      <li>"你做你觉得最有意思的版本,我们再调"</li>
+    </ul>
+
+    <h3 id="dont-4">反模式 4 · 否认它能看到的事实</h3>
+
+    <p>Codex 跟你的浏览器是<strong>两个东西</strong>。你刷新没看到变化,可能是浏览器缓存;它读你的代码,看到的是文件最新状态。这两件事经常对不上。</p>
+
+    <div class="callout callout--danger">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">反例</div>
+        <div class="callout__body">
+          <p style="font-style:italic;">"你刚才说改完了,我看根本没改。"</p>
+          <p>(实际:文件改了,只是浏览器没刷新)</p>
+        </div>
+      </div>
+    </div>
+
+    <p>结果 Codex 会怀疑自己,反复读文件、反复改,绕几圈才发现问题在浏览器侧。</p>
+
+    <p>正确做法:陈述<strong>具体现象</strong>,不要下结论。</p>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">正例</div>
+        <div class="callout__body">
+          <p style="font-style:italic;">"我在浏览器里强制刷新后,看到的首屏背景还是浅蓝色。你这边读取到的 index.html 里 hero 区的背景色是什么?我们对一下。"</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 id="dont-5">反模式 5 · 忘了让它"总结你改了什么"</h3>
+
+    <p>每一轮结束时,加一句:</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听 · 收尾用</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">用三句话总结你刚才改了什么:涉及哪些文件、核心改动是什么、我应该怎么验证。不要贴代码,用人话讲。</div>
+      <div class="prompt-card__note">这一句既能帮你建立对项目的掌控感,也能让 Codex 自己复盘一下——它经常在总结的过程中发现"哎,我刚才那一步好像没做完"。等于送了你一次免费的自检。</div>
+    </div>
+
+    <h2 id="three-templates">4.6 三个万能模板</h2>
+
+    <p>上面的内功讲完了,我们用三个最高频的模板把它落地。完整的 10 条模板库在 <a href="../appendix/a-prompt-library.html">附录 A</a>,这里给最常用的三个,先记在脑子里。</p>
+
+    <h3 id="template-need">模板 A · 描述需求</h3>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我是 [角色],想做 [一句话目标]。
+
+它需要做到:
+1. [核心功能 1]
+2. [核心功能 2]
+3. [核心功能 3]
+
+限制:[技术 / 视觉 / 范围三方面的边界]。
+
+请先做一个最简单的版本给我看,我们再迭代。</div>
+      <div class="prompt-card__note">这是三句法的完整骨架。"先做最简单的版本"那一句必须有,否则 Codex 会过度发挥。</div>
+    </div>
+
+    <h3 id="template-bug">模板 B · 修 bug</h3>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我遇到一个问题。
+
+我做了:[你的操作]
+我期待看到:[预期结果]
+实际看到:[真实发生的现象]
+浏览器控制台报错(如果有):[原文粘贴]
+
+请先定位问题,再说怎么修。</div>
+      <div class="prompt-card__note">关键是"做了 / 期待 / 实际 / 报错"四件套,这是描述现象不下结论的标准格式。比"按钮没用"有效 10 倍。</div>
+    </div>
+
+    <h3 id="template-design">模板 C · 改设计</h3>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">现在 [某个区块] 的视觉感觉像 [不太理想的参照],但我希望它像 [理想的参照]。
+
+请你对比这两种感觉的差距,提出 3-5 个具体的调整建议,然后逐个改过来。改完用三句话总结你做了什么。</div>
+      <div class="prompt-card__note">这是"对比描述法"的标准版本。当你说不清自己想要什么的时候,用"我现在像 A,我希望像 B"代替"我想要什么"。</div>
+    </div>
+
+    <h2 id="exercise">动手试试</h2>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <span>动手试试</span>
+      </div>
+      <div class="exercise__title">把你的产品想法用三句法写出来(只写,不动电脑)</div>
+      <div class="exercise__body">
+        <p>选一个你心里已经有的产品想法(没有就拿"个人作品集网站"当替身)。打开你常用的笔记应用,按下面的模板写一段提示词:</p>
+        <ol class="exercise__steps">
+          <li><strong>第一段(角色)</strong>:三句话写清楚你是谁、在什么场景下做这件事、目标用户是谁</li>
+          <li><strong>第二段(目标)</strong>:三个数字编号的核心功能,每个不超过一行</li>
+          <li><strong>第三段(限制)</strong>:技术、视觉、范围三类各写一条限制</li>
+          <li><strong>结尾</strong>:"请先做一个最简单的版本给我看,我们再迭代"</li>
+        </ol>
+        <p>写完之后,拿这段去问下面两个朋友(或者自己换头脑):</p>
+        <ul>
+          <li>"看完这段,你能脑补出我要的东西大概什么样吗?"</li>
+          <li>"哪一段最让你没把握?"</li>
+        </ul>
+        <p>对方答不出来的地方,就是你下次跟 Codex 说话时要补的地方。</p>
+      </div>
+      <div class="exercise__done"><strong>完成标志:</strong>你笔记里多了一段约 150-300 字的三句法提示词;至少一个人看完能用 30 秒复述你的需求。</div>
+    </div>
+
+    <h2 id="pitfalls">常见踩坑</h2>
+
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary>角色信息埋在第三段才出现</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>你前两句讲完产品功能,第三句才提"对了,我是个咖啡店主"——Codex 已经按"通用产品官网"的设定开始干活了。</dd>
+            <dt>原因</dt>
+            <dd>角色信息是<strong>整段话的基调</strong>,它必须放在最前面,后面所有的句子才会被它"染色"。</dd>
+            <dt>解决</dt>
+            <dd>角色永远写在第一句。哪怕只是"我是 ____"也好。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>把目标和限制写反了</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>"我要做一个手机优先的网站"——"手机优先"被你当成了目标,实际上它是<strong>限制</strong>。真正的目标是"展示我的菜单"或"卖我的产品"。</dd>
+            <dt>原因</dt>
+            <dd>限制是"边界",目标是"内容"。前者负责"不要干什么",后者负责"要干什么"。混在一起,Codex 拿不到清晰指引。</dd>
+            <dt>解决</dt>
+            <dd>问自己一句:"如果这件事做到 100 分,我希望看到什么?"答案是目标。"如果做到 100 分但越界了,我会皱眉的是什么?"答案是限制。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>太啰嗦,Codex 抓不到重点</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>你写了 800 字的需求,觉得很详细很负责。Codex 读完先做出来一个版本,你发现关键信息被忽略了。</dd>
+            <dt>原因</dt>
+            <dd>800 字里有 80% 是"为什么我想做这件事"、"我的背景故事"、"我之前试过什么"——这些<strong>对 Codex 没用</strong>。它只关心你要它做什么。</dd>
+            <dt>解决</dt>
+            <dd>所有提示词控制在 150-300 字。背景故事一句话带过。删掉"我觉得"、"我希望"、"我想要"这些填充词,直接说事。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>每次都从零开始重新解释项目</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>同一个项目,第十次对话你还在说"我是个咖啡师,我的项目是……"。</dd>
+            <dt>原因</dt>
+            <dd>Codex 的上下文是<strong>每次会话独立的</strong>。<code>/new</code> 之后它就忘了。但在<strong>同一次会话内</strong>,它记得很清楚。</dd>
+            <dt>解决</dt>
+            <dd>1)同一个项目尽量留在同一次会话里完成关键节点;2)对长期项目,在项目目录建一个 <code>AGENTS.md</code> 文件,把"我是谁、项目是什么、限制有哪些"写进去,Codex 启动时自动读。详细做法在第 03 章。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>觉得"已经讲过"就省略上下文</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>你说"把上次那个改一下"——Codex 不知道你说的是哪次哪个。</dd>
+            <dt>原因</dt>
+            <dd>"上次"在你的大脑里很清楚,在 Codex 的上下文里可能很模糊(尤其当中间穿插过别的对话)。</dd>
+            <dt>解决</dt>
+            <dd>每次给一个明确的指代:"index.html 里的定价区"、"刚才提到的那个邮箱表单"、"5 分钟前你改的标题"——明确的指代比"那个"省 10 轮对话。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>用评价词代替具体描述</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>"做得高大上一点"、"再专业一点"、"看起来要更厉害"——Codex 不知道你的"高大上"是金色奢华、还是科技感、还是日式极简。</dd>
+            <dt>原因</dt>
+            <dd>评价词是<strong>主观感受</strong>,不是可执行指令。Codex 没法把"高大上"翻译成具体的 CSS 改动。</dd>
+            <dt>解决</dt>
+            <dd>评价词后面必须跟一个参考或具体维度。"高大上,像 Apple 官网那种"、"专业,字体小一点、间距更宽"——这样它就有方向了。</dd>
+          </dl>
+        </div>
+      </details>
+
+      <details class="pitfall">
+        <summary>开始动手了才发现自己不知道想要什么</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>第三句法的"目标"那一栏你写了三遍都不满意——其实你心里还没想清楚自己要做什么。</dd>
+            <dt>原因</dt>
+            <dd>这<strong>不是 Codex 的问题</strong>,是你的产品没想清楚。继续硬上,只会得到一个你也不满意的东西。</dd>
+            <dt>解决</dt>
+            <dd>暂停,关掉 Codex。拿一张白纸或一份 Notes,写下:1)我的产品解决了谁的什么问题?2)用户用完之后会跟朋友怎么介绍?3)如果只能砍到只剩三个功能,会留哪三个?写完再回来开 Codex。这是最划算的"返工"。</dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        三句话法则、两轮节奏(先粗后细)、用参考代替细节、识别有效反问 vs 敷衍反问、绕开五种新手反模式、用三个万能模板搞定大部分场景。<strong>从下一章起我们正式开工</strong>——这一章的内功会让你在第 05 章的实战里事半功倍。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./03-codex-basics.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← Codex 用法手册</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./05-build-skeleton.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">搭出官网骨架 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

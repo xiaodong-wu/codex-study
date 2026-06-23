@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Vercel 部署成功庆祝界面示意图">
+  <defs>
+    <linearGradient id="bg8vs" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#F4EFE6"/>
+      <stop offset="100%" stop-color="#E8E1D3"/>
+    </linearGradient>
+    <linearGradient id="tb8vs" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#EFE9DE"/>
+      <stop offset="100%" stop-color="#D9D1C0"/>
+    </linearGradient>
+    <linearGradient id="celebrate" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F6F4EE"/>
+    </linearGradient>
+    <radialGradient id="r8vs" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#FF7B72"/><stop offset="60%" stop-color="#FC615D"/><stop offset="100%" stop-color="#D9443F"/></radialGradient>
+    <radialGradient id="y8vs" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#FFCF6A"/><stop offset="60%" stop-color="#FDBC40"/><stop offset="100%" stop-color="#D89826"/></radialGradient>
+    <radialGradient id="g8vs" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#4FD75F"/><stop offset="60%" stop-color="#34C748"/><stop offset="100%" stop-color="#1F9A2A"/></radialGradient>
+    <radialGradient id="successHalo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#2F9E6E" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#2F9E6E" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="ws8vs" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#1F2230" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="400" fill="url(#bg8vs)"/>
+
+  <g filter="url(#ws8vs)">
+    <!-- 浏览器窗口 -->
+    <rect x="50" y="40" width="700" height="320" rx="11" fill="url(#celebrate)" stroke="#C9C0AF" stroke-width="0.5"/>
+
+    <!-- 标题栏 + 地址栏 -->
+    <path d="M50 51 Q50 40 61 40 L739 40 Q750 40 750 51 L750 90 L50 90 Z" fill="url(#tb8vs)"/>
+    <circle cx="75" cy="55" r="6.5" fill="url(#r8vs)"/>
+    <circle cx="96" cy="55" r="6.5" fill="url(#y8vs)"/>
+    <circle cx="117" cy="55" r="6.5" fill="url(#g8vs)"/>
+    <rect x="180" y="68" width="440" height="22" rx="11" fill="#FFFFFF" stroke="#C9C0AF" stroke-width="0.5"/>
+    <circle cx="195" cy="79" r="4" fill="none" stroke="#5F5751" stroke-width="1"/>
+    <text x="210" y="83" font-family="system-ui, sans-serif" font-size="11" fill="#5F5751">vercel.com/wuxiaodong/my-product-site</text>
+  </g>
+
+  <!-- 庆祝光晕 -->
+  <circle cx="400" cy="190" r="160" fill="url(#successHalo)"/>
+
+  <!-- 五彩纸屑(几片) -->
+  <g opacity="0.85">
+    <rect x="180" y="120" width="8" height="3" rx="1" fill="#E8704A" transform="rotate(20 184 122)"/>
+    <rect x="240" y="100" width="6" height="3" rx="1" fill="#3E4ECC" transform="rotate(-25 243 102)"/>
+    <rect x="540" y="115" width="8" height="3" rx="1" fill="#2F9E6E" transform="rotate(15 544 117)"/>
+    <rect x="610" y="105" width="6" height="3" rx="1" fill="#E8704A" transform="rotate(-40 613 107)"/>
+    <rect x="160" y="160" width="6" height="3" rx="1" fill="#FDBC40" transform="rotate(45 163 162)"/>
+    <rect x="630" y="155" width="6" height="3" rx="1" fill="#3E4ECC" transform="rotate(-15 633 157)"/>
+    <circle cx="200" cy="200" r="3" fill="#FDBC40"/>
+    <circle cx="600" cy="220" r="3" fill="#E8704A"/>
+    <circle cx="155" cy="250" r="2.5" fill="#3E4ECC"/>
+    <circle cx="640" cy="275" r="2.5" fill="#2F9E6E"/>
+  </g>
+
+  <!-- 庆祝勾选(主视觉) -->
+  <circle cx="400" cy="170" r="36" fill="#2F9E6E"/>
+  <path d="M385 170 L396 181 L416 161" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- 标题 -->
+  <text x="400" y="240" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="800" fill="#1F2230" text-anchor="middle">Congratulations · 已上线</text>
+  <text x="400" y="262" font-family="system-ui, sans-serif" font-size="12.5" fill="#5F5751" text-anchor="middle">你的产品官网正在互联网上接受访问</text>
+
+  <!-- URL 卡片 -->
+  <rect x="200" y="282" width="400" height="42" rx="9" fill="#FFFFFF" stroke="#3E4ECC" stroke-width="1.4"/>
+  <circle cx="218" cy="303" r="6" fill="none" stroke="#3E4ECC" stroke-width="1.5"/>
+  <path d="M214 303 L222 303 M218 299 L218 307" stroke="#3E4ECC" stroke-width="1.3" stroke-linecap="round"/>
+  <text x="234" y="307" font-family="Menlo, monospace" font-size="13" font-weight="600" fill="#3E4ECC">https://my-product-site-fk2.vercel.app</text>
+  <rect x="548" y="293" width="40" height="20" rx="4" fill="#3E4ECC"/>
+  <text x="568" y="307" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#FFFFFF" text-anchor="middle">访问</text>
+</svg>

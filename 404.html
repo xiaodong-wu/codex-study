@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>页面找不到了 · Codex 口语化编程教程</title>
+<meta name="description" content="Codex 口语化教程的 404 页面。页面不存在或已移动时,返回首页或核心章节。" />
+<link rel="stylesheet" href="./assets/css/base.css" />
+<link rel="stylesheet" href="./assets/css/components.css?v=20260623-hero-left" />
+<style>
+  body { display: grid; place-items: center; min-height: 100vh; padding: 32px; }
+  .err { max-width: 480px; text-align: center; }
+  .err__code {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(120deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .err__title { font-size: 1.4rem; margin: 0 0 12px; }
+  .err__sub { color: var(--ink-soft); margin-bottom: 28px; }
+  .err__actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+  <div class="err">
+    <div class="err__code">404</div>
+    <h1 class="err__title">这一页找不到了</h1>
+    <p class="err__sub">你访问的页面不存在,或者已经被搬到了别处。回到首页或者直接进入核心实战章节看看。</p>
+    <div class="err__actions">
+      <a class="btn btn--primary" href="./index.html">回到首页</a>
+      <a class="btn" href="./chapters/02-setup.html">进入第 02 章</a>
+    </div>
+  </div>
+</body>
+</html>

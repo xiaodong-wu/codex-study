@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 07 章 · 当事情出错时 · Codex 口语化编程教程</title>
+<meta name="description" content="Codex CLI 调试教程:如何描述现象、对比设计问题、用 Git 回退、处理 Codex 绕圈子和常见实战踩坑。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 07 章 · 当事情出错时" data-chapter="07-debugging">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 07 章 · 实战 Part 3</span>
+    <h1>当事情出错时</h1>
+    <p class="chapter-lede">你早晚会卡住——页面白屏、改了变更糟、Codex 一直绕圈子。这一章给你一套"卡住时的标准操作流程",让你不慌、不放弃,总能把事情拽回正轨。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章学完后你会拥有</strong>
+        一套“先描述、再定位、再小修、最后保存”的排障流程。以后看到报错,你不需要慌,只需要把现象交代清楚。
+      </div>
+    </div>
+
+    <h2 id="describe-not-guess">7.1 描述"现象",不要"猜测"</h2>
+    <p>新手遇到 bug 时,最常见的错误是猜原因。</p>
+    <p>比如你说:“应该是 CSS 坏了。”这就是猜。Codex 可能会顺着你的猜测去修 CSS,结果真正坏的是 HTML 少了一个标签。</p>
+    <p>更好的说法是描述现象:</p>
+    <ul>
+      <li>“我点击按钮后没有任何反应。”</li>
+      <li>“浏览器页面是一片白。”</li>
+      <li>“手机端出现横向滚动条。”</li>
+      <li>“终端显示这段红字:……”</li>
+    </ul>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">报 bug 四件套</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我遇到一个问题,请先帮我定位,不要直接大改。
+
+我做了什么:[描述你的操作]
+我期待看到:[预期结果]
+实际发生:[真实现象]
+报错信息:[粘贴终端或浏览器里的红字,没有就写“没有看到报错”]</div>
+      <div class="prompt-card__note">“做了 / 期待 / 实际 / 报错”是最稳的排障格式。</div>
+    </div>
+
+    <h2 id="contrast">7.2 看着丑但说不出哪里丑:对比描述法</h2>
+    <p>设计问题经常不是“坏了”,而是“怪”。怪在哪里,你又说不出来。</p>
+    <p>这时用对比描述法:</p>
+    <blockquote>我希望它像 A 那样,但它现在更像 B。请先分析差距,不要直接改。</blockquote>
+    <p>比如:</p>
+    <ul>
+      <li>“我希望像 Notion 官网那样干净,但现在像促销海报。”</li>
+      <li>“我希望像专业工具站,但现在像个人博客模板。”</li>
+      <li>“我希望像咖啡店菜单,但现在像企业官网。”</li>
+    </ul>
+    <p>让 Codex 先分析差距,你确认它理解对了,再让它改。这样比“改好看点”靠谱得多。</p>
+
+    <h2 id="rollback">7.3 改完更糟了:Git 一键回退</h2>
+    <p>如果你按第 05 章做过 Git 提交,那恭喜你,你有保存点。改坏了不是世界末日。</p>
+    <p>先别急着让 Codex继续修。先问它现在改了什么:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">回退前先盘点</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">刚才改完效果更糟了。请先列出当前未提交的改动涉及哪些文件、每个文件改了什么。先不要撤回,等我确认。</div>
+      <div class="prompt-card__note">先盘点,再决定是局部撤回还是全部撤回。</div>
+    </div>
+    <p>如果确认不要了,再说:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">撤回未提交改动</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请撤回当前未提交的改动,恢复到上一次 Git 提交的状态。撤回前再次列出会被影响的文件,让我确认。</div>
+      <div class="prompt-card__note">“上一次 Git 提交”就是上一个保存点。</div>
+    </div>
+
+    <h2 id="loop">7.4 Codex 一直绕圈子怎么办</h2>
+    <p>Codex 有时会陷入循环:修 A 坏 B,修 B 又坏 A;或者连续几次都理解错。</p>
+    <p>这时不要继续催“再试试”。换策略:</p>
+    <ol>
+      <li><strong>让它停下来总结</strong>:现在尝试过什么,为什么失败。</li>
+      <li><strong>缩小范围</strong>:只修一个文件、一个按钮、一个报错。</li>
+      <li><strong>换证据</strong>:给截图、终端输出、浏览器控制台信息。</li>
+      <li><strong>开新会话</strong>:用总结作为新开场。</li>
+    </ol>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">打断循环</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我们好像在同一个问题上绕圈了。请停止继续修改,先总结:
+1. 你尝试过哪些方案
+2. 每个方案为什么没解决
+3. 现在最可能的根因是什么
+4. 下一步最小验证动作是什么</div>
+      <div class="prompt-card__note">让它进入“复盘模式”,不要继续机械修改。</div>
+    </div>
+
+    <h2 id="next-step">7.5 不知道下一步做什么</h2>
+    <p>有时你不是卡在 bug,而是不知道下一步该优化什么。这个时候,让 Codex 给选项,不要让它直接替你决定。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">让 Codex 给选择题</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">基于当前项目状态,请给我 3 个下一步选项。每个选项请说明:
+1. 能带来什么价值
+2. 预计复杂度
+3. 风险
+4. 你推荐哪个
+
+先不要动手。</div>
+      <div class="prompt-card__note">你缺的往往不是执行力,而是不知道有哪些选项。</div>
+    </div>
+
+    <h2 id="pitfalls">7.6 常见踩坑全集(实战篇)</h2>
+    <div class="pitfall-group">
+      <div class="pitfall-group__title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        常见踩坑
+      </div>
+      <details class="pitfall">
+        <summary>页面白屏</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>浏览器打开后什么都没有。</dd>
+            <dt>常见原因</dt>
+            <dd>HTML 标签没闭合、脚本报错、文件路径写错。</dd>
+            <dt>怎么说</dt>
+            <dd>“页面白屏。请检查 HTML 结构、浏览器控制台错误和资源路径,先列出原因再修。”</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>CSS 不生效</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>你明明让它改了样式,刷新后看起来还是旧的。</dd>
+            <dt>常见原因</dt>
+            <dd>浏览器缓存、CSS 文件没引用、选择器写错、改错文件。</dd>
+            <dt>怎么说</dt>
+            <dd>“请确认当前页面实际加载的是哪个 CSS 文件,并检查我刚才改的样式是否命中了元素。”</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>表单不能提交</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>点击提交没有反应,或者数据没有发出去。</dd>
+            <dt>常见原因</dt>
+            <dd>纯静态页面没有后端,按钮只是样子;或者 action / JavaScript 没写。</dd>
+            <dt>怎么说</dt>
+            <dd>“请判断这个表单现在只是前端样式,还是真的能提交。不要接后端,先告诉我最简单的收集方式。”</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>移动端横向滚动</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>现象</dt>
+            <dd>手机上页面可以左右滑,某个元素撑出屏幕。</dd>
+            <dt>常见原因</dt>
+            <dd>固定宽度、长链接、表格、图片或按钮没有响应式约束。</dd>
+            <dt>怎么说</dt>
+            <dd>“请以 390px 宽度检查哪个元素造成横向滚动,只修那个元素,不要整体重写布局。”</dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">做一次“无害排障演练”</div>
+      <div class="exercise__body">
+        <p>找一个你已经能打开的网站项目,让 Codex 只读检查潜在问题,不要让它修改。</p>
+        <div class="prompt-card">
+          <div class="prompt-card__head">
+            <span class="prompt-card__label">排障演练提示词</span>
+            <button class="prompt-card__copy" type="button">复制</button>
+          </div>
+          <div class="prompt-card__body">请只读检查当前项目,找出 5 个最可能影响上线质量的问题。按“现象 / 风险 / 建议修复方式”列出。不要改文件。</div>
+          <div class="prompt-card__note">先练“发现问题”,再练“修问题”。</div>
+        </div>
+        <div class="exercise__done"><strong>完成标志:</strong>你拿到一份问题清单,并能选出最想先修的一项。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        用现象代替猜测,用对比描述设计问题,用 Git 保存点回退,并在 Codex 绕圈时及时切换到复盘模式。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./06-build-design.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 让它好看</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./08-deploy.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">上线:让世界看到你 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

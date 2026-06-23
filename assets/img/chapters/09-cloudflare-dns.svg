@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Cloudflare DNS 配置界面示意图">
+  <defs>
+    <linearGradient id="bg9" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#F4EFE6"/>
+      <stop offset="100%" stop-color="#E8E1D3"/>
+    </linearGradient>
+    <linearGradient id="tb9" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#EFE9DE"/>
+      <stop offset="100%" stop-color="#D9D1C0"/>
+    </linearGradient>
+    <radialGradient id="r9" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#FF7B72"/><stop offset="60%" stop-color="#FC615D"/><stop offset="100%" stop-color="#D9443F"/></radialGradient>
+    <radialGradient id="y9" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#FFCF6A"/><stop offset="60%" stop-color="#FDBC40"/><stop offset="100%" stop-color="#D89826"/></radialGradient>
+    <radialGradient id="g9" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#4FD75F"/><stop offset="60%" stop-color="#34C748"/><stop offset="100%" stop-color="#1F9A2A"/></radialGradient>
+    <filter id="ws9" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#1F2230" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="400" fill="url(#bg9)"/>
+
+  <g filter="url(#ws9)">
+    <!-- 浏览器窗口 -->
+    <rect x="50" y="40" width="700" height="320" rx="11" fill="#FFFFFF" stroke="#C9C0AF" stroke-width="0.5"/>
+
+    <!-- 标题栏 + 地址栏 -->
+    <path d="M50 51 Q50 40 61 40 L739 40 Q750 40 750 51 L750 90 L50 90 Z" fill="url(#tb9)"/>
+    <circle cx="75" cy="55" r="6.5" fill="url(#r9)"/>
+    <circle cx="96" cy="55" r="6.5" fill="url(#y9)"/>
+    <circle cx="117" cy="55" r="6.5" fill="url(#g9)"/>
+    <rect x="180" y="68" width="440" height="22" rx="11" fill="#FFFFFF" stroke="#C9C0AF" stroke-width="0.5"/>
+    <circle cx="195" cy="79" r="4" fill="none" stroke="#5F5751" stroke-width="1"/>
+    <text x="210" y="83" font-family="system-ui, sans-serif" font-size="11" fill="#5F5751">dash.cloudflare.com · jiaoxingmao.com · DNS / Records</text>
+
+    <!-- 页面标题 -->
+    <text x="74" y="124" font-family="system-ui, sans-serif" font-size="17" font-weight="700" fill="#1F2230">DNS Records</text>
+
+    <!-- Add record 按钮 -->
+    <rect x="620" y="108" width="106" height="26" rx="5" fill="#F38020"/>
+    <text x="673" y="125" font-family="system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">+ Add record</text>
+
+    <!-- 表格表头 -->
+    <rect x="74" y="148" width="652" height="32" fill="#F4F1EA"/>
+    <text x="92" y="168" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#5F5751" letter-spacing="0.5">类型</text>
+    <text x="152" y="168" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#5F5751" letter-spacing="0.5">名称</text>
+    <text x="252" y="168" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#5F5751" letter-spacing="0.5">内容</text>
+    <text x="522" y="168" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#5F5751" letter-spacing="0.5">代理状态</text>
+    <text x="668" y="168" font-family="system-ui, sans-serif" font-size="10.5" font-weight="700" fill="#5F5751" letter-spacing="0.5">TTL</text>
+
+    <!-- Row 1: A record -->
+    <line x1="74" y1="180" x2="726" y2="180" stroke="#E0DCD2" stroke-width="0.5"/>
+    <text x="92" y="208" font-family="Menlo, monospace" font-size="12" font-weight="700" fill="#3E4ECC">A</text>
+    <text x="152" y="208" font-family="Menlo, monospace" font-size="12" fill="#1F2230">@</text>
+    <text x="252" y="208" font-family="Menlo, monospace" font-size="12" fill="#1F2230">76.76.21.21</text>
+    <!-- DNS only 灰色云 -->
+    <g transform="translate(522 192)">
+      <path d="M6 16 Q0 16 0 10 Q0 4 6 4 Q8 0 14 0 Q22 0 24 6 Q28 6 28 12 Q28 16 22 16 Z" fill="#C9C0AF"/>
+      <text x="36" y="13" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#5F5751">DNS only</text>
+    </g>
+    <text x="668" y="208" font-family="system-ui, sans-serif" font-size="11.5" fill="#5F5751">Auto</text>
+
+    <!-- Row 2: CNAME -->
+    <line x1="74" y1="226" x2="726" y2="226" stroke="#E0DCD2" stroke-width="0.5"/>
+    <text x="92" y="254" font-family="Menlo, monospace" font-size="12" font-weight="700" fill="#3E4ECC">CNAME</text>
+    <text x="152" y="254" font-family="Menlo, monospace" font-size="12" fill="#1F2230">www</text>
+    <text x="252" y="254" font-family="Menlo, monospace" font-size="12" fill="#1F2230">cname.vercel-dns.com</text>
+    <g transform="translate(522 238)">
+      <path d="M6 16 Q0 16 0 10 Q0 4 6 4 Q8 0 14 0 Q22 0 24 6 Q28 6 28 12 Q28 16 22 16 Z" fill="#C9C0AF"/>
+      <text x="36" y="13" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#5F5751">DNS only</text>
+    </g>
+    <text x="668" y="254" font-family="system-ui, sans-serif" font-size="11.5" fill="#5F5751">Auto</text>
+
+    <!-- 提示带:橙云 vs 灰云 -->
+    <line x1="74" y1="272" x2="726" y2="272" stroke="#E0DCD2" stroke-width="0.5"/>
+
+    <rect x="74" y="288" width="652" height="58" rx="6" fill="#FBEDE5" stroke="#E8704A" stroke-width="0.6"/>
+    <!-- 对比图标:橙云(关) + 灰云(开) -->
+    <g transform="translate(94 302)">
+      <path d="M6 16 Q0 16 0 10 Q0 4 6 4 Q8 0 14 0 Q22 0 24 6 Q28 6 28 12 Q28 16 22 16 Z" fill="#E8704A" opacity="0.5"/>
+      <line x1="6" y1="6" x2="22" y2="14" stroke="#C24A4A" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(132 302)">
+      <path d="M6 16 Q0 16 0 10 Q0 4 6 4 Q8 0 14 0 Q22 0 24 6 Q28 6 28 12 Q28 16 22 16 Z" fill="#C9C0AF"/>
+      <path d="M9 10 L12 13 L19 6" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </g>
+    <text x="184" y="313" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#8b3a18">注意:小云图标要保持"灰色 / DNS only"</text>
+    <text x="184" y="330" font-family="system-ui, sans-serif" font-size="11" fill="#a04a28">点一下变橙色 = 走 Cloudflare 代理 = 跟 Vercel 的 SSL 会冲突,网站打开会是 Bad Gateway。</text>
+  </g>
+</svg>

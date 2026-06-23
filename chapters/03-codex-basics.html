@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 03 章 · Codex 用法手册 · Codex 口语化编程教程</title>
+<meta name="description" content="Codex CLI 基础用法:审批模式、沙盒、diff 视图、内置命令、会话长度、撤回和 AGENTS.md 长期记忆。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 03 章 · Codex 用法手册" data-chapter="03-codex-basics">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 03 章 · 学会跟 Codex 说话</span>
+    <h1>Codex 用法手册</h1>
+    <p class="chapter-lede">第 02 章让你跟 Codex 通了个气;这一章我们把它正式当工具来用。审批模式、沙盒、看懂 diff、何时该重启——这些是接下来所有实战章节默认你会的能力。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h10"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章学完后你会拥有</strong>
+        一张 Codex CLI 操作地图:知道怎么控制权限、怎么看改动、怎么用 slash 命令、怎么恢复会话,以及怎么给项目留下长期规则。
+      </div>
+    </div>
+
+    <h2 id="approval">3.1 三种审批模式</h2>
+    <p>审批模式决定 Codex 做事前要不要问你。你可以把它理解成“助手的自主程度”。</p>
+    <table>
+      <thead><tr><th>模式</th><th>通俗理解</th><th>新手建议</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Read-only</strong></td><td>只看不动</td><td>你想让它解释项目、找问题、给计划时用。</td></tr>
+        <tr><td><strong>Auto / workspace-write</strong></td><td>能在当前项目里读写,越界会问</td><td>日常最推荐。第 05 章开始基本用它。</td></tr>
+        <tr><td><strong>Full Access</strong></td><td>限制最少,风险最高</td><td>新手先别用,除非你非常清楚它要做什么。</td></tr>
+      </tbody>
+    </table>
+    <p>在 CLI 里,你可以用 <code>/permissions</code> 调整权限。刚开始不确定时,宁可保守一点。让 Codex 先解释计划,你确认后再给它更大的权限。</p>
+
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">不要为了省事直接全权</div>
+        <div class="callout__body">Full Access 很像把家里钥匙全交出去。不是永远不能用,但第一次装修不要这么干。</div>
+      </div>
+    </div>
+
+    <h2 id="sandbox">3.2 沙盒到底罩着什么</h2>
+    <p>沙盒是 Codex 的活动边界。它控制的是“技术上能碰哪里”。审批控制的是“什么时候问你”。两者一起工作。</p>
+    <p>默认情况下,Codex 会围绕你启动它的当前目录工作。比如你在 <code>my-product-site</code> 里运行 <code>codex</code>,它就应该把这个文件夹当成工作区。</p>
+    <p>常见边界可以这样理解:</p>
+    <ul>
+      <li><strong>当前项目文件</strong>:日常可以读写。</li>
+      <li><strong>项目外目录</strong>:通常需要额外授权。</li>
+      <li><strong>联网</strong>:默认更保守,需要时会说明理由。</li>
+      <li><strong>危险命令</strong>:比如删除、重置、改系统设置,你应该格外仔细。</li>
+    </ul>
+    <p>想知道当前会话的边界,可以输入 <code>/status</code>。它会显示当前工作目录、权限、上下文等信息。</p>
+
+    <h2 id="read-diff">3.3 看懂它的"剧本":diff 视图怎么读</h2>
+    <p>Diff 是“这次改了什么”的对照表。你不用看懂所有代码,但一定要看大方向。</p>
+    <ul>
+      <li><code>+</code> 开头:新增的内容。</li>
+      <li><code>-</code> 开头:删除的内容。</li>
+      <li>文件名变化:这次动了哪些文件。</li>
+    </ul>
+    <p>新手看 diff 时只问四个问题:</p>
+    <ol>
+      <li>它改的是不是我刚才要求的地方?</li>
+      <li>有没有动到不相关文件?</li>
+      <li>有没有删掉大段内容?</li>
+      <li>有没有新增奇怪链接、账号、密钥或陌生脚本?</li>
+    </ol>
+    <p>如果你看不懂,不要硬装懂。直接让 Codex 解释。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">看不懂 diff 时</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请用零基础能听懂的话解释这次 diff:
+1. 每个文件改了什么
+2. 为什么要这么改
+3. 有没有风险
+4. 我应该接受、拒绝,还是让你再改一轮</div>
+      <div class="prompt-card__note">你不需要马上变懂代码。你需要能判断“这次改动是不是合理”。</div>
+    </div>
+
+    <h2 id="commands">3.4 几个常用内置命令</h2>
+    <p>在 Codex CLI 输入框里敲 <code>/</code>,会出现一组 slash 命令。先记这几个就够:</p>
+    <table>
+      <thead><tr><th>命令</th><th>用途</th><th>什么时候用</th></tr></thead>
+      <tbody>
+        <tr><td><code>/plan</code></td><td>先规划</td><td>任务超过两步、你怕它直接乱改时。</td></tr>
+        <tr><td><code>/permissions</code></td><td>改权限</td><td>想从只读切到可写,或反过来收紧权限时。</td></tr>
+        <tr><td><code>/diff</code></td><td>看改动</td><td>想确认当前文件改了什么时。</td></tr>
+        <tr><td><code>/review</code></td><td>让 Codex 自查</td><td>提交前让它找风险、bug、遗漏测试。</td></tr>
+        <tr><td><code>/status</code></td><td>看会话状态</td><td>想知道当前目录、权限、模型、上下文时。</td></tr>
+        <tr><td><code>/new</code></td><td>开新对话</td><td>当前对话太乱,想重新开始但不退出 CLI。</td></tr>
+        <tr><td><code>/resume</code></td><td>恢复旧会话</td><td>昨天做到一半,今天继续。</td></tr>
+        <tr><td><code>/quit</code></td><td>退出</td><td>收工时用。</td></tr>
+      </tbody>
+    </table>
+    <p>不要一口气背所有命令。你真的会高频用到的,前期就是 <code>/plan</code>、<code>/diff</code>、<code>/review</code>、<code>/status</code>。</p>
+
+    <h2 id="session-length">3.5 一次会话的健康长度</h2>
+    <p>Codex 的会话越聊越长,上下文会越来越复杂。长到一定程度,它可能开始变得迟钝或跑偏。</p>
+    <p>出现这些信号,就该考虑 <code>/new</code> 或重新开一个任务:</p>
+    <ul>
+      <li>它连续两三次犯同一个错。</li>
+      <li>你已经换了目标,但它还抓着旧目标不放。</li>
+      <li>它开始给很长的解释,但实际改动很少。</li>
+      <li>你自己也说不清这条对话现在到底在做什么。</li>
+    </ul>
+    <p>重开不是失败。就像整理桌面一样,有时候清空一下反而更快。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">重开前总结</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请用 8 条以内总结当前会话:已经完成什么、改了哪些文件、还有什么没做、下一条新会话应该从哪里继续。</div>
+      <div class="prompt-card__note">复制这段总结到新会话,比带着一堆历史继续纠缠更清爽。</div>
+    </div>
+
+    <h2 id="undo">3.6 中断、撤回、重来的三件套</h2>
+    <p>你需要会三种“刹车”。</p>
+    <table>
+      <thead><tr><th>动作</th><th>通俗理解</th><th>场景</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Esc</kbd> 或取消当前输入</td><td>我这句话不发了</td><td>还没提交给 Codex 时。</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>先停一下</td><td>命令跑太久、方向明显不对时。</td></tr>
+        <tr><td>Git 回退</td><td>回到保存点</td><td>文件已经改坏,需要撤销时。</td></tr>
+      </tbody>
+    </table>
+    <p>最稳的习惯是:每完成一个小阶段就提交一次。这样你永远有地方可退。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">撤回刚才改动</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">刚才那次改动我不满意。请先列出你改了哪些文件,然后帮我只撤回这一次改动,不要影响之前已经提交过的内容。</div>
+      <div class="prompt-card__note">比“全都撤回”更安全。范围越清楚,越不容易误伤。</div>
+    </div>
+
+    <h2 id="config">3.7 给项目留下"长期记忆"</h2>
+    <p>如果你发现自己反复提醒 Codex 同一件事,就该把它写进 <code>AGENTS.md</code>。</p>
+    <p><code>AGENTS.md</code> 可以理解成“项目里的工作说明”。每次 Codex 进入这个项目时,都会先读这些规则。比如:</p>
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">markdown</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre># AGENTS.md
+
+## 写作风格
+- 面向零基础读者,用口语化中文解释。
+- 先讲用途,再讲步骤,避免堆术语。
+
+## 修改规则
+- 不要引入构建工具。
+- 保持纯 HTML/CSS/JS。
+- 修改后检查站内链接和 HTML 结构。</pre>
+    </div>
+    <p>你可以用 <code>/init</code> 让 Codex 生成一个初稿,再让它根据你的项目补充。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">生成项目规则</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请根据当前项目生成一份简洁的 AGENTS.md。重点写:项目是什么、常用检查命令、写作风格、修改边界。不要写太长。</div>
+      <div class="prompt-card__note">AGENTS.md 不是越长越好。它应该像工作便签,不是法律合同。</div>
+    </div>
+
+    <h2 id="everyday-flow">3.8 新手日常工作流</h2>
+    <p>把本章内容合起来,你日常可以这样用 Codex CLI:</p>
+    <ol>
+      <li>进入项目文件夹,运行 <code>codex</code>。</li>
+      <li>先说目标,如果任务复杂就用 <code>/plan</code>。</li>
+      <li>确认计划后让它改一小块。</li>
+      <li>用 <code>/diff</code> 或 Review 面板看改动。</li>
+      <li>在浏览器或终端里检查结果。</li>
+      <li>满意后让 Codex 帮你提交保存点。</li>
+      <li>任务结束前让它总结改了什么。</li>
+    </ol>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">让 Codex 只读检查一次项目</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>在你的项目目录里启动 Codex。</li>
+          <li>把权限切到只读或明确告诉它先不要改文件。</li>
+          <li>让它解释项目结构并给三步建议。</li>
+          <li>用 <code>/status</code> 看当前会话状态。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你知道当前工作目录是什么,也知道 Codex 下一步建议先改哪里。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        控制 Codex 的权限边界、读懂 diff 的大方向、用常见 slash 命令管理会话,并知道如何用 AGENTS.md 把反复约定沉淀成项目规则。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./02-setup.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 把工具装到电脑里</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./04-prompting.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">口语化编程内功 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

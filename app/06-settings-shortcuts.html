@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 06 章 · 设置、快捷键和安全边界 · Codex 口语化教程</title>
+<meta name="description" content="Codex 桌面端 App 设置总览:通用设置、个人资料、外观、Git、浏览器、Computer Use、快捷键、Slash 命令和权限安全边界。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 06 章 · 设置、快捷键和安全边界" data-chapter="app-06-settings">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 06 章 · 设置与安全</span>
+    <h1>设置、快捷键和安全边界</h1>
+    <p class="chapter-lede">最后一章不是让你记住所有按钮,而是让你知道“问题应该去哪里调”。Codex App 功能很多,但新手真正需要先掌握的是设置入口、常用快捷键、Slash 命令和权限边界。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/automation-settings.svg" alt="Codex App 设置、安全权限和自动化关系示意图" loading="lazy" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>最后的总控台:</b>外观、通知、Git、浏览器、Computer Use、MCP、个性化和安全权限,基本都从 Settings 进去。</figcaption>
+    </figure>
+
+    <h2 id="settings-map">Settings 里每块是干什么的</h2>
+    <table>
+      <thead><tr><th>设置项</th><th>通俗解释</th><th>新手什么时候会用</th></tr></thead>
+      <tbody>
+        <tr><td>General</td><td>打开文件、终端显示、多行输入等基本行为</td><td>觉得输入或打开文件不顺手时。</td></tr>
+        <tr><td>Profile</td><td>个人资料、使用数据、邀请入口</td><td>想看自己用了多少、改头像名字时。</td></tr>
+        <tr><td>Keyboard Shortcuts</td><td>快捷键列表和自定义</td><td>快捷键冲突或想改成自己习惯时。</td></tr>
+        <tr><td>Notifications</td><td>任务完成提醒</td><td>Codex 跑久任务,你想收到通知时。</td></tr>
+        <tr><td>Agent configuration</td><td>模型、审批、沙盒等代理行为</td><td>想控制它能做什么、何时问你时。</td></tr>
+        <tr><td>Appearance</td><td>主题、字体、颜色和可选宠物</td><td>看久了累,或想换外观时。</td></tr>
+        <tr><td>Git</td><td>分支命名、提交信息、PR 描述偏好</td><td>团队项目想统一风格时。</td></tr>
+        <tr><td>Integrations & MCP</td><td>连接外部工具和 MCP 服务</td><td>需要 GitHub、Figma、内部系统等上下文时。</td></tr>
+        <tr><td>Browser</td><td>浏览器插件、允许/阻止网站、开发者模式</td><td>要让 Codex 检查网页或用 Chrome 时。</td></tr>
+        <tr><td>Computer Use</td><td>桌面应用操作权限</td><td>要让 Codex 看见并操作某个 App 时。</td></tr>
+        <tr><td>Personalization</td><td>个性、个人说明、自定义偏好</td><td>想让 Codex 更简洁、更友好或按你习惯说话时。</td></tr>
+        <tr><td>Memories</td><td>跨线程记住有用信息</td><td>希望它记住长期偏好,且功能可用时。</td></tr>
+        <tr><td>Archived threads</td><td>已归档线程</td><td>想找回旧对话时。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="starter-settings">零基础推荐初始设置</h2>
+    <p>如果你不知道怎么配,先按这个方向来:</p>
+    <table>
+      <thead><tr><th>项目</th><th>推荐</th><th>为什么</th></tr></thead>
+      <tbody>
+        <tr><td>权限 / 沙盒</td><td>默认或工作区可写,需要越界时再问</td><td>日常能改项目,但不会随便碰项目外文件。</td></tr>
+        <tr><td>网络访问</td><td>默认保守</td><td>需要查资料或下载依赖时,先让 Codex 解释。</td></tr>
+        <tr><td>通知</td><td>任务完成提醒打开</td><td>长任务跑完你能知道。</td></tr>
+        <tr><td>Browser allowlist</td><td>先不 Always allow</td><td>每个新网站先确认一次更安全。</td></tr>
+        <tr><td>Computer Use allowlist</td><td>只允许你明确要用的 App</td><td>桌面操作权限更敏感,范围越小越好。</td></tr>
+        <tr><td>Personality</td><td>Friendly 或 Pragmatic</td><td>新手通常更适合解释清楚一点;想简洁就 Pragmatic。</td></tr>
+        <tr><td>Memories</td><td>先只放偏好,不放秘密</td><td>能改善体验,但不该保存敏感信息。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="shortcuts">最值得先记的快捷键</h2>
+    <table>
+      <thead><tr><th>动作</th><th>macOS</th><th>怎么理解</th></tr></thead>
+      <tbody>
+        <tr><td>打开命令菜单</td><td><kbd>Cmd</kbd>+<kbd>K</kbd> 或 <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></td><td>找功能最快入口。</td></tr>
+        <tr><td>打开设置</td><td><kbd>Cmd</kbd>+<kbd>,</kbd></td><td>哪里不顺手就来这里。</td></tr>
+        <tr><td>打开快捷键列表</td><td><kbd>Cmd</kbd>+<kbd>/</kbd></td><td>忘了快捷键就查。</td></tr>
+        <tr><td>打开文件夹</td><td><kbd>Cmd</kbd>+<kbd>O</kbd></td><td>添加或切换项目。</td></tr>
+        <tr><td>新建线程</td><td><kbd>Cmd</kbd>+<kbd>N</kbd></td><td>开一条新任务线。</td></tr>
+        <tr><td>搜索线程</td><td><kbd>Cmd</kbd>+<kbd>G</kbd></td><td>找过去的对话。</td></tr>
+        <tr><td>线程内搜索</td><td><kbd>Cmd</kbd>+<kbd>F</kbd></td><td>在当前对话里找字。</td></tr>
+        <tr><td>切换终端</td><td><kbd>Cmd</kbd>+<kbd>J</kbd></td><td>打开/收起内置终端。</td></tr>
+        <tr><td>切换侧边栏</td><td><kbd>Cmd</kbd>+<kbd>B</kbd></td><td>让界面更宽。</td></tr>
+        <tr><td>语音输入</td><td><kbd>Ctrl</kbd>+<kbd>M</kbd></td><td>先说出来,再编辑发送。</td></tr>
+      </tbody>
+    </table>
+    <p class="muted small">Windows 快捷键可能不同,以 App 里的 Keyboard Shortcuts 页面为准。</p>
+
+    <h2 id="slash">Slash 命令怎么用</h2>
+    <p>在输入框里敲 <code>/</code>,会弹出命令列表。新手先认识这些:</p>
+    <table>
+      <thead><tr><th>命令</th><th>用途</th><th>一句话场景</th></tr></thead>
+      <tbody>
+        <tr><td><code>/plan</code></td><td>先规划</td><td>任务大、不想它直接开改时。</td></tr>
+        <tr><td><code>/goal</code></td><td>设置持续目标</td><td>希望 Codex 一直推进到完成时。</td></tr>
+        <tr><td><code>/review</code></td><td>进入代码审查</td><td>让 Codex 检查当前改动风险。</td></tr>
+        <tr><td><code>/status</code></td><td>看线程状态</td><td>想知道线程 ID、上下文、限制时。</td></tr>
+        <tr><td><code>/init</code></td><td>生成 AGENTS.md</td><td>想给项目留下长期规则时。</td></tr>
+        <tr><td><code>/mcp</code></td><td>查看 MCP 状态</td><td>外部工具连接不对劲时。</td></tr>
+        <tr><td><code>/feedback</code></td><td>提交反馈</td><td>App 出现问题,想给官方反馈时。</td></tr>
+      </tbody>
+    </table>
+    <p>技能通常用 <code>$</code> 触发。比如 <code>$imagegen</code> 表示你希望 Codex 明确走图片生成能力。</p>
+
+    <h2 id="command-menu">命令菜单比记快捷键更重要</h2>
+    <p>不想背快捷键就记一个入口:<kbd>Cmd</kbd>+<kbd>K</kbd> 或命令菜单。你可以直接搜索:</p>
+    <ul>
+      <li><strong>Settings</strong>:打开设置。</li>
+      <li><strong>Keyboard Shortcuts</strong>:查快捷键。</li>
+      <li><strong>New Thread</strong>:新建线程。</li>
+      <li><strong>Toggle Terminal</strong>:打开/收起终端。</li>
+      <li><strong>Force Reload Skills</strong>:技能没刷新时重新加载。</li>
+      <li><strong>Feedback</strong>:提交问题反馈。</li>
+    </ul>
+    <p>命令菜单就像 App 的搜索框。忘了入口,先搜名字,别在界面里乱找。</p>
+
+    <h2 id="permissions">权限和沙盒:新手最重要的安全感</h2>
+    <p>Codex 的权限可以粗略分成两层:</p>
+    <ul>
+      <li><strong>审批</strong>:它什么时候需要停下来问你。</li>
+      <li><strong>沙盒</strong>:它最多能碰到哪些地方。</li>
+    </ul>
+    <p>新手原则很简单:</p>
+    <ol>
+      <li>默认让它只在项目范围内工作。</li>
+      <li>看到“approve once”和“approve for this session”时,不确定就选更窄的。</li>
+      <li>涉及联网、安装、系统设置、桌面应用、浏览器账号,先看理由再批准。</li>
+      <li>别为了省一次点击就长期给 full access。</li>
+    </ol>
+
+    <h2 id="permission-scopes">批准一次、批准本会话、永远允许</h2>
+    <p>权限弹窗里不同选项代表不同范围:</p>
+    <table>
+      <thead><tr><th>选项</th><th>意思</th><th>新手建议</th></tr></thead>
+      <tbody>
+        <tr><td>Approve once</td><td>只允许这一次</td><td>不确定就选它。</td></tr>
+        <tr><td>Approve for session</td><td>本线程/本会话内持续允许</td><td>同类命令会重复跑,且你理解风险时再选。</td></tr>
+        <tr><td>Always allow</td><td>以后类似目标不再问</td><td>只给非常熟悉、低风险的网站或 App。</td></tr>
+        <tr><td>Decline / Block</td><td>拒绝或阻止</td><td>看不懂、和任务无关、涉及敏感账号时选。</td></tr>
+      </tbody>
+    </table>
+    <p>你随时可以回 Settings 里管理 Browser 或 Computer Use 的 allowlist/blocklist。给错权限不是世界末日,但要知道哪里收回。</p>
+
+    <h2 id="windows">Windows 用户特别注意</h2>
+    <p>Windows 版 Codex App 可以用原生 PowerShell 和 Windows 沙盒,也可以配置 WSL。零基础用户先用默认的 Windows 原生方式,项目也尽量放在 Windows 文件系统里。</p>
+    <p>如果 Git 功能不可用,通常是没装 Git。需要 GitHub 相关功能时,还可能需要 GitHub CLI 并登录。</p>
+
+    <h2 id="where-to-fix">出问题时去哪里调</h2>
+    <table>
+      <thead><tr><th>现象</th><th>先去哪里看</th><th>顺手问 Codex 什么</th></tr></thead>
+      <tbody>
+        <tr><td>Codex 一直要权限</td><td>Agent configuration / Permissions</td><td>“请解释这些权限请求分别为什么需要。”</td></tr>
+        <tr><td>浏览器网站打不开或被拒绝</td><td>Browser 设置的 allowlist/blocklist</td><td>“当前网站是否被阻止?需要我批准哪个域名?”</td></tr>
+        <tr><td>Chrome 扩展连不上</td><td>Plugins、Chrome 扩展页、Browser 设置</td><td>“请列出 Chrome 连接排查步骤。”</td></tr>
+        <tr><td>Computer Use 看不到 App</td><td>Computer Use 设置、系统隐私权限</td><td>“请告诉我 macOS/Windows 需要检查哪些权限。”</td></tr>
+        <tr><td>MCP 工具不可用</td><td>Integrations & MCP</td><td>“请打开 MCP 状态并解释哪个 server 没连上。”</td></tr>
+        <tr><td>技能不生效</td><td>Skills 页面、命令菜单 Reload Skills</td><td>“请确认这个技能是否可用,下一步怎么触发。”</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="advanced-you-can-ignore">你现在可以先不用管的高级功能</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3 class="feature-card__title">Deep links</h3>
+        <p class="feature-card__body">用 <code>codex://</code> 打开线程、设置或插件。普通读者不用先记。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Remote connections</h3>
+        <p class="feature-card__body">连接远程机器或设备。等你有远程开发需求再学。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Developer mode</h3>
+        <p class="feature-card__body">给浏览器调试更深权限。性能分析时有用,但要谨慎批准。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Pets</h3>
+        <p class="feature-card__body">可选的状态小组件。喜欢就开,不影响核心工作流。</p>
+      </div>
+    </div>
+
+    <h2 id="deep-links">Deep links:知道有它就行</h2>
+    <p>Codex App 支持 <code>codex://</code> 这类链接,可以直接打开设置、线程、技能、自动化或插件安装页。普通读者不用手写这些链接,但你可能会在文档或别人发来的说明里看到它。</p>
+    <p>如果一个链接要打开插件、设置或自动化,先看清它要带你去哪里。不要因为链接看起来像 App 内部链接就完全不审查。</p>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">做一次设置体检</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>打开 Settings。</li>
+          <li>找到 Keyboard Shortcuts,搜索 Terminal。</li>
+          <li>找到 Browser 设置,看 allowlist/blocklist 在哪里。</li>
+          <li>找到 Computer Use 设置,确认你知道在哪里撤销 Always allow。</li>
+          <li>回到线程,让 Codex 用三句话总结当前权限状态。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你知道“哪里不顺手去哪里调”,也知道权限给错了去哪里收回。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        用 Codex App 打开项目、创建线程、选择工作模式、看 Diff、跑终端、用浏览器标注、理解 Computer Use、设置自动化和技能,并且知道权限应该怎么保守地给。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./05-automations-skills.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 自动化、技能和外部工具</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html">
+        <div class="chapter-nav__dir">继续学习</div>
+        <div class="chapter-nav__title">进入 CLI 教程 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 02 章 · 项目、线程和三种模式 · Codex 口语化教程</title>
+<meta name="description" content="用通俗语言解释 Codex App 里的项目、线程、Local、Worktree、Cloud、Goal、语音输入、弹出窗口和 IDE 同步。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 02 章 · 项目、线程和三种模式" data-chapter="app-02-threads">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 02 章 · 工作方式</span>
+    <h1>项目、线程和三种模式</h1>
+    <p class="chapter-lede">这一章解决一个最容易懵的问题:Codex App 里到底什么是项目,什么是线程,Local / Worktree / Cloud 又该怎么选。你不需要懂 Git,先把它们当成三种“工作台”。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/thread-modes.svg" alt="Local、Worktree、Cloud 三种工作模式的对比示意图" loading="lazy" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>记忆法:</b>Local 是在你桌上直接改;Worktree 是拿一份副本去旁边试;Cloud 是把任务放到远程工作台。</figcaption>
+    </figure>
+
+    <h2 id="project">项目:Codex 被允许看的文件夹</h2>
+    <p>项目就是你交给 Codex 的文件夹。它可以是一个网站、一个 App、一个文档项目,甚至只是一个空文件夹。</p>
+    <p>新手要记住:项目范围越清楚,Codex 越不容易跑偏。不要一上来把整个桌面、整个下载目录都交给它。</p>
+
+    <h2 id="thread">线程:一次任务对话</h2>
+    <p>线程就是一条对话。一个项目里可以开很多线程:</p>
+    <ul>
+      <li>一条线程专门改首页。</li>
+      <li>一条线程专门检查移动端。</li>
+      <li>一条线程专门整理 README。</li>
+    </ul>
+    <p>这样做的好处是,每条线都更清楚。以后你可以搜索旧线程,也可以把重要线程 pin 住,不用在一大坨聊天里翻。</p>
+
+    <h2 id="thread-lifecycle">一条线程从开始到结束</h2>
+    <p>把线程当成一张任务单。最稳的生命周期是:</p>
+    <ol>
+      <li><strong>开头说范围。</strong>例如“只检查首页,先不要改文件”。</li>
+      <li><strong>中间小步推进。</strong>每次只让 Codex 做一个明确动作。</li>
+      <li><strong>改完看 Review。</strong>确认文件、Diff、运行结果都符合预期。</li>
+      <li><strong>结束时总结。</strong>让它说清改了什么、怎么验证、还有什么没做。</li>
+      <li><strong>归档或保留。</strong>重要线程 pin 住,普通线程完成后归档,以后列表不会乱。</li>
+    </ol>
+    <p>如果一个线程已经聊得很长、方向变了,就开新线程。新线程不是浪费,它能让 Codex 少背旧上下文。</p>
+
+    <h2 id="modes">三种模式怎么选</h2>
+    <table>
+      <thead><tr><th>模式</th><th>一句话理解</th><th>新手建议</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Local</strong></td><td>直接在当前项目里工作</td><td>第一次用就选它。改完马上能看到文件变化。</td></tr>
+        <tr><td><strong>Worktree</strong></td><td>创建一个隔离副本,让 Codex 在副本里试</td><td>当你怕弄乱当前项目,或想同时试两个方案时再用。</td></tr>
+        <tr><td><strong>Cloud</strong></td><td>在远程配置好的环境里跑</td><td>先不用急。等你有团队项目或云端环境再学。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="mode-examples">三个生活化例子</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3 class="feature-card__title">Local:修一个错字</h3>
+        <p class="feature-card__body">比如首页标题错了一个字,直接 Local 改。小、明确、容易验收。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Worktree:试新版首页</h3>
+        <p class="feature-card__body">你想让 Codex 大改视觉风格,但不确定喜欢不喜欢,就放到 Worktree 试。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Cloud:远程跑长任务</h3>
+        <p class="feature-card__body">团队项目、GitHub 仓库、云端环境配置好后,可以把耗时任务放到 Cloud。</p>
+      </div>
+    </div>
+
+    <h2 id="worktree">Worktree 是什么</h2>
+    <p>Worktree 可以理解成“给 Codex 开一张临时工作桌”。它会基于你的项目创建一个隔离工作区。Codex 在那里改,不会直接打扰你正在看的那份文件。</p>
+    <p>适合这些情况:</p>
+    <ul>
+      <li>你想让 Codex 大胆试一个新设计,但怕改坏。</li>
+      <li>你想让两个线程同时做不同任务。</li>
+      <li>你想先看结果,满意了再把工作交回 Local。</li>
+    </ul>
+    <p>如果你看到 <strong>Hand off</strong>,可以把线程在 Local 和 Worktree 之间移动。你不用理解背后的 Git 操作,只要记住:这是“把活从一张桌子搬到另一张桌子”。</p>
+
+    <h2 id="handoff">Handoff:把活搬回当前项目</h2>
+    <p>Worktree 里做完一版后,你通常有两个选择:</p>
+    <ul>
+      <li><strong>继续在 Worktree 里验收。</strong>适合它能自己启动、测试、预览的项目。</li>
+      <li><strong>Hand off 到 Local。</strong>适合你想用自己熟悉的编辑器、终端或本地服务检查。</li>
+    </ul>
+    <p>这里有个小坑:同一个 Git 分支不能同时在两个 worktree 里被签出。你不需要记 Git 细节,只要尽量用 App 里的 Hand off 按钮搬运,别自己在终端里硬切分支。</p>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">Worktree 需要 Git 仓库</div>
+        <div class="callout__body">如果你的项目还没有 Git,Worktree 相关能力会受限。第一个小项目可以先用 Local,等你会 commit 以后再用 Worktree。</div>
+      </div>
+    </div>
+
+    <h2 id="goal">Goal:让 Codex 长时间盯着一个目标</h2>
+    <p><strong>Goal</strong> 适合目标比较大、需要 Codex持续推进的任务。比如:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">Goal 示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">目标:把这个教程站整理成“CLI 教程 + 桌面端 App 教程”两部分。你需要持续检查页面结构、链接、导航和样式,直到本地预览没有明显问题。</div>
+      <div class="prompt-card__note">先用 /plan 把目标讲清楚,再用 /goal 让它持续推进,会比一句话扔出去更稳。</div>
+    </div>
+
+    <h2 id="comfort-features">几个让你更舒服的小功能</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3 class="feature-card__title">搜索线程</h3>
+        <p class="feature-card__body">忘了之前在哪条对话里改过东西?用线程搜索找关键词。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">语音输入</h3>
+        <p class="feature-card__body">按住语音快捷键说话,再编辑文字发送。适合先把想法倒出来。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">弹出窗口</h3>
+        <p class="feature-card__body">把线程弹出来放在浏览器旁边,边看效果边让 Codex 改。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">IDE 同步</h3>
+        <p class="feature-card__body">如果你装了 IDE 扩展,App 可以知道你正在看的文件,但不确定时可以关掉对比一下。</p>
+      </div>
+    </div>
+
+    <h2 id="local-environment">本地环境动作:把常用命令做成按钮</h2>
+    <p>如果项目每次都要跑 <code>npm start</code>、<code>npm test</code> 之类命令,可以在本地环境里配置快捷动作。以后启动预览、跑测试就不用每次手敲。</p>
+    <p>对零基础来说,这不是必须学的第一步。但当你发现自己老是在问“启动网站那条命令是什么来着”,就可以让 Codex 帮你配置一个动作:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">配置快捷动作</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请检查这个项目常用的启动、测试、构建命令。先用表格列出来,再建议哪些适合配置成 Codex App 的本地环境动作。先不要修改配置文件。</div>
+      <div class="prompt-card__note">先列清单再配置,能避免把错误命令做成按钮。</div>
+    </div>
+
+    <h2 id="rule">新手选择规则</h2>
+    <ol>
+      <li>能用 Local 完成的,先用 Local。</li>
+      <li>怕改乱、想并行试,再用 Worktree。</li>
+      <li>Cloud、远程连接、复杂环境,等你跑过几个小项目再碰。</li>
+    </ol>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./01-start.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 安装、登录和第一句话</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./03-review-terminal-git.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">看改动、跑命令和保存 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

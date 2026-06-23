@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>附录 B · 术语小词典 · Codex 口语化编程教程</title>
+<meta name="description" content="Codex 口语化教程术语小词典:用生活类比解释终端、Node.js、HTML、CSS、Git、GitHub、部署、域名、DNS、SEO 等概念。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="附录 B · 术语小词典" data-chapter="appendix-b">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">附录 B</span>
+    <h1>术语小词典</h1>
+    <p class="chapter-lede">教程里出现过的所有技术术语,每条用三句话+一个生活类比解释。看到不懂的字眼随时来翻。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>怎么查这一页</strong>
+        不用从头读。看到哪个词不懂,直接在页面里搜索。每条都尽量用“人话解释 + 生活类比 + 你该怎么用”讲清楚。
+      </div>
+    </div>
+
+    <h2 id="b-environment">环境与工具</h2>
+    <div class="faq">
+      <details>
+        <summary>终端 / Terminal / PowerShell</summary>
+        <div class="faq__body">终端就是“用文字操作电脑”的窗口。Mac 上常叫 Terminal,Windows 上常见的是 PowerShell。类比一下:图形界面像点菜单点按钮,终端像直接对电脑下口令。教程里让你输入 <code>cd</code>、<code>npm</code>、<code>codex</code>,都是在终端里做。</div>
+      </details>
+      <details>
+        <summary>命令 / Command</summary>
+        <div class="faq__body">命令就是你写给电脑的一句话,比如 <code>pwd</code> 表示“告诉我当前在哪个文件夹”。命令通常由“动词 + 参数”组成。类比一下:你对外卖软件说“搜索 咖啡”,电脑命令就是对系统说“打开这个文件夹”“启动这个服务”。</div>
+      </details>
+      <details>
+        <summary>路径 / Path</summary>
+        <div class="faq__body">路径是文件或文件夹在电脑里的地址,比如 <code>/Users/name/Desktop/project</code>。你可以把它理解成快递地址:城市、街道、门牌号层层往下。Codex 改文件前,经常会先确认自己在哪个路径里。</div>
+      </details>
+      <details>
+        <summary>Node.js</summary>
+        <div class="faq__body">Node.js 是让 JavaScript 可以在电脑本地运行的环境。很多前端工具、安装命令和脚本都靠它。类比一下:JavaScript 原来主要在浏览器里工作,Node.js 相当于给它搬了一张办公桌,让它能在你的电脑上干活。</div>
+      </details>
+      <details>
+        <summary>npm</summary>
+        <div class="faq__body">npm 是 Node.js 世界里的“应用商店 + 安装器”。你用 <code>npm install -g @openai/codex</code> 安装 Codex CLI,就是让 npm 去下载并安装这个工具。类比一下:Node.js 是手机系统,npm 是应用商店。</div>
+      </details>
+      <details>
+        <summary>Codex CLI</summary>
+        <div class="faq__body">Codex CLI 是在终端里使用 Codex 的方式。它可以读你的项目文件、修改代码、跑命令、解释结果。类比一下:桌面端 App 像带图形界面的工作台,CLI 像直接连到工坊里的对讲机,更轻、更快,但对新手也更“黑窗口”。</div>
+      </details>
+      <details>
+        <summary>API Key</summary>
+        <div class="faq__body">API Key 是服务给你的“钥匙”。如果某个工具要调用 OpenAI、Resend、Supabase 等服务,通常需要 key 来证明“我是这个账号的人”。不要把私密 key 发到公开网页、GitHub 或截图里。类比一下:公开链接像门牌号,API Key 像门禁卡。</div>
+      </details>
+      <details>
+        <summary>沙盒 / Sandbox</summary>
+        <div class="faq__body">沙盒是给 Codex 活动范围画的一条边。比如只允许它改当前项目,不许碰你电脑其他地方。类比一下:你请装修师傅来家里改书房,沙盒就是告诉他“只在书房施工,别动卧室和厨房”。</div>
+      </details>
+      <details>
+        <summary>审批模式 / Approval</summary>
+        <div class="faq__body">审批模式决定 Codex 什么时候要先问你。比如要联网、要改工作区外的文件、要执行更敏感的命令时,它会停下来请你批准。类比一下:普通清洁可以自己做,但要拆墙、换电路就必须先问房主。</div>
+      </details>
+    </div>
+
+    <h2 id="b-web">网页相关</h2>
+    <div class="faq">
+      <details>
+        <summary>HTML</summary>
+        <div class="faq__body">HTML 负责网页的内容和结构:标题、段落、按钮、图片、表单。类比一下:HTML 是房子的墙、门、窗和房间划分。你看到 <code>&lt;h1&gt;</code>、<code>&lt;p&gt;</code>、<code>&lt;button&gt;</code>,就是 HTML 标签。</div>
+      </details>
+      <details>
+        <summary>CSS</summary>
+        <div class="faq__body">CSS 负责网页长什么样:颜色、字号、间距、布局、动效。类比一下:HTML 是毛坯房,CSS 是装修。页面“丑”“挤”“手机上乱了”,大概率都要改 CSS。</div>
+      </details>
+      <details>
+        <summary>JavaScript</summary>
+        <div class="faq__body">JavaScript 负责网页里的行为:点击按钮、弹窗、复制、筛选、提交表单。类比一下:HTML 是身体,CSS 是衣服,JavaScript 是动作。教程里的复制按钮、目录生成、侧边栏加载,都靠 JavaScript。</div>
+      </details>
+      <details>
+        <summary>浏览器 / Browser</summary>
+        <div class="faq__body">浏览器是打开网页的应用,比如 Chrome、Safari、Edge。它会读取 HTML、CSS、JavaScript,然后把它们变成你看到的页面。你写网页时,浏览器既是展示器,也是测试工具。</div>
+      </details>
+      <details>
+        <summary>渲染 / Render</summary>
+        <div class="faq__body">渲染就是浏览器把代码“画”成页面的过程。代码没错但页面看起来不对,就是渲染结果不符合预期。类比一下:菜谱是代码,厨师按菜谱做出菜就是渲染。</div>
+      </details>
+      <details>
+        <summary>响应式 / Responsive</summary>
+        <div class="faq__body">响应式是让同一个网页在手机、平板、电脑上都好看。比如电脑上三列卡片,手机上自动变成一列。类比一下:同一套衣服有松紧,不同身材穿上都合适。</div>
+      </details>
+      <details>
+        <summary>Media Query</summary>
+        <div class="faq__body">Media Query 是 CSS 里的条件句,常用来写“屏幕小于某个宽度时怎么显示”。比如 <code>@media (max-width: 768px)</code>。类比一下:天气冷就穿外套,屏幕窄就改成单列。</div>
+      </details>
+      <details>
+        <summary>本地预览服务器</summary>
+        <div class="faq__body">本地预览服务器是在你电脑上临时开一个小网站,常见地址是 <code>http://localhost:8000</code>。它方便你在正式上线前检查效果。类比一下:正式开店前,先在店里试营业。</div>
+      </details>
+    </div>
+
+    <h2 id="b-git">代码协作</h2>
+    <div class="faq">
+      <details>
+        <summary>Git</summary>
+        <div class="faq__body">Git 是代码版本管理工具。它能记录你每次改了什么,也能帮你回到以前的版本。类比一下:Git 像游戏存档系统,你可以在关键节点存档,出问题再读档。</div>
+      </details>
+      <details>
+        <summary>commit</summary>
+        <div class="faq__body">commit 是一次保存好的版本。它通常有一句提交信息,说明这次改动做了什么。类比一下:你写论文时按阶段另存为“第 3 版”,commit 就是更专业的版本快照。</div>
+      </details>
+      <details>
+        <summary>push</summary>
+        <div class="faq__body">push 是把你电脑里的提交推到 GitHub。推完之后,云端仓库和本地才同步。类比一下:你在本地写完文档,点上传,让网盘里也有一份。</div>
+      </details>
+      <details>
+        <summary>pull</summary>
+        <div class="faq__body">pull 是把 GitHub 上的新变化拉到你电脑。多人协作时很常用。类比一下:网盘里别人更新了文件,你点同步下载到本地。</div>
+      </details>
+      <details>
+        <summary>GitHub</summary>
+        <div class="faq__body">GitHub 是托管代码的网站。你可以把项目放上去,让 Vercel 自动部署,也可以和别人协作。类比一下:Git 是记账本规则,GitHub 是放账本的云书柜。</div>
+      </details>
+      <details>
+        <summary>仓库 / Repository</summary>
+        <div class="faq__body">仓库就是一个项目的代码文件夹,里面通常包含网页文件、图片、README 和 Git 历史。类比一下:一个仓库就是一个项目档案盒。</div>
+      </details>
+      <details>
+        <summary>diff / 差异视图</summary>
+        <div class="faq__body">diff 会显示这次改动新增了哪些行、删除了哪些行。看 diff 是接受 Codex 改动前最重要的动作。类比一下:老师批改作文时用红笔标出改了哪里,diff 就是代码里的红蓝批注。</div>
+      </details>
+    </div>
+
+    <h2 id="b-deploy">部署与域名</h2>
+    <div class="faq">
+      <details>
+        <summary>部署 / Deploy</summary>
+        <div class="faq__body">部署就是把你电脑里的网站发布到互联网上。部署完成后,别人才能通过网址访问。类比一下:你在厨房试做菜是本地开发,把菜端到餐厅桌上就是部署。</div>
+      </details>
+      <details>
+        <summary>持续部署 / Continuous Deployment</summary>
+        <div class="faq__body">持续部署是“你推送代码,平台自动重新上线”。比如 GitHub 一 push,Vercel 自动构建并发布。类比一下:你把新菜单放进系统,门店电子屏自动更新。</div>
+      </details>
+      <details>
+        <summary>Vercel</summary>
+        <div class="faq__body">Vercel 是一个很适合部署前端网站的平台。它能连接 GitHub,自动给你一个公开网址。类比一下:GitHub 放项目,Vercel 把项目变成可访问的网站。</div>
+      </details>
+      <details>
+        <summary>Cloudflare Pages</summary>
+        <div class="faq__body">Cloudflare Pages 也是部署静态网站的平台,和 Vercel 类似。它和 Cloudflare 的域名、DNS、防护能力结合得很好。你可以把它理解为另一家“帮你把网页挂上网”的服务商。</div>
+      </details>
+      <details>
+        <summary>域名 / Domain</summary>
+        <div class="faq__body">域名就是网站的人类可读地址,比如 <code>example.com</code>。没有域名也能用平台给的临时链接,但正式项目最好有自己的域名。类比一下:服务器地址像经纬度,域名像店名和门牌。</div>
+      </details>
+      <details>
+        <summary>DNS</summary>
+        <div class="faq__body">DNS 负责把域名指到真正的网站服务器。你在域名商那里配置 DNS,就是告诉全世界“访问这个域名时去哪里找网站”。类比一下:DNS 像电话簿,把名字查成电话号码。</div>
+      </details>
+      <details>
+        <summary>A 记录</summary>
+        <div class="faq__body">A 记录把域名指向一个 IPv4 地址,比如 <code>76.76.21.21</code>。很多平台会让你给裸域配置 A 记录。类比一下:直接把店名写到一个具体门牌号。</div>
+      </details>
+      <details>
+        <summary>CNAME</summary>
+        <div class="faq__body">CNAME 把一个域名指向另一个域名,常用于 <code>www.example.com</code> 指向平台给的地址。类比一下:你告诉快递员“这个收件点转到另一个收件点处理”。</div>
+      </details>
+      <details>
+        <summary>HTTPS / SSL 证书</summary>
+        <div class="faq__body">HTTPS 让浏览器和网站之间的通信加密。SSL 证书就是证明“这个网站身份可信”的凭证。类比一下:普通 HTTP 像明信片,HTTPS 像封好的信封。</div>
+      </details>
+      <details>
+        <summary>备案</summary>
+        <div class="faq__body">备案通常指在中国大陆使用大陆服务器提供网站服务时需要完成的合规流程。海外平台和域名不一定需要备案,但具体取决于你的网站服务地区和托管方式。类比一下:开店前有些地区需要办经营许可。</div>
+      </details>
+    </div>
+
+    <h2 id="b-product">产品与运营</h2>
+    <div class="faq">
+      <details>
+        <summary>落地页 / Landing Page</summary>
+        <div class="faq__body">落地页是用户点进来后看到的第一个销售或介绍页面。它的任务不是把公司讲全,而是让用户看懂“这东西解决什么问题,我下一步该点哪里”。类比一下:落地页像店门口的招牌和橱窗。</div>
+      </details>
+      <details>
+        <summary>Hero</summary>
+        <div class="faq__body">Hero 是页面最上面的首屏区域,通常有大标题、副标题、按钮和主视觉。它决定用户 5 秒内是否愿意继续看。类比一下:Hero 就是你第一次自我介绍的前三句话。</div>
+      </details>
+      <details>
+        <summary>CTA</summary>
+        <div class="faq__body">CTA 是 Call To Action,也就是行动按钮,比如“立即预约”“免费试用”“下载模板”。它告诉用户下一步做什么。类比一下:你讲完一个产品,最后递过去的那张报名表就是 CTA。</div>
+      </details>
+      <details>
+        <summary>SEO</summary>
+        <div class="faq__body">SEO 是让搜索引擎更容易理解和展示你的网站。新手先做 title、description、清晰标题、sitemap 就够。类比一下:SEO 像给图书馆里的书贴清楚书名、简介和分类号。</div>
+      </details>
+      <details>
+        <summary>sitemap.xml</summary>
+        <div class="faq__body">sitemap.xml 是给搜索引擎看的页面清单。它告诉搜索引擎你的网站有哪些页面。类比一下:你给访客一张楼层导览图,搜索引擎也需要类似的导览。</div>
+      </details>
+      <details>
+        <summary>robots.txt</summary>
+        <div class="faq__body">robots.txt 告诉搜索引擎哪些页面可以抓取,哪些不要抓。小网站通常写得很简单。类比一下:办公室门口贴的“访客请走这边,仓库不开放”。</div>
+      </details>
+      <details>
+        <summary>访问统计</summary>
+        <div class="faq__body">访问统计会告诉你有多少人来、从哪里来、看了哪些页面。它不是为了虚荣,是为了帮你判断页面有没有被看见。类比一下:开店后装个客流计,先知道有没有人进门。</div>
+      </details>
+      <details>
+        <summary>转化率 / Conversion Rate</summary>
+        <div class="faq__body">转化率是“完成目标动作的人占多少”。比如 100 个人访问,5 个人留下邮箱,转化率就是 5%。类比一下:100 个人进店,5 个人买单,你就知道橱窗和导购有没有用。</div>
+      </details>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>记住一个原则</strong>
+        术语不是拿来背的,是拿来定位问题的。看不懂时先查这页,再让 Codex 用你当前项目举一个例子。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./a-prompt-library.html">
+        <div class="chapter-nav__dir">上一篇</div>
+        <div class="chapter-nav__title">← 附录 A · 提示词库</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./c-cli-cheatsheet.html">
+        <div class="chapter-nav__dir">下一篇</div>
+        <div class="chapter-nav__title">附录 C · 命令速查表 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本页目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

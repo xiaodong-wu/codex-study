@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>附录 D · 常见踩坑全集 · Codex 口语化编程教程</title>
+<meta name="description" content="Codex 口语化教程常见踩坑全集:环境安装、登录网络、协作使用、部署、域名、DNS 和 AI 协作问题的排错清单。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="附录 D · 常见踩坑全集" data-chapter="appendix-d">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">附录 D</span>
+    <h1>常见踩坑全集索引</h1>
+    <p class="chapter-lede">每章末尾的「常见踩坑」卡片散落在各处,这里按问题类型聚合成一张速查地图。你卡住时,先到这里按现象找对应小节。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 4-6"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>排错顺序</strong>
+        先看“现象”是不是对得上,再看“最常见原因”,最后照“怎么处理”做。不要一急就重装全家桶,很多问题只是路径、缓存、权限或 DNS 等待。
+      </div>
+    </div>
+
+    <h2 id="env">环境与安装类</h2>
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary>输入 <code>node -v</code> 或 <code>npm -v</code> 提示 command not found</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>Node.js 没装成功,或终端还没刷新环境变量。</dd>
+            <dt>怎么处理</dt>
+            <dd>先完全退出终端再打开。如果还不行,重新安装 Node.js LTS 版本,安装完再跑 <code>node -v</code> 和 <code>npm -v</code>。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/02-setup.html#pitfalls">第 02 章 · 常见踩坑</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>装了 Codex,但 <code>codex</code> 命令找不到</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>全局 npm bin 路径没进系统 PATH,或者安装命令执行失败。</dd>
+            <dt>怎么处理</dt>
+            <dd>先跑 <code>npm list -g --depth=0</code> 看有没有 <code>@openai/codex</code>。没有就重新跑安装命令;有但找不到命令,重开终端或让 Codex/终端帮你检查 npm global bin 路径。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../appendix/c-cli-cheatsheet.html#install">附录 C · 安装与升级</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>误装了不带 <code>@openai/</code> 的 codex 包</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>npm 上可能存在名字相近的包,新手容易把包名打短。</dd>
+            <dt>怎么处理</dt>
+            <dd>卸载错误包,再安装 <code>@openai/codex</code>。以后复制教程里的完整命令,不要手打包名。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/02-setup.html#pitfalls">第 02 章 · 常见踩坑</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary><code>npm install</code> 报 EACCES 权限错误</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>全局 npm 安装目录没有写入权限。</dd>
+            <dt>怎么处理</dt>
+            <dd>不要急着乱加 <code>sudo</code>。先让 Codex 根据你的系统检查 npm 全局路径,必要时换成用户级 npm 目录,或使用官方推荐的 Node 版本管理方式。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/02-setup.html#pitfalls">第 02 章 · 常见踩坑</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>安装卡住几分钟没动</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>网络慢、npm registry 连接不稳定,或终端正在下载大包。</dd>
+            <dt>怎么处理</dt>
+            <dd>先等一会儿。如果 10 分钟完全没输出,按 <kbd>Ctrl</kbd>+<kbd>C</kbd> 中断,重新运行。反复失败时再检查网络和 npm 源。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/02-setup.html#pitfalls">第 02 章 · 常见踩坑</a></dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <h2 id="auth">登录与网络类</h2>
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary><code>codex login</code> 时浏览器没自动弹出</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>默认浏览器拦截、远程终端没有浏览器、系统没把链接打开。</dd>
+            <dt>怎么处理</dt>
+            <dd>看终端里有没有登录链接,手动复制到浏览器。远程机器可以用 <code>codex login --device-auth</code> 走设备码登录。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../appendix/c-cli-cheatsheet.html#install">附录 C · 登录命令</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>登录失败,提示账号或权限不满足</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>账号没有对应 Codex 权限、组织策略限制、登录到了错误账号。</dd>
+            <dt>怎么处理</dt>
+            <dd>先确认你登录的是要使用 Codex 的那个 ChatGPT/OpenAI 账号。再退出 <code>codex logout</code> 后重新登录。企业或团队账号要确认管理员是否开放了 Codex。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/02-setup.html#pitfalls">第 02 章 · 登录问题</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>Codex 提示 network error</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>本机网络、代理、公司防火墙、区域网络限制,或沙盒默认不允许命令联网。</dd>
+            <dt>怎么处理</dt>
+            <dd>先确认浏览器能打开相关服务。再分清是“Codex 自己连不上”还是“Codex 跑的命令不能联网”。后者通常和沙盒网络权限有关,不要直接开最大权限,先让 Codex 解释需要访问哪个域名。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/03-codex-basics.html#approval">第 03 章 · 审批与沙盒</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>第一次启动很慢</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>首次登录、模型列表、配置读取、项目扫描都可能花时间。</dd>
+            <dt>怎么处理</dt>
+            <dd>第一次先耐心等。长期每次都慢,再跑 <code>codex doctor</code> 看诊断报告,或换一个更小的项目目录启动。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../appendix/c-cli-cheatsheet.html#install">附录 C · codex doctor</a></dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <h2 id="usage">使用与协作类</h2>
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary>Codex 一次改了太多文件</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>你的提示词目标太大,没有限制范围,也没有要求先计划。</dd>
+            <dt>怎么处理</dt>
+            <dd>马上说:“请停止扩展,用三句话总结刚才改了哪些文件。接下来只保留最必要改动。”以后大任务先用“请先给计划,我确认后再改”。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/04-prompting.html">第 04 章 · 口语化编程内功</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>页面打开是一片白</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>JavaScript 报错、资源路径错、HTML 标签没闭合,或你打开方式不对。</dd>
+            <dt>怎么处理</dt>
+            <dd>打开浏览器控制台看红色报错,复制给 Codex。提示词写:“我期待看到页面,实际是一片白,控制台报错是 [...],请先定位再修。”</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/07-debugging.html#describe-not-guess">第 07 章 · 先描述现象</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>样式没生效,刷新还是旧的</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>浏览器缓存、改错文件、CSS 路径不对,或本地服务器还指向旧目录。</dd>
+            <dt>怎么处理</dt>
+            <dd>先强制刷新。再让 Codex 检查 HTML 里引用的 CSS 路径和实际文件路径是否一致。确认本地服务器启动目录就是项目根目录。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/05-build-skeleton.html#pitfalls">第 05 章 · 常见踩坑</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>Codex 一直反问细节,不动手</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>任务边界太模糊,它不知道应该保守还是发挥。</dd>
+            <dt>怎么处理</dt>
+            <dd>给它一个默认判断权:“你可以做合理假设,先做最小版本,不确定处用 TODO 标注,完成后告诉我假设了什么。”</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/04-prompting.html#recognize-questions">第 04 章 · 识别反问</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>本地预览服务器启动了,但浏览器访问不到</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>端口写错、服务器已退出、另一个程序占用端口,或你访问了 <code>localhost</code> 以外的地址。</dd>
+            <dt>怎么处理</dt>
+            <dd>看终端输出的端口号,通常访问 <code>http://localhost:8000</code> 或 <code>http://127.0.0.1:8000</code>。如果端口占用,换一个端口再启动。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/05-build-skeleton.html#pitfalls">第 05 章 · 本地预览</a></dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <h2 id="deploy">部署类</h2>
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary>GitHub Desktop 看不到我的仓库</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>项目文件夹还不是 Git 仓库,或你打开的是上一级/下一级目录。</dd>
+            <dt>怎么处理</dt>
+            <dd>确认项目根目录里有 <code>.git</code>。没有的话用 GitHub Desktop 的 Add Existing Repository 或 Create Repository 流程。目录选错就重新添加正确项目根目录。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/08-deploy.html#pitfalls">第 08 章 · 部署踩坑</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>Publish 报错 remote already exists</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>这个本地仓库已经连过一个 GitHub 远程地址。</dd>
+            <dt>怎么处理</dt>
+            <dd>先别乱删。让 Codex 跑只读检查:当前 remote 指向哪里、GitHub 上仓库是否存在、你想保留哪个。确认后再改 remote。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/08-deploy.html#pitfalls">第 08 章 · GitHub 问题</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>Vercel Import 时看不到仓库</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>GitHub 授权没给 Vercel、仓库是私有且未授权、账号登错。</dd>
+            <dt>怎么处理</dt>
+            <dd>检查 Vercel 连接的 GitHub 账号,重新授权目标仓库。团队仓库还要确认你有权限。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/08-deploy.html#pitfalls">第 08 章 · Vercel Import</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>Vercel 部署完是 404</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>入口文件不在 Vercel 认为的根目录,或项目实际需要构建但配置为空。</dd>
+            <dt>怎么处理</dt>
+            <dd>纯静态站确认根目录有 <code>index.html</code>。如果项目在子目录,Import 时要设置 Root Directory。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/08-deploy.html#pitfalls">第 08 章 · 404</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>Vercel 部署失败 Build error</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>构建命令不对、依赖没装、项目类型识别错、代码本身报错。</dd>
+            <dt>怎么处理</dt>
+            <dd>复制 Vercel 的红色错误日志给 Codex,让它先总结“失败在哪一步”。纯 HTML 项目通常不需要 Build Command。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/08-deploy.html#pitfalls">第 08 章 · Build error</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>Push 之后 Vercel 没自动重新部署</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>Push 到了错误分支、Vercel 没连这个仓库、GitHub webhook 没触发。</dd>
+            <dt>怎么处理</dt>
+            <dd>确认 GitHub 上能看到最新 commit。再去 Vercel 项目 Deployments 看有没有新记录。没有就检查 Production Branch 和 Git 连接。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/08-deploy.html#pitfalls">第 08 章 · 自动部署</a></dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <h2 id="domain">域名与 DNS 类</h2>
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary>填完 DNS 后访问 Bad Gateway</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>DNS 已经指到了平台,但平台项目还没正确绑定域名,或代理/缓存还没更新。</dd>
+            <dt>怎么处理</dt>
+            <dd>先在 Vercel 域名设置里看状态。不要反复乱改 DNS。记录你改动的时间,等一段时间再查。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/09-domain.html#pitfalls">第 09 章 · DNS 踩坑</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>Vercel 一直 Pending,不变 Valid</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>DNS 记录填错、记录冲突、DNS 传播还没完成。</dd>
+            <dt>怎么处理</dt>
+            <dd>逐条核对 Vercel 要求的 A/CNAME 记录。删除冲突的旧记录。刚改完 DNS 等待 10 分钟到数小时很正常。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/09-domain.html#pitfalls">第 09 章 · Pending</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary><code>www</code> 能打开,裸域打不开</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd><code>www.example.com</code> 和 <code>example.com</code> 是两个不同主机名,需要分别配置。</dd>
+            <dt>怎么处理</dt>
+            <dd>在 Vercel 同时添加裸域和 www 域名。DNS 里按平台要求分别配置 A 记录和 CNAME。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/09-domain.html#pitfalls">第 09 章 · www 与裸域</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>HTTPS 一直没启用</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>域名验证还没完成,证书还在签发,或 DNS 没正确指向平台。</dd>
+            <dt>怎么处理</dt>
+            <dd>先确认域名状态是 Valid。再等待证书签发。不要为了“立刻好”来回切换 DNS,那只会让等待重新开始。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/09-domain.html#pitfalls">第 09 章 · HTTPS</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>手滑买到了不适合自己的域名后缀</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>没注意后缀差异,或只看价格没看使用限制。</dd>
+            <dt>怎么处理</dt>
+            <dd>先确认是否能退款。正式项目优先选常见后缀,比如 <code>.com</code>、<code>.io</code>、<code>.app</code> 等。面向中国大陆服务时再单独考虑合规和备案。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/09-domain.html#pitfalls">第 09 章 · 买域名</a></dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <h2 id="codex-behavior">Codex 协作类</h2>
+    <div class="pitfall-group">
+      <details class="pitfall">
+        <summary>Codex 看起来在绕圈子</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>它已经尝试多轮但没有新信息,还在重复猜测。</dd>
+            <dt>怎么处理</dt>
+            <dd>打断它,让它列“已尝试方法 / 失败原因 / 缺少信息 / 下一步最小实验”。必要时开启新会话,把当前状态摘要贴进去。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/07-debugging.html#loop">第 07 章 · 打破绕圈</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>它说修好了,但我不知道怎么验证</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>你没有在任务里要求“完成后告诉我怎么验收”。</dd>
+            <dt>怎么处理</dt>
+            <dd>补一句:“请给我一份验收清单,包括浏览器里点哪里、终端跑什么命令、看到什么算成功。”</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../appendix/a-prompt-library.html#m6">附录 A · 解释自己刚做了什么</a></dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall">
+        <summary>越改越乱,想回到之前</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>没有及时 commit,或连续让 Codex 改了太多轮。</dd>
+            <dt>怎么处理</dt>
+            <dd>先别继续改。让 Codex 查看 Git diff,总结当前改动。如果有 commit,用 Git 回退;没有 commit,让它按 diff 逐块撤回。</dd>
+            <dt>相关章节</dt>
+            <dd><a href="../chapters/07-debugging.html#rollback">第 07 章 · Git 回退</a></dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>排错时最有用的一句话</strong>
+        “请先不要继续修改,把现象、最可能原因、你已经尝试过的操作、下一步最小验证列成表。”它能把慌乱变成清单。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./c-cli-cheatsheet.html">
+        <div class="chapter-nav__dir">上一篇</div>
+        <div class="chapter-nav__title">← 附录 C · 命令速查表</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="../index.html">
+        <div class="chapter-nav__dir">回到</div>
+        <div class="chapter-nav__title">教程首页 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本页目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

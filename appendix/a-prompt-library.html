@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>附录 A · 口语化提示词模板库 · Codex 口语化编程教程</title>
+<meta name="description" content="10 条可直接复制的口语化提示词模板,覆盖描述需求、改 bug、改设计、Git 提交等高频场景。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="附录 A · 口语化提示词模板库" data-chapter="appendix-a">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">附录 A</span>
+    <h1>口语化提示词模板库</h1>
+    <p class="chapter-lede">
+      把这一页收藏起来。下面每一条都是从真实使用中沉淀出来、可以直接复制的"说给 Codex 听"的话。每条都带<strong>使用场景</strong>和<strong>为什么这么写</strong>。中括号 <code>[...]</code> 里的内容是你要替换成自己情况的"槽位"。
+    </p>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">怎么用这些模板</div>
+        <div class="callout__body">
+          <p>不要死板地照搬。每条模板的<strong>结构</strong>(角色 / 目标 / 限制 / 收尾)比字面更重要。挑你当下场景最接近的那条,把中括号里的内容换成你自己的,然后按自己的语气调整一下,直接复制到 Codex 里。</p>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="m1">模板 1 · 描述需求(角色 / 目标 / 限制三句法)</h2>
+    <p><strong>什么时候用</strong>:每个项目的开端。这是你跟 Codex 的"第一句话"。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我是 [你的身份,比如:一个独立咖啡店主],想做一个 [项目类型,比如:让客人扫码点单的网页]。
+
+它需要做到:
+1. [核心功能 1]
+2. [核心功能 2]
+3. [核心功能 3]
+
+限制:[只用一个 HTML 文件 / 不接后端 / 手机优先 / 用 XX 风格]。
+
+请先做一个最简单的版本给我看,我们再迭代。</div>
+      <div class="prompt-card__note">角色(我是谁)让 Codex 知道为谁服务;目标(三件事)给它边界;限制(技术或视觉约束)防止它做大;最后一句"先做最简单的版本"防止它一次给你一坨。</div>
+    </div>
+
+    <h2 id="m2">模板 2 · 让它先做计划,再动手</h2>
+    <p><strong>什么时候用</strong>:任务听起来涉及改多个文件,你想先看它怎么打算的。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">关于 [任务描述],请先不要写代码,先给我一份计划:你打算改哪几个文件、每个文件改什么、可能会有什么风险。我看完同意了再开始。</div>
+      <div class="prompt-card__note">这种"先计划再执行"的工作流能避免 Codex 一时冲动改一堆东西。看到计划你可以删、加、改,再让它动手。</div>
+    </div>
+
+    <h2 id="m3">模板 3 · 改 bug(描述现象,不要猜原因)</h2>
+    <p><strong>什么时候用</strong>:页面不对劲,但你不知道为什么。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我遇到一个问题。
+
+我做了:[你刚才做的操作,比如:点了"立即下载"按钮]
+我期待看到:[你预期的结果,比如:弹出二维码]
+实际看到:[实际发生的事,比如:整个页面变白,什么都没了]
+浏览器控制台的报错(如果有):[把红色文字粘贴在这里]
+
+请先帮我定位问题,再说怎么修。</div>
+      <div class="prompt-card__note">"做了 / 期待 / 实际 / 报错"是修 bug 的标准四件套。零基础读者最大的错误是"我猜是 XX 出了问题"——猜的方向 9 成是错的,反而误导 Codex。直接描述现象。</div>
+    </div>
+
+    <h2 id="m4">模板 4 · 改设计(对比描述法)</h2>
+    <p><strong>什么时候用</strong>:你看着不顺眼,但说不出哪里不对。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">现在 [某个区块,比如:首屏] 的视觉感觉像 [一个不太理想的参照,比如:90 年代企业宣传册],但我希望它像 [理想参照,比如:Stripe 官网首屏:大字、留白多、配色克制]。
+
+请你对比这两种感觉的差距,提出 3-5 个具体的调整建议,然后逐个改过来。</div>
+      <div class="prompt-card__note">"对比描述法"绕开了你需要懂设计术语的问题。Codex 知道 Stripe 长什么样,也知道 90 年代企业册长什么样,它能自己分析差距。</div>
+    </div>
+
+    <h2 id="m5">模板 5 · 撤回上一步</h2>
+    <p><strong>什么时候用</strong>:Codex 刚改完,你不喜欢,想回到改之前的状态。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">刚才那次改动我不喜欢,请帮我撤回到改动之前的状态。如果已经提交了 git,就用 git revert / checkout;如果还没提交,就把文件改回去。
+
+撤回完告诉我现在是哪个版本。</div>
+      <div class="prompt-card__note">用"撤回"这个口语词,Codex 自己会判断该用 git 还是直接改文件。最后那句"告诉我现在是哪个版本"帮你确认状态。</div>
+    </div>
+
+    <h2 id="m6">模板 6 · 让它解释自己刚做了什么</h2>
+    <p><strong>什么时候用</strong>:Codex 改了一堆东西你没全看明白,想让它复述一下要点。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">用三句话总结一下你刚才的改动:你改了哪些文件,核心改动是什么,我下次要怎么验证它生效。不要贴代码,用人话讲。</div>
+      <div class="prompt-card__note">"三句话""不要贴代码""用人话"这三个限制能逼 Codex 浓缩,不然它会给你一篇说明文。这种总结对你建立项目认知非常有帮助。</div>
+    </div>
+
+    <h2 id="m7">模板 7 · 让它给你三个选项</h2>
+    <p><strong>什么时候用</strong>:你不知道下一步该做什么,或者拿不准应该选哪种实现方式。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">基于现在的状态,我想 [你的目标,比如:加一个反馈表单],你有什么方案?
+
+请给我三个选项,每个写清:做法是什么、需要多少工作量、有什么权衡。我选完之后我们再开始。</div>
+      <div class="prompt-card__note">"三个选项""权衡"这两个词让 Codex 帮你扩展可能性,而不是给你一个它觉得最对的答案。零基础读者最缺的是"我不知道还可以怎么选"——这条模板能补上。</div>
+    </div>
+
+    <h2 id="m8">模板 8 · 移动端适配一句话</h2>
+    <p><strong>什么时候用</strong>:页面在电脑上好看,在手机上不行。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请让这个页面在手机上也好看:多列网格应该堆叠成单列,字号略小,内边距收紧,导航如果太挤变成汉堡菜单。改完之后请告诉我大致改了哪些 CSS 规则,简短列一下。</div>
+      <div class="prompt-card__note">这条特意把"堆叠""字号""内边距""汉堡菜单"这些维度都点到——比单说"请适配手机"效果好很多。最后那句"告诉我改了什么"让你慢慢长出 CSS 直觉。</div>
+    </div>
+
+    <h2 id="m9">模板 9 · Git 提交 + Push 一气呵成</h2>
+    <p><strong>什么时候用</strong>:做完一个小阶段,想保存进度并推到 GitHub。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请帮我:
+1. 把当前所有改动加到 git
+2. 提交一次,信息写"[一句话总结这次改了什么]"
+3. 提交完告诉我可以去 GitHub Desktop 点 Push 了
+
+不要自己执行 push,这一步我手动来。</div>
+      <div class="prompt-card__note">明确"不要自己 push"是为了让你保留"最后确认"的机会——Codex 可以帮你做 99%,最后那 1% 是你的安全门。</div>
+    </div>
+
+    <h2 id="m10">模板 10 · 集成一个第三方服务(以表单后端为例)</h2>
+    <p><strong>什么时候用</strong>:你听说有个工具能解决问题,但不知道怎么把它接到你的项目里。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">说给 Codex 听</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我想把 [服务名,比如:Formspree] 接到我的项目里,目标是 [你想做什么,比如:让现有的邮箱订阅表单提交后真的能收到邮件]。
+
+请先告诉我:
+1. 在 [服务名] 官网我需要做什么准备(注册、建表单、拿什么 key)
+2. 我把准备好的东西告诉你之后,你帮我改我的 index.html 哪里
+
+请等我做完第 1 步再开始第 2 步。</div>
+      <div class="prompt-card__note">"等我做完第 1 步再开始"非常关键——很多服务集成需要你先去网站做些操作(注册、拿密钥),Codex 不会替你做这些。明确分两步走,避免它瞎猜你的密钥值。</div>
+    </div>
+
+    <hr/>
+
+    <h2 id="meta">使用这些模板的元规则</h2>
+    <ol>
+      <li><strong>不要堆模板。</strong>一次对话用一个模板,把当前问题解决,再用下一个。</li>
+      <li><strong>每次都把"完成后用三句话总结你做了什么"加在结尾。</strong>这能持续帮你建立对项目的掌控感。</li>
+      <li><strong>第一次用某个模板时,把它复制到下方一个 Notes 应用里,贴上你当时用的情境和效果。</strong>三个月后你会发现自己的模板库越来越个性化。</li>
+    </ol>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>这一页的本质</strong>
+        是把"跟 AI 协作"这件事的隐性知识做了显性化。十条模板的背后是十种心智模型:开端、规划、修 bug、改设计、撤回、解释、决策、移动、保存、集成。掌握心智模型,模板本身就可以丢掉。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="../chapters/11-next-steps.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 进阶方向</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./b-glossary.html">
+        <div class="chapter-nav__dir">下一篇</div>
+        <div class="chapter-nav__title">附录 B · 术语小词典 →</div>
+      </a>
+    </nav>
+
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本页目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 01 章 · 心态准备 · Codex 口语化编程教程</title>
+<meta name="description" content="在安装工具之前,先理解 Codex 协作心态:零基础如何和 AI 写代码、常见误区、安全感来源和工具选择。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 01 章 · 心态准备" data-chapter="01-mindset">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 01 章 · 入门起步</span>
+    <h1>心态准备</h1>
+    <p class="chapter-lede">在动手装工具之前,先把三件事在脑子里捋清楚:Codex 跟其他 AI 工具的不同,你和它的协作边界,以及零基础读者最容易栽进去的三个误区。这一章不让你做任何事——只让你心里有数。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M2 12h20"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章学完后你会拥有</strong>
+        一个更稳的协作心态:你不需要先变成程序员,也不能把 Codex 当魔法。你要做的是明确目标、看住边界、用小步快跑换确定性。
+      </div>
+    </div>
+
+    <h2 id="why-now">1.1 为什么是 2026 年才能这样做</h2>
+    <p>以前你对 AI 说“帮我做一个落地页”,它可能会给你一大段代码。看起来很厉害,但你不知道把代码放哪、怎么打开、哪里错了、怎么上线。结果就是:代码有了,产品没有。</p>
+    <p>现在的变化在于,Codex 不只是“回答代码”。它可以在你的项目文件夹里读文件、改文件、运行命令、看错误、再修一轮。它更像一个能动手的助手。</p>
+    <p>这就是为什么零基础读者现在可以先做出东西。你不需要一开始懂所有技术细节,但你需要学会把任务说清楚,并用工具提供的安全边界一点点推进。</p>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">关键变化不是“AI 更会聊天”</div>
+        <div class="callout__body">关键变化是它能进入真实项目流程:读上下文、改文件、执行命令、解释 diff、接受反馈。教程后面所有章节都建立在这个能力上。</div>
+      </div>
+    </div>
+
+    <h2 id="three-myths">1.2 三个根本性误解</h2>
+    <p>开始前,先把三个常见误解拆掉。</p>
+
+    <h3 id="myth-code-first">误解一:我得先学会 HTML/CSS/JS</h3>
+    <p>不用。至少在这本教程里不用。</p>
+    <p>你现在要做的不是参加程序员面试,而是做出一个可用页面。你只需要能看懂大概结构:哪块是标题、哪块是按钮、哪块是价格、哪块是表单。细节交给 Codex 写,你负责判断效果是不是你要的。</p>
+
+    <h3 id="myth-ai-perfect">误解二:AI 会出错,所以不能用</h3>
+    <p>AI 确实会出错。问题不是“它会不会出错”,而是“出错后能不能发现、能不能回退、能不能修”。</p>
+    <p>这本教程会反复教你三件事:让 Codex 每次只改一小块,改完看 diff,满意后提交保存点。这样即使它改坏了,也只是小范围问题,不是灾难。</p>
+
+    <h3 id="myth-mac-only">误解三:我必须有 Mac</h3>
+    <p>不用。Mac 和 Windows 都可以。Mac 在很多教程里出现更多,只是因为开发者常用,不是因为 Windows 做不了。</p>
+    <p>如果你是 Windows 用户,前面新加的 App 教程更适合作为入口。桌面端 App 可以减少你直接面对命令行的压力。后面 CLI 章节也会尽量给出 Windows 路径。</p>
+
+    <h2 id="why-codex-cli">1.3 工具选择:为什么是 Codex CLI 而不是 Cursor / Copilot</h2>
+    <p>你可能听过 Cursor、GitHub Copilot、ChatGPT、Claude Code。它们都能帮你写代码,但体验不一样。</p>
+    <table>
+      <thead><tr><th>工具</th><th>更像什么</th><th>适合谁</th></tr></thead>
+      <tbody>
+        <tr><td>Codex App</td><td>带界面的项目工作台</td><td>完全零基础,想先看得见改动的人。</td></tr>
+        <tr><td>Codex CLI</td><td>终端里的动手助手</td><td>愿意学一点终端,想跑完整开发流程的人。</td></tr>
+        <tr><td>Cursor / Copilot</td><td>编辑器里的智能副驾驶</td><td>已经在写代码,需要边写边补全的人。</td></tr>
+        <tr><td>普通聊天 AI</td><td>坐在旁边解释的人</td><td>问概念、写文案、想方案很适合,但不直接操作项目。</td></tr>
+      </tbody>
+    </table>
+    <p>这本 CLI 教程选择 Codex CLI,是因为它能把“说话”和“真实项目操作”连起来。你在当前目录启动它,它就知道自己应该围绕这个项目工作。</p>
+    <p>但这不代表 App 不重要。恰好相反:零基础读者可以先读 App 教程,等知道项目、线程、diff、权限这些概念后,再来学 CLI 会舒服很多。</p>
+
+    <h2 id="director-crew">1.4 你是导演,Codex 是剧组</h2>
+    <p>这是整本教程最重要的心智模型。</p>
+    <p>你不是“向 AI 求作业答案的人”。你是导演。Codex 是剧组。剧组会摄影、灯光、剪辑,但它不知道你想拍喜剧还是纪录片,不知道你喜欢克制还是热闹,也不知道哪些东西对你不能动。</p>
+    <p>所以你给 Codex 的话,最好包含三类信息:</p>
+    <ul>
+      <li><strong>我要什么</strong>:做一个什么页面、解决什么问题。</li>
+      <li><strong>我不要什么</strong>:不要复杂后端、不要花哨动画、不要改其他文件。</li>
+      <li><strong>怎么验收</strong>:手机能看、按钮能点、链接能打开、文案更口语。</li>
+    </ul>
+    <p>当 Codex 问你问题时,不要慌。很多时候它不是不懂,而是在提醒你:这里需要你这个导演做决策。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">导演式开场</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我想先做一个最小可用版本,不要一次做复杂。请你先读当前项目,然后给我一个三步计划:第一步做什么、第二步做什么、第三步怎么检查。等我确认后再开始改文件。</div>
+      <div class="prompt-card__note">这句话会让 Codex 先进入“听导演讲戏”的状态,而不是立刻冲出去改一堆文件。</div>
+    </div>
+
+    <h2 id="safety">1.5 安全感来自哪里</h2>
+    <p>新手最怕的是“我让它一改,电脑会不会坏了”。安全感来自三道防线。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step__title">第一道:沙盒</div>
+        <p class="step__body">沙盒会限制 Codex 能碰哪里。默认情况下,它主要在当前项目范围里工作,不是随便翻你整台电脑。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">第二道:审批</div>
+        <p class="step__body">当 Codex 要做更敏感的事,比如联网、安装、访问项目外目录,它应该停下来问你。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">第三道:Git 保存点</div>
+        <p class="step__body">Git 像游戏存档。改坏了可以回到上一个保存点,所以你不必把每次修改都看成生死决定。</p>
+      </div>
+    </div>
+    <p>当然,防线不是让你闭眼乱批。看到权限提示时,先问自己:这件事和当前任务有没有关系?如果没有,就拒绝或让 Codex 解释。</p>
+
+    <h2 id="working-rhythm">1.6 最稳的协作节奏</h2>
+    <p>零基础读者最适合用“四拍节奏”:</p>
+    <ol>
+      <li><strong>先说目标</strong>:我要做什么,给谁用。</li>
+      <li><strong>先要计划</strong>:让 Codex 列三步,你确认。</li>
+      <li><strong>小步执行</strong>:一次只改一个区域或一个问题。</li>
+      <li><strong>看完保存</strong>:浏览器看效果,Review 看改动,满意就提交。</li>
+    </ol>
+    <p>不要一上来让 Codex “帮我做完整官网、顺便部署、顺便买域名、顺便写 SEO”。这不是效率高,这是把所有风险打包成一个盲盒。</p>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">把一个大愿望拆成三步</div>
+      <div class="exercise__body">
+        <p>拿你第 00 章写下的小项目,把它拆成三步。比如“做一个课程报名页”可以拆成:写出页面结构、填入课程文案、加报名按钮。</p>
+        <div class="exercise__done"><strong>完成标志:</strong>你能说出第一步要做什么,并且这一步在 30 分钟内能检查结果。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        用导演心态和 Codex 协作,理解它会犯错但流程可控,并知道接下来要用“小目标、先计划、小步改、及时保存”的节奏推进。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./00-intro.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 写在前面</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./02-setup.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">把工具装到电脑里 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

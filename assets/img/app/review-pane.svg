@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Review 面板示意图</title>
+  <desc id="desc">展示 Codex App 的 Review 面板如何查看文件、行级改动、评论、暂存和撤回。</desc>
+  <rect width="960" height="540" rx="28" fill="#faf8f4"/>
+  <rect x="70" y="58" width="820" height="424" rx="20" fill="#fff" stroke="#e8e4dc"/>
+  <rect x="70" y="58" width="230" height="424" rx="20" fill="#f4f1ea"/>
+  <text x="104" y="104" font-family="PingFang SC, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2230">改动文件</text>
+  <rect x="104" y="138" width="158" height="34" rx="10" fill="#eceefb"/>
+  <text x="120" y="161" font-family="PingFang SC, Arial, sans-serif" font-size="14" fill="#2a37a0">index.html</text>
+  <rect x="104" y="188" width="132" height="12" rx="6" fill="#d9d5cd"/>
+  <rect x="104" y="220" width="150" height="12" rx="6" fill="#d9d5cd"/>
+  <rect x="332" y="90" width="500" height="48" rx="12" fill="#1c1f2b"/>
+  <text x="356" y="121" font-family="PingFang SC, Arial, sans-serif" font-size="18" font-weight="700" fill="#e7e9f1">Diff: 看懂 Codex 改了什么</text>
+  <rect x="332" y="164" width="500" height="218" rx="14" fill="#1c1f2b"/>
+  <text x="362" y="204" font-family="SF Mono, Consolas, monospace" font-size="15" fill="#9bd68f">+ 新增这一行</text>
+  <text x="362" y="242" font-family="SF Mono, Consolas, monospace" font-size="15" fill="#e8704a">- 删除这一行</text>
+  <text x="362" y="280" font-family="SF Mono, Consolas, monospace" font-size="15" fill="#8fb6ff">  保留这一行</text>
+  <rect x="610" y="236" width="178" height="76" rx="12" fill="#fff"/>
+  <text x="628" y="264" font-family="PingFang SC, Arial, sans-serif" font-size="14" font-weight="700" fill="#1f2230">行内评论</text>
+  <text x="628" y="292" font-family="PingFang SC, Arial, sans-serif" font-size="13" fill="#4a4e5c">点 + 留一句反馈</text>
+  <rect x="332" y="410" width="116" height="38" rx="10" fill="#3e4ecc"/>
+  <text x="362" y="434" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#fff">暂存</text>
+  <rect x="466" y="410" width="116" height="38" rx="10" fill="#f4f1ea" stroke="#e8e4dc"/>
+  <text x="496" y="434" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#4a4e5c">撤回</text>
+  <rect x="600" y="410" width="116" height="38" rx="10" fill="#e6f4ed"/>
+  <text x="630" y="434" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f6f4d">提交</text>
+</svg>

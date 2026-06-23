@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>第 00 章 · 写在前面 · Codex 口语化编程教程</title>
+<meta name="description" content="Codex CLI 口语化编程教程开篇:说明教程适合谁、7 天后会拥有什么、口语化编程是什么,以及网络环境和学习节奏提醒。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="第 00 章 · 写在前面" data-chapter="00-intro">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">第 00 章 · 入门起步</span>
+    <h1>写在前面</h1>
+    <p class="chapter-lede">这是一份非传统意义上的"编程教程"——你不会被要求记住语法、变量、循环。你会被要求把脑中的想法说清楚,然后交给一个名叫 Codex 的助手去把它变成可用的代码。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>本章学完后你会知道</strong>
+        这本教程适合谁、不适合谁,跟完之后你会拥有哪几样真实成果,以及遇到代码、终端、报错时应该用什么心态继续往下走。
+      </div>
+    </div>
+
+    <h2 id="for-whom">0.1 这本教程是给谁看的</h2>
+    <p>这本教程是写给“我有想法,但我不会写代码”的人看的。</p>
+    <p>你可能是独立创作者、小店老板、自由职业者、运营、设计师、产品经理,或者只是心里有一个小项目一直没做出来。你不想先学半年编程,你想先看到一个能打开、能分享、能慢慢改的东西。</p>
+    <p>这本教程默认你会做几件普通电脑操作:下载安装软件、打开网页、复制粘贴、按步骤读完一节。除此之外,不要求你会 HTML、CSS、JavaScript,也不要求你知道 Git、DNS、Vercel 是什么。</p>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">适合你,如果你想先做出一个小成果</div>
+        <div class="callout__body">比如一个产品官网、活动页、作品集、课程介绍页、个人服务页。先让它上线,再慢慢变好。</div>
+      </div>
+    </div>
+
+    <p>它不太适合三类需求:第一,你想立刻做复杂 SaaS,有用户登录、支付、数据库、权限后台;第二,你完全不想动手,只想看概念;第三,你想系统学习传统编程语法。这些都可以以后做,但不是这本教程的第一目标。</p>
+
+    <h2 id="outcome">0.2 你 7 天后会拥有什么</h2>
+    <p>如果你按顺序走完核心章节,你会拥有四样东西:</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card__num">1</div>
+        <h3 class="card__title">一个可访问的产品官网</h3>
+        <p class="card__body">不是脑图,不是想法,而是浏览器里真的能打开的一页网站。</p>
+      </div>
+      <div class="card">
+        <div class="card__num">2</div>
+        <h3 class="card__title">一个自己的域名</h3>
+        <p class="card__body">类似 <code>yourname.com</code> 的地址,可以发给朋友、客户或第一批用户。</p>
+      </div>
+      <div class="card">
+        <div class="card__num">3</div>
+        <h3 class="card__title">一套修改流程</h3>
+        <p class="card__body">你知道怎么让 Codex 改文案、改样式、修问题、重新部署。</p>
+      </div>
+      <div class="card">
+        <div class="card__num">4</div>
+        <h3 class="card__title">一套提需求的语言</h3>
+        <p class="card__body">你会把“我想要那个感觉”翻译成 Codex 能执行的任务。</p>
+      </div>
+    </div>
+    <p>这四样东西比“学会一点代码知识”更重要。知识会忘,但一旦你跑通过一次从想法到上线的闭环,你以后就知道路在哪里。</p>
+
+    <h2 id="what-is-vibe">0.3 "口语化编程"到底是什么</h2>
+    <p>口语化编程不是“随便说一句,AI 就完美实现”。更准确地说,它是把你的意图用自然语言讲清楚,让 Codex 去读文件、写代码、跑命令、检查结果。</p>
+    <p>你可以把自己想成导演,Codex 像剧组。导演不一定会架灯、调焦、剪片,但导演必须知道这场戏要什么感觉,不能什么都交给剧组猜。</p>
+    <p>在这套工作方式里,你的职责有三件:</p>
+    <ul>
+      <li><strong>说清目标</strong>:我要做什么,给谁用,解决什么问题。</li>
+      <li><strong>做选择</strong>:两个方案里选一个,看到效果后说喜欢哪里、不喜欢哪里。</li>
+      <li><strong>守边界</strong>:不让 Codex 一次改太多,不让它碰不该碰的文件或权限。</li>
+    </ul>
+    <p>Codex 的职责也有三件:理解项目、执行修改、解释结果。你不用假装自己是程序员,但你要始终记得:你是甲方,它是执行者。</p>
+
+    <h2 id="network">0.4 关于网络环境的现实提醒</h2>
+    <p>这本教程会用到 OpenAI、GitHub、Vercel、Cloudflare 等服务。它们的访问情况会因地区、网络、账号和时间变化而变化。</p>
+    <p>我不会在教程里教你绕过网络限制,也不会假装问题不存在。你需要自行确保能正常访问你要使用的服务。一个简单判断是:如果你的浏览器能稳定打开 ChatGPT、GitHub 和 Vercel,那你大概率可以顺利走完整套流程。</p>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">账号和付款也要提前想一下</div>
+        <div class="callout__body">Codex、域名购买、部署平台可能涉及登录、订阅或银行卡。不要等做到一半才发现账号没准备好。</div>
+      </div>
+    </div>
+
+    <h2 id="path">0.5 三种学习节奏建议</h2>
+    <p>你可以按自己的时间选一种节奏。</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step__title">周末冲刺</div>
+        <p class="step__body">周六读 00-05,做出网站骨架;周日读 08-09,部署并绑定域名。适合你已经有明确项目想法。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">工作日晚上</div>
+        <p class="step__body">每天 45-90 分钟,一晚一章。节奏更稳,适合边读边消化。</p>
+      </div>
+      <div class="step">
+        <div class="step__title">边做边查</div>
+        <p class="step__body">如果你已经打开了 Codex App,可以先看 App 教程 A0-A3,再回来走 CLI 的 02、05、08、09 四章。</p>
+      </div>
+    </div>
+    <p>无论哪种节奏,核心闭环都一样:装好工具,学会说需求,做出页面,部署上线,绑定域名。</p>
+
+    <h2 id="how-to-read">0.6 怎么使用这本教程</h2>
+    <p>这本教程里有几种固定组件,你先认识一下:</p>
+    <ul>
+      <li><strong>代码块</strong>:给终端或文件里的内容。看到“复制”按钮时,可以直接复制。</li>
+      <li><strong>提示词卡片</strong>:给 Codex 说的话。你可以照抄,也可以按自己的项目改。</li>
+      <li><strong>动手试试</strong>:这一节真的要做,不要只读。它是把知识变成肌肉记忆的地方。</li>
+      <li><strong>常见踩坑</strong>:卡住时先看这里,很多问题不用重新问一遍。</li>
+      <li><strong>附录</strong>:像工具箱,忘了命令、术语或模板时再翻。</li>
+    </ul>
+    <p>最重要的一条:不要因为看不懂代码就停下。你现在要学的是“如何和 Codex 协作把东西做出来”,不是马上成为软件工程师。</p>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">写下你想做的那个小项目</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>用一句话写出你想做什么。</li>
+          <li>写出它给谁用。</li>
+          <li>写出你希望 7 天后能发给别人的链接长什么样。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你有了一段 50-100 字的项目描述。后面第 04 章会把它升级成正式提示词。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>你已经会了</strong>
+        判断自己是否适合这本教程,理解口语化编程的基本分工,并知道接下来要按“做出闭环”而不是“背知识点”的方式学习。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev chapter-nav__link--disabled">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 这是第一章了</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./01-mindset.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">心态准备 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

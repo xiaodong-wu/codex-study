@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 03 章 · 看改动、跑命令和保存 · Codex 口语化教程</title>
+<meta name="description" content="Codex 桌面端 App 的 Review 面板、Diff、行内评论、暂存、撤回、提交、内置终端和本地环境动作的口语化说明。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 03 章 · 看改动、跑命令和保存" data-chapter="app-03-review">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 03 章 · 审查和保存</span>
+    <h1>看改动、跑命令和保存</h1>
+    <p class="chapter-lede">Codex 改完文件后,你最重要的工作不是“相信它”,而是“看懂大方向”。Review 面板、内置终端和 Git 按钮,就是帮你把这件事做得不吓人。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/review-pane.svg" alt="Codex App Review 面板示意图:文件列表、Diff、行内评论、暂存、撤回和提交按钮" loading="lazy" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>示意图:</b>Review 面板不是给程序员专用的。零基础也可以用它确认“哪里变了”。</figcaption>
+    </figure>
+
+    <h2 id="diff">Diff:绿色是新增,红色是删除</h2>
+    <p>Diff 就是“修改前后对照表”。你不需要看懂每一行代码,先看三件事:</p>
+    <ul>
+      <li>改的是不是你刚才要求的文件。</li>
+      <li>有没有明显删除一大块你不想删的内容。</li>
+      <li>有没有新增奇怪链接、账号、密钥或和任务无关的东西。</li>
+    </ul>
+    <p>如果你看不懂,可以直接问:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">看不懂 Diff 时</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我看不懂这次 diff。请用零基础能懂的话,按文件说明你改了什么、为什么要改、有没有风险。先不要继续改。</div>
+      <div class="prompt-card__note">这句话会把 Codex 从“继续干活”拉回“解释给你听”。</div>
+    </div>
+
+    <h2 id="review-scope">Review 面板到底在看哪一段改动</h2>
+    <p>Review 面板不是只显示 Codex 刚刚改的东西,它看的是 Git 里的改动状态。所以你可能会看到三类变化:</p>
+    <ul>
+      <li>Codex 刚改的文件。</li>
+      <li>你自己手动改过但还没提交的文件。</li>
+      <li>其他工具生成但 Git 还没保存的文件。</li>
+    </ul>
+    <p>如果你只想看 Codex 最近一轮做了什么,可以切到类似 <strong>Last turn changes</strong> 的范围;如果你想看整个分支相对主分支变了什么,就看 <strong>All branch changes</strong>。名字可能随版本略变,但思路就是“看最近一轮、看未提交、看整个分支”。</p>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">看 Diff 的三步</div>
+        <div class="callout__body">先看文件名,再看大块新增/删除,最后看敏感内容。零基础不用逐字读代码,但一定要确认“它没有改到不该改的地方”。</div>
+      </div>
+    </div>
+
+    <h2 id="inline-comments">行内评论:比“这里不对”更准确</h2>
+    <p>Review 面板里可以对某一行留评论。比如你看到一段标题文案不喜欢,不要在聊天里说“那个标题改一下”,而是直接在那一行评论:</p>
+    <blockquote>这里太像广告了,请改得更像教程口吻,不要夸张。</blockquote>
+    <p>留完评论后,再回到线程里说:“请处理我刚才留的行内评论,范围尽量小。” Codex 就知道该盯哪一行。</p>
+
+    <h2 id="comment-workflow">行内评论的完整流程</h2>
+    <ol>
+      <li>打开 Review 面板,找到你不满意的文件。</li>
+      <li>把 diff 展开,移动到具体行。</li>
+      <li>点行旁边的加号或评论入口。</li>
+      <li>写清楚“哪里不对”和“希望怎么改”。</li>
+      <li>回到线程,说:“请处理我刚才留的行内评论,不要顺手重构。”</li>
+      <li>改完后再看同一行 diff,确认问题解决。</li>
+    </ol>
+    <p>这套流程特别适合改文案、样式、局部 bug。你越具体,Codex 越容易一次改准。</p>
+
+    <h2 id="stage-revert">暂存、撤回和提交</h2>
+    <table>
+      <thead><tr><th>按钮/动作</th><th>通俗理解</th><th>什么时候用</th></tr></thead>
+      <tbody>
+        <tr><td>Stage / 暂存</td><td>这块改动我准备留下</td><td>你检查过,觉得没问题。</td></tr>
+        <tr><td>Revert / 撤回</td><td>这块不要了,恢复到改之前</td><td>改偏了、删多了、看着不放心。</td></tr>
+        <tr><td>Commit / 提交</td><td>给当前成果存一个正式保存点</td><td>一小阶段完成后立刻做。</td></tr>
+        <tr><td>Push / 推送</td><td>把保存点同步到 GitHub</td><td>你想备份或准备部署时。</td></tr>
+        <tr><td>Pull Request</td><td>把一组改动交给别人审</td><td>团队协作或上线前走流程时。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="staged-unstaged">为什么同一个文件会出现两次</h2>
+    <p>如果你看到同一个文件在 Staged 和 Unstaged 两边都出现,别慌。这是 Git 的正常状态:同一个文件里,有些改动你已经暂存了,有些改动还没暂存。</p>
+    <p>小白可以这样理解:</p>
+    <ul>
+      <li><strong>Staged</strong>:已经放进“准备提交的篮子”。</li>
+      <li><strong>Unstaged</strong>:还在桌面上,没放进篮子。</li>
+    </ul>
+    <p>提交前,你可以让 Codex 帮你解释 staged 和 unstaged 各是什么,再决定要不要一起提交。</p>
+
+    <h2 id="terminal">内置终端:让 Codex 和你看同一个错误</h2>
+    <p>内置终端可以跑命令。你可以用它启动预览、跑测试、看报错。更重要的是:Codex 可以读到终端输出。</p>
+    <p>比如你启动网站失败,不要截图猜原因,直接说:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">让 Codex 看终端</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请读取当前内置终端的输出,解释为什么预览服务器没启动成功。先告诉我原因和修复计划,我确认后再改。</div>
+      <div class="prompt-card__note">终端输出比“好像报错了”准确得多。让 Codex 看同一份错误,它就不容易猜偏。</div>
+    </div>
+
+    <h2 id="pr-review">处理 Pull Request 评论</h2>
+    <p>如果你的项目接了 GitHub,并且你在一个 PR 分支上工作,App 可能会把 PR 评论和上下文也放进 Review 体验里。你可以直接让 Codex 处理具体评论:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">处理 PR 评论</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请读取当前 PR 的评论和 Review 面板里的 diff。先按优先级列出需要处理的评论,说明每条会改哪些文件。我确认后,再逐条修复。</div>
+      <div class="prompt-card__note">团队项目里不要让 Codex 一口气“处理所有评论”。先列清单,再逐条处理。</div>
+    </div>
+    <p>如果 PR 信息没出现,常见原因是 GitHub CLI 没安装或没登录。你可以让 Codex 检查 <code>gh</code> 是否可用,但登录授权这一步通常需要你自己确认。</p>
+
+    <h2 id="actions">本地环境和快捷动作</h2>
+    <p>如果一个命令你经常用,比如“启动网站预览”或“跑测试”,可以把它配置成 App 顶部的快捷动作。以后你不用每次敲命令,点一下就行。</p>
+    <p>对新手来说,最值得配置的动作通常是:</p>
+    <ul>
+      <li><strong>Start</strong>:启动本地预览。</li>
+      <li><strong>Test</strong>:运行测试或检查。</li>
+      <li><strong>Build</strong>:确认项目能不能打包上线。</li>
+    </ul>
+
+    <h2 id="ship-checklist">保存前的 5 项检查</h2>
+    <ol>
+      <li>Review 面板里没有不认识的大改动。</li>
+      <li>终端里最小检查跑过,比如预览、测试或构建。</li>
+      <li>浏览器里看过关键页面。</li>
+      <li>提交信息能说明这次做了什么。</li>
+      <li>如果要 push 或发 PR,确认没有密钥、账号、临时文件被提交。</li>
+    </ol>
+    <p>这 5 项看起来啰嗦,但它们能救你很多次。尤其是“不要把密钥提交上去”,要形成肌肉记忆。</p>
+
+    <h2 id="no-git">如果项目还不是 Git 仓库</h2>
+    <p>Review 面板依赖 Git。如果你的文件夹还不是 Git 仓库,App 可能会提示你创建。你可以让 Codex 帮你做,但先让它解释:</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">第一次启用 Git</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请用零基础能懂的话解释 Git 是什么、为什么 Review 面板需要它。然后帮我在当前项目里初始化 Git,做第一次提交。提交信息用中文,简洁说明当前状态。</div>
+      <div class="prompt-card__note">Git 可以先理解成“带说明的保存点”。不用一口气学完。</div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">做一次“只看不提交”的 Review 演练</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>让 Codex 对某个小文件做一处文案修改。</li>
+          <li>打开 Review 面板,找到对应 diff。</li>
+          <li>让 Codex 用人话解释这次 diff。</li>
+          <li>不提交,直接撤回这次改动。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你知道在哪里看改动、哪里撤回、哪里提交。</div>
+      </div>
+    </div>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>这一章的核心</strong>
+        不要把 Codex 的改动当黑盒。每次都看 Review,看不懂就问,满意再暂存、提交、推送。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./02-threads-modes.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 项目、线程和三种模式</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./04-browser-computer-use.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">浏览器、标注和电脑操作 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

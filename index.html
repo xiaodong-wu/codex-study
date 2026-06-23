@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Codex 口语化教程 · 桌面端 App + CLI 双路线</title>
+<meta name="description" content="面向零编程基础读者的 Codex 中文教程。分为两条路线:更图形化的 Codex 桌面端 App 教程,以及用终端完成产品官网上线的 Codex CLI 教程。" />
+<meta property="og:title" content="Codex 口语化教程 · 桌面端 App + CLI 双路线" />
+<meta property="og:description" content="不会写代码,也可以用 Codex 把想法变成项目。先从桌面端 App 入门,再进阶到 CLI。" />
+<meta property="og:type" content="website" />
+<link rel="stylesheet" href="./assets/css/base.css" />
+<link rel="stylesheet" href="./assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="./assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="./assets/css/prose.css" />
+</head>
+<body data-title="教程首页">
+<header class="site-header" id="site-header"></header>
+
+<main>
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__copy">
+        <span class="hero__tag">面向零编程基础 · 桌面端 App + CLI 双路线</span>
+        <h1 class="hero__title">
+          用<em>说话</em>的方式指挥 Codex<br/>
+          先看得见,再跑得深
+        </h1>
+        <p class="hero__sub">
+          这套教程现在分成两部分:一部分专门讲 <strong>Codex 桌面端 App</strong>,适合完全没有编程基础的人先上手;另一部分讲 <strong>Codex CLI</strong>,带你从终端、文件、GitHub、Vercel 一路走到上线产品官网。
+        </p>
+      </div>
+      <div class="hero__side">
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href="./app/00-overview.html">先学桌面端 App →</a>
+          <a class="btn btn--lg" href="./chapters/00-intro.html">进入 CLI 教程</a>
+        </div>
+        <div class="hero__meta">
+          <span><b>2</b>条学习路线</span>
+          <span><b>7</b>章 App 教程</span>
+          <span><b>12</b>章 CLI 教程</span>
+          <span><b>4</b>个附录</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+
+    <article class="content prose">
+      <h2 id="choose-path">先选哪条路线</h2>
+      <p>如果你不确定,直接选左边。桌面端 App 更像一个可视化工作台,对新手更友好。CLI 更像一把轻巧的工具刀,适合你想理解底层流程时再学。</p>
+
+      <div class="course-paths">
+        <section class="path-card">
+          <div class="path-card__eyebrow">路线一 · 推荐先学</div>
+          <h3 class="path-card__title">Codex 桌面端 App 教程</h3>
+          <p class="path-card__body">从安装、登录、打开项目开始,讲清项目、线程、Local/Worktree/Cloud、Review 面板、浏览器标注、Computer Use、自动化、技能、MCP、设置和安全边界。</p>
+          <ul class="path-card__list">
+            <li>适合完全没有编程基础的人</li>
+            <li>大量图文示意,先建立画面感</li>
+            <li>重点是“怎么用 App 安全地让 Codex 干活”</li>
+          </ul>
+          <div class="path-card__actions">
+            <a class="btn btn--primary" href="./app/00-overview.html">从 App A0 开始</a>
+            <a class="btn" href="./app/06-settings-shortcuts.html">看功能总表</a>
+          </div>
+        </section>
+
+        <section class="path-card">
+          <div class="path-card__eyebrow">路线二 · 进阶实战</div>
+          <h3 class="path-card__title">Codex CLI 教程</h3>
+          <p class="path-card__body">保留原来的终端路线:安装 Node.js 和 Codex CLI,学习口语化提示词,让 Codex 搭出产品官网,再用 GitHub + Vercel + 域名完成上线。</p>
+          <ul class="path-card__list">
+            <li>适合愿意接触终端的人</li>
+            <li>更接近开发者真实工作流</li>
+            <li>重点是“从 0 到 1 上线一个产品官网”</li>
+          </ul>
+          <div class="path-card__actions">
+            <a class="btn btn--primary" href="./chapters/00-intro.html">从 CLI 第 0 章开始</a>
+            <a class="btn" href="./chapters/02-setup.html">直接装工具</a>
+          </div>
+        </section>
+      </div>
+
+      <h2 id="visual-guide">桌面端 App 教程长什么样</h2>
+      <p>App 教程会尽量用“看图 + 口语解释 + 可复制提示词”的方式写。下面这张图就是你后面会反复看到的界面地图。</p>
+      <figure class="figure">
+        <div class="figure__img">
+          <img src="./assets/img/app/app-overview.svg" alt="Codex 桌面端 App 主要区域示意图" loading="lazy" decoding="async" />
+        </div>
+        <figcaption class="figure__cap"><b>图文说明:</b>先看懂界面,再学功能。按钮位置可能随版本变化,但概念不会轻易变。</figcaption>
+      </figure>
+
+      <h2 id="app-toc">桌面端 App 教程目录</h2>
+      <div class="chapter-grid">
+        <a class="chapter-card" href="./app/00-overview.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">App A0</div>
+          <div class="chapter-card__title">先看懂 Codex 桌面端</div>
+          <p class="chapter-card__body">Codex App 是什么、适合谁、和 CLI 怎么选,以及功能地图。</p>
+        </a>
+        <a class="chapter-card" href="./app/01-start.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">App A1</div>
+          <div class="chapter-card__title">安装、登录和第一句话</div>
+          <p class="chapter-card__body">下载、登录、打开项目、选择 Local,发出第一条安全提示词。</p>
+        </a>
+        <a class="chapter-card" href="./app/02-threads-modes.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">App A2</div>
+          <div class="chapter-card__title">项目、线程和三种模式</div>
+          <p class="chapter-card__body">讲清 Local、Worktree、Cloud、Goal、语音输入、弹出窗口和 IDE 同步。</p>
+        </a>
+        <a class="chapter-card" href="./app/03-review-terminal-git.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">App A3</div>
+          <div class="chapter-card__title">看改动、跑命令和保存</div>
+          <p class="chapter-card__body">Review 面板、Diff、行内评论、暂存、撤回、提交和内置终端。</p>
+        </a>
+        <a class="chapter-card" href="./app/04-browser-computer-use.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">App A4</div>
+          <div class="chapter-card__title">浏览器、标注和电脑操作</div>
+          <p class="chapter-card__body">内置浏览器、页面标注、Browser Use、Chrome、Computer Use、Appshots。</p>
+        </a>
+        <a class="chapter-card" href="./app/05-automations-skills.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">App A5</div>
+          <div class="chapter-card__title">自动化、技能和外部工具</div>
+          <p class="chapter-card__body">自动化、线程自动化、Worktree、技能、插件、MCP、AGENTS.md 和 Memories。</p>
+        </a>
+        <a class="chapter-card" href="./app/06-settings-shortcuts.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">App A6</div>
+          <div class="chapter-card__title">设置、快捷键和安全边界</div>
+          <p class="chapter-card__body">Settings 全功能地图、快捷键、Slash 命令、权限、Windows 注意事项。</p>
+        </a>
+      </div>
+
+      <h2 id="cli-toc">CLI 教程目录</h2>
+      <p class="muted small">CLI 正文章节和附录已经补齐为完整版本。你可以按顺序读,也可以直接跳到当前最需要的章节。</p>
+
+      <h3 id="cli-part-1">第一部分 · 入门起步</h3>
+      <div class="chapter-grid">
+        <a class="chapter-card" href="./chapters/00-intro.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 00 章</div>
+          <div class="chapter-card__title">写在前面</div>
+          <p class="chapter-card__body">教程定位、读者画像、关于网络环境的现实提醒。</p>
+        </a>
+        <a class="chapter-card" href="./chapters/01-mindset.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 01 章</div>
+          <div class="chapter-card__title">心态准备</div>
+          <p class="chapter-card__body">为什么零基础也能造网页;口语化编程到底是什么。</p>
+        </a>
+        <a class="chapter-card" href="./chapters/02-setup.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 02 章</div>
+          <div class="chapter-card__title">把工具装到电脑里</div>
+          <p class="chapter-card__body">从打开终端到 Codex 自我介绍,含 Windows / Mac 双路径与踩坑。</p>
+        </a>
+      </div>
+
+      <h3 id="cli-part-2">第二部分 · 学会跟 Codex 说话</h3>
+      <div class="chapter-grid">
+        <a class="chapter-card" href="./chapters/03-codex-basics.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 03 章</div>
+          <div class="chapter-card__title">Codex 用法手册</div>
+          <p class="chapter-card__body">审批模式、沙盒、看懂 diff、何时该重启会话。</p>
+        </a>
+        <a class="chapter-card" href="./chapters/04-prompting.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 04 章</div>
+          <div class="chapter-card__title">口语化编程内功</div>
+          <p class="chapter-card__body">角色/目标/限制三句法、两轮节奏、找参考、识别反问。</p>
+        </a>
+      </div>
+
+      <h3 id="cli-part-3">第三部分 · 实战:做一个产品官网</h3>
+      <div class="chapter-grid">
+        <a class="chapter-card" href="./chapters/05-build-skeleton.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 05 章</div>
+          <div class="chapter-card__title">搭出官网骨架</div>
+          <p class="chapter-card__body">从一句话需求到五段式 index.html。</p>
+        </a>
+        <a class="chapter-card" href="./chapters/06-build-design.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 06 章</div>
+          <div class="chapter-card__title">让它好看</div>
+          <p class="chapter-card__body">配色、字体、图片、移动端适配。</p>
+        </a>
+        <a class="chapter-card" href="./chapters/07-debugging.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 07 章</div>
+          <div class="chapter-card__title">当事情出错时</div>
+          <p class="chapter-card__body">调试套路、Git 回退、Codex 绕圈子破局法。</p>
+        </a>
+        <a class="chapter-card" href="./chapters/08-deploy.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 08 章</div>
+          <div class="chapter-card__title">上线:让世界看到你</div>
+          <p class="chapter-card__body">GitHub + Vercel 全流程,拿到公开链接。</p>
+        </a>
+        <a class="chapter-card" href="./chapters/09-domain.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 09 章</div>
+          <div class="chapter-card__title">域名:给页面一个家</div>
+          <p class="chapter-card__body">买域名、配 DNS、绑定 Vercel、自动 HTTPS。</p>
+        </a>
+        <a class="chapter-card" href="./chapters/10-operations.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 10 章</div>
+          <div class="chapter-card__title">上线之后</div>
+          <p class="chapter-card__body">访问统计、SEO 最小集、迭代流程。</p>
+        </a>
+        <a class="chapter-card" href="./chapters/11-next-steps.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">第 11 章</div>
+          <div class="chapter-card__title">进阶方向</div>
+          <p class="chapter-card__body">多页扩展、表单后端、Supabase、SaaS 起点。</p>
+        </a>
+      </div>
+
+      <h3 id="appendix">附录 · 持续可查的工具书</h3>
+      <div class="chapter-grid">
+        <a class="chapter-card" href="./appendix/a-prompt-library.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">附录 A</div>
+          <div class="chapter-card__title">口语化提示词模板库</div>
+          <p class="chapter-card__body">10 条可直接复制的核心模板。</p>
+        </a>
+        <a class="chapter-card" href="./appendix/b-glossary.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">附录 B</div>
+          <div class="chapter-card__title">术语小词典</div>
+          <p class="chapter-card__body">HTML、Git、DNS 等术语的生活类比。</p>
+        </a>
+        <a class="chapter-card" href="./appendix/c-cli-cheatsheet.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">附录 C</div>
+          <div class="chapter-card__title">命令速查表</div>
+          <p class="chapter-card__body">Codex CLI 常用命令一页纸版本。</p>
+        </a>
+        <a class="chapter-card" href="./appendix/d-pitfalls-index.html">
+          <span class="chapter-card__badge chapter-card__badge--full">完整</span>
+          <div class="chapter-card__num">附录 D</div>
+          <div class="chapter-card__title">常见踩坑全集</div>
+          <p class="chapter-card__body">按问题类型整理的踩坑索引。</p>
+        </a>
+      </div>
+
+      <hr/>
+
+      <h2 id="start">不知道从哪里开始?</h2>
+      <p>按这个顺序就行:先读 App A0-A3,你会知道怎么打开项目、怎么让 Codex 改东西、怎么检查改动。等你心里有底了,再进入 CLI 第 02、05、08、09 章,做一次完整上线闭环。</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary btn--lg" href="./app/00-overview.html">从 App A0 开始 →</a>
+        <a class="btn btn--lg" href="./chapters/02-setup.html">直接进入 CLI 实战</a>
+      </div>
+    </article>
+
+    <aside class="toc">
+      <div class="toc__title">本页目录</div>
+      <ul class="toc__list" id="toc-list"></ul>
+    </aside>
+  </div>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="./assets/js/nav.js?v=20260623"></script>
+<script src="./assets/js/progress.js"></script>
+<script src="./assets/js/toc.js"></script>
+<script src="./assets/js/code.js"></script>
+</body>
+</html>

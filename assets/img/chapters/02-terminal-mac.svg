@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mac 终端首次打开的样貌示意图">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#F4EFE6"/>
+      <stop offset="100%" stop-color="#E8E1D3"/>
+    </linearGradient>
+    <linearGradient id="titlebar" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#EFE9DE"/>
+      <stop offset="100%" stop-color="#D9D1C0"/>
+    </linearGradient>
+    <radialGradient id="redBtn" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0%" stop-color="#FF7B72"/>
+      <stop offset="60%" stop-color="#FC615D"/>
+      <stop offset="100%" stop-color="#D9443F"/>
+    </radialGradient>
+    <radialGradient id="yelBtn" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0%" stop-color="#FFCF6A"/>
+      <stop offset="60%" stop-color="#FDBC40"/>
+      <stop offset="100%" stop-color="#D89826"/>
+    </radialGradient>
+    <radialGradient id="grnBtn" cx="0.4" cy="0.35" r="0.7">
+      <stop offset="0%" stop-color="#4FD75F"/>
+      <stop offset="60%" stop-color="#34C748"/>
+      <stop offset="100%" stop-color="#1F9A2A"/>
+    </radialGradient>
+    <filter id="winShadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#1F2230" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <!-- "桌面" 背景 -->
+  <rect width="800" height="400" fill="url(#bg)"/>
+
+  <!-- 终端窗口 -->
+  <g filter="url(#winShadow)">
+    <!-- 窗口体 -->
+    <rect x="80" y="50" width="640" height="300" rx="11" fill="#FFFFFF" stroke="#C9C0AF" stroke-width="0.5"/>
+
+    <!-- 标题栏(只在顶部圆角) -->
+    <path d="M80 61 Q80 50 91 50 L709 50 Q720 50 720 61 L720 90 L80 90 Z"
+          fill="url(#titlebar)"/>
+    <line x1="80" y1="90" x2="720" y2="90" stroke="#C9C0AF" stroke-width="0.5"/>
+
+    <!-- 三个交通灯 -->
+    <circle cx="105" cy="70" r="6.5" fill="url(#redBtn)"/>
+    <circle cx="126" cy="70" r="6.5" fill="url(#yelBtn)"/>
+    <circle cx="147" cy="70" r="6.5" fill="url(#grnBtn)"/>
+
+    <!-- 标题 -->
+    <text x="400" y="75" font-family="system-ui, -apple-system, 'Helvetica Neue', sans-serif"
+          font-size="12" font-weight="500" fill="#5F5751" text-anchor="middle">
+      wuxiaodong — -zsh — 80×24
+    </text>
+
+    <!-- 终端内容 -->
+    <g font-family="Menlo, 'SF Mono', Consolas, monospace" font-size="14" fill="#2A2D38">
+      <!-- 上次登录信息(灰色) -->
+      <text x="100" y="123" fill="#8B8F9C">Last login: Fri May 30 16:42:13 on ttys001</text>
+
+      <!-- 当前提示符行 -->
+      <text x="100" y="172">
+        <tspan fill="#7E8390">wuxiaodong@MacBook</tspan>
+        <tspan> </tspan>
+        <tspan fill="#3E4ECC" font-weight="700">~</tspan>
+        <tspan> </tspan>
+        <tspan fill="#7E8390">%</tspan>
+        <tspan> </tspan>
+      </text>
+
+      <!-- 会闪烁的光标 -->
+      <rect x="293" y="159" width="9" height="17" fill="#2A2D38" rx="1">
+        <animate attributeName="opacity" values="1;1;0;0" dur="1.05s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+  </g>
+</svg>

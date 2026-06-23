@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Local、Worktree、Cloud 三种模式示意图</title>
+  <desc id="desc">展示 Codex App 线程可以在本地目录、隔离工作区或云端环境运行。</desc>
+  <rect width="960" height="540" rx="28" fill="#faf8f4"/>
+  <text x="74" y="74" font-family="PingFang SC, Arial, sans-serif" font-size="28" font-weight="700" fill="#1f2230">同一个想法，可以放在三种工作台上</text>
+  <text x="76" y="110" font-family="PingFang SC, Arial, sans-serif" font-size="16" fill="#4a4e5c">新手先用 Local。怕弄乱项目时，用 Worktree。需要远程环境时，再考虑 Cloud。</text>
+  <g transform="translate(72 154)">
+    <rect width="240" height="270" rx="18" fill="#fff" stroke="#e8e4dc"/>
+    <circle cx="44" cy="48" r="18" fill="#3e4ecc"/>
+    <text x="76" y="56" font-family="PingFang SC, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2230">Local</text>
+    <text x="32" y="104" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">直接在当前项目里改。</text>
+    <text x="32" y="136" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">适合：跟着教程、改文案、</text>
+    <text x="32" y="164" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">做一个小页面。</text>
+    <rect x="32" y="206" width="176" height="36" rx="10" fill="#eceefb"/>
+    <text x="54" y="230" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#2a37a0">最适合第一次用</text>
+  </g>
+  <g transform="translate(360 154)">
+    <rect width="240" height="270" rx="18" fill="#fff" stroke="#e8e4dc"/>
+    <circle cx="44" cy="48" r="18" fill="#e8704a"/>
+    <text x="76" y="56" font-family="PingFang SC, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2230">Worktree</text>
+    <text x="32" y="104" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">复制一个隔离工作区。</text>
+    <text x="32" y="136" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">适合：同时试两个方向，</text>
+    <text x="32" y="164" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">不想打扰当前文件。</text>
+    <rect x="32" y="206" width="176" height="36" rx="10" fill="#fbede5"/>
+    <text x="54" y="230" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#8b3a18">适合并行尝试</text>
+  </g>
+  <g transform="translate(648 154)">
+    <rect width="240" height="270" rx="18" fill="#fff" stroke="#e8e4dc"/>
+    <circle cx="44" cy="48" r="18" fill="#2f9e6e"/>
+    <text x="76" y="56" font-family="PingFang SC, Arial, sans-serif" font-size="22" font-weight="700" fill="#1f2230">Cloud</text>
+    <text x="32" y="104" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">在配置好的远程环境跑。</text>
+    <text x="32" y="136" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">适合：团队项目、云端任务、</text>
+    <text x="32" y="164" font-family="PingFang SC, Arial, sans-serif" font-size="15" fill="#4a4e5c">不用占用本机资源。</text>
+    <rect x="32" y="206" width="176" height="36" rx="10" fill="#e6f4ed"/>
+    <text x="54" y="230" font-family="PingFang SC, Arial, sans-serif" font-size="15" font-weight="700" fill="#1f6f4d">进阶后再用</text>
+  </g>
+</svg>

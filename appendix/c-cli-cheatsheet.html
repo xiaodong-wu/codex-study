@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>附录 C · Codex CLI 命令速查表 · Codex 口语化编程教程</title>
+<meta name="description" content="Codex CLI 常用命令速查:安装、升级、登录、启动、执行、审批沙盒选项和卡住时可直接说的短句。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="附录 C · 命令速查表" data-chapter="appendix-c">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">附录 C</span>
+    <h1>Codex CLI 命令速查表</h1>
+    <p class="chapter-lede">一页纸版本。下次卡住时打开这页,九成你要的命令都在这里。</p>
+
+    <div class="chapter-summary">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>使用方式</strong>
+        不用背。复制你需要的命令,把中括号里的内容换成自己的项目路径或提示词。凡是会改文件、联网、删除、发布的动作,先看一眼 Codex 要做什么。
+      </div>
+    </div>
+
+    <h2 id="install">安装与升级</h2>
+    <table>
+      <thead><tr><th>命令</th><th>作用</th><th>什么时候用</th></tr></thead>
+      <tbody>
+        <tr><td><code>npm install -g @openai/codex</code></td><td>安装或重装 Codex CLI</td><td>第一次安装,或命令坏了想重装</td></tr>
+        <tr><td><code>npm update -g @openai/codex</code></td><td>用 npm 升级全局安装包</td><td>你是通过 npm 安装的 Codex</td></tr>
+        <tr><td><code>codex update</code></td><td>检查并应用 Codex CLI 自更新</td><td>当前安装版本支持自更新时</td></tr>
+        <tr><td><code>codex --version</code></td><td>查看当前版本号</td><td>确认装好了,或排查“是不是版本太旧”</td></tr>
+        <tr><td><code>codex doctor</code></td><td>生成本地诊断报告</td><td>登录、配置、Git、终端、线程列表等看起来不正常时</td></tr>
+        <tr><td><code>codex login</code></td><td>登录 Codex</td><td>第一次使用,或提示未登录时</td></tr>
+        <tr><td><code>codex login --device-auth</code></td><td>用设备码登录</td><td>浏览器登录打不开、远程机器或 SSH 环境</td></tr>
+        <tr><td><code>codex logout</code></td><td>退出登录并清除本机凭据</td><td>共用电脑、换账号、排查登录问题</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="run">启动与运行</h2>
+    <table>
+      <thead><tr><th>命令</th><th>作用</th><th>小白解释</th></tr></thead>
+      <tbody>
+        <tr><td><code>codex</code></td><td>在当前目录进入交互式终端 UI</td><td>最常用,像打开一个项目里的 Codex 聊天窗口</td></tr>
+        <tr><td><code>codex "请总结这个项目结构"</code></td><td>启动时顺便发第一句话</td><td>省一步打开后再输入</td></tr>
+        <tr><td><code>codex -C [项目路径]</code></td><td>指定工作目录后启动</td><td>你不想先 <code>cd</code> 到项目目录时用</td></tr>
+        <tr><td><code>codex --image [图片路径]</code></td><td>启动时附带图片</td><td>让 Codex 看截图、设计稿、报错图</td></tr>
+        <tr><td><code>codex resume</code></td><td>从最近会话列表里恢复</td><td>昨天聊到一半,今天接着来</td></tr>
+        <tr><td><code>codex resume --last</code></td><td>直接恢复当前目录最近一次会话</td><td>最省事的“继续上次”</td></tr>
+        <tr><td><code>codex app</code></td><td>启动 Codex 桌面端 App</td><td>想从终端打开桌面端时用</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="exec">一次性执行:codex exec</h2>
+    <p><code>codex exec</code> 适合自动化脚本、CI、批处理。它不会打开交互界面,而是执行完把最终结果打印出来。</p>
+    <table>
+      <thead><tr><th>命令</th><th>作用</th></tr></thead>
+      <tbody>
+        <tr><td><code>codex exec "总结这个仓库的结构"</code></td><td>只跑一次任务,输出最终答案</td></tr>
+        <tr><td><code>codex exec --sandbox workspace-write "修复这个 lint 错误"</code></td><td>允许它在当前工作区改文件</td></tr>
+        <tr><td><code>codex exec --json "检查这个项目"</code></td><td>输出 JSONL,适合交给别的脚本处理</td></tr>
+        <tr><td><code>codex exec resume --last "继续实现刚才的计划"</code></td><td>让非交互任务接着上一次会话跑</td></tr>
+      </tbody>
+    </table>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">自动化里权限越小越好</div>
+        <div class="callout__body"><code>codex exec</code> 默认偏保守。只有确定任务需要改文件时,才加 <code>--sandbox workspace-write</code>。<code>danger-full-access</code> 只适合隔离环境,不要在自己的主力电脑项目里随手用。</div>
+      </div>
+    </div>
+
+    <h2 id="approval">审批与沙盒</h2>
+    <table>
+      <thead><tr><th>命令 / 标志</th><th>作用</th><th>建议</th></tr></thead>
+      <tbody>
+        <tr><td><code>--sandbox read-only</code></td><td>只读,不能改文件</td><td>让 Codex 解释、检查、做计划时用</td></tr>
+        <tr><td><code>--sandbox workspace-write</code></td><td>可以改当前工作区</td><td>日常开发最常用</td></tr>
+        <tr><td><code>--sandbox danger-full-access</code></td><td>绕过更多限制</td><td>慎用,只在隔离环境里考虑</td></tr>
+        <tr><td><code>--ask-for-approval on-request</code></td><td>需要越界时再请求批准</td><td>交互式工作推荐</td></tr>
+        <tr><td><code>--ask-for-approval never</code></td><td>不弹审批提示</td><td>脚本化环境才考虑,同时要配好沙盒</td></tr>
+        <tr><td><code>--search</code></td><td>启用 live web search</td><td>需要查最新资料时用,结果仍要当作外部信息审慎处理</td></tr>
+        <tr><td><code>-c key=value</code></td><td>临时覆盖配置</td><td>一次性改模型、网络、功能开关等高级设置</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="in-session">交互模式里的命令</h2>
+    <table>
+      <thead><tr><th>命令</th><th>作用</th><th>什么时候用</th></tr></thead>
+      <tbody>
+        <tr><td><code>/permissions</code></td><td>调整权限和审批</td><td>从只读切到可写,或反过来收紧权限</td></tr>
+        <tr><td><code>/status</code></td><td>查看当前会话状态</td><td>确认模型、权限、工作区、上下文用量</td></tr>
+        <tr><td><code>/diff</code></td><td>查看当前 Git diff</td><td>接受改动前检查 Codex 改了什么</td></tr>
+        <tr><td><code>/review</code></td><td>让 Codex 审查当前改动</td><td>完工后做一次自查</td></tr>
+        <tr><td><code>/model</code></td><td>切换模型</td><td>任务变难或想省资源时</td></tr>
+        <tr><td><code>/plan</code></td><td>进入计划模式</td><td>大任务先看方案,不急着改文件</td></tr>
+        <tr><td><code>/goal</code></td><td>设置或查看长期目标</td><td>任务很长,怕中途跑偏时</td></tr>
+        <tr><td><code>/compact</code></td><td>压缩长对话</td><td>聊很久后释放上下文空间</td></tr>
+        <tr><td><code>/mention</code></td><td>把文件或文件夹点给 Codex</td><td>想让它重点看某个文件时</td></tr>
+        <tr><td><code>/init</code></td><td>生成 <code>AGENTS.md</code> 草稿</td><td>给项目写长期规则</td></tr>
+        <tr><td><code>/mcp</code></td><td>列出 MCP 工具</td><td>排查外部工具有没有接上</td></tr>
+        <tr><td><code>/skills</code></td><td>浏览和使用技能</td><td>让 Codex 按某类专门流程工作</td></tr>
+        <tr><td><code>/plugins</code></td><td>查看插件</td><td>管理可用插件和插件工具</td></tr>
+        <tr><td><code>/apps</code></td><td>浏览 app/connectors</td><td>把外部 app 插入提示词里</td></tr>
+        <tr><td><code>/copy</code></td><td>复制最新回复</td><td>把总结、计划、命令复制出去</td></tr>
+        <tr><td><code>/new</code></td><td>在同一个 CLI 里开新对话</td><td>想换一个干净上下文</td></tr>
+        <tr><td><code>/clear</code></td><td>清空终端并开始新聊天</td><td>界面太乱,想重新开始</td></tr>
+        <tr><td><code>/resume</code></td><td>恢复已保存会话</td><td>接着以前的任务</td></tr>
+        <tr><td><code>/quit</code> / <code>/exit</code></td><td>退出 CLI</td><td>确认重要改动已保存后再退出</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>取消当前输入或请求</td><td>发现发错了、想停一下</td></tr>
+        <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>强制中断 / 退出</td><td>普通取消没反应时</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="files">配置和长期规则</h2>
+    <table>
+      <thead><tr><th>文件 / 命令</th><th>作用</th><th>怎么记</th></tr></thead>
+      <tbody>
+        <tr><td><code>AGENTS.md</code></td><td>写项目级长期说明</td><td>告诉 Codex “这个项目的规矩”</td></tr>
+        <tr><td><code>~/.codex/config.toml</code></td><td>个人全局配置</td><td>影响你电脑上的 Codex 默认行为</td></tr>
+        <tr><td><code>codex features</code></td><td>查看和开关功能</td><td>某个功能没出现时先查它</td></tr>
+        <tr><td><code>codex completion</code></td><td>生成 shell 自动补全脚本</td><td>让终端里敲命令更顺手</td></tr>
+        <tr><td><code>codex mcp</code></td><td>管理 MCP server</td><td>连接外部工具、私有数据源、服务 API</td></tr>
+        <tr><td><code>codex plugin</code></td><td>安装、列出、移除插件</td><td>给 Codex 扩能力包</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="when-stuck">卡住时的"魔法句"</h2>
+    <p>下面这些短句你可以直接对 Codex 说,常常能救场:</p>
+    <ul>
+      <li>"请用三句话总结你刚才做了什么"</li>
+      <li>"刚才那个改动请撤回"</li>
+      <li>"请先给我一份计划,我同意了再做"</li>
+      <li>"基于现在的状态,你建议下一步做什么?给我三个选项"</li>
+      <li>"请帮我提交一次,信息写 [...] "</li>
+      <li>"请运行最小必要检查,不要做无关重构"</li>
+      <li>"请先只读检查,不要修改文件"</li>
+      <li>"请把刚才的失败原因、已尝试方法、下一步建议列成表"</li>
+    </ul>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>一句话记住</strong>
+        日常用 <code>codex</code>,自动化用 <code>codex exec</code>,排查用 <code>codex doctor</code>,看改动用 <code>/diff</code>,怕跑偏用 <code>/plan</code> 和 <code>/permissions</code>。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./b-glossary.html">
+        <div class="chapter-nav__dir">上一篇</div>
+        <div class="chapter-nav__title">← 附录 B · 术语小词典</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./d-pitfalls-index.html">
+        <div class="chapter-nav__dir">下一篇</div>
+        <div class="chapter-nav__title">附录 D · 常见踩坑全集 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本页目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Codex 提出 diff 时的样貌示意图">
+  <defs>
+    <linearGradient id="bg5" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#F4EFE6"/>
+      <stop offset="100%" stop-color="#E8E1D3"/>
+    </linearGradient>
+    <linearGradient id="titlebar5" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#EFE9DE"/>
+      <stop offset="100%" stop-color="#D9D1C0"/>
+    </linearGradient>
+    <radialGradient id="r5" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#FF7B72"/><stop offset="60%" stop-color="#FC615D"/><stop offset="100%" stop-color="#D9443F"/></radialGradient>
+    <radialGradient id="y5" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#FFCF6A"/><stop offset="60%" stop-color="#FDBC40"/><stop offset="100%" stop-color="#D89826"/></radialGradient>
+    <radialGradient id="g5" cx="0.4" cy="0.35" r="0.7"><stop offset="0%" stop-color="#4FD75F"/><stop offset="60%" stop-color="#34C748"/><stop offset="100%" stop-color="#1F9A2A"/></radialGradient>
+    <filter id="ws5" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#1F2230" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="400" fill="url(#bg5)"/>
+
+  <g filter="url(#ws5)">
+    <!-- 窗口 -->
+    <rect x="50" y="40" width="700" height="320" rx="11" fill="#FFFFFF" stroke="#C9C0AF" stroke-width="0.5"/>
+
+    <!-- 标题栏 -->
+    <path d="M50 51 Q50 40 61 40 L739 40 Q750 40 750 51 L750 80 L50 80 Z" fill="url(#titlebar5)"/>
+    <line x1="50" y1="80" x2="750" y2="80" stroke="#C9C0AF" stroke-width="0.5"/>
+    <circle cx="75" cy="60" r="6.5" fill="url(#r5)"/>
+    <circle cx="96" cy="60" r="6.5" fill="url(#y5)"/>
+    <circle cx="117" cy="60" r="6.5" fill="url(#g5)"/>
+    <text x="400" y="65" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="500" fill="#5F5751" text-anchor="middle">codex · ~/Desktop/my-product-site</text>
+
+    <!-- 文件路径标题(Codex 的 diff banner) -->
+    <rect x="50" y="80" width="700" height="34" fill="#F4F1EA"/>
+    <line x1="50" y1="114" x2="750" y2="114" stroke="#E0DCD2" stroke-width="0.5"/>
+    <text x="74" y="103" font-family="Menlo, monospace" font-size="12.5" fill="#3E4ECC" font-weight="700">
+      <tspan font-family="system-ui, sans-serif" font-weight="600" fill="#1F2230">编辑 </tspan>index.html
+    </text>
+    <rect x="660" y="89" width="74" height="20" rx="4" fill="#ECEEFB" stroke="#C9D1F4" stroke-width="0.5"/>
+    <text x="697" y="103" font-family="system-ui, sans-serif" font-size="10.5" font-weight="600" fill="#3E4ECC" text-anchor="middle">+ 23 行</text>
+
+    <!-- diff 内容(行号 + 绿色 +) -->
+    <g font-family="Menlo, 'SF Mono', monospace" font-size="13">
+      <!-- 行号区背景 -->
+      <rect x="50" y="114" width="46" height="216" fill="#FAF8F4"/>
+
+      <!-- 第 1 行 -->
+      <text x="80" y="134" fill="#8B8F9C" text-anchor="end">12</text>
+      <text x="110" y="134" fill="#2A2D38">  &lt;section class="hero"&gt;</text>
+
+      <!-- 第 2 行 - 新增 -->
+      <rect x="96" y="138" width="654" height="20" fill="#E6F4ED"/>
+      <text x="80" y="153" fill="#8B8F9C" text-anchor="end">13</text>
+      <text x="100" y="153" fill="#2F9E6E" font-weight="700">+</text>
+      <text x="115" y="153" fill="#1f6f4d">    &lt;h1&gt;叫醒猫 · 让猫叫做你的闹钟&lt;/h1&gt;</text>
+
+      <!-- 第 3 行 - 新增 -->
+      <rect x="96" y="158" width="654" height="20" fill="#E6F4ED"/>
+      <text x="80" y="173" fill="#8B8F9C" text-anchor="end">14</text>
+      <text x="100" y="173" fill="#2F9E6E" font-weight="700">+</text>
+      <text x="115" y="173" fill="#1f6f4d">    &lt;p class="lede"&gt;提前 5 分钟开始轻柔猫叫&lt;/p&gt;</text>
+
+      <!-- 第 4 行 - 新增 -->
+      <rect x="96" y="178" width="654" height="20" fill="#E6F4ED"/>
+      <text x="80" y="193" fill="#8B8F9C" text-anchor="end">15</text>
+      <text x="100" y="193" fill="#2F9E6E" font-weight="700">+</text>
+      <text x="115" y="193" fill="#1f6f4d">    &lt;div class="hero__cta"&gt;</text>
+
+      <!-- 第 5 行 - 新增 -->
+      <rect x="96" y="198" width="654" height="20" fill="#E6F4ED"/>
+      <text x="80" y="213" fill="#8B8F9C" text-anchor="end">16</text>
+      <text x="100" y="213" fill="#2F9E6E" font-weight="700">+</text>
+      <text x="115" y="213" fill="#1f6f4d">      &lt;button&gt;立即下载&lt;/button&gt;</text>
+
+      <!-- 第 6 行 - 新增 -->
+      <rect x="96" y="218" width="654" height="20" fill="#E6F4ED"/>
+      <text x="80" y="233" fill="#8B8F9C" text-anchor="end">17</text>
+      <text x="100" y="233" fill="#2F9E6E" font-weight="700">+</text>
+      <text x="115" y="233" fill="#1f6f4d">      &lt;button class="ghost"&gt;看看演示&lt;/button&gt;</text>
+
+      <!-- 第 7 行 - 新增 -->
+      <rect x="96" y="238" width="654" height="20" fill="#E6F4ED"/>
+      <text x="80" y="253" fill="#8B8F9C" text-anchor="end">18</text>
+      <text x="100" y="253" fill="#2F9E6E" font-weight="700">+</text>
+      <text x="115" y="253" fill="#1f6f4d">    &lt;/div&gt;</text>
+
+      <!-- 第 8 行 - 未变 -->
+      <text x="80" y="273" fill="#8B8F9C" text-anchor="end">19</text>
+      <text x="110" y="273" fill="#2A2D38">  &lt;/section&gt;</text>
+
+      <!-- 省略行提示 -->
+      <text x="110" y="298" fill="#8B8F9C" font-size="11" font-style="italic">还有 16 行新增,已省略</text>
+    </g>
+
+    <!-- 底部操作栏 -->
+    <rect x="50" y="320" width="700" height="40" fill="#F4F1EA"/>
+    <line x1="50" y1="320" x2="750" y2="320" stroke="#E0DCD2" stroke-width="0.5"/>
+
+    <!-- 接受 -->
+    <rect x="74" y="330" width="78" height="22" rx="5" fill="#3E4ECC"/>
+    <text x="113" y="345" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF" text-anchor="middle">y 接受</text>
+
+    <!-- 拒绝 -->
+    <rect x="160" y="330" width="78" height="22" rx="5" fill="#FFFFFF" stroke="#C9C0AF" stroke-width="0.6"/>
+    <text x="199" y="345" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600" fill="#5F5751" text-anchor="middle">n 拒绝</text>
+
+    <!-- 查看完整 -->
+    <rect x="246" y="330" width="100" height="22" rx="5" fill="#FFFFFF" stroke="#C9C0AF" stroke-width="0.6"/>
+    <text x="296" y="345" font-family="system-ui, sans-serif" font-size="11.5" font-weight="600" fill="#5F5751" text-anchor="middle">v 查看完整</text>
+
+    <!-- 提示文字 -->
+    <text x="734" y="345" font-family="system-ui, sans-serif" font-size="11" fill="#8B8F9C" text-anchor="end">↑ 按一个键来选</text>
+  </g>
+</svg>
