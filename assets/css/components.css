@@ -387,6 +387,11 @@
   overflow: hidden;
   border: 1px solid var(--border);
 }
+.figure__img > img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 .figure__img--placeholder {
   aspect-ratio: 16 / 9;
   display: flex;
