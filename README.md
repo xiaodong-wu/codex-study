@@ -24,6 +24,8 @@ python3 -m http.server 8000
 .
 ├── index.html                       双教程首页
 ├── 404.html
+├── _headers                         Cloudflare Pages 响应头配置
+├── wrangler.toml                    Cloudflare Pages / Wrangler 配置
 ├── app/                             Codex 桌面端 App 教程 7 章(A0-A6)
 ├── chapters/                        Codex CLI 教程 12 章(00-11)
 ├── appendix/                        附录 4 篇(A-D)
@@ -39,7 +41,7 @@ python3 -m http.server 8000
 
 - **零构建**:纯 HTML/CSS/JS,无依赖,无打包器。
 - **统一布局**:正文页都有 `<header id="site-header">`、`<aside id="sidebar">`、`<aside class="toc"><ul id="toc-list"></ul></aside>`、`<footer id="site-footer">` 四个空槽,由 `nav.js` 在客户端用 fetch 注入。
-- **页面 body 必须有两个 data 属性**:`data-title="..."` 用于顶栏面包屑;`data-chapter="..."` 用于左侧栏当前节高亮 + 完读 localStorage。首页和 404 可不设 `data-chapter`。
+- **页面 body 建议保留两个 data 属性**:`data-title="..."` 用于页面语义标识;`data-chapter="..."` 用于左侧栏当前节高亮 + 完读 localStorage。首页和 404 可不设 `data-chapter`。
 - **App 教程章节 ID**:使用 `app-00-overview`、`app-01-start` 这类值,并同步到 `partials/sidebar.html`。
 - **代码块**:`.code > .code__bar (lang+copy) > pre`。
 - **提示词卡片**:`.prompt-card > .prompt-card__head (label+copy) > .prompt-card__body > .prompt-card__note`。
@@ -108,10 +110,89 @@ App 教程内容参考 OpenAI Codex 官方手册,本次整理日期为 2026-06-2
 - Worktrees
 - Review
 
-## 部署上线
+## 部署上线:Cloudflare Pages 免费方案
 
-推荐用 Vercel:
+这个项目已经按 Cloudflare Pages 做了项目级配置:
 
-1. 把整个目录推到 GitHub 仓库
-2. Vercel Import 该仓库,Framework Preset 选 **Other**(纯静态)
-3. Deploy。完成。
+- `wrangler.toml`:项目名是 `codex-study`,输出目录是仓库根目录 `.`。
+- `_headers`:给静态资源加长期缓存,给全站加基础安全响应头。
+- 无 `package.json`,无构建步骤,是纯 HTML/CSS/JS 静态站。
+
+### 方式一:GitHub 连接 Cloudflare Pages(推荐)
+
+适合长期维护。以后只要 push 到 GitHub,Cloudflare Pages 就会自动重新部署。
+
+1. 先把代码推到 GitHub 仓库,例如:
+
+```bash
+git remote -v
+git push origin main
+```
+
+2. 打开 Cloudflare Dashboard。
+3. 进入 **Workers & Pages**。
+4. 选择 **Pages**。
+5. 点击 **Create application / Create project**。
+6. 选择 **Connect to Git**。
+7. 选择 GitHub,授权 Cloudflare 访问仓库。
+8. 选择仓库: `xiaodong-wu/codex-study`。
+9. 构建设置按下面填写:
+
+| 字段 | 填法 |
+| --- | --- |
+| Project name | `codex-study` |
+| Production branch | `main` |
+| Framework preset | `None` / `Other` |
+| Build command | 留空 |
+| Build output directory | `/` |
+| Root directory | 留空 |
+
+10. 点击 **Save and Deploy**。
+11. 部署成功后,Cloudflare 会给一个类似 `https://codex-study.pages.dev` 的公开链接。
+
+> Cloudflare 官方说明里提到:没有框架也可以部署 Pages;没有构建步骤时,Build command 可以留空。构建输出目录就是要上传为网站内容的目录。
+
+### 方式二:Wrangler 直接上传(可选)
+
+适合临时部署或测试。长期维护仍然推荐 GitHub 连接方式。
+
+第一次先登录:
+
+```bash
+npx wrangler login
+```
+
+然后在项目根目录执行:
+
+```bash
+npx wrangler pages deploy . --project-name=codex-study --branch=main
+```
+
+如果项目还没创建,Wrangler 会提示你创建 Pages 项目。部署成功后也会得到一个 `pages.dev` 链接。
+
+### 以后怎么更新
+
+平时改完内容后:
+
+```bash
+git status
+git add .
+git commit -m "Update tutorial content"
+git push origin main
+```
+
+Cloudflare Pages 会自动检测 GitHub 的新提交并重新部署。
+
+### 常见问题
+
+- **Cloudflare 看不到仓库**:回到 GitHub 授权页面,确认 Cloudflare Pages 有权限访问 `xiaodong-wu/codex-study`。
+- **部署失败,提示找不到输出目录**:确认 Build output directory 是 `/`,不是 `dist` 或 `public`。
+- **页面样式没更新**:先强制刷新浏览器。项目里 CSS/JS 已带版本号,通常不会长时间吃旧缓存。
+- **左侧目录加载不出来**:线上一般不会有这个问题。本地预览时必须用 `python3 -m http.server 8000`,不要直接双击 HTML。
+
+### 官方文档
+
+- Cloudflare Pages Git integration: <https://developers.cloudflare.com/pages/get-started/git-integration/>
+- Cloudflare Pages Direct Upload: <https://developers.cloudflare.com/pages/get-started/direct-upload/>
+- Cloudflare Pages Build configuration: <https://developers.cloudflare.com/pages/configuration/build-configuration/>
+- Cloudflare Pages Wrangler configuration: <https://developers.cloudflare.com/pages/functions/wrangler-configuration/>
