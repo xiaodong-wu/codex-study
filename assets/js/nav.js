@@ -3,6 +3,8 @@
   'use strict';
 
   const STORAGE_KEY = 'codex-tutorial-read';
+  const PARTIAL_VERSION = '20260623-speed';
+  const PARTIAL_CACHE_PREFIX = 'codex-tutorial-partial:';
 
   function getReadSet() {
     try {
@@ -17,6 +19,22 @@
       localStorage.setItem(STORAGE_KEY, JSON.stringify([...set]));
     } catch {
       /* 忽略,无 localStorage 也无碍 */
+    }
+  }
+
+  function getCachedPartial(name) {
+    try {
+      return localStorage.getItem(PARTIAL_CACHE_PREFIX + PARTIAL_VERSION + ':' + name);
+    } catch {
+      return null;
+    }
+  }
+
+  function saveCachedPartial(name, html) {
+    try {
+      localStorage.setItem(PARTIAL_CACHE_PREFIX + PARTIAL_VERSION + ':' + name, html);
+    } catch {
+      /* 缓存失败不影响页面使用 */
     }
   }
 
@@ -43,25 +61,43 @@
   function showHeaderFallback(slot, base) {
     slot.innerHTML = `
       <div class="site-header__inner">
+        <button class="nav-toggle" aria-label="打开目录" aria-expanded="false" aria-controls="sidebar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
         <a class="brand" href="${base}index.html">
           <span class="brand__mark">C</span>
           <span class="brand__text">Codex 中文教程</span>
         </a>
+        <div class="site-header__actions">
+          <a class="nav-link nav-link--hide-on-mobile" href="${base}index.html">首页</a>
+          <a class="nav-link nav-link--hide-on-mobile" href="${base}app/00-overview.html">桌面端 App</a>
+          <a class="nav-link nav-link--hide-on-mobile" href="${base}chapters/00-intro.html">CLI 教程</a>
+          <a class="nav-link nav-link--hide-on-mobile" href="${base}appendix/a-prompt-library.html">提示词库</a>
+        </div>
       </div>
       <div class="read-progress"></div>`;
+  }
+
+  function fetchPartial(name, base) {
+    const cached = getCachedPartial(name);
+    if (cached) return Promise.resolve(cached);
+    return fetch(`${base}partials/${name}.html?v=${PARTIAL_VERSION}`, { cache: 'force-cache' })
+      .then(r => {
+        if (!r.ok) throw new Error(`${name} fetch failed`);
+        return r.text();
+      })
+      .then(html => {
+        saveCachedPartial(name, html);
+        return html;
+      });
   }
 
   function injectSidebar() {
     const slot = document.getElementById('sidebar');
     if (!slot) return Promise.resolve();
     const base = getBasePath();
-    return fetch(base + 'partials/sidebar.html')
-      .then(r => {
-        if (!r.ok) throw new Error('sidebar fetch failed');
-        return r.text();
-      })
+    return fetchPartial('sidebar', base)
       .then(html => {
-        // 调整内部链接相对路径
         const adjusted = html.replace(/\{\{base\}\}/g, base);
         slot.innerHTML = adjusted;
         markCurrent(slot);
@@ -74,11 +110,7 @@
     const slot = document.getElementById('site-footer');
     if (!slot) return Promise.resolve();
     const base = getBasePath();
-    return fetch(base + 'partials/footer.html')
-      .then(r => {
-        if (!r.ok) throw new Error('footer fetch failed');
-        return r.text();
-      })
+    return fetchPartial('footer', base)
       .then(html => { slot.innerHTML = html.replace(/\{\{base\}\}/g, base); })
       .catch(() => {});
   }
@@ -87,20 +119,14 @@
     const slot = document.getElementById('site-header');
     if (!slot) return Promise.resolve();
     const base = getBasePath();
-    return fetch(base + 'partials/header.html?v=20260623-app-update')
-      .then(r => {
-        if (!r.ok) throw new Error('header fetch failed');
-        return r.text();
-      })
+    showHeaderFallback(slot, base);
+    bindMobileToggle();
+    return fetchPartial('header', base)
       .then(html => {
-        slot.innerHTML = html
-          .replace(/\{\{base\}\}/g, base);
+        slot.innerHTML = html.replace(/\{\{base\}\}/g, base);
         bindMobileToggle();
       })
-      .catch(() => {
-        showHeaderFallback(slot, base);
-        bindMobileToggle();
-      });
+      .catch(() => {});
   }
 
   function markCurrent(root) {
@@ -154,6 +180,8 @@
     const btn = document.querySelector('.nav-toggle');
     const sidebar = document.getElementById('sidebar');
     if (!btn || !sidebar) return;
+    if (btn.dataset.bound === 'true') return;
+    btn.dataset.bound = 'true';
     let scrim = document.querySelector('.sidebar-scrim');
     if (!scrim) {
       scrim = document.createElement('div');
@@ -162,35 +190,48 @@
       document.body.appendChild(scrim);
     }
     function open() {
+      const currentBtn = document.querySelector('.nav-toggle');
       sidebar.classList.add('is-open');
       scrim.classList.add('is-open');
-      btn.setAttribute('aria-expanded', 'true');
-      btn.setAttribute('aria-label', '关闭目录');
+      currentBtn?.setAttribute('aria-expanded', 'true');
+      currentBtn?.setAttribute('aria-label', '关闭目录');
       document.body.style.overflow = 'hidden';
     }
     function close() {
+      const currentBtn = document.querySelector('.nav-toggle');
       sidebar.classList.remove('is-open');
       scrim.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', '打开目录');
+      currentBtn?.setAttribute('aria-expanded', 'false');
+      currentBtn?.setAttribute('aria-label', '打开目录');
       document.body.style.overflow = '';
     }
     btn.addEventListener('click', () => {
       sidebar.classList.contains('is-open') ? close() : open();
     });
-    scrim.addEventListener('click', close);
-    sidebar.addEventListener('click', e => {
-      if (e.target.closest('a')) close();
-    });
-    window.addEventListener('keydown', e => {
-      if (e.key === 'Escape') close();
-    });
+    if (scrim.dataset.bound !== 'true') {
+      scrim.dataset.bound = 'true';
+      scrim.addEventListener('click', close);
+    }
+    if (sidebar.dataset.bound !== 'true') {
+      sidebar.dataset.bound = 'true';
+      sidebar.addEventListener('click', e => {
+        if (e.target.closest('a')) close();
+      });
+    }
+    if (document.body.dataset.navKeyBound !== 'true') {
+      document.body.dataset.navKeyBound = 'true';
+      window.addEventListener('keydown', e => {
+        if (e.key === 'Escape') close();
+      });
+    }
   }
 
   // 启动
   document.addEventListener('DOMContentLoaded', () => {
-    Promise.all([injectHeader(), injectSidebar(), injectFooter()]).then(() => {
+    Promise.all([injectHeader(), injectSidebar()]).then(() => {
       trackCompletion();
     });
+    const runWhenIdle = window.requestIdleCallback || (fn => setTimeout(fn, 160));
+    runWhenIdle(() => { injectFooter(); });
   });
 })();
