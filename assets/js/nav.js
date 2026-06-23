@@ -3,7 +3,7 @@
   'use strict';
 
   const STORAGE_KEY = 'codex-tutorial-read';
-  const PARTIAL_VERSION = '20260623-speed2';
+  const PARTIAL_VERSION = '20260623-brand-logo';
   const PARTIAL_CACHE_PREFIX = 'codex-tutorial-partial:';
 
   function getReadSet() {
@@ -70,8 +70,10 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
         <a class="brand" href="${base}index.html">
-          <span class="brand__mark">C</span>
-          <span class="brand__text">Codex 中文教程</span>
+          <span class="brand__mark">
+            <img class="brand__logo" src="${base}assets/img/brand/codex-app-logo.png" alt="" width="28" height="28" loading="eager" decoding="async" />
+          </span>
+          <span class="brand__text">Codex 中文教程（神灯资讯）</span>
         </a>
         <div class="site-header__actions">
           <a class="nav-link nav-link--hide-on-mobile" href="${base}index.html">首页</a>
