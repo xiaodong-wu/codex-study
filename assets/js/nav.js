@@ -3,7 +3,7 @@
   'use strict';
 
   const STORAGE_KEY = 'codex-tutorial-read';
-  const PARTIAL_VERSION = '20260623-speed';
+  const PARTIAL_VERSION = '20260623-speed2';
   const PARTIAL_CACHE_PREFIX = 'codex-tutorial-partial:';
 
   function getReadSet() {
@@ -41,6 +41,11 @@
   function getBasePath() {
     const p = location.pathname;
     return /\/(chapters|appendix|app)\//.test(p) ? '../' : './';
+  }
+
+  function getPartialPath(name) {
+    const isLocal = /^(localhost|127\.0\.0\.1|0\.0\.0\.0)$/.test(location.hostname);
+    return `partials/${name}${isLocal ? '.html' : ''}?v=${PARTIAL_VERSION}`;
   }
 
   function showSidebarFallback(slot, base) {
@@ -81,7 +86,7 @@
   function fetchPartial(name, base) {
     const cached = getCachedPartial(name);
     if (cached) return Promise.resolve(cached);
-    return fetch(`${base}partials/${name}.html?v=${PARTIAL_VERSION}`, { cache: 'force-cache' })
+    return fetch(base + getPartialPath(name), { cache: 'force-cache' })
       .then(r => {
         if (!r.ok) throw new Error(`${name} fetch failed`);
         return r.text();
