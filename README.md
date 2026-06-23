@@ -1,8 +1,8 @@
-# Codex 口语化教程
+# Codex 中文教程
 
 面向零编程基础读者的中文教程网站,现在分成两条路线:
 
-1. **Codex 桌面端 App 教程**:偏图文、偏口语化,适合完全没有编程基础的人先上手。覆盖安装登录、项目/线程、Local/Worktree/Cloud、Review 面板、内置终端、浏览器标注、Computer Use、Appshots、自动化、技能、插件、MCP、设置、快捷键和安全边界。
+1. **Codex 桌面端 App 教程**:偏图文、偏口语化,适合完全没有编程基础的人先上手。覆盖安装登录、项目/线程、Local/Worktree/Cloud、Worktree 隔离、Review 面板、内置终端、浏览器标注、Developer mode、Chrome、Computer Use、Appshots、图片生成、自动化、技能、插件、MCP、网页搜索、Memories、设置、快捷键和安全边界。
 2. **Codex CLI 教程**:保留原来的终端路线,教读者用 OpenAI Codex CLI 做出可上线的产品官网。
 
 ## 本地预览
@@ -87,6 +87,13 @@ python3 -m http.server 8000
 - A5 增加 Triage、耐用自动化提示词、技能/插件/MCP 选择表、AGENTS.md 示例。
 - A6 增加推荐初始设置、命令菜单、权限范围、故障入口、Deep links 和设置体检。
 
+本次最新功能补充:
+- A0 增加 Codex 桌面端最新功能总览:Worktree、线程自动化、内置浏览器、Computer Use、Appshots、Skills、Memories。
+- A2 补充 Worktree 隔离、后台任务、旧 Worktree 清理和 `.worktreeinclude` 的新手解释。
+- A4 补充内置浏览器适用范围、Developer mode 调试边界、Computer Use 权限边界和 `$imagegen` 图片生成示例。
+- A5 补充“自动化 + 技能”组合用法、MCP 共用配置提醒和网页搜索的官方资料核对提示词。
+- A6 补充 Profile、Appearance、Pets、Personalization、Context-aware suggestions、Memories、Web search、Appshots hotkey 和更多快捷键。
+
 ## 继续维护内容
 
 打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A6 的写法:
@@ -99,16 +106,18 @@ python3 -m http.server 8000
 
 ## 官方资料维护
 
-App 教程内容参考 OpenAI Codex 官方手册,本次整理日期为 2026-06-23。Codex App 功能和入口会更新,维护时优先核对:
+App 教程内容参考 OpenAI Codex 官方文档,本次整理日期为 2026-06-23。Codex App 功能和入口会更新,维护时优先核对:
 
-- Codex app features
-- Codex app commands
-- Codex app settings
-- In-app browser
-- Computer Use
-- Automations
-- Worktrees
-- Review
+- Codex app features: <https://developers.openai.com/codex/app/features>
+- Codex app commands: <https://developers.openai.com/codex/app/commands>
+- Codex app settings: <https://developers.openai.com/codex/app/settings>
+- In-app browser: <https://developers.openai.com/codex/app/browser>
+- Computer Use: <https://developers.openai.com/codex/app/computer-use>
+- Automations: <https://developers.openai.com/codex/app/automations>
+- Worktrees: <https://developers.openai.com/codex/app/worktrees>
+- Review: <https://developers.openai.com/codex/app/review>
+- Windows app: <https://developers.openai.com/codex/app/windows>
+- Appshots: <https://developers.openai.com/codex/app/appshots>
 
 ## 部署上线:Cloudflare Pages 免费方案
 

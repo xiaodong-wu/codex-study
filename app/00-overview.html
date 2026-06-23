@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>App 第 00 章 · 先看懂 Codex 桌面端 · Codex 口语化教程</title>
+<title>App 第 00 章 · 先看懂 Codex 桌面端 · Codex 中文教程</title>
 <meta name="description" content="面向零编程基础读者的 Codex 桌面端 App 入门:先看懂它是什么、适合谁、和 CLI 有什么区别,以及这套教程怎么读。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
-<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-app-update" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
 <body data-title="App 第 00 章 · 先看懂 Codex 桌面端" data-chapter="app-00-overview">
@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">内容依据</div>
-        <div class="callout__body">本套 App 教程按 2026 年 6 月 23 日拉取的 OpenAI Codex 官方手册整理。按钮名字和入口可能更新,但核心概念:项目、线程、模式、审查、权限,会比较稳定。</div>
+        <div class="callout__body">本套 App 教程按 2026 年 6 月 23 日核对的 OpenAI Codex 官方文档整理。按钮名字和入口可能更新,但核心概念:项目、线程、模式、审查、权限,会比较稳定。</div>
       </div>
     </div>
 
@@ -47,6 +47,7 @@
       <li>“每天上午帮我检查一次有没有新的报错。”</li>
     </ul>
     <p>它不是只会聊天。它可以读文件、改文件、跑命令、看网页预览、留下改动记录,还可以在你允许的范围内操作浏览器或桌面 App。</p>
+    <p>新版桌面端还把很多“看得见的工作”放进来了:网页标注、Appshots、图片生成、非代码文件预览、自动化、技能、网页搜索、Git 审查和 Worktree 隔离。你不用一口气全会,先知道它们分别解决什么问题。</p>
 
     <h2 id="screen-map">打开后先看哪几块</h2>
     <p>第一次打开 App,别急着找所有按钮。先按这四块看:</p>
@@ -106,7 +107,31 @@
         <h3 class="feature-card__title">技能、插件和 MCP</h3>
         <p class="feature-card__body">技能是固定套路,插件是打包安装,MCP 是连接外部工具的方式。</p>
       </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">网页搜索</h3>
+        <p class="feature-card__body">需要查最新官方资料时,可以让 Codex 搜索网页并附来源,别只靠记忆。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">图片和文件</h3>
+        <p class="feature-card__body">可以生成图片资产,也能预览或创建 PDF、表格、文档、演示文稿等文件。</p>
+      </div>
     </div>
+
+    <h2 id="latest-feature-notes">最新功能先用人话记</h2>
+    <p>截至 2026 年 6 月 23 日,桌面端 App 里最容易被新手忽略的能力,可以先这样理解:</p>
+    <table>
+      <thead><tr><th>功能</th><th>一句话理解</th><th>你该怎么开口</th></tr></thead>
+      <tbody>
+        <tr><td>Worktree</td><td>给 Codex 一份隔离副本,让它大胆试</td><td>“请用 Worktree 试一个新版,先别影响当前文件。”</td></tr>
+        <tr><td>线程自动化</td><td>让同一条对话过一会儿自己醒来继续检查</td><td>“每 10 分钟看看部署是否完成,有结果再提醒我。”</td></tr>
+        <tr><td>内置浏览器评论</td><td>在网页上直接圈问题,比口头描述更准</td><td>“请处理我刚在浏览器里留的评论。”</td></tr>
+        <tr><td>Computer Use</td><td>让 Codex 在你允许后操作桌面软件</td><td>“只复现这个按钮流程,不要点账号和付款相关内容。”</td></tr>
+        <tr><td>Appshots</td><td>把当前窗口发给 Codex 当上下文</td><td>“我刚发了 appshot,先描述你看到了什么。”</td></tr>
+        <tr><td>Skills</td><td>把固定流程变成可重复调用的做法</td><td>“请用适合的技能处理,先说明会按哪些步骤来。”</td></tr>
+        <tr><td>Memories</td><td>记住长期偏好,但不放秘密</td><td>“请记住我喜欢口语化说明,不要记账号或密钥。”</td></tr>
+      </tbody>
+    </table>
+    <p>如果你一时分不清,就把场景说清楚,让 Codex 帮你选:“这个任务更适合 Local、Worktree、Browser 还是 Computer Use?请先解释原因,再行动。”</p>
 
     <h2 id="first-week-scope">第一周先别碰太多</h2>
     <p>Codex App 功能很多,但新手第一周只要练熟三件事:</p>
@@ -115,7 +140,7 @@
       <li><strong>让它小步修改。</strong>一次只改一个区块、一个页面、一个问题。</li>
       <li><strong>每次看 Diff。</strong>看不懂就让它用人话解释,不要直接全盘接受。</li>
     </ol>
-    <p>自动化、MCP、Chrome、Computer Use 这些很强,但可以后面再用。你先把“打开项目 → 发指令 → 看改动 → 验收”这条主线跑顺。</p>
+    <p>自动化、MCP、Chrome、Computer Use、图片生成这些很强,但可以后面再用。你先把“打开项目 → 发指令 → 看改动 → 验收”这条主线跑顺。</p>
 
     <h2 id="how-to-read">这套 App 教程怎么读</h2>
     <p>如果你是零基础,按 A0 到 A6 顺序读。每章只记一个核心动作:</p>
@@ -123,9 +148,9 @@
       <li>A1: 把 App 装好,打开一个项目,发出第一句话。</li>
       <li>A2: 分清项目、线程和三种模式。</li>
       <li>A3: 学会看改动,别盲目接受。</li>
-      <li>A4: 用浏览器和桌面操作处理“我看见了,但说不清”的问题。</li>
-      <li>A5: 把重复工作交给自动化、技能和外部工具。</li>
-      <li>A6: 调设置、记快捷键、守住安全边界。</li>
+      <li>A4: 用浏览器、Appshots 和桌面操作处理“我看见了,但说不清”的问题。</li>
+      <li>A5: 把重复工作交给自动化、技能、网页搜索和外部工具。</li>
+      <li>A6: 调设置、记快捷键、管理记忆和守住安全边界。</li>
     </ol>
 
     <div class="prompt-card">
@@ -184,7 +209,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/nav.js?v=20260623-app-update"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

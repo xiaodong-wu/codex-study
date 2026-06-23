@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>App 第 02 章 · 项目、线程和三种模式 · Codex 口语化教程</title>
+<title>App 第 02 章 · 项目、线程和三种模式 · Codex 中文教程</title>
 <meta name="description" content="用通俗语言解释 Codex App 里的项目、线程、Local、Worktree、Cloud、Goal、语音输入、弹出窗口和 IDE 同步。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
-<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-app-update" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
 <body data-title="App 第 02 章 · 项目、线程和三种模式" data-chapter="app-02-threads">
@@ -88,6 +88,16 @@
     </ul>
     <p>如果你看到 <strong>Hand off</strong>,可以把线程在 Local 和 Worktree 之间移动。你不用理解背后的 Git 操作,只要记住:这是“把活从一张桌子搬到另一张桌子”。</p>
 
+    <h2 id="worktree-details">Worktree 还有几个小细节</h2>
+    <p>Worktree 背后用的是 Git,但零基础读者不用先学一整套 Git 概念。你先记住这几个实际影响:</p>
+    <ul>
+      <li><strong>它更适合大改动。</strong>比如改整站视觉、重做一个页面、同时比较两个方案。</li>
+      <li><strong>它适合后台任务。</strong>自动化或长任务在 Worktree 里跑,不容易撞到你正在看的 Local 文件。</li>
+      <li><strong>它不是永久垃圾桶。</strong>App 会管理自己创建的 Worktree,旧的可能被清理;重要成果要合并、提交或手动保留。</li>
+      <li><strong>被 Git 忽略的本地文件不一定会带过去。</strong>如果某个忽略文件在 Worktree 里也必须存在,可以让 Codex 解释并配置 <code>.worktreeinclude</code>。</li>
+    </ul>
+    <p>新手最省心的说法是:“请用 Worktree 做这个实验,做完先给我看结果和 Diff,不要自动合并。”</p>
+
     <h2 id="handoff">Handoff:把活搬回当前项目</h2>
     <p>Worktree 里做完一版后,你通常有两个选择:</p>
     <ul>
@@ -121,7 +131,7 @@
     <div class="feature-grid">
       <div class="feature-card">
         <h3 class="feature-card__title">搜索线程</h3>
-        <p class="feature-card__body">忘了之前在哪条对话里改过东西?用线程搜索找关键词。</p>
+        <p class="feature-card__body">忘了之前在哪条对话里改过东西?用线程搜索找关键词、任务名或分支名。</p>
       </div>
       <div class="feature-card">
         <h3 class="feature-card__title">语音输入</h3>
@@ -134,6 +144,14 @@
       <div class="feature-card">
         <h3 class="feature-card__title">IDE 同步</h3>
         <p class="feature-card__body">如果你装了 IDE 扩展,App 可以知道你正在看的文件,但不确定时可以关掉对比一下。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Appshots</h3>
+        <p class="feature-card__body">把当前窗口发进线程,适合解释弹窗、设计稿、报错页面这类“看图说话”的问题。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">后台线程</h3>
+        <p class="feature-card__body">想同时推进多个任务时,可以让 Codex 单独开线程,完成后再回到主线汇报。</p>
       </div>
     </div>
 
@@ -176,7 +194,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/nav.js?v=20260623-app-update"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

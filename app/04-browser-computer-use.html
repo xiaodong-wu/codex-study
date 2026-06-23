@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>App 第 04 章 · 浏览器、标注和电脑操作 · Codex 口语化教程</title>
+<title>App 第 04 章 · 浏览器、标注和电脑操作 · Codex 中文教程</title>
 <meta name="description" content="Codex 桌面端 App 的图形化能力说明:内置浏览器、页面标注、Browser Use、Chrome 扩展、Computer Use、Appshots 和图片生成。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
-<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-app-update" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
 <body data-title="App 第 04 章 · 浏览器、标注和电脑操作" data-chapter="app-04-visual">
@@ -47,6 +47,18 @@
       <li>用快捷键打开浏览器面板:macOS 通常是 <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>,Windows 以快捷键设置页为准。</li>
     </ul>
     <p>内置浏览器最适合 <code>localhost</code> 这类本地预览,以及不需要登录的公开页面。它不带你的 Cookie、扩展和登录状态,这反而更安全。</p>
+
+    <h2 id="browser-scope">内置浏览器适合看什么</h2>
+    <table>
+      <thead><tr><th>场景</th><th>适不适合</th><th>原因</th></tr></thead>
+      <tbody>
+        <tr><td>本地开发页面,比如 <code>localhost</code></td><td>很适合</td><td>可以边改边看,还能让 Codex 截图和验证。</td></tr>
+        <tr><td>不需要登录的公开网页</td><td>适合</td><td>安全边界清楚,不用带你的账号状态。</td></tr>
+        <tr><td>本地 HTML / PDF / 图片预览</td><td>适合</td><td>能快速确认排版和视觉问题。</td></tr>
+        <tr><td>必须登录的网站后台</td><td>通常不适合</td><td>内置浏览器没有你的 Cookie 和扩展,需要时再考虑 Chrome。</td></tr>
+        <tr><td>支付、账号、安全设置页面</td><td>谨慎</td><td>这类页面最好你自己操作,Codex 只做解释或检查。</td></tr>
+      </tbody>
+    </table>
 
     <h2 id="annotations">页面标注怎么写才有用</h2>
     <p>标注不要写“改好看点”。这句话太宽。你可以这样写:</p>
@@ -97,6 +109,7 @@
       <li>样式被某条 CSS 覆盖,肉眼看不出来。</li>
     </ul>
     <p>这时可以在 Browser 设置里开启 Developer mode,让 Codex 使用更深的浏览器调试能力。它更强,也更敏感,因为能看控制台、网络、页面结构等内部信息。只在需要诊断时开,并且看清它要访问哪个网站。</p>
+    <p>你可以把 Developer mode 理解成“把浏览器开发者工具借给 Codex”。它适合查证据,比如控制台错误、网络请求、DOM 结构、CSS 覆盖关系。普通排版问题不用一上来就开。</p>
 
     <div class="prompt-card">
       <div class="prompt-card__head">
@@ -129,7 +142,7 @@
       <li>帮你点设置页面、查看某个软件里的状态。</li>
       <li>跨多个 App 做一个短流程。</li>
     </ul>
-    <p>macOS 上通常需要屏幕录制和辅助功能权限。Windows 上要让目标应用保持在当前桌面可见,因为 Codex 会操作前台界面。</p>
+    <p>macOS 上通常需要屏幕录制和辅助功能权限。Windows 上要让目标应用保持在当前桌面可见,因为 Codex 会操作前台界面。它不能替你绕过系统授权、管理员密码或应用自己的安全确认。</p>
 
     <h2 id="computer-use-setup">Computer Use 第一次设置</h2>
     <p>第一次用时,按这个顺序来:</p>
@@ -140,7 +153,7 @@
       <li>让 Codex 只操作一个清晰流程,不要一口气跨很多软件。</li>
       <li>它请求使用某个 App 时,先确认 App 名称是不是你想给的。</li>
     </ol>
-    <p>Windows 上 Computer Use 会操作当前桌面前台,所以它工作时你最好别同时用鼠标键盘抢操作。</p>
+    <p>Windows 上 Computer Use 会操作当前桌面前台,所以它工作时你最好别同时用鼠标键盘抢操作。macOS 上如果你只想让它碰一个 App,优先把权限范围锁窄,别把所有正在打开的软件都暴露给它。</p>
 
     <div class="prompt-card">
       <div class="prompt-card__head">
@@ -168,13 +181,23 @@
     </div>
 
     <h2 id="image-generation">图片生成和非代码文件</h2>
-    <p>Codex App 也能处理不只是代码的任务。你可以让它生成或编辑图片资产,也可以让它产出 PDF、表格、文档、演示文稿这类文件。说需求时要补三样东西:</p>
+    <p>Codex App 也能处理不只是代码的任务。你可以让它生成或编辑图片资产,也可以让它产出 PDF、表格、文档、演示文稿这类文件。想明确让它走图片生成能力,可以在提示词里写 <code>$imagegen</code>。</p>
+    <p>说需求时要补三样东西:</p>
     <ul>
       <li>你要的文件类型:图片、PDF、Excel、PPT 等。</li>
       <li>内容结构:有哪些章节、列、图表或页面。</li>
       <li>验收标准:你最在意排版、数据准确、还是能不能打印。</li>
     </ul>
     <p>如果它生成了文件,让它告诉你保存在哪里,并说明它怎么检查过。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">图片资产示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">$imagegen 请为这个教程首页生成一张干净、明亮、面向中文新手的封面图。不要放代码屏幕,不要放真实品牌 Logo。生成后请告诉我文件路径,并说明适合放在哪个页面位置。</div>
+      <div class="prompt-card__note">图片生成也要讲清风格、用途和禁忌,否则很容易跑偏。</div>
+    </div>
 
     <h2 id="safety">图形化能力的安全边界</h2>
     <ul>
@@ -224,7 +247,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/nav.js?v=20260623-app-update"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

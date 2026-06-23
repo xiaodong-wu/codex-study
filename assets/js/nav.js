@@ -45,7 +45,7 @@
       <div class="site-header__inner">
         <a class="brand" href="${base}index.html">
           <span class="brand__mark">C</span>
-          <span class="brand__text">Codex 口语化教程</span>
+          <span class="brand__text">Codex 中文教程</span>
         </a>
       </div>
       <div class="read-progress"></div>`;
@@ -87,7 +87,7 @@
     const slot = document.getElementById('site-header');
     if (!slot) return Promise.resolve();
     const base = getBasePath();
-    return fetch(base + 'partials/header.html?v=20260623')
+    return fetch(base + 'partials/header.html?v=20260623-app-update')
       .then(r => {
         if (!r.ok) throw new Error('header fetch failed');
         return r.text();

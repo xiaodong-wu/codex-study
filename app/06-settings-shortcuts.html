@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>App 第 06 章 · 设置、快捷键和安全边界 · Codex 口语化教程</title>
+<title>App 第 06 章 · 设置、快捷键和安全边界 · Codex 中文教程</title>
 <meta name="description" content="Codex 桌面端 App 设置总览:通用设置、个人资料、外观、Git、浏览器、Computer Use、快捷键、Slash 命令和权限安全边界。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260623" />
-<link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-left" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-app-update" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
 <body data-title="App 第 06 章 · 设置、快捷键和安全边界" data-chapter="app-06-settings">
@@ -48,6 +48,17 @@
       </tbody>
     </table>
 
+    <h2 id="newer-settings">几个新版设置先这样理解</h2>
+    <p>Settings 里有些入口看起来不影响写代码,但会明显影响日常体验:</p>
+    <ul>
+      <li><strong>Profile</strong>:可以看自己的使用概览、连续使用记录、邀请入口。它不影响项目结果,但适合了解自己平时怎么用 Codex。</li>
+      <li><strong>Appearance</strong>:主题、强调色、字体都在这里。Pets 也在这一类,喜欢就开,不喜欢完全可以关掉。</li>
+      <li><strong>Personalization</strong>:决定 Codex 更友好还是更简洁,也可以写个人偏好。比如“解释术语时先用生活例子”。</li>
+      <li><strong>Context-aware suggestions</strong>:App 可能根据当前项目给建议。新手可以参考,但不要把建议当命令。</li>
+      <li><strong>Memories</strong>:适合记长期偏好,比如“我喜欢中文口语化教程”。不要保存密码、密钥、客户资料。</li>
+    </ul>
+    <p>简单说:项目规则放 <code>AGENTS.md</code>,个人偏好放 Personalization / Memories,临时要求就写在当前线程里。</p>
+
     <h2 id="starter-settings">零基础推荐初始设置</h2>
     <p>如果你不知道怎么配,先按这个方向来:</p>
     <table>
@@ -74,8 +85,11 @@
         <tr><td>新建线程</td><td><kbd>Cmd</kbd>+<kbd>N</kbd></td><td>开一条新任务线。</td></tr>
         <tr><td>搜索线程</td><td><kbd>Cmd</kbd>+<kbd>G</kbd></td><td>找过去的对话。</td></tr>
         <tr><td>线程内搜索</td><td><kbd>Cmd</kbd>+<kbd>F</kbd></td><td>在当前对话里找字。</td></tr>
+        <tr><td>打开 Diff 面板</td><td><kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>B</kbd></td><td>快速看文件改动。</td></tr>
         <tr><td>切换终端</td><td><kbd>Cmd</kbd>+<kbd>J</kbd></td><td>打开/收起内置终端。</td></tr>
+        <tr><td>清空终端</td><td><kbd>Ctrl</kbd>+<kbd>L</kbd></td><td>输出太乱时清屏。</td></tr>
         <tr><td>切换侧边栏</td><td><kbd>Cmd</kbd>+<kbd>B</kbd></td><td>让界面更宽。</td></tr>
+        <tr><td>切换前后线程</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>[</kbd> / <kbd>]</kbd></td><td>多线程工作时快速跳转。</td></tr>
         <tr><td>语音输入</td><td><kbd>Ctrl</kbd>+<kbd>M</kbd></td><td>先说出来,再编辑发送。</td></tr>
       </tbody>
     </table>
@@ -105,6 +119,8 @@
       <li><strong>New Thread</strong>:新建线程。</li>
       <li><strong>Toggle Terminal</strong>:打开/收起终端。</li>
       <li><strong>Force Reload Skills</strong>:技能没刷新时重新加载。</li>
+      <li><strong>Open Diff</strong>:打开改动面板。</li>
+      <li><strong>Wake Pet / Tuck Away Pet</strong>:如果你开启了 Pets,可以唤醒或收起它。</li>
       <li><strong>Feedback</strong>:提交问题反馈。</li>
     </ul>
     <p>命令菜单就像 App 的搜索框。忘了入口,先搜名字,别在界面里乱找。</p>
@@ -171,6 +187,14 @@
         <h3 class="feature-card__title">Pets</h3>
         <p class="feature-card__body">可选的状态小组件。喜欢就开,不影响核心工作流。</p>
       </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Web search</h3>
+        <p class="feature-card__body">需要最新资料时可用,但写教程时要让 Codex 附官方来源。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Appshots hotkey</h3>
+        <p class="feature-card__body">macOS 可设置窗口截图热键,把当前窗口作为上下文发给线程。</p>
+      </div>
     </div>
 
     <h2 id="deep-links">Deep links:知道有它就行</h2>
@@ -225,7 +249,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260623"></script>
+<script src="../assets/js/nav.js?v=20260623-app-update"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>
