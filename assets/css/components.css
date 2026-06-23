@@ -484,7 +484,7 @@
   width: 100%;
   max-width: none;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(288px, 320px);
+  grid-template-columns: minmax(0, 1fr) minmax(288px, 380px);
   gap: 52px;
   align-items: center;
   padding: 36px 0 34px;
@@ -496,7 +496,7 @@
   min-width: 0;
 }
 .hero__copy {
-  max-width: 680px;
+  max-width: 800px;
 }
 .hero__side {
   align-self: stretch;
