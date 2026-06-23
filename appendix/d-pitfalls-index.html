@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>附录 D · 常见踩坑全集 · Codex 口语化编程教程</title>
-<meta name="description" content="Codex 中文教程常见踩坑全集:环境安装、登录网络、协作使用、部署、域名、DNS 和 AI 协作问题的排错清单。" />
+<title>附录 D · 常见踩坑全集 · Codex 中文教程</title>
+<meta name="description" content="Codex 中文教程常见踩坑全集:环境安装、登录网络、Codex App、CLI、Worktree、MCP、浏览器、部署、域名和 AI 协作问题的可搜索排错清单。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260623-brand-logo" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-hero-wide" />
@@ -21,6 +21,62 @@
     <h1>常见踩坑全集索引</h1>
     <p class="chapter-lede">每章末尾的「常见踩坑」卡片散落在各处,这里按问题类型聚合成一张速查地图。你卡住时,先到这里按现象找对应小节。</p>
 
+    <style>
+      .pitfall-search {
+        margin: 1.6rem 0;
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow-1);
+      }
+      .pitfall-search__label {
+        display: block;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .pitfall-search__input {
+        width: 100%;
+        min-height: 46px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 12px;
+        font: inherit;
+        color: var(--ink);
+        background: white;
+      }
+      .pitfall-search__input:focus {
+        outline: 2px solid color-mix(in srgb, var(--primary) 24%, transparent);
+        border-color: var(--primary);
+      }
+      .pitfall-search__hint {
+        margin: 8px 0 0;
+        color: var(--ink-muted);
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+      .pitfall-search__count {
+        margin-top: 8px;
+        color: var(--ink-soft);
+        font-size: 0.9rem;
+      }
+      .pitfall-no-results {
+        margin: 1rem 0;
+        padding: 12px 14px;
+        border: 1px dashed var(--border);
+        border-radius: 8px;
+        color: var(--ink-soft);
+        background: var(--surface-2);
+      }
+      .pitfall mark {
+        background: color-mix(in srgb, var(--accent) 22%, transparent);
+        color: inherit;
+        padding: 0 2px;
+        border-radius: 3px;
+      }
+    </style>
+
     <div class="chapter-summary">
       <span class="chapter-summary__icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 2 4-6"/></svg>
@@ -30,6 +86,14 @@
         先看“现象”是不是对得上,再看“最常见原因”,最后照“怎么处理”做。不要一急就重装全家桶,很多问题只是路径、缓存、权限或 DNS 等待。
       </div>
     </div>
+
+    <div class="pitfall-search" role="search">
+      <label class="pitfall-search__label" for="pitfall-search-input">搜索相关问题</label>
+      <input class="pitfall-search__input" id="pitfall-search-input" type="search" autocomplete="off" placeholder="输入关键词: 登录 / model not found / worktree / 沙盒 / Windows / MCP / 404" />
+      <p class="pitfall-search__hint">支持中英文关键词。比如搜 <code>model</code>、<code>worktree</code>、<code>权限</code>、<code>白屏</code>、<code>Computer Use</code>。</p>
+      <div class="pitfall-search__count" id="pitfall-search-count" aria-live="polite"></div>
+    </div>
+    <div class="pitfall-no-results" id="pitfall-no-results" hidden>没找到完全匹配的问题。换个更短的关键词试试,比如只搜“登录”“权限”“404”“终端”。</div>
 
     <h2 id="env">环境与安装类</h2>
     <div class="pitfall-group">
@@ -151,6 +215,244 @@
             <dd>第一次先耐心等。长期每次都慢,再跑 <code>codex doctor</code> 看诊断报告,或换一个更小的项目目录启动。</dd>
             <dt>相关章节</dt>
             <dd><a href="../appendix/c-cli-cheatsheet.html#install">附录 C · codex doctor</a></dd>
+          </dl>
+        </div>
+      </details>
+    </div>
+
+    <h2 id="codex-common-online">Codex App / CLI 高频问题</h2>
+    <div class="pitfall-group">
+      <details class="pitfall" data-keywords="404 model not found gpt-5.5 gpt-5.4 模型不可用 selected model unavailable">
+        <summary>模型报 <code>404</code>、<code>model not found</code>,但换别的模型能跑</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>当前账号、地区、组织策略或这一个 Codex 版本暂时拿不到你选的模型;也可能是配置里手动写了一个过新的模型名。</dd>
+            <dt>怎么处理</dt>
+            <dd>先切回默认模型或上一个可用模型,再更新 Codex App / CLI。CLI 里用 <code>codex --version</code> 看版本;桌面端可以在设置里更新。不要一上来改一堆配置,先确认是不是“只有某个模型不行”。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a> 中有模型 404 与连接类反馈;版本差异可参考 <a href="https://developers.openai.com/codex/app/troubleshooting">Codex App Troubleshooting</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="login auth account permission logout device auth 反复登录 未登录 权限不够">
+        <summary>登录成功后仍提示未登录、权限不够,或者反复要求登录</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>登错账号、会话过期、公司/团队管理员没开放 Codex,或者把 API Key 登录和 ChatGPT 账号登录混在一起理解了。</dd>
+            <dt>怎么处理</dt>
+            <dd>先确认浏览器里登录的就是要用 Codex 的账号。CLI 可先 <code>codex logout</code> 再重新登录;远程机器或浏览器打不开时用设备码登录。团队账号要请管理员确认 Codex 和相关功能是否已开放。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a> 中常见 auth/login 标签;自动化令牌与登录差异可参考 <a href="https://developers.openai.com/codex/auth">Codex Authentication</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="stuck thinking spinner send button windows 卡住 转圈 new conversation automation">
+        <summary>Codex App 一直转圈、发送按钮卡住,尤其是 Windows 上更明显</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>线程在等审批、终端面板卡住、网络连接不稳、项目太大,也可能是某个桌面端版本的 Windows 问题。</dd>
+            <dt>怎么处理</dt>
+            <dd>先看有没有审批弹窗。再打开终端跑 <code>git status</code> 或 <code>pwd</code> 这种轻量命令确认线程还活着。仍然不动时,新开一个更小范围的线程,或者重启 App。反复复现就用 <code>/</code> 发送反馈并附日志。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/troubleshooting">Codex App Troubleshooting</a> 的 stuck states、terminal issues; <a href="https://github.com/openai/codex/issues">GitHub issues</a> 中也有 Windows 转圈反馈。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="status outage elevated errors at capacity 服务中断 容量不足">
+        <summary>突然大面积报错、提示 at capacity 或一直连接失败</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>不一定是你电脑的问题,可能是 OpenAI 服务、某个模型或某个 Codex 组件正在降级。</dd>
+            <dt>怎么处理</dt>
+            <dd>先看 <a href="https://status.openai.com/">OpenAI Status</a> 的 Codex 状态。如果状态页正在提示问题,就先保存现场、减少反复重试,等服务恢复后再继续。赶时间时可以切模型、切 CLI/App 表面做交叉验证。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://status.openai.com/">OpenAI Status</a> 会展示 Codex 组件状态和历史可用性。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="version mismatch cli app feature missing command not found 按钮找不到 版本不一致">
+        <summary>教程里的按钮或命令找不到,但别人截图里有</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>Codex App 和 Codex CLI 可能在不同时间拿到新功能;同一个功能也可能先在 CLI、App 或某个平台灰度。</dd>
+            <dt>怎么处理</dt>
+            <dd>先更新 App 和 CLI。CLI 用 <code>codex --version</code>;桌面端可在设置或应用关于页查看。找不到按钮时,先用 Command menu、设置搜索或直接问 Codex:“我当前版本里这个功能在哪里?”</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/troubleshooting">Codex App Troubleshooting</a> 说明 App 与 CLI 可能依赖不同版本。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="terminal stuck cmd+j integrated terminal 卡住 终端 无输出">
+        <summary>内置终端看起来卡住,不知道能不能停</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>有时是开发服务器正常运行,有时是安装依赖、测试命令或网络请求真的卡住了。</dd>
+            <dt>怎么处理</dt>
+            <dd>先判断命令类型:如果是 <code>npm run dev</code> 这类服务,一直占着终端是正常的;如果安装或测试 10 分钟没输出,可以 <kbd>Ctrl</kbd>+<kbd>C</kbd> 中断。桌面端终端面板可关闭再用 <kbd>Cmd</kbd>+<kbd>J</kbd> 打开。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/troubleshooting">Codex App Troubleshooting</a> 的 terminal issues。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="worktree env .env .env.local worktreeinclude ignored files dependency dependency missing">
+        <summary>Worktree 里缺 <code>.env</code>、依赖或本地配置,代码跑不起来</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>Worktree 是另一个 checkout,默认有 Git 跟踪的文件;被 <code>.gitignore</code> 忽略的 <code>.env</code>、密钥、本地配置不会自动带过去。</dd>
+            <dt>怎么处理</dt>
+            <dd>不要把密钥提交进 Git。需要给 Codex-managed worktree 复制安全的本地配置时,在项目根目录加 <code>.worktreeinclude</code>,只列必须复制的忽略文件,比如 <code>.env.local</code>。依赖缺失就给 worktree 跑一次安装脚本或配置 Local Environment。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/worktrees">Codex App Worktrees</a> 的 <code>.worktreeinclude</code> 说明。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="review last turn changes git diff staged unstaged panel 不是 codex 改的 文件">
+        <summary>Review 面板里出现“不是 Codex 改的”文件</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>Review 面板按 Git 状态展示变更,它会看到你之前没提交的文件,不只显示 Codex 这一次改的内容。</dd>
+            <dt>怎么处理</dt>
+            <dd>切到 staged / unstaged 或 “Last turn changes” 视图看本轮改动。开始大任务前尽量先提交或保持工作区干净,这样 Codex 改了什么会更清楚。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/troubleshooting">Codex App Troubleshooting</a> 的 review panel FAQ;另见 <a href="https://developers.openai.com/codex/app/review">Review</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="automation many worktrees disk space archive pin 自动化 后台 worktree 占空间">
+        <summary>自动化跑出很多后台 Worktree,磁盘空间越来越大</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>频繁自动化会创建背景 worktree;被置顶、正在运行或设为 permanent 的 worktree 不会轻易清掉。</dd>
+            <dt>怎么处理</dt>
+            <dd>归档不需要的自动化运行,不要随手 pin 每个结果。长期项目可以在设置里检查 worktree 保留数量,重要 worktree 再转成 permanent。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/troubleshooting">Codex App Troubleshooting</a> 的 automations FAQ;另见 <a href="https://developers.openai.com/codex/app/worktrees">Worktrees cleanup</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="in-app browser cookie login chrome signed-in website localhost 内置浏览器 登录态">
+        <summary>内置浏览器打不开登录后的后台,或看不到 Chrome 里的登录态</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>Codex 内置浏览器适合预览本地、公开或不需要登录的页面;它不是你的 Chrome 个人资料,不会天然共享 Chrome Cookie。</dd>
+            <dt>怎么处理</dt>
+            <dd>本地开发页优先用 <code>@Browser</code> 和 <code>localhost</code>。必须操作已登录网站时,用 Chrome 扩展和 <code>@Chrome</code>,并只给当前任务需要的网站权限。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/browser">In-app browser</a> 说明本地预览和登录网站的边界;登录网站参考 <a href="https://developers.openai.com/codex/app/chrome-extension">Chrome extension</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="chrome extension connected permission allowlist blocked debugger @Chrome 扩展 连接">
+        <summary>Chrome 扩展显示已安装,但 Codex 还是操作不了页面</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>Chrome 个人资料不对、扩展被禁用、网站没有授权、任务没点名 <code>@Chrome</code>,或组织策略限制了浏览器能力。</dd>
+            <dt>怎么处理</dt>
+            <dd>确认正在用安装扩展的 Chrome Profile,扩展处于启用状态。重新给目标域名授权,再在提示词里明确写 <code>@Chrome</code> 和要操作的网址。涉及隐私页面时,只开放必要站点。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/chrome-extension">Codex Chrome extension</a> 的权限与数据安全说明。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="computer use screen recording accessibility sandboxPolicy windows app permission @Computer 电脑使用 权限">
+        <summary>Computer Use 看不到桌面 App、点不了,或报权限 / <code>sandboxPolicy</code> 相关错误</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>插件没装、App 没被允许、macOS 没给 Screen Recording / Accessibility,Windows 上目标窗口不在前台;少数情况下是版本或系统兼容问题。</dd>
+            <dt>怎么处理</dt>
+            <dd>先在 Codex 设置里安装并启用 Computer Use。macOS 去系统设置授权屏幕录制和辅助功能;Windows 保持目标 App 可见。若精确报 <code>sandboxPolicy</code> 或同类内部错误,先更新 App,再按官方建议提交 issue 和日志。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/computer-use">Computer Use</a> 权限说明; <a href="https://github.com/openai/codex/issues">GitHub issues</a> 中有 Windows Computer Use 相关反馈。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="appshots hotkey both command screenshot accessibility screen system audio recording 截图 快捷键">
+        <summary>Appshots 快捷键没反应,截图传不到线程里</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>Appshots 是 macOS 桌面端能力,需要前台窗口和系统权限;有些 App 只能给可见截图,拿不到完整离屏文本。</dd>
+            <dt>怎么处理</dt>
+            <dd>确认是在 macOS Codex App 里用,按两个 Command 键或你设置的热键。系统设置里检查 Screen &amp; System Audio Recording 与 Accessibility。仍不行时,先用普通截图作为附件。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/appshots">Appshots</a> 的权限与排错说明。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="mcp tool not found server disconnected integration config env tool_search 插件 工具不可用">
+        <summary>MCP 工具不可用、<code>tool not found</code>,或服务一直连不上</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>MCP server 没装好、配置路径不对、环境变量缺失、App/CLI 还没重新加载,或公司策略不允许这个 MCP。</dd>
+            <dt>怎么处理</dt>
+            <dd>先用 Codex 设置里的 Integrations &amp; MCP 或 CLI 的 MCP 状态命令确认它有没有被识别。再检查 server 命令、环境变量和授权。改完配置后重启 Codex 或新开线程。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/mcp">Codex MCP</a> 和 <a href="https://developers.openai.com/codex/concepts/customization#mcp">Customization: MCP</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="sandbox network access blocked approval permissions 沙盒 联网 被拒绝 request approval">
+        <summary>命令联网被拒绝,提示 sandbox 或 network blocked</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>Codex 默认会限制命令的网络访问,这是为了避免工具随便连外网或被网页内容诱导执行危险操作。</dd>
+            <dt>怎么处理</dt>
+            <dd>让 Codex 先说明“要访问哪个域名、为什么必须联网、能不能离线做”。确认合理后再批准这一次或配置更窄的域名规则。不要为了省事直接长期开最大权限。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/agent-approvals-security">Agent approvals &amp; security</a> 和 <a href="https://developers.openai.com/codex/permissions">Permissions</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="context lost switch model archived threads search history compaction 长线程 丢上下文 搜不到">
+        <summary>长线程突然不记得前面内容,或旧线程/项目历史搜不到</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>长线程会触发上下文压缩;切模型、归档、侧边栏过滤、项目筛选也会让你感觉“内容不见了”。</dd>
+            <dt>怎么处理</dt>
+            <dd>切模型或大改需求前,先让 Codex 总结当前状态。找不到线程时,切侧边栏过滤为 Chronological,再去 Settings 里看 archived chats / archived threads。搜索不到时换更短关键词。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/app/troubleshooting">Codex App Troubleshooting</a> 的 archived threads 与 sidebar filter; <a href="https://github.com/openai/codex/issues">GitHub issues</a> 中有 context/search 类反馈。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="github gh cli pull request remote auth status repo permission 推送 PR 仓库">
+        <summary>GitHub、PR 或 <code>gh</code> 功能用不了</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>GitHub CLI 没装或没登录,本地仓库没 remote,当前账号没有仓库权限,或 Codex 运行在没有你 Chrome/GitHub 登录态的环境。</dd>
+            <dt>怎么处理</dt>
+            <dd>先查 <code>gh auth status</code> 和 <code>git remote -v</code>。能在浏览器打开仓库不代表 CLI 已授权。团队仓库还要确认你有 push / PR 权限。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/integrations/github">Codex GitHub integration</a> 和 <a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="malicious npm package fake codex package token credentials supply chain 安全 假包">
+        <summary>网上搜到第三方 Codex 包或 App,不知道能不能装</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>热门工具常会出现名字相似的第三方包、假客户端或“增强版”工具,新手很容易把它们当官方软件。</dd>
+            <dt>怎么处理</dt>
+            <dd>只从 OpenAI 官方下载页、官方文档或明确的 <code>@openai/codex</code> 包名安装。任何要求你粘贴 OpenAI 登录令牌、刷新令牌、完整 Cookie 的第三方工具都先停手。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="https://developers.openai.com/codex/cli">Codex CLI 官方入口</a>; 第三方假包风险可在安全新闻和 npm/GitHub 页面交叉确认。</dd>
           </dl>
         </div>
       </details>
@@ -419,6 +721,19 @@
       </details>
     </div>
 
+    <h2 id="source-notes">资料来源与维护口径</h2>
+    <p>本页新增的 Codex App / CLI 高频问题,主要参考 OpenAI 官方 Codex 文档、OpenAI Status,以及 OpenAI Codex GitHub issue 列表里反复出现的公开反馈。教程会把官方事实和用户反馈分开处理:官方文档能确认的写成明确步骤,GitHub issue 里看到的现象只整理成排查线索。</p>
+    <ul>
+      <li><a href="https://developers.openai.com/codex/app/troubleshooting">OpenAI Codex App Troubleshooting</a></li>
+      <li><a href="https://developers.openai.com/codex/app/worktrees">OpenAI Codex App Worktrees</a></li>
+      <li><a href="https://developers.openai.com/codex/app/browser">OpenAI Codex In-app browser</a></li>
+      <li><a href="https://developers.openai.com/codex/app/chrome-extension">OpenAI Codex Chrome extension</a></li>
+      <li><a href="https://developers.openai.com/codex/app/computer-use">OpenAI Codex Computer Use</a></li>
+      <li><a href="https://developers.openai.com/codex/mcp">OpenAI Codex MCP</a></li>
+      <li><a href="https://status.openai.com/">OpenAI Status</a></li>
+      <li><a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a></li>
+    </ul>
+
     <div class="chapter-summary chapter-summary--end">
       <span class="chapter-summary__icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -452,6 +767,7 @@
 <script src="../assets/js/nav.js?v=20260623-brand-logo"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
+<script src="../assets/js/pitfall-search.js?v=20260623-pitfall-search"></script>
 <script src="../assets/js/code.js"></script>
 </body>
 </html>
