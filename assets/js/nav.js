@@ -3,7 +3,7 @@
   'use strict';
 
   const STORAGE_KEY = 'codex-tutorial-read';
-  const PARTIAL_VERSION = '20260623-brand-logo';
+  const PARTIAL_VERSION = '20260703-latest-plugins';
   const PARTIAL_CACHE_PREFIX = 'codex-tutorial-partial:';
 
   function getReadSet() {

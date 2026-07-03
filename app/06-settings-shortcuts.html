@@ -6,7 +6,7 @@
 <title>App 第 06 章 · 设置、快捷键和安全边界 · Codex 中文教程</title>
 <meta name="description" content="Codex 桌面端 App 设置总览:通用设置、个人资料、外观、Git、浏览器、Computer Use、快捷键、Slash 命令和权限安全边界。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260623-brand-logo" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260703-latest-plugins" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -29,6 +29,7 @@
     </figure>
 
     <h2 id="settings-map">Settings 里每块是干什么的</h2>
+    <p>有些能力会在 Settings 里,有些会在侧边栏、命令菜单或单独的 Plugins / Connections 入口里。新手不用纠结入口归类,先记住“出问题该去哪里找”。</p>
     <table>
       <thead><tr><th>设置项</th><th>通俗解释</th><th>新手什么时候会用</th></tr></thead>
       <tbody>
@@ -38,8 +39,10 @@
         <tr><td>Notifications</td><td>任务完成提醒</td><td>Codex 跑久任务,你想收到通知时。</td></tr>
         <tr><td>Agent configuration</td><td>模型、审批、沙盒等代理行为</td><td>想控制它能做什么、何时问你时。</td></tr>
         <tr><td>Appearance</td><td>主题、字体、颜色和可选宠物</td><td>看久了累,或想换外观时。</td></tr>
+        <tr><td>Plugins</td><td>安装、查看和管理 Codex 扩展能力</td><td>想用 Sites、Security、Gmail、Drive、Slack 等能力时。</td></tr>
         <tr><td>Git</td><td>分支命名、提交信息、PR 描述偏好</td><td>团队项目想统一风格时。</td></tr>
         <tr><td>Integrations & MCP</td><td>连接外部工具和 MCP 服务</td><td>需要 GitHub、Figma、内部系统等上下文时。</td></tr>
+        <tr><td>Connections</td><td>远程设备、SSH 主机等连接入口</td><td>想用手机、另一台设备或远程机器继续工作时。</td></tr>
         <tr><td>Browser</td><td>浏览器插件、允许/阻止网站、开发者模式</td><td>要让 Codex 检查网页或用 Chrome 时。</td></tr>
         <tr><td>Computer Use</td><td>桌面应用操作权限</td><td>要让 Codex 看见并操作某个 App 时。</td></tr>
         <tr><td>Personalization</td><td>个性、个人说明、自定义偏好</td><td>想让 Codex 更简洁、更友好或按你习惯说话时。</td></tr>
@@ -55,7 +58,9 @@
       <li><strong>Appearance</strong>:主题、强调色、字体都在这里。Pets 也在这一类,喜欢就开,不喜欢完全可以关掉。</li>
       <li><strong>Personalization</strong>:决定 Codex 更友好还是更简洁,也可以写个人偏好。比如“解释术语时先用生活例子”。</li>
       <li><strong>Context-aware suggestions</strong>:App 可能根据当前项目给建议。新手可以参考,但不要把建议当命令。</li>
-      <li><strong>Memories</strong>:适合记长期偏好,比如“我喜欢中文口语化教程”。不要保存密码、密钥、客户资料。</li>
+      <li><strong>Memories / Chronicle</strong>:Memories 适合记长期偏好;Chronicle 可用时会借助最近屏幕上下文生成记忆,但隐私风险更高,看敏感内容时要暂停。</li>
+      <li><strong>Plugins</strong>:安装后最好新开线程使用。外部 App 授权不确定时,先让 Codex 解释它要读什么、写什么。</li>
+      <li><strong>Connections</strong>:远程连接会使用主机上的项目、文件、凭据、权限、插件和本地工具,所以主机要保持在线并受信任。</li>
     </ul>
     <p>简单说:项目规则放 <code>AGENTS.md</code>,个人偏好放 Personalization / Memories,临时要求就写在当前线程里。</p>
 
@@ -71,6 +76,8 @@
         <tr><td>Computer Use allowlist</td><td>只允许你明确要用的 App</td><td>桌面操作权限更敏感,范围越小越好。</td></tr>
         <tr><td>Personality</td><td>Friendly 或 Pragmatic</td><td>新手通常更适合解释清楚一点;想简洁就 Pragmatic。</td></tr>
         <tr><td>Memories</td><td>先只放偏好,不放秘密</td><td>能改善体验,但不该保存敏感信息。</td></tr>
+        <tr><td>Chronicle</td><td>先了解风险,需要时再开</td><td>它会用屏幕上下文,会议、客户资料、账号页面前要暂停。</td></tr>
+        <tr><td>Plugins</td><td>按任务安装,不用全装</td><td>插件越多不等于越好,授权越清楚越安心。</td></tr>
       </tbody>
     </table>
 
@@ -106,6 +113,7 @@
         <tr><td><code>/status</code></td><td>看线程状态</td><td>想知道线程 ID、上下文、限制时。</td></tr>
         <tr><td><code>/init</code></td><td>生成 AGENTS.md</td><td>想给项目留下长期规则时。</td></tr>
         <tr><td><code>/mcp</code></td><td>查看 MCP 状态</td><td>外部工具连接不对劲时。</td></tr>
+        <tr><td><code>/plugins</code></td><td>查看或管理插件</td><td>想确认某个插件是否安装时。</td></tr>
         <tr><td><code>/feedback</code></td><td>提交反馈</td><td>App 出现问题,想给官方反馈时。</td></tr>
       </tbody>
     </table>
@@ -177,7 +185,7 @@
       </div>
       <div class="feature-card">
         <h3 class="feature-card__title">Remote connections</h3>
-        <p class="feature-card__body">连接远程机器或设备。等你有远程开发需求再学。</p>
+        <p class="feature-card__body">连接手机、另一台设备或 SSH 主机。远程会沿用主机项目、权限、插件和本地工具。</p>
       </div>
       <div class="feature-card">
         <h3 class="feature-card__title">Developer mode</h3>
@@ -194,6 +202,14 @@
       <div class="feature-card">
         <h3 class="feature-card__title">Appshots hotkey</h3>
         <p class="feature-card__body">macOS 可设置窗口截图热键,把当前窗口作为上下文发给线程。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Fast mode</h3>
+        <p class="feature-card__body">让支持模型更快回应,但消耗更多额度。轻量急活可以用,长任务先想清楚成本。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Chronicle</h3>
+        <p class="feature-card__body">用屏幕上下文补充记忆。隐私和提示注入风险更高,不用时就暂停或关闭。</p>
       </div>
     </div>
 
@@ -225,7 +241,7 @@
       </span>
       <div class="chapter-summary__body">
         <strong>你已经会了</strong>
-        用 Codex App 打开项目、创建线程、选择工作模式、看 Diff、跑终端、用浏览器标注、理解 Computer Use、设置自动化和技能,并且知道权限应该怎么保守地给。
+        用 Codex App 打开项目、创建线程、选择工作模式、看 Diff、跑终端、用浏览器标注、理解 Computer Use、设置自动化和技能,并且知道权限应该怎么保守地给。最后再看 A7,把插件和新能力串起来。
       </div>
     </div>
 
@@ -234,9 +250,9 @@
         <div class="chapter-nav__dir">上一章</div>
         <div class="chapter-nav__title">← 自动化、技能和外部工具</div>
       </a>
-      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html">
-        <div class="chapter-nav__dir">继续学习</div>
-        <div class="chapter-nav__title">进入 CLI 教程 →</div>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./07-plugins.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">插件功能和最新能力 →</div>
       </a>
     </nav>
   </article>
@@ -249,7 +265,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260623-brand-logo"></script>
+<script src="../assets/js/nav.js?v=20260703-latest-plugins"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

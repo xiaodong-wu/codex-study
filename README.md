@@ -26,7 +26,7 @@ python3 -m http.server 8000
 ├── 404.html
 ├── _headers                         Cloudflare Pages 响应头配置
 ├── wrangler.toml                    Cloudflare Pages / Wrangler 配置
-├── app/                             Codex 桌面端 App 教程 7 章(A0-A6)
+├── app/                             Codex 桌面端 App 教程 8 章(A0-A7)
 ├── chapters/                        Codex CLI 教程 12 章(00-11)
 ├── appendix/                        附录 4 篇(A-D)
 ├── partials/                        全站共用 sidebar / header / footer
@@ -57,6 +57,7 @@ python3 -m http.server 8000
 - App A4 · 浏览器、标注和电脑操作
 - App A5 · 自动化、技能和外部工具
 - App A6 · 设置、快捷键和安全边界
+- App A7 · 插件功能和最新能力
 
 完整 CLI 正文章节:
 - 第 00 章 · 写在前面
@@ -86,6 +87,7 @@ python3 -m http.server 8000
 - A4 增加内置浏览器入口、标注流程、Developer mode、Chrome 权限、Computer Use 设置、Appshots 步骤。
 - A5 增加 Triage、耐用自动化提示词、技能/插件/MCP 选择表、AGENTS.md 示例。
 - A6 增加推荐初始设置、命令菜单、权限范围、故障入口、Deep links 和设置体检。
+- A7 新增插件专章,说明插件是什么、怎么安装、已知插件能做什么、怎样控制授权和写入风险。
 
 本次最新功能补充:
 - A0 增加 Codex 桌面端最新功能总览:Worktree、线程自动化、内置浏览器、Computer Use、Appshots、Skills、Memories。
@@ -93,10 +95,11 @@ python3 -m http.server 8000
 - A4 补充内置浏览器适用范围、Developer mode 调试边界、Computer Use 权限边界和 `$imagegen` 图片生成示例。
 - A5 补充“自动化 + 技能”组合用法、MCP 共用配置提醒和网页搜索的官方资料核对提示词。
 - A6 补充 Profile、Appearance、Pets、Personalization、Context-aware suggestions、Memories、Web search、Appshots hotkey 和更多快捷键。
+- A7 补充 Codex Security、Sites、Gmail、Google Drive、Slack、Record & Replay、Fast mode、Chronicle、Remote connections 和常见连接能力。
 
 ## 继续维护内容
 
-打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A6 的写法:
+打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A7 的写法:
 
 - 每章 5-8 个 H2 小节
 - 每章至少一个 `.exercise` 或 `.prompt-card`
@@ -106,7 +109,7 @@ python3 -m http.server 8000
 
 ## 官方资料维护
 
-App 教程内容参考 OpenAI Codex 官方文档,本次整理日期为 2026-06-23。Codex App 功能和入口会更新,维护时优先核对:
+App 教程内容参考 OpenAI Codex 官方文档,本次整理日期为 2026-07-03。Codex App 功能和入口会更新,维护时优先核对:
 
 - Codex app features: <https://developers.openai.com/codex/app/features>
 - Codex app commands: <https://developers.openai.com/codex/app/commands>
@@ -118,6 +121,14 @@ App 教程内容参考 OpenAI Codex 官方文档,本次整理日期为 2026-06-2
 - Review: <https://developers.openai.com/codex/app/review>
 - Windows app: <https://developers.openai.com/codex/app/windows>
 - Appshots: <https://developers.openai.com/codex/app/appshots>
+- Plugins: <https://developers.openai.com/codex/plugins>
+- Sites: <https://developers.openai.com/codex/sites>
+- Record & Replay: <https://developers.openai.com/codex/record-and-replay>
+- Codex Security: <https://developers.openai.com/codex/security>
+- Codex models: <https://developers.openai.com/codex/models>
+- Codex speed / Fast mode: <https://developers.openai.com/codex/speed>
+- Chronicle: <https://developers.openai.com/codex/memories/chronicle>
+- Remote connections: <https://developers.openai.com/codex/remote-connections>
 
 ## 部署上线:Cloudflare Pages 免费方案
 

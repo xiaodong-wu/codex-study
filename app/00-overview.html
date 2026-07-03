@@ -6,7 +6,7 @@
 <title>App 第 00 章 · 先看懂 Codex 桌面端 · Codex 中文教程</title>
 <meta name="description" content="面向零编程基础读者的 Codex 桌面端 App 入门:先看懂它是什么、适合谁、和 CLI 有什么区别,以及这套教程怎么读。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260623-brand-logo" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260703-latest-plugins" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">内容依据</div>
-        <div class="callout__body">本套 App 教程按 2026 年 6 月 23 日核对的 OpenAI Codex 官方文档整理。按钮名字和入口可能更新,但核心概念:项目、线程、模式、审查、权限,会比较稳定。</div>
+        <div class="callout__body">本套 App 教程按 2026 年 7 月 3 日核对的 OpenAI Codex 官方文档整理。按钮名字和入口可能更新,但核心概念:项目、线程、模式、审查、权限、插件,会比较稳定。</div>
       </div>
     </div>
 
@@ -47,7 +47,7 @@
       <li>“每天上午帮我检查一次有没有新的报错。”</li>
     </ul>
     <p>它不是只会聊天。它可以读文件、改文件、跑命令、看网页预览、留下改动记录,还可以在你允许的范围内操作浏览器或桌面 App。</p>
-    <p>新版桌面端还把很多“看得见的工作”放进来了:网页标注、Appshots、图片生成、非代码文件预览、自动化、技能、网页搜索、Git 审查和 Worktree 隔离。你不用一口气全会,先知道它们分别解决什么问题。</p>
+    <p>新版桌面端还把很多“看得见的工作”放进来了:网页标注、Appshots、图片生成、非代码文件预览、自动化、技能、插件、网页搜索、Git 审查和 Worktree 隔离。你不用一口气全会,先知道它们分别解决什么问题。</p>
 
     <h2 id="screen-map">打开后先看哪几块</h2>
     <p>第一次打开 App,别急着找所有按钮。先按这四块看:</p>
@@ -108,6 +108,14 @@
         <p class="feature-card__body">技能是固定套路,插件是打包安装,MCP 是连接外部工具的方式。</p>
       </div>
       <div class="feature-card">
+        <h3 class="feature-card__title">Sites</h3>
+        <p class="feature-card__body">把网站、Web App 或小游戏保存版本并部署成线上站点,适合快速发布作品。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">Record & Replay</h3>
+        <p class="feature-card__body">你在 Mac 上演示一次重复流程,Codex 把它整理成以后可复用的技能。</p>
+      </div>
+      <div class="feature-card">
         <h3 class="feature-card__title">网页搜索</h3>
         <p class="feature-card__body">需要查最新官方资料时,可以让 Codex 搜索网页并附来源,别只靠记忆。</p>
       </div>
@@ -118,7 +126,7 @@
     </div>
 
     <h2 id="latest-feature-notes">最新功能先用人话记</h2>
-    <p>截至 2026 年 6 月 23 日,桌面端 App 里最容易被新手忽略的能力,可以先这样理解:</p>
+    <p>截至 2026 年 7 月 3 日,桌面端 App 里最容易被新手忽略的能力,可以先这样理解:</p>
     <table>
       <thead><tr><th>功能</th><th>一句话理解</th><th>你该怎么开口</th></tr></thead>
       <tbody>
@@ -128,6 +136,11 @@
         <tr><td>Computer Use</td><td>让 Codex 在你允许后操作桌面软件</td><td>“只复现这个按钮流程,不要点账号和付款相关内容。”</td></tr>
         <tr><td>Appshots</td><td>把当前窗口发给 Codex 当上下文</td><td>“我刚发了 appshot,先描述你看到了什么。”</td></tr>
         <tr><td>Skills</td><td>把固定流程变成可重复调用的做法</td><td>“请用适合的技能处理,先说明会按哪些步骤来。”</td></tr>
+        <tr><td>Plugins</td><td>把技能、外部 App 和工具打包成扩展</td><td>“这个任务有没有合适插件?请先说明能访问什么数据。”</td></tr>
+        <tr><td>Sites</td><td>让 Codex 保存和部署网站版本</td><td>“请先保存一个预览版本,我确认后再部署。”</td></tr>
+        <tr><td>Fast mode</td><td>让支持模型更快回应,但消耗更多额度</td><td>“这次赶时间,请用 Fast mode 处理。”</td></tr>
+        <tr><td>Chronicle</td><td>用最近屏幕上下文帮 Codex 建记忆</td><td>“开启前请说明隐私风险,敏感页面我要暂停。”</td></tr>
+        <tr><td>Remote connections</td><td>从手机、另一台设备或 SSH 主机继续工作</td><td>“请确认远程主机能看到哪些项目和权限。”</td></tr>
         <tr><td>Memories</td><td>记住长期偏好,但不放秘密</td><td>“请记住我喜欢口语化说明,不要记账号或密钥。”</td></tr>
       </tbody>
     </table>
@@ -143,7 +156,7 @@
     <p>自动化、MCP、Chrome、Computer Use、图片生成这些很强,但可以后面再用。你先把“打开项目 → 发指令 → 看改动 → 验收”这条主线跑顺。</p>
 
     <h2 id="how-to-read">这套 App 教程怎么读</h2>
-    <p>如果你是零基础,按 A0 到 A6 顺序读。每章只记一个核心动作:</p>
+    <p>如果你是零基础,按 A0 到 A7 顺序读。每章只记一个核心动作:</p>
     <ol>
       <li>A1: 把 App 装好,打开一个项目,发出第一句话。</li>
       <li>A2: 分清项目、线程和三种模式。</li>
@@ -151,6 +164,7 @@
       <li>A4: 用浏览器、Appshots 和桌面操作处理“我看见了,但说不清”的问题。</li>
       <li>A5: 把重复工作交给自动化、技能、网页搜索和外部工具。</li>
       <li>A6: 调设置、记快捷键、管理记忆和守住安全边界。</li>
+      <li>A7: 认识插件、Sites、Fast mode、Chronicle 和远程连接这些新能力。</li>
     </ol>
 
     <div class="prompt-card">
@@ -209,7 +223,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260623-brand-logo"></script>
+<script src="../assets/js/nav.js?v=20260703-latest-plugins"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

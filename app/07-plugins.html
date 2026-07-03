@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 07 章 · 插件功能和最新能力 · Codex 中文教程</title>
+<meta name="description" content="Codex 桌面端 App 插件功能介绍:插件是什么、怎么安装、怎么调用,以及 Codex Security、Sites、Gmail、Google Drive、Slack、Record & Replay 等已知插件和能力能做什么。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260703-latest-plugins" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 07 章 · 插件功能和最新能力" data-chapter="app-07-plugins">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 07 章 · 插件与新能力</span>
+    <h1>插件功能和最新能力</h1>
+    <p class="chapter-lede">插件可以理解成“给 Codex 加能力包”。它不是普通聊天里的一个按钮,而是把固定流程、外部 App 连接和工具能力打包起来,让 Codex 在合适的时候调用。你不用一开始就全装,但要知道它们分别能帮你做什么。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/automation-settings.svg" alt="Codex 插件、技能、MCP 和权限关系示意图" loading="lazy" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>记忆法:</b>技能像一张菜谱,App 连接像授权门卡,MCP 像工具接口,插件就是把这些打包成一套可安装的扩展。</figcaption>
+    </figure>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">本页更新时间</div>
+        <div class="callout__body">本页按 2026-07-03 可查到的 OpenAI Codex 官方文档整理。插件目录会随账号、地区、套餐和工作区策略变化,实际能不能安装,以你 App 里的 Plugins 页面为准。</div>
+      </div>
+    </div>
+
+    <h2 id="what-plugins-are">插件到底是什么</h2>
+    <p>插件不是“魔法按钮”,它通常由三类东西组成:</p>
+    <table>
+      <thead><tr><th>组成</th><th>通俗理解</th><th>解决什么问题</th></tr></thead>
+      <tbody>
+        <tr><td>Skills 技能</td><td>一套固定做法</td><td>让 Codex 按稳定步骤处理重复工作,比如发布前检查、写报告、生成文件。</td></tr>
+        <tr><td>Apps 应用连接</td><td>授权 Codex 访问某个服务</td><td>让 Codex 读取或操作 Gmail、Slack、Google Drive、GitHub 等外部系统。</td></tr>
+        <tr><td>MCP servers</td><td>结构化工具接口</td><td>给 Codex 提供额外工具、私有数据或团队系统能力,比“网页搜索”更可靠。</td></tr>
+      </tbody>
+    </table>
+    <p>一句话:如果只是一次小事,直接发提示词就行;如果是常用流程、要连外部工具、要给团队复用,就优先考虑插件。</p>
+
+    <h2 id="install-use">怎么安装和调用插件</h2>
+    <ol>
+      <li>在 Codex App 里打开 <strong>Plugins</strong>,浏览或搜索插件。</li>
+      <li>打开插件详情,点加号、Add to Codex 或 Install。</li>
+      <li>如果插件要连外部服务,按提示登录或授权。</li>
+      <li>安装后新开一条线程,直接描述你想要的结果。</li>
+      <li>如果你想指定插件,在输入框里用 <code>@</code> 点名它。</li>
+    </ol>
+    <p>CLI 用户也可以先运行 <code>codex</code>,再输入 <code>/plugins</code> 打开插件列表。App 新手不用先学 CLI,知道两边都有插件入口就够。</p>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">插件调用示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">@Sites 请把当前这个静态教程站保存成一个可预览版本。先不要部署生产地址,等我确认页面没问题后再部署。</div>
+      <div class="prompt-card__note">能影响真实外部系统的插件,先“保存/草稿/预览”,再“发送/部署/写入”。</div>
+    </div>
+
+    <h2 id="known-plugins">官方文档里明确提到的插件</h2>
+    <table>
+      <thead><tr><th>插件 / 能力</th><th>能干什么</th><th>适合谁</th><th>注意点</th></tr></thead>
+      <tbody>
+        <tr><td>Codex Security</td><td>扫描授权代码、深度扫描、审查改动、整理安全发现、修复并验证问题。</td><td>有代码仓库、PR 或安全 backlog 的个人和团队。</td><td>安全结果要人工复核;云端安全扫描依赖 GitHub 仓库连接和套餐权限。</td></tr>
+        <tr><td>Sites</td><td>创建、保存、部署和检查托管网站、Web App、小游戏。</td><td>想快速把页面做成在线站点的人。</td><td>每个部署 URL 都是生产部署;不确定时先保存版本,别直接上线。</td></tr>
+        <tr><td>Gmail</td><td>读取和管理 Gmail,比如汇总未读邮件、草拟回复。</td><td>想让 Codex 帮忙处理邮件的人。</td><td>邮件很敏感,发送、删除、归档前都要明确确认。</td></tr>
+        <tr><td>Google Drive</td><td>跨 Drive、Docs、Sheets、Slides 查找和处理文件。</td><td>资料分散在 Google 文档体系里的人。</td><td>授权范围越小越好,不要随便让 Codex 访问整个私人云盘。</td></tr>
+        <tr><td>Slack</td><td>总结频道、总结线程、草拟回复。</td><td>需要追团队消息、整理讨论结论的人。</td><td>不要让它自动代表你发言;先草拟,你确认后再发。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="common-integrations">常见连接器和本教程环境可见能力</h2>
+    <p>下面这些不一定都以“插件”两个字出现在你的界面里,有些会以 App 连接器、MCP、技能或内置工具的形式出现。新手可以先按“它能帮我做什么”来记。</p>
+    <table>
+      <thead><tr><th>能力</th><th>能干什么</th><th>适合场景</th><th>提醒</th></tr></thead>
+      <tbody>
+        <tr><td>GitHub</td><td>看 PR、Issue、代码审查反馈、仓库状态。</td><td>项目已经放在 GitHub 上,需要让 Codex 看远程协作信息。</td><td>确认当前仓库和分支,别把私有仓库权限开太宽。</td></tr>
+        <tr><td>Linear</td><td>查看和整理任务、项目、产品需求。</td><td>团队用 Linear 管需求和缺陷。</td><td>点名项目、团队和状态范围,避免扫太多任务。</td></tr>
+        <tr><td>Jira / 项目管理连接</td><td>整理工单、补充描述、归类问题。</td><td>团队需求、缺陷、运营事项都在工单系统里。</td><td>写入外部系统前,让 Codex 先给草稿。</td></tr>
+        <tr><td>Browser / 内置浏览器</td><td>打开网页、检查本地预览、处理页面标注。</td><td>网页排版、按钮、交互、教程截图验证。</td><td>需要登录态的网站,可能更适合 Chrome 连接。</td></tr>
+        <tr><td>Chrome</td><td>使用你的 Chrome 浏览器状态和登录页面。</td><td>必须基于已登录账号复现问题。</td><td>这类权限更敏感,只给当前任务需要的网站。</td></tr>
+        <tr><td>Computer Use</td><td>看见并操作桌面 App。</td><td>复现 GUI 流程、点按钮、检查窗口内容。</td><td>账号、付款、隐私页面要先暂停,别让它乱点。</td></tr>
+        <tr><td>Figma</td><td>把页面转成设计稿、生成图表、维护设计系统。</td><td>网页设计、产品界面、设计交付。</td><td>复杂页面先分区导入,不要一次塞整站。</td></tr>
+        <tr><td>Documents</td><td>创建、编辑、检查 Word / DOCX 文档。</td><td>合同、教程讲义、操作手册。</td><td>正式文件要渲染检查版式,别只看源码。</td></tr>
+        <tr><td>Spreadsheets</td><td>处理 Excel、CSV、公式、图表和数据分析。</td><td>价格表、数据汇总、运营报表。</td><td>让 Codex 说明公式逻辑,避免看不懂的表格。</td></tr>
+        <tr><td>Presentations</td><td>生成或修改 PowerPoint / Slides 演示稿。</td><td>课程、路演、复盘汇报。</td><td>先定结构和视觉风格,再做页面。</td></tr>
+        <tr><td>PDF</td><td>读取、生成、渲染和检查 PDF。</td><td>合同、说明书、电子资料。</td><td>PDF 版式容易出问题,一定要渲染验收。</td></tr>
+        <tr><td>Image generation</td><td>生成或编辑位图图片。</td><td>教程配图、封面、素材、视觉草图。</td><td>品牌 Logo、真实产品图优先用官方素材。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="record-replay">Record & Replay:把你演示的一套流程变成技能</h2>
+    <p>Record & Replay 是一个很适合新手理解的功能:你在 Mac 上把某个重复流程做一遍,Codex 观察这个流程,然后帮你整理成以后可复用的技能。比如每周下载报表、创建固定格式的工单、按固定步骤发布内容。</p>
+    <p>它更适合“我说不清,但我会做给你看”的流程。录制时尽量短、完整、只做一件事,不要录到账号密码、客户资料或无关窗口。</p>
+
+    <h2 id="latest-codex-features">2026-07-03 值得补充的新能力</h2>
+    <table>
+      <thead><tr><th>新能力</th><th>通俗理解</th><th>你可以怎么说</th></tr></thead>
+      <tbody>
+        <tr><td>GPT-5.5 / GPT-5.4 mini</td><td>复杂任务默认用更强模型,轻量任务可用更快更省的模型。</td><td>“这是轻量文案修改,可以用更快的模型处理吗?”</td></tr>
+        <tr><td>Fast mode</td><td>让支持的模型更快回应,但会消耗更多额度。</td><td>“这轮我赶时间,请开启 Fast mode 后再执行。”</td></tr>
+        <tr><td>Codex-Spark</td><td>给 Pro 用户预览的近实时轻量编码模型。</td><td>“这是快速小改,适合用 Spark 试一版吗?”</td></tr>
+        <tr><td>Sites</td><td>直接让 Codex 保存和部署网站版本。</td><td>“请先保存一个可预览版本,我确认后再部署。”</td></tr>
+        <tr><td>Chronicle</td><td>用最近屏幕上下文帮 Codex 建记忆,少重复解释背景。</td><td>“开启前先说明隐私风险,我看敏感内容时要能暂停。”</td></tr>
+        <tr><td>Remote connections</td><td>从手机、另一台 Codex App 设备或 SSH 主机继续工作。</td><td>“请检查远程连接能看到哪些项目、权限和插件。”</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="safety">插件的安全边界</h2>
+    <p>安装插件不等于 Codex 可以随便做事。它仍然会受到你的审批设置、沙盒设置、外部服务授权和团队策略影响。你要特别留意三件事:</p>
+    <ul>
+      <li><strong>读什么:</strong>邮件、云盘、聊天记录、私有仓库都很敏感,授权前先看范围。</li>
+      <li><strong>写什么:</strong>发送邮件、发 Slack、改工单、部署网站、提交代码,都应该先给你确认。</li>
+      <li><strong>卸载什么:</strong>在 Codex 里卸载插件,不一定等于外部 App 授权也删掉了;外部账号里也要检查。</li>
+    </ul>
+
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">新手最稳的权限口令</div>
+        <div class="callout__body">“你可以读取资料并生成草稿,但不要发送、删除、部署、提交、推送或修改外部系统。需要这些动作时先停下来问我。”这句话很朴素,但真的好用。</div>
+      </div>
+    </div>
+
+    <h2 id="prompt-examples">常用插件提示词模板</h2>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">安全扫描</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">@Codex Security 请扫描当前仓库里最近改动过的部分,只做报告,不要自动修复。每个发现请说明文件、风险、复现线索和建议优先级。</div>
+      <div class="prompt-card__note">安全扫描先报告,再决定是否修复。</div>
+    </div>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">云盘资料</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">@Google Drive 请只查找我指定文件夹里的资料,总结和这个教程站相关的内容。不要移动、删除或共享任何文件。</div>
+      <div class="prompt-card__note">私有资料先限定文件夹,别让范围无限扩大。</div>
+    </div>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">团队消息</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">@Slack 请总结今天 #product 频道里和 Codex 教程有关的讨论,按“决定、待确认、行动项”三类输出。不要代表我发送任何消息。</div>
+      <div class="prompt-card__note">Slack 场景默认先总结,不要自动发言。</div>
+    </div>
+
+    <h2 id="source-notes">官方资料入口</h2>
+    <p>想自己继续查,优先看这些官方页面:</p>
+    <ul>
+      <li><a href="https://developers.openai.com/codex/plugins" target="_blank" rel="noopener">Codex Plugins</a>:插件是什么、怎么安装、怎么调用。</li>
+      <li><a href="https://developers.openai.com/codex/sites" target="_blank" rel="noopener">Codex Sites</a>:Sites 插件的保存、部署和权限说明。</li>
+      <li><a href="https://developers.openai.com/codex/record-and-replay" target="_blank" rel="noopener">Record & Replay</a>:把演示流程变成可复用技能。</li>
+      <li><a href="https://developers.openai.com/codex/security" target="_blank" rel="noopener">Codex Security</a>:安全扫描、深度扫描和云端安全能力。</li>
+      <li><a href="https://developers.openai.com/codex/models" target="_blank" rel="noopener">Codex Models</a>:推荐模型、Spark 和弃用模型说明。</li>
+      <li><a href="https://developers.openai.com/codex/speed" target="_blank" rel="noopener">Codex Speed</a>:Fast mode 和额度消耗说明。</li>
+      <li><a href="https://developers.openai.com/codex/memories/chronicle" target="_blank" rel="noopener">Chronicle</a>:屏幕上下文记忆和隐私风险。</li>
+      <li><a href="https://developers.openai.com/codex/remote-connections" target="_blank" rel="noopener">Remote connections</a>:手机、远程设备和 SSH 主机连接。</li>
+    </ul>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>这一章的核心</strong>
+        插件是给 Codex 加能力包。先从官方和常用插件认识起,需要外部数据时明确授权范围,涉及发送、删除、部署、提交这类动作时一定先确认。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./06-settings-shortcuts.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 设置、快捷键和安全边界</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html">
+        <div class="chapter-nav__dir">继续学习</div>
+        <div class="chapter-nav__title">进入 CLI 教程 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260703-latest-plugins"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>
