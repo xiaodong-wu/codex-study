@@ -6,7 +6,7 @@
 <title>App 第 06 章 · 设置、快捷键和安全边界 · Codex 中文教程</title>
 <meta name="description" content="Codex 桌面端 App 设置总览:通用设置、个人资料、外观、Git、浏览器、Computer Use、快捷键、Slash 命令和权限安全边界。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260703-latest-plugins" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -19,7 +19,7 @@
   <article class="content prose">
     <span class="chapter-meta">App 第 06 章 · 设置与安全</span>
     <h1>设置、快捷键和安全边界</h1>
-    <p class="chapter-lede">最后一章不是让你记住所有按钮,而是让你知道“问题应该去哪里调”。Codex App 功能很多,但新手真正需要先掌握的是设置入口、常用快捷键、Slash 命令和权限边界。</p>
+    <p class="chapter-lede">这一章不是让你记住所有按钮,而是让你知道“问题应该去哪里调”。ChatGPT 桌面端功能很多,但新手真正需要先掌握的是设置入口、常用快捷键、Slash 命令和权限边界。</p>
 
     <figure class="figure">
       <div class="figure__img">
@@ -37,7 +37,7 @@
         <tr><td>Profile</td><td>个人资料、使用数据、邀请入口</td><td>想看自己用了多少、改头像名字时。</td></tr>
         <tr><td>Keyboard Shortcuts</td><td>快捷键列表和自定义</td><td>快捷键冲突或想改成自己习惯时。</td></tr>
         <tr><td>Notifications</td><td>任务完成提醒</td><td>Codex 跑久任务,你想收到通知时。</td></tr>
-        <tr><td>Agent configuration</td><td>模型、审批、沙盒等代理行为</td><td>想控制它能做什么、何时问你时。</td></tr>
+        <tr><td>Configuration / Agent configuration</td><td>模型、Ultra、审批、沙盒等代理行为</td><td>想控制它怎么思考、能做什么、何时问你时。</td></tr>
         <tr><td>Appearance</td><td>主题、字体、颜色和可选宠物</td><td>看久了累,或想换外观时。</td></tr>
         <tr><td>Plugins</td><td>安装、查看和管理 Codex 扩展能力</td><td>想用 Sites、Security、Gmail、Drive、Slack 等能力时。</td></tr>
         <tr><td>Git</td><td>分支命名、提交信息、PR 描述偏好</td><td>团队项目想统一风格时。</td></tr>
@@ -47,7 +47,7 @@
         <tr><td>Computer Use</td><td>桌面应用操作权限</td><td>要让 Codex 看见并操作某个 App 时。</td></tr>
         <tr><td>Personalization</td><td>个性、个人说明、自定义偏好</td><td>想让 Codex 更简洁、更友好或按你习惯说话时。</td></tr>
         <tr><td>Memories</td><td>跨线程记住有用信息</td><td>希望它记住长期偏好,且功能可用时。</td></tr>
-        <tr><td>Archived threads</td><td>已归档线程</td><td>想找回旧对话时。</td></tr>
+        <tr><td>Archived tasks</td><td>已归档任务</td><td>想找回旧任务时。</td></tr>
       </tbody>
     </table>
 
@@ -61,6 +61,7 @@
       <li><strong>Memories / Chronicle</strong>:Memories 适合记长期偏好;Chronicle 可用时会借助最近屏幕上下文生成记忆,但隐私风险更高,看敏感内容时要暂停。</li>
       <li><strong>Plugins</strong>:安装后最好新开线程使用。外部 App 授权不确定时,先让 Codex 解释它要读什么、写什么。</li>
       <li><strong>Connections</strong>:远程连接会使用主机上的项目、文件、凭据、权限、插件和本地工具,所以主机要保持在线并受信任。</li>
+      <li><strong>Ultra in model picker slider</strong>:打开后才会在模型滑杆里看到 Ultra。它会使用多个子智能体,适合可拆分的大任务,也会消耗更多额度。</li>
     </ul>
     <p>简单说:项目规则放 <code>AGENTS.md</code>,个人偏好放 Personalization / Memories,临时要求就写在当前线程里。</p>
 
@@ -78,6 +79,8 @@
         <tr><td>Memories</td><td>先只放偏好,不放秘密</td><td>能改善体验,但不该保存敏感信息。</td></tr>
         <tr><td>Chronicle</td><td>先了解风险,需要时再开</td><td>它会用屏幕上下文,会议、客户资料、账号页面前要暂停。</td></tr>
         <tr><td>Plugins</td><td>按任务安装,不用全装</td><td>插件越多不等于越好,授权越清楚越安心。</td></tr>
+        <tr><td>模型</td><td>先用默认 Power</td><td>默认 GPT-5.6 Sol + Medium 已适合多数任务,结果不够再调。</td></tr>
+        <tr><td>Ultra</td><td>默认不必每次用</td><td>只有任务能清楚拆成多个独立部分时才值得开启。</td></tr>
       </tbody>
     </table>
 
@@ -87,17 +90,20 @@
       <tbody>
         <tr><td>打开命令菜单</td><td><kbd>Cmd</kbd>+<kbd>K</kbd> 或 <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd></td><td>找功能最快入口。</td></tr>
         <tr><td>打开设置</td><td><kbd>Cmd</kbd>+<kbd>,</kbd></td><td>哪里不顺手就来这里。</td></tr>
-        <tr><td>打开快捷键列表</td><td><kbd>Cmd</kbd>+<kbd>/</kbd></td><td>忘了快捷键就查。</td></tr>
+        <tr><td>打开快捷键列表</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>/</kbd></td><td>忘了快捷键就查。</td></tr>
         <tr><td>打开文件夹</td><td><kbd>Cmd</kbd>+<kbd>O</kbd></td><td>添加或切换项目。</td></tr>
         <tr><td>新建线程</td><td><kbd>Cmd</kbd>+<kbd>N</kbd></td><td>开一条新任务线。</td></tr>
         <tr><td>搜索线程</td><td><kbd>Cmd</kbd>+<kbd>G</kbd></td><td>找过去的对话。</td></tr>
         <tr><td>线程内搜索</td><td><kbd>Cmd</kbd>+<kbd>F</kbd></td><td>在当前对话里找字。</td></tr>
+        <tr><td>打开 Review 标签</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd></td><td>进入代码审查。</td></tr>
         <tr><td>打开 Diff 面板</td><td><kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>B</kbd></td><td>快速看文件改动。</td></tr>
-        <tr><td>切换终端</td><td><kbd>Cmd</kbd>+<kbd>J</kbd></td><td>打开/收起内置终端。</td></tr>
+        <tr><td>切换底部面板</td><td><kbd>Cmd</kbd>+<kbd>J</kbd></td><td>打开或收起底部区域。</td></tr>
+        <tr><td>切换终端</td><td><kbd>Ctrl</kbd>+<kbd>`</kbd></td><td>直接打开或收起终端。</td></tr>
         <tr><td>清空终端</td><td><kbd>Ctrl</kbd>+<kbd>L</kbd></td><td>输出太乱时清屏。</td></tr>
         <tr><td>切换侧边栏</td><td><kbd>Cmd</kbd>+<kbd>B</kbd></td><td>让界面更宽。</td></tr>
         <tr><td>切换前后线程</td><td><kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>[</kbd> / <kbd>]</kbd></td><td>多线程工作时快速跳转。</td></tr>
-        <tr><td>语音输入</td><td><kbd>Ctrl</kbd>+<kbd>M</kbd></td><td>先说出来,再编辑发送。</td></tr>
+        <tr><td>Quick Chat</td><td><kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>N</kbd></td><td>临时问一句,不进入当前任务。</td></tr>
+        <tr><td>语音输入</td><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd></td><td>先说出来,再编辑发送。</td></tr>
       </tbody>
     </table>
     <p class="muted small">Windows 快捷键可能不同,以 App 里的 Keyboard Shortcuts 页面为准。</p>
@@ -241,7 +247,7 @@
       </span>
       <div class="chapter-summary__body">
         <strong>你已经会了</strong>
-        用 Codex App 打开项目、创建线程、选择工作模式、看 Diff、跑终端、用浏览器标注、理解 Computer Use、设置自动化和技能,并且知道权限应该怎么保守地给。最后再看 A7,把插件和新能力串起来。
+        用桌面端打开项目、创建任务、选择工作模式、看 Diff、跑终端、用浏览器标注、理解 Computer Use、设置自动化和技能,并且知道权限应该怎么保守地给。接着看 A7 的插件专章和 A8 的 Work、多智能体新功能。
       </div>
     </div>
 
@@ -265,7 +271,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260703-latest-plugins"></script>
+<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

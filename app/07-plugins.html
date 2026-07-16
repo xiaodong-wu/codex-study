@@ -6,7 +6,7 @@
 <title>App 第 07 章 · 插件功能和最新能力 · Codex 中文教程</title>
 <meta name="description" content="Codex 桌面端 App 插件功能介绍:插件是什么、怎么安装、怎么调用,以及 Codex Security、Sites、Gmail、Google Drive、Slack、Record & Replay 等已知插件和能力能做什么。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260703-latest-plugins" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">本页更新时间</div>
-        <div class="callout__body">本页按 2026-07-03 可查到的 OpenAI Codex 官方文档整理。插件目录会随账号、地区、套餐和工作区策略变化,实际能不能安装,以你 App 里的 Plugins 页面为准。</div>
+        <div class="callout__body">本页按 2026-07-16 可查到的 OpenAI 官方文档整理。插件目录会随账号、地区、套餐和工作区策略变化,实际能不能安装,以你 App 里的 Plugins 页面为准。</div>
       </div>
     </div>
 
@@ -105,13 +105,16 @@
     <p>Record & Replay 是一个很适合新手理解的功能:你在 Mac 上把某个重复流程做一遍,Codex 观察这个流程,然后帮你整理成以后可复用的技能。比如每周下载报表、创建固定格式的工单、按固定步骤发布内容。</p>
     <p>它更适合“我说不清,但我会做给你看”的流程。录制时尽量短、完整、只做一件事,不要录到账号密码、客户资料或无关窗口。</p>
 
-    <h2 id="latest-codex-features">2026-07-03 值得补充的新能力</h2>
+    <h2 id="latest-codex-features">2026-07-16 值得补充的新能力</h2>
     <table>
       <thead><tr><th>新能力</th><th>通俗理解</th><th>你可以怎么说</th></tr></thead>
       <tbody>
-        <tr><td>GPT-5.5 / GPT-5.4 mini</td><td>复杂任务默认用更强模型,轻量任务可用更快更省的模型。</td><td>“这是轻量文案修改,可以用更快的模型处理吗?”</td></tr>
-        <tr><td>Fast mode</td><td>让支持的模型更快回应,但会消耗更多额度。</td><td>“这轮我赶时间,请开启 Fast mode 后再执行。”</td></tr>
-        <tr><td>Codex-Spark</td><td>给 Pro 用户预览的近实时轻量编码模型。</td><td>“这是快速小改,适合用 Spark 试一版吗?”</td></tr>
+        <tr><td>ChatGPT Work</td><td>把文件、插件和工具串起来,完成文档、表格、研究或长期工作。</td><td>“请根据这些资料交付一份可直接汇报的方案。”</td></tr>
+        <tr><td>GPT-5.6</td><td>Sol 做复杂工作,Terra 做日常任务,Luna 做清楚的重复活。</td><td>“这个任务规则很明确,可以用更快的 Luna 吗?”</td></tr>
+        <tr><td>Ultra / 子智能体</td><td>把可以拆开的任务分给多个帮手并行完成。</td><td>“请分成内容、链接、移动端三个子任务,全部完成后汇总。”</td></tr>
+        <tr><td>Fast mode</td><td>让支持模型约快 1.5 倍,但会消耗更多额度。</td><td>“这轮确实赶时间,请说明额度成本后再开 Fast mode。”</td></tr>
+        <tr><td>Codex-Spark</td><td>Pro 用户可用的近实时、文本型编码模型研究预览。</td><td>“这是快速小改,适合用 Spark 试一版吗?”</td></tr>
+        <tr><td>Visualize</td><td>在 Chat 或 Work 里生成可互动的图表、地图、流程和模拟器。</td><td>“@Visualize 把这组数据做成可调参数的对比图。”</td></tr>
         <tr><td>Sites</td><td>直接让 Codex 保存和部署网站版本。</td><td>“请先保存一个可预览版本,我确认后再部署。”</td></tr>
         <tr><td>Chronicle</td><td>用最近屏幕上下文帮 Codex 建记忆,少重复解释背景。</td><td>“开启前先说明隐私风险,我看敏感内容时要能暂停。”</td></tr>
         <tr><td>Remote connections</td><td>从手机、另一台 Codex App 设备或 SSH 主机继续工作。</td><td>“请检查远程连接能看到哪些项目、权限和插件。”</td></tr>
@@ -165,14 +168,14 @@
     <h2 id="source-notes">官方资料入口</h2>
     <p>想自己继续查,优先看这些官方页面:</p>
     <ul>
-      <li><a href="https://developers.openai.com/codex/plugins" target="_blank" rel="noopener">Codex Plugins</a>:插件是什么、怎么安装、怎么调用。</li>
-      <li><a href="https://developers.openai.com/codex/sites" target="_blank" rel="noopener">Codex Sites</a>:Sites 插件的保存、部署和权限说明。</li>
-      <li><a href="https://developers.openai.com/codex/record-and-replay" target="_blank" rel="noopener">Record & Replay</a>:把演示流程变成可复用技能。</li>
-      <li><a href="https://developers.openai.com/codex/security" target="_blank" rel="noopener">Codex Security</a>:安全扫描、深度扫描和云端安全能力。</li>
-      <li><a href="https://developers.openai.com/codex/models" target="_blank" rel="noopener">Codex Models</a>:推荐模型、Spark 和弃用模型说明。</li>
-      <li><a href="https://developers.openai.com/codex/speed" target="_blank" rel="noopener">Codex Speed</a>:Fast mode 和额度消耗说明。</li>
-      <li><a href="https://developers.openai.com/codex/memories/chronicle" target="_blank" rel="noopener">Chronicle</a>:屏幕上下文记忆和隐私风险。</li>
-      <li><a href="https://developers.openai.com/codex/remote-connections" target="_blank" rel="noopener">Remote connections</a>:手机、远程设备和 SSH 主机连接。</li>
+      <li><a href="https://learn.chatgpt.com/docs/plugins" target="_blank" rel="noopener">Plugins</a>:插件是什么、怎么安装、怎么调用。</li>
+      <li><a href="https://learn.chatgpt.com/docs/sites" target="_blank" rel="noopener">Sites</a>:Sites 插件的保存、部署和权限说明。</li>
+      <li><a href="https://learn.chatgpt.com/docs/extend/record-and-replay" target="_blank" rel="noopener">Record & Replay</a>:把演示流程变成可复用技能。</li>
+      <li><a href="https://learn.chatgpt.com/docs/security" target="_blank" rel="noopener">Codex Security</a>:安全扫描、深度扫描和云端安全能力。</li>
+      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:GPT-5.6、推荐模型和弃用模型说明。</li>
+      <li><a href="https://learn.chatgpt.com/docs/agent-configuration/speed" target="_blank" rel="noopener">Speed</a>:Fast mode 和额度消耗说明。</li>
+      <li><a href="https://learn.chatgpt.com/docs/customization/chronicle" target="_blank" rel="noopener">Chronicle</a>:屏幕上下文记忆和隐私风险。</li>
+      <li><a href="https://learn.chatgpt.com/docs/remote-connections" target="_blank" rel="noopener">Remote connections</a>:手机、远程设备和 SSH 主机连接。</li>
     </ul>
 
     <div class="chapter-summary chapter-summary--end">
@@ -190,9 +193,9 @@
         <div class="chapter-nav__dir">上一章</div>
         <div class="chapter-nav__title">← 设置、快捷键和安全边界</div>
       </a>
-      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html">
-        <div class="chapter-nav__dir">继续学习</div>
-        <div class="chapter-nav__title">进入 CLI 教程 →</div>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./08-work-agents.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">Work、GPT-5.6 和多智能体 →</div>
       </a>
     </nav>
   </article>
@@ -205,7 +208,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260703-latest-plugins"></script>
+<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

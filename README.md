@@ -2,7 +2,7 @@
 
 面向零编程基础读者的中文教程网站,现在分成两条路线:
 
-1. **Codex 桌面端 App 教程**:偏图文、偏口语化,适合完全没有编程基础的人先上手。覆盖安装登录、项目/线程、Local/Worktree/Cloud、Worktree 隔离、Review 面板、内置终端、浏览器标注、Developer mode、Chrome、Computer Use、Appshots、图片生成、自动化、技能、插件、MCP、网页搜索、Memories、设置、快捷键和安全边界。
+1. **ChatGPT 桌面端里的 Codex 教程**:偏图文、偏口语化,适合完全没有编程基础的人先上手。覆盖 Chat / Work / Codex、项目/任务、Local/Worktree/Cloud、Review、浏览器标注、Computer Use、自动化、技能、插件、GPT-5.6、多智能体、Goal、可视化、设置和安全边界。
 2. **Codex CLI 教程**:保留原来的终端路线,教读者用 OpenAI Codex CLI 做出可上线的产品官网。
 
 ## 本地预览
@@ -26,7 +26,7 @@ python3 -m http.server 8000
 ├── 404.html
 ├── _headers                         Cloudflare Pages 响应头配置
 ├── wrangler.toml                    Cloudflare Pages / Wrangler 配置
-├── app/                             Codex 桌面端 App 教程 8 章(A0-A7)
+├── app/                             桌面端 App 教程 9 章(A0-A8)
 ├── chapters/                        Codex CLI 教程 12 章(00-11)
 ├── appendix/                        附录 4 篇(A-D)
 ├── partials/                        全站共用 sidebar / header / footer
@@ -58,6 +58,7 @@ python3 -m http.server 8000
 - App A5 · 自动化、技能和外部工具
 - App A6 · 设置、快捷键和安全边界
 - App A7 · 插件功能和最新能力
+- App A8 · Chat、Work、Codex 与多智能体
 
 完整 CLI 正文章节:
 - 第 00 章 · 写在前面
@@ -88,6 +89,7 @@ python3 -m http.server 8000
 - A5 增加 Triage、耐用自动化提示词、技能/插件/MCP 选择表、AGENTS.md 示例。
 - A6 增加推荐初始设置、命令菜单、权限范围、故障入口、Deep links 和设置体检。
 - A7 新增插件专章,说明插件是什么、怎么安装、已知插件能做什么、怎样控制授权和写入风险。
+- A8 新增 2026 年 7 月功能专章,说明 Chat / Work / Codex、GPT-5.6、Sol / Terra / Luna、Max / Ultra、多智能体、Goal、文件标注和 Visualize。
 
 本次最新功能补充:
 - A0 增加 Codex 桌面端最新功能总览:Worktree、线程自动化、内置浏览器、Computer Use、Appshots、Skills、Memories。
@@ -96,10 +98,12 @@ python3 -m http.server 8000
 - A5 补充“自动化 + 技能”组合用法、MCP 共用配置提醒和网页搜索的官方资料核对提示词。
 - A6 补充 Profile、Appearance、Pets、Personalization、Context-aware suggestions、Memories、Web search、Appshots hotkey 和更多快捷键。
 - A7 补充 Codex Security、Sites、Gmail、Google Drive、Slack、Record & Replay、Fast mode、Chronicle、Remote connections 和常见连接能力。
+- A0/A1/A2/A6/A7 更新为 ChatGPT desktop app 最新名称与入口,并修正最新快捷键、任务术语和模型说明。
+- A8 补充 ChatGPT Work、GPT-5.6 模型家族、子智能体、长任务、通知、Pets、文件交付和 Visualizations。
 
 ## 继续维护内容
 
-打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A7 的写法:
+打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A8 的写法:
 
 - 每章 5-8 个 H2 小节
 - 每章至少一个 `.exercise` 或 `.prompt-card`
@@ -109,26 +113,31 @@ python3 -m http.server 8000
 
 ## 官方资料维护
 
-App 教程内容参考 OpenAI Codex 官方文档,本次整理日期为 2026-07-03。Codex App 功能和入口会更新,维护时优先核对:
+App 教程内容参考 OpenAI 官方手册,本次整理日期为 2026-07-16。桌面端功能和入口会更新,维护时优先核对:
 
-- Codex app features: <https://developers.openai.com/codex/app/features>
-- Codex app commands: <https://developers.openai.com/codex/app/commands>
-- Codex app settings: <https://developers.openai.com/codex/app/settings>
-- In-app browser: <https://developers.openai.com/codex/app/browser>
-- Computer Use: <https://developers.openai.com/codex/app/computer-use>
-- Automations: <https://developers.openai.com/codex/app/automations>
-- Worktrees: <https://developers.openai.com/codex/app/worktrees>
-- Review: <https://developers.openai.com/codex/app/review>
-- Windows app: <https://developers.openai.com/codex/app/windows>
-- Appshots: <https://developers.openai.com/codex/app/appshots>
-- Plugins: <https://developers.openai.com/codex/plugins>
-- Sites: <https://developers.openai.com/codex/sites>
-- Record & Replay: <https://developers.openai.com/codex/record-and-replay>
-- Codex Security: <https://developers.openai.com/codex/security>
-- Codex models: <https://developers.openai.com/codex/models>
-- Codex speed / Fast mode: <https://developers.openai.com/codex/speed>
-- Chronicle: <https://developers.openai.com/codex/memories/chronicle>
-- Remote connections: <https://developers.openai.com/codex/remote-connections>
+- What's new: <https://learn.chatgpt.com/docs/whats-new>
+- ChatGPT desktop app: <https://learn.chatgpt.com/docs/app>
+- Get started with Work: <https://learn.chatgpt.com/docs/get-started-with-work>
+- Projects, chats, and tasks: <https://learn.chatgpt.com/docs/projects>
+- Models: <https://learn.chatgpt.com/docs/models>
+- Subagents: <https://learn.chatgpt.com/docs/agent-configuration/subagents>
+- Speed / Fast mode: <https://learn.chatgpt.com/docs/agent-configuration/speed>
+- Commands: <https://learn.chatgpt.com/docs/reference/commands>
+- Settings: <https://learn.chatgpt.com/docs/reference/settings>
+- Browser: <https://learn.chatgpt.com/docs/browser>
+- Computer Use: <https://learn.chatgpt.com/docs/computer-use>
+- Scheduled tasks: <https://learn.chatgpt.com/docs/automations>
+- Long-running work / Goal: <https://learn.chatgpt.com/docs/long-running-work>
+- Worktrees: <https://learn.chatgpt.com/docs/environments/git-worktrees>
+- Appshots: <https://learn.chatgpt.com/docs/appshots>
+- Plugins: <https://learn.chatgpt.com/docs/plugins>
+- Sites: <https://learn.chatgpt.com/docs/sites>
+- Record & Replay: <https://learn.chatgpt.com/docs/extend/record-and-replay>
+- Codex Security: <https://learn.chatgpt.com/docs/security>
+- Chronicle: <https://learn.chatgpt.com/docs/customization/chronicle>
+- Remote connections: <https://learn.chatgpt.com/docs/remote-connections>
+- Visualizations: <https://learn.chatgpt.com/docs/visualizations>
+- Work with files: <https://learn.chatgpt.com/docs/artifacts-viewer>
 
 ## 部署上线:Cloudflare Pages 免费方案
 

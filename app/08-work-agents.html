@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 08 章 · Chat、Work、Codex 与多智能体 · Codex 中文教程</title>
+<meta name="description" content="通俗介绍 ChatGPT 桌面端里的 Chat、Work、Codex、GPT-5.6 模型、Ultra 多智能体、Goal、可视化和文件交付功能。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 08 章 · Chat、Work、Codex 与多智能体" data-chapter="app-08-work-agents">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 08 章 · 2026 年 7 月新功能</span>
+    <h1>Chat、Work、Codex 与多智能体</h1>
+    <p class="chapter-lede">新版桌面端不再只有“让 Codex 改代码”这一条路。你可以快速聊天、让 Work 交付文档和表格，也可以继续用 Codex 处理项目。再配合 GPT-5.6 和多个子智能体，大任务可以被拆开并行完成。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/chat-work-codex.svg" alt="Chat、ChatGPT Work 与 Codex 三种工作入口的用途对比" loading="eager" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>先看目标再选入口:</b>只想问清楚，用 Chat；想拿到一份可交付成品，用 Work；要读写代码和本地项目，用 Codex。</figcaption>
+    </figure>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">名称变了，能力没有消失</div>
+        <div class="callout__body">官方最新文档统一称它为 <strong>ChatGPT desktop app</strong>。以前大家说的 Codex App，现在可以理解成“ChatGPT 桌面端里的 Codex 工作入口”。如果你的界面仍显示旧名称，也不影响照着教程操作。</div>
+      </div>
+    </div>
+
+    <h2 id="three-ways">Chat、Work、Codex 到底怎么选</h2>
+    <table>
+      <thead><tr><th>入口</th><th>最适合做什么</th><th>不适合硬塞什么</th><th>一句话例子</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Chat</strong></td><td>问答、解释、想点子、短改写。</td><td>需要长期运行或直接改项目的大任务。</td><td>“用小白能懂的话解释这个报错。”</td></tr>
+        <tr><td><strong>ChatGPT Work</strong></td><td>研究、分析、文档、表格、演示稿、定时更新和多工具工作流。</td><td>只问一句就能解决的小问题。</td><td>“根据这些资料做一份可汇报的竞品分析。”</td></tr>
+        <tr><td><strong>Codex</strong></td><td>读取项目、改代码、跑命令、测试、Review、Git 和 Worktree。</td><td>和项目文件无关的普通闲聊。</td><td>“修复登录问题，跑测试并说明改动。”</td></tr>
+      </tbody>
+    </table>
+    <p>Work 和 Codex 不是互相替代。比如你可以先用 Work 整理产品需求，再把明确的需求交给 Codex 开发；也可以让 Codex 做出数据文件，再用 Work 把它整理成演示稿。</p>
+
+    <h2 id="gpt-56">GPT-5.6：Sol、Terra、Luna 怎么选</h2>
+    <p>官方当前推荐从 <strong>Power</strong> 开始，它默认使用 GPT-5.6 Sol 和中等推理强度。新手不需要一上来研究所有型号，按任务难度选就行:</p>
+    <table>
+      <thead><tr><th>模型</th><th>通俗理解</th><th>适合任务</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Sol</strong></td><td>更仔细、更会处理模糊问题</td><td>复杂改造、深度研究、安全检查、重要成品。</td></tr>
+        <tr><td><strong>Terra</strong></td><td>日常主力，能力和成本更平衡</td><td>一般开发、资料整理、常规工具调用。</td></tr>
+        <tr><td><strong>Luna</strong></td><td>更快、更省，适合规则清楚的重复活</td><td>提取、分类、格式转换、批量摘要。</td></tr>
+      </tbody>
+    </table>
+    <p>界面里的 <strong>Faster / Power / Smarter</strong> 是更容易理解的快速选择；打开 <strong>Advanced</strong> 才需要手动挑具体模型、推理强度或速度。</p>
+
+    <h2 id="reasoning">Light、Max、Ultra 有什么区别</h2>
+    <table>
+      <thead><tr><th>档位</th><th>发生了什么</th><th>什么时候用</th></tr></thead>
+      <tbody>
+        <tr><td>Light / Medium / High</td><td>同一个任务思考得更浅或更深。</td><td>从默认档开始，结果不够再提高。</td></tr>
+        <tr><td>Max</td><td>让一个模型花更多时间深挖同一件事。</td><td>问题很难，但不容易拆成几块。</td></tr>
+        <tr><td>Ultra</td><td>启动多个子智能体，把独立部分并行处理。</td><td>大型审查、调研、测试和多模块任务。</td></tr>
+        <tr><td>Fast mode</td><td>让支持模型约快 1.5 倍，但消耗更多额度。</td><td>确实赶时间，并且你清楚额度成本时。</td></tr>
+      </tbody>
+    </table>
+    <p>如果模型滑杆里看不到 Ultra，可以去 <strong>Settings &gt; Configuration</strong> 检查是否有 <strong>Ultra in model picker slider</strong>。功能能否出现还会受套餐、账号、地区和工作区策略影响。</p>
+
+    <h2 id="subagents">多智能体：像把任务分给一个小组</h2>
+    <p>子智能体就是主任务临时叫来的帮手。主智能体负责听懂目标、分工和合并结果；子智能体分别去查代码、跑测试、看安全风险，做完再把结论交回来。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">第一次尝试多智能体</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请把这次网站检查拆给 3 个子智能体并行处理:
+1. 一个检查手机端排版和可访问性
+2. 一个检查失效链接和资源加载
+3. 一个检查教程内容是否有过时说法
+
+请等它们全部完成后，再合并成一份按优先级排序的报告。这一轮只检查，不修改文件。</div>
+      <div class="prompt-card__note">把“怎么分工、是否等待全部完成、最后怎么汇总”说清楚，多智能体会更稳。</div>
+    </div>
+    <p>App 会把子智能体显示成独立任务，你可以打开查看过程和结果，也可以让主任务停止、调整或关闭它们。子智能体会继承当前权限模式，不会因为并行工作就自动得到更大的访问范围。</p>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">并行不等于免费加速</div>
+        <div class="callout__body">每个子智能体都会单独使用模型和工具，所以通常消耗更多额度。它最适合能真正拆开的检查、探索和总结；多个智能体同时改同一批文件，反而容易冲突。</div>
+      </div>
+    </div>
+
+    <h2 id="goal-scheduled">Goal、Scheduled 和长任务</h2>
+    <p>任务步骤很多时，可以先输入 <code>/plan</code> 让它帮你理清范围，再用 <code>/goal</code> 把“完成标准”固定下来。Goal 运行时，输入框上方会出现进度条，你可以暂停、继续、修改或清除目标。</p>
+    <p><strong>Scheduled</strong> 适合定时、事件触发或持续监控。比如每天汇总一次资料、每周更新一份报告，或者盯住某个页面变化。长任务不会获得额外权限；碰到需要你决定的动作，它仍然会停下来问。</p>
+    <p>不想一直盯着窗口，可以打开系统通知。Pets 也是可选的任务状态提示，会显示 Running、Needs input、Ready 或 Blocked；它只负责提醒，不会让模型变强。</p>
+
+    <h2 id="files-visualize">文件交付、标注和可视化</h2>
+    <p>桌面端可以在对话旁预览生成的文档、演示稿、表格和 PDF。看到某一块不满意，可以直接框选或标注，再说“只改这里，其他部分保持不动”。这和你在网页上标注问题的用法是一致的。</p>
+    <p><strong>Visualize</strong> 是正在逐步开放的预览功能。输入 <code>@Visualize</code> 后，可以让 ChatGPT 生成图表、地图、流程图、计算器、模拟器或互动讲解。CLI 和 IDE 扩展目前不负责渲染这类互动内容。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">可视化示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">@Visualize 请把 Chat、Work、Codex 的选择方法做成一个可点击的决策流程。每一步只问一个简单问题，并在最后推荐入口和示例提示词。</div>
+      <div class="prompt-card__note">只有在输入框里能搜到 Visualize 时，才说明你的账号已经开放这个预览。</div>
+    </div>
+
+    <h2 id="projects-quick-chat">Projects、Tasks 和 Quick Chat</h2>
+    <p>新版项目页会把 ChatGPT 项目和本地文件夹项目放在一起。一个项目负责保存共同资料和背景，每个独立结果再开一条 Task，这样不会把所有事情混成一锅。</p>
+    <ul>
+      <li><strong>Project:</strong>长期主题或一组相关文件，相当于工作区。</li>
+      <li><strong>Task:</strong>一个明确结果，例如“重做首页”或“检查移动端”。旧文档里也常叫 thread。</li>
+      <li><strong>Quick Chat:</strong>临时问一句，不需要项目上下文；快捷键是 macOS 的 <kbd>Cmd</kbd>+<kbd>Option</kbd>+<kbd>N</kbd> 或 Windows 的 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>。</li>
+    </ul>
+
+    <h2 id="try-it">零基础用户怎么开始</h2>
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">用同一个主题体验三种入口</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>在 Chat 里问:“给我 3 个个人作品集网站的栏目建议。”</li>
+          <li>在 Work 里说:“把选中的栏目整理成一份网站策划文档。”</li>
+          <li>在 Codex 里打开项目文件夹，说:“按这份策划先搭首页骨架，完成后给我看 Diff。”</li>
+          <li>最后比较三次输出，看看每个入口是不是各做了最擅长的事。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你能不用背产品名，只看目标就判断应该用 Chat、Work 还是 Codex。</div>
+      </div>
+    </div>
+
+    <h2 id="official-sources">官方资料入口</h2>
+    <ul>
+      <li><a href="https://learn.chatgpt.com/docs/whats-new" target="_blank" rel="noopener">What's new</a>:每周重要功能摘要。</li>
+      <li><a href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank" rel="noopener">Get started with Work</a>:Work 的定位与使用方法。</li>
+      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:GPT-5.6、Sol、Terra、Luna、Max 和 Ultra。</li>
+      <li><a href="https://learn.chatgpt.com/docs/agent-configuration/subagents" target="_blank" rel="noopener">Subagents</a>:多智能体、分工、权限和消耗。</li>
+      <li><a href="https://learn.chatgpt.com/docs/long-running-work" target="_blank" rel="noopener">Long-running work</a>:Goal 和长任务。</li>
+      <li><a href="https://learn.chatgpt.com/docs/visualizations" target="_blank" rel="noopener">Visualizations</a>:互动图表和可视化预览。</li>
+      <li><a href="https://learn.chatgpt.com/docs/artifacts-viewer" target="_blank" rel="noopener">Work with files</a>:文件预览、标注和修改。</li>
+    </ul>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>这一章先记住</strong>
+        Chat 负责快速交流，Work 负责交付成品，Codex 负责直接处理项目。GPT-5.6 先用默认 Power；只有任务能清楚拆分时再上 Ultra 和多智能体。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./07-plugins.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 插件功能和最新能力</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html">
+        <div class="chapter-nav__dir">继续学习</div>
+        <div class="chapter-nav__title">进入 CLI 教程 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

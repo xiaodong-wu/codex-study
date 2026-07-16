@@ -6,7 +6,7 @@
 <title>App 第 02 章 · 项目、线程和三种模式 · Codex 中文教程</title>
 <meta name="description" content="用通俗语言解释 Codex App 里的项目、线程、Local、Worktree、Cloud、Goal、语音输入、弹出窗口和 IDE 同步。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260703-latest-plugins" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -28,18 +28,18 @@
       <figcaption class="figure__cap"><b>记忆法:</b>Local 是在你桌上直接改;Worktree 是拿一份副本去旁边试;Cloud 是把任务放到远程工作台。</figcaption>
     </figure>
 
-    <h2 id="project">项目:Codex 被允许看的文件夹</h2>
-    <p>项目就是你交给 Codex 的文件夹。它可以是一个网站、一个 App、一个文档项目,甚至只是一个空文件夹。</p>
+    <h2 id="project">项目:把相关资料放在一起</h2>
+    <p>新版 Projects 页面会把两类项目放在一起:ChatGPT 项目可以保存上传文件、项目说明和连接来源;本地项目则连接你电脑里的一个或多个文件夹。做代码时,你最常用的是本地项目。</p>
     <p>新手要记住:项目范围越清楚,Codex 越不容易跑偏。不要一上来把整个桌面、整个下载目录都交给它。</p>
 
-    <h2 id="thread">线程:一次任务对话</h2>
-    <p>线程就是一条对话。一个项目里可以开很多线程:</p>
+    <h2 id="thread">Task / 线程:一次任务对话</h2>
+    <p>官方界面现在更常写 <strong>Task</strong>,技术说明里也会看到 thread。对新手来说,都可以理解成“一张独立任务单”。一个项目里可以开很多任务:</p>
     <ul>
       <li>一条线程专门改首页。</li>
       <li>一条线程专门检查移动端。</li>
       <li>一条线程专门整理 README。</li>
     </ul>
-    <p>这样做的好处是,每条线都更清楚。以后你可以搜索旧线程,也可以把重要线程 pin 住,不用在一大坨聊天里翻。</p>
+    <p>这样做的好处是,每条线都更清楚。以后你可以搜索旧任务,也可以把重要任务 pin 住,不用在一大坨聊天里翻。快速问一句、不需要项目上下文时,可以用 Quick Chat。</p>
 
     <h2 id="thread-lifecycle">一条线程从开始到结束</h2>
     <p>把线程当成一张任务单。最稳的生命周期是:</p>
@@ -61,6 +61,7 @@
         <tr><td><strong>Cloud</strong></td><td>在远程配置好的环境里跑</td><td>先不用急。等你有团队项目或云端环境再学。</td></tr>
       </tbody>
     </table>
+    <p>这里说的 Local / Worktree / Cloud 是 <strong>Codex 怎么接触项目文件</strong>;Chat / Work / Codex 则是 <strong>你选择哪种工作入口</strong>。两组概念不是一回事,完整选择方法见 <a href="./08-work-agents.html">A8</a>。</p>
 
     <h2 id="mode-examples">三个生活化例子</h2>
     <div class="feature-grid">
@@ -194,7 +195,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260703-latest-plugins"></script>
+<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

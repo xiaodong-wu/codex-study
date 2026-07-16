@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>App 第 00 章 · 先看懂 Codex 桌面端 · Codex 中文教程</title>
-<meta name="description" content="面向零编程基础读者的 Codex 桌面端 App 入门:先看懂它是什么、适合谁、和 CLI 有什么区别,以及这套教程怎么读。" />
+<title>App 第 00 章 · 先看懂桌面端里的 Codex · Codex 中文教程</title>
+<meta name="description" content="面向零编程基础读者的 ChatGPT 桌面端与 Codex 入门:先看懂 Chat、Work、Codex 的区别,以及桌面端和 CLI 怎么选。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260703-latest-plugins" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
-<body data-title="App 第 00 章 · 先看懂 Codex 桌面端" data-chapter="app-00-overview">
+<body data-title="App 第 00 章 · 先看懂桌面端里的 Codex" data-chapter="app-00-overview">
 <header class="site-header" id="site-header"></header>
 
 <div class="layout">
@@ -18,8 +18,8 @@
 
   <article class="content prose">
     <span class="chapter-meta">App 第 00 章 · 桌面端入门</span>
-    <h1>先看懂 Codex 桌面端</h1>
-    <p class="chapter-lede">如果你没有编程基础,我更建议你先从桌面端 App 开始。它不像终端那样黑乎乎一片,你能看到项目、对话、改动、预览和结果。简单说:Codex App 就是一个让你用普通话安排 AI 干活的工作台。</p>
+    <h1>先看懂桌面端里的 Codex</h1>
+    <p class="chapter-lede">如果你没有编程基础,我更建议你先从桌面端 App 开始。官方现在把它叫 ChatGPT desktop app,里面可以选择 Chat、Work 或 Codex。它不像终端那样黑乎乎一片,你能看到项目、对话、改动、预览和结果。</p>
 
     <figure class="figure">
       <div class="figure__img">
@@ -34,12 +34,12 @@
       </div>
       <div>
         <div class="callout__title">内容依据</div>
-        <div class="callout__body">本套 App 教程按 2026 年 7 月 3 日核对的 OpenAI Codex 官方文档整理。按钮名字和入口可能更新,但核心概念:项目、线程、模式、审查、权限、插件,会比较稳定。</div>
+        <div class="callout__body">本套 App 教程按 2026 年 7 月 16 日核对的 OpenAI 官方文档整理。按钮名字和入口可能更新,但项目、任务、审查、权限、插件和工作模式这些核心概念会比较稳定。</div>
       </div>
     </div>
 
     <h2 id="what-is-it">它到底是什么</h2>
-    <p>把 Codex App 想成一个“项目管家”。你把一个文件夹交给它,然后用人话说:</p>
+    <p>把桌面端里的 Codex 想成一个“项目管家”。你把一个文件夹交给它,然后用人话说:</p>
     <ul>
       <li>“帮我看看这个网站哪里不对。”</li>
       <li>“把首页文案改得更像给小白看的。”</li>
@@ -47,7 +47,17 @@
       <li>“每天上午帮我检查一次有没有新的报错。”</li>
     </ul>
     <p>它不是只会聊天。它可以读文件、改文件、跑命令、看网页预览、留下改动记录,还可以在你允许的范围内操作浏览器或桌面 App。</p>
-    <p>新版桌面端还把很多“看得见的工作”放进来了:网页标注、Appshots、图片生成、非代码文件预览、自动化、技能、插件、网页搜索、Git 审查和 Worktree 隔离。你不用一口气全会,先知道它们分别解决什么问题。</p>
+    <p>新版桌面端还把很多“看得见的工作”放进来了:ChatGPT Work、网页标注、Appshots、文件预览、自动化、技能、插件、网页搜索、Git 审查、Worktree 隔离和多智能体。你不用一口气全会,先知道它们分别解决什么问题。</p>
+
+    <div class="callout callout--tip">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">只记住这三个入口也够用</div>
+        <div class="callout__body"><strong>Chat</strong> 适合快速问答，<strong>Work</strong> 适合交付文档、表格和研究结果，<strong>Codex</strong> 适合直接处理代码和本地项目。A8 会用完整例子讲清楚。</div>
+      </div>
+    </div>
 
     <h2 id="screen-map">打开后先看哪几块</h2>
     <p>第一次打开 App,别急着找所有按钮。先按这四块看:</p>
@@ -123,13 +133,24 @@
         <h3 class="feature-card__title">图片和文件</h3>
         <p class="feature-card__body">可以生成图片资产,也能预览或创建 PDF、表格、文档、演示文稿等文件。</p>
       </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">ChatGPT Work</h3>
+        <p class="feature-card__body">把资料、插件和工具串起来,交付文档、表格、演示稿、研究或定时更新。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">GPT-5.6 与多智能体</h3>
+        <p class="feature-card__body">用 Sol、Terra、Luna 匹配任务;复杂工作可由多个子智能体并行处理。</p>
+      </div>
     </div>
 
     <h2 id="latest-feature-notes">最新功能先用人话记</h2>
-    <p>截至 2026 年 7 月 3 日,桌面端 App 里最容易被新手忽略的能力,可以先这样理解:</p>
+    <p>截至 2026 年 7 月 16 日,桌面端 App 里最容易被新手忽略的能力,可以先这样理解:</p>
     <table>
       <thead><tr><th>功能</th><th>一句话理解</th><th>你该怎么开口</th></tr></thead>
       <tbody>
+        <tr><td>Chat / Work / Codex</td><td>快速问答、交付成品、处理项目三种入口</td><td>“我想拿到一份可用成品,这次该选 Work 还是 Codex?”</td></tr>
+        <tr><td>GPT-5.6</td><td>Sol 处理复杂任务,Terra 做日常工作,Luna 做清楚的重复活</td><td>“这个任务规则很明确,可以用更快的 Luna 吗?”</td></tr>
+        <tr><td>Ultra / 子智能体</td><td>把可拆分的大任务交给多个帮手并行处理</td><td>“请分成内容、链接、移动端三个子任务,全部完成后再汇总。”</td></tr>
         <tr><td>Worktree</td><td>给 Codex 一份隔离副本,让它大胆试</td><td>“请用 Worktree 试一个新版,先别影响当前文件。”</td></tr>
         <tr><td>线程自动化</td><td>让同一条对话过一会儿自己醒来继续检查</td><td>“每 10 分钟看看部署是否完成,有结果再提醒我。”</td></tr>
         <tr><td>内置浏览器评论</td><td>在网页上直接圈问题,比口头描述更准</td><td>“请处理我刚在浏览器里留的评论。”</td></tr>
@@ -156,7 +177,7 @@
     <p>自动化、MCP、Chrome、Computer Use、图片生成这些很强,但可以后面再用。你先把“打开项目 → 发指令 → 看改动 → 验收”这条主线跑顺。</p>
 
     <h2 id="how-to-read">这套 App 教程怎么读</h2>
-    <p>如果你是零基础,按 A0 到 A7 顺序读。每章只记一个核心动作:</p>
+    <p>如果你是零基础,按 A0 到 A8 顺序读。每章只记一个核心动作:</p>
     <ol>
       <li>A1: 把 App 装好,打开一个项目,发出第一句话。</li>
       <li>A2: 分清项目、线程和三种模式。</li>
@@ -165,6 +186,7 @@
       <li>A5: 把重复工作交给自动化、技能、网页搜索和外部工具。</li>
       <li>A6: 调设置、记快捷键、管理记忆和守住安全边界。</li>
       <li>A7: 认识插件、Sites、Fast mode、Chronicle 和远程连接这些新能力。</li>
+      <li>A8: 分清 Chat、Work、Codex,学会选择 GPT-5.6 和使用多智能体。</li>
     </ol>
 
     <div class="prompt-card">
@@ -199,7 +221,7 @@
       </span>
       <div class="chapter-summary__body">
         <strong>这一章先记住</strong>
-        Codex App 不是“聊天窗口”,而是项目工作台。你负责定范围、说目标、看结果;Codex 负责读文件、改文件、跑检查,并在需要越界时问你。
+        桌面端里的 Codex 不是“聊天窗口”,而是项目工作台。你负责定范围、说目标、看结果;Codex 负责读文件、改文件、跑检查,并在需要越界时问你。
       </div>
     </div>
 
@@ -223,7 +245,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260703-latest-plugins"></script>
+<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

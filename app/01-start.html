@@ -6,7 +6,7 @@
 <title>App 第 01 章 · 安装、登录和第一句话 · Codex 中文教程</title>
 <meta name="description" content="Codex 桌面端 App 的零基础上手步骤:下载安装、登录、打开项目文件夹、选择 Local 模式,并发出第一条安全的提示词。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260703-latest-plugins" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -19,7 +19,7 @@
   <article class="content prose">
     <span class="chapter-meta">App 第 01 章 · 第一次打开</span>
     <h1>安装、登录和第一句话</h1>
-    <p class="chapter-lede">这一章只做一件事:让你从“还没打开过 Codex App”走到“已经选好一个项目,并且让 Codex 帮你读了一遍”。不需要写代码,也不需要知道终端是什么。</p>
+    <p class="chapter-lede">这一章只做一件事:让你从“还没打开过 ChatGPT 桌面端”走到“已经选好 Codex 和一个项目,并且让它帮你读了一遍”。不需要写代码,也不需要知道终端是什么。</p>
 
     <figure class="figure">
       <div class="figure__img">
@@ -29,7 +29,7 @@
     </figure>
 
     <h2 id="download">第一步 · 下载和安装</h2>
-    <p>去 OpenAI 官方入口下载 Codex App。macOS 和 Windows 都支持。Windows 用户也可以用 Microsoft Store / winget 安装,但如果你不熟悉命令,直接用图形界面下载就好。</p>
+    <p>去 OpenAI 官方入口下载 <strong>ChatGPT desktop app</strong>。macOS 和 Windows 都支持。旧教程或旧版本里可能仍写着 Codex App,现在 Codex 是桌面端里的一个工作入口。</p>
     <div class="callout callout--warning">
       <div class="callout__icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -48,6 +48,15 @@
     </ul>
     <p>如果你只是想跟着这套教程走,优先用 ChatGPT 账号登录。</p>
 
+    <h2 id="choose-surface">第三步 · 先选择 Codex</h2>
+    <p>登录后,在输入框附近的 ChatGPT 下拉菜单里选择 <strong>Codex</strong>。三个入口用途不同:</p>
+    <ul>
+      <li><strong>Chat:</strong>快速问答,不会默认进入项目开发流程。</li>
+      <li><strong>Work:</strong>做文档、表格、演示稿、研究和较长的日常工作。</li>
+      <li><strong>Codex:</strong>打开本地文件夹,读写代码,跑命令,看 Diff。</li>
+    </ul>
+    <p>这套教程 A0 到 A7 主要都在 Codex 入口里操作。三种入口的完整区别放在 <a href="./08-work-agents.html">A8 · Work 与多智能体</a>。</p>
+
     <h2 id="after-sign-in">登录后先检查三件事</h2>
     <p>登录成功不代表马上就能开工。你先看三件小事:</p>
     <ol>
@@ -57,7 +66,7 @@
     </ol>
     <p>如果登录卡住,先不要反复重装。优先检查网络、账号权限、浏览器是否能完成登录流程。企业或团队账号还要确认管理员是否开放 Codex Local。</p>
 
-    <h2 id="open-project">第三步 · 选择一个项目文件夹</h2>
+    <h2 id="open-project">第四步 · 选择一个项目文件夹</h2>
     <p>Codex App 不是对着整个电脑乱看。你要给它一个“工作范围”,也就是一个项目文件夹。</p>
     <p>零基础读者可以这样做:</p>
     <ol>
@@ -68,7 +77,7 @@
     </ol>
     <p><strong>Local</strong> 的意思是:Codex 就在这个文件夹里干活。你第一次用,这个最直观。</p>
 
-    <h2 id="permissions">第四步 · 权限先保守一点</h2>
+    <h2 id="permissions">第五步 · 权限先保守一点</h2>
     <p>看到权限选项时,新手优先选“默认权限”或“工作区可写”这类保守选项。你可以把它理解成:</p>
     <ul>
       <li>它能在这个项目文件夹里读写文件。</li>
@@ -91,7 +100,7 @@
     </table>
     <p>看到“允许一次”和“本次会话一直允许”时,不确定就选“一次”。等你熟了,再给更宽的权限。</p>
 
-    <h2 id="first-message">第五步 · 发出第一句话</h2>
+    <h2 id="first-message">第六步 · 发出第一句话</h2>
     <p>第一次发消息,不要说“帮我做一个网站”。先让它读项目、解释项目,这样你会知道它能看见什么。</p>
     <div class="prompt-card">
       <div class="prompt-card__head">
@@ -149,7 +158,7 @@
     <nav class="chapter-nav">
       <a class="chapter-nav__link chapter-nav__link--prev" href="./00-overview.html">
         <div class="chapter-nav__dir">上一章</div>
-        <div class="chapter-nav__title">← 先看懂 Codex App</div>
+        <div class="chapter-nav__title">← 先看懂桌面端里的 Codex</div>
       </a>
       <a class="chapter-nav__link chapter-nav__link--next" href="./02-threads-modes.html">
         <div class="chapter-nav__dir">下一章</div>
@@ -166,7 +175,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260703-latest-plugins"></script>
+<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>
