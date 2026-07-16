@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>第 03 章 · Codex 用法手册 · Codex 口语化编程教程</title>
-<meta name="description" content="Codex CLI 基础用法:审批模式、沙盒、diff 视图、内置命令、会话长度、撤回和 AGENTS.md 长期记忆。" />
+<meta name="description" content="Codex CLI 基础用法:审批模式、沙盒、diff、GPT-5.6、Fast mode、多智能体、内置命令和 AGENTS.md 长期规则。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -103,14 +103,42 @@
         <tr><td><code>/diff</code></td><td>看改动</td><td>想确认当前文件改了什么时。</td></tr>
         <tr><td><code>/review</code></td><td>让 Codex 自查</td><td>提交前让它找风险、bug、遗漏测试。</td></tr>
         <tr><td><code>/status</code></td><td>看会话状态</td><td>想知道当前目录、权限、模型、上下文时。</td></tr>
+        <tr><td><code>/model</code></td><td>选择模型和推理强度</td><td>想换 GPT-5.6,或调整速度与思考深度时。</td></tr>
+        <tr><td><code>/fast on</code></td><td>打开 Fast mode</td><td>确实赶时间,并愿意多消耗额度时。</td></tr>
+        <tr><td><code>/agent</code></td><td>查看和切换子智能体</td><td>让多个智能体并行工作后,想检查各自进度时。</td></tr>
+        <tr><td><code>/goal</code></td><td>设置持续目标</td><td>任务步骤多,需要持续推进到明确完成标准时。</td></tr>
         <tr><td><code>/new</code></td><td>开新对话</td><td>当前对话太乱,想重新开始但不退出 CLI。</td></tr>
         <tr><td><code>/resume</code></td><td>恢复旧会话</td><td>昨天做到一半,今天继续。</td></tr>
         <tr><td><code>/quit</code></td><td>退出</td><td>收工时用。</td></tr>
       </tbody>
     </table>
-    <p>不要一口气背所有命令。你真的会高频用到的,前期就是 <code>/plan</code>、<code>/diff</code>、<code>/review</code>、<code>/status</code>。</p>
+    <p>不要一口气背所有命令。你真的会高频用到的,前期就是 <code>/plan</code>、<code>/diff</code>、<code>/review</code>、<code>/status</code>。多智能体和 Fast mode 等真正需要时再开。</p>
 
-    <h2 id="session-length">3.5 一次会话的健康长度</h2>
+    <h2 id="models-agents">3.5 GPT-5.6、Fast mode 和多智能体</h2>
+    <p>截至 2026 年 7 月,CLI 也可以使用 GPT-5.6 和子智能体。最省心的做法是先用默认推荐模型;需要手动指定时,可以在启动时写:</p>
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">terminal</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre>codex --model gpt-5.6</pre>
+    </div>
+    <ul>
+      <li><strong><code>/model</code>:</strong>在当前会话里切换模型和推理强度。复杂任务先用 GPT-5.6,轻量任务再选更快的模型。</li>
+      <li><strong><code>/fast on</code>:</strong>让支持模型约快 1.5 倍,但 ChatGPT 额度消耗更高。用 <code>/fast off</code> 关闭,<code>/fast status</code> 查看状态。</li>
+      <li><strong><code>/agent</code>:</strong>查看并切换正在运行的子智能体线程。你也可以直接要求 Codex 停止或调整某个子智能体。</li>
+    </ul>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">CLI 多智能体示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请使用 3 个子智能体并行检查当前项目:一个看安全风险,一个看测试遗漏,一个看可维护性。等全部完成后,按严重程度汇总,只报告问题,不要修改文件。</div>
+      <div class="prompt-card__note">并行检查很合适;让多个智能体同时修改同一批文件容易冲突,新手先从“只读检查”开始。</div>
+    </div>
+    <p>每个子智能体都会单独使用模型和工具,所以多智能体通常更耗额度。它们会继承当前会话的权限和沙盒,不会因为分工就自动扩大访问范围。</p>
+
+    <h2 id="session-length">3.6 一次会话的健康长度</h2>
     <p>Codex 的会话越聊越长,上下文会越来越复杂。长到一定程度,它可能开始变得迟钝或跑偏。</p>
     <p>出现这些信号,就该考虑 <code>/new</code> 或重新开一个任务:</p>
     <ul>
@@ -129,7 +157,7 @@
       <div class="prompt-card__note">复制这段总结到新会话,比带着一堆历史继续纠缠更清爽。</div>
     </div>
 
-    <h2 id="undo">3.6 中断、撤回、重来的三件套</h2>
+    <h2 id="undo">3.7 中断、撤回、重来的三件套</h2>
     <p>你需要会三种“刹车”。</p>
     <table>
       <thead><tr><th>动作</th><th>通俗理解</th><th>场景</th></tr></thead>
@@ -149,7 +177,7 @@
       <div class="prompt-card__note">比“全都撤回”更安全。范围越清楚,越不容易误伤。</div>
     </div>
 
-    <h2 id="config">3.7 给项目留下"长期记忆"</h2>
+    <h2 id="config">3.8 给项目留下"长期记忆"</h2>
     <p>如果你发现自己反复提醒 Codex 同一件事,就该把它写进 <code>AGENTS.md</code>。</p>
     <p><code>AGENTS.md</code> 可以理解成“项目里的工作说明”。每次 Codex 进入这个项目时,都会先读这些规则。比如:</p>
     <div class="code">
@@ -178,7 +206,7 @@
       <div class="prompt-card__note">AGENTS.md 不是越长越好。它应该像工作便签,不是法律合同。</div>
     </div>
 
-    <h2 id="everyday-flow">3.8 新手日常工作流</h2>
+    <h2 id="everyday-flow">3.9 新手日常工作流</h2>
     <p>把本章内容合起来,你日常可以这样用 Codex CLI:</p>
     <ol>
       <li>进入项目文件夹,运行 <code>codex</code>。</li>
@@ -213,7 +241,7 @@
       </span>
       <div class="chapter-summary__body">
         <strong>你已经会了</strong>
-        控制 Codex 的权限边界、读懂 diff 的大方向、用常见 slash 命令管理会话,并知道如何用 AGENTS.md 把反复约定沉淀成项目规则。
+        控制 Codex 的权限边界、读懂 diff 的大方向、选择 GPT-5.6、按需使用 Fast mode 和子智能体,并知道如何用 AGENTS.md 把反复约定沉淀成项目规则。
       </div>
     </div>
 

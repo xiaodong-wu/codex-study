@@ -100,6 +100,7 @@ python3 -m http.server 8000
 - A7 补充 Codex Security、Sites、Gmail、Google Drive、Slack、Record & Replay、Fast mode、Chronicle、Remote connections 和常见连接能力。
 - A0/A1/A2/A6/A7 更新为 ChatGPT desktop app 最新名称与入口,并修正最新快捷键、任务术语和模型说明。
 - A8 补充 ChatGPT Work、GPT-5.6 模型家族、子智能体、长任务、通知、Pets、文件交付和 Visualizations。
+- CLI 第 03 章与附录同步补充 GPT-5.6、<code>/fast</code>、<code>/agent</code> 和多智能体使用边界。
 
 ## 继续维护内容
 

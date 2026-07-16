@@ -54,6 +54,7 @@
         <tr><td><code>codex "请总结这个项目结构"</code></td><td>启动时顺便发第一句话</td><td>省一步打开后再输入</td></tr>
         <tr><td><code>codex -C [项目路径]</code></td><td>指定工作目录后启动</td><td>你不想先 <code>cd</code> 到项目目录时用</td></tr>
         <tr><td><code>codex --image [图片路径]</code></td><td>启动时附带图片</td><td>让 Codex 看截图、设计稿、报错图</td></tr>
+        <tr><td><code>codex --model gpt-5.6</code></td><td>指定 GPT-5.6 启动</td><td>想明确使用当前推荐的复杂任务模型</td></tr>
         <tr><td><code>codex resume</code></td><td>从最近会话列表里恢复</td><td>昨天聊到一半,今天接着来</td></tr>
         <tr><td><code>codex resume --last</code></td><td>直接恢复当前目录最近一次会话</td><td>最省事的“继续上次”</td></tr>
         <tr><td><code>codex app</code></td><td>启动 Codex 桌面端 App</td><td>想从终端打开桌面端时用</td></tr>
@@ -68,6 +69,7 @@
         <tr><td><code>codex exec "总结这个仓库的结构"</code></td><td>只跑一次任务,输出最终答案</td></tr>
         <tr><td><code>codex exec --sandbox workspace-write "修复这个 lint 错误"</code></td><td>允许它在当前工作区改文件</td></tr>
         <tr><td><code>codex exec --json "检查这个项目"</code></td><td>输出 JSONL,适合交给别的脚本处理</td></tr>
+        <tr><td><code>codex exec -m gpt-5.6 "审查当前改动"</code></td><td>用 GPT-5.6 跑一次非交互任务</td></tr>
         <tr><td><code>codex exec resume --last "继续实现刚才的计划"</code></td><td>让非交互任务接着上一次会话跑</td></tr>
       </tbody>
     </table>
@@ -104,6 +106,9 @@
         <tr><td><code>/diff</code></td><td>查看当前 Git diff</td><td>接受改动前检查 Codex 改了什么</td></tr>
         <tr><td><code>/review</code></td><td>让 Codex 审查当前改动</td><td>完工后做一次自查</td></tr>
         <tr><td><code>/model</code></td><td>切换模型</td><td>任务变难或想省资源时</td></tr>
+        <tr><td><code>/fast on</code> / <code>/fast off</code></td><td>打开或关闭 Fast mode</td><td>愿意多消耗额度来换取更快速度时</td></tr>
+        <tr><td><code>/fast status</code></td><td>查看 Fast mode 状态</td><td>不确定当前是否处于加速模式时</td></tr>
+        <tr><td><code>/agent</code></td><td>查看或切换子智能体线程</td><td>并行任务运行时检查各自进度</td></tr>
         <tr><td><code>/plan</code></td><td>进入计划模式</td><td>大任务先看方案,不急着改文件</td></tr>
         <tr><td><code>/goal</code></td><td>设置或查看长期目标</td><td>任务很长,怕中途跑偏时</td></tr>
         <tr><td><code>/compact</code></td><td>压缩长对话</td><td>聊很久后释放上下文空间</td></tr>
@@ -155,7 +160,7 @@
       </span>
       <div class="chapter-summary__body">
         <strong>一句话记住</strong>
-        日常用 <code>codex</code>,自动化用 <code>codex exec</code>,排查用 <code>codex doctor</code>,看改动用 <code>/diff</code>,怕跑偏用 <code>/plan</code> 和 <code>/permissions</code>。
+        日常用 <code>codex</code>,自动化用 <code>codex exec</code>,排查用 <code>codex doctor</code>,看改动用 <code>/diff</code>,怕跑偏用 <code>/plan</code> 和 <code>/permissions</code>,并行任务用 <code>/agent</code> 查看。
       </div>
     </div>
 

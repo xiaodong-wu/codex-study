@@ -222,16 +222,16 @@
 
     <h2 id="codex-common-online">Codex App / CLI 高频问题</h2>
     <div class="pitfall-group">
-      <details class="pitfall" data-keywords="404 model not found gpt-5.5 gpt-5.4 模型不可用 selected model unavailable">
+      <details class="pitfall" data-keywords="404 model not found gpt-5.6 sol terra luna gpt-5.5 gpt-5.4 gpt-5.3 deprecated 模型不可用 selected model unavailable">
         <summary>模型报 <code>404</code>、<code>model not found</code>,但换别的模型能跑</summary>
         <div class="pitfall__body">
           <dl>
             <dt>常见原因</dt>
             <dd>当前账号、地区、组织策略或这一个 Codex 版本暂时拿不到你选的模型;也可能是配置里手动写了一个过新的模型名。</dd>
             <dt>怎么处理</dt>
-            <dd>先切回默认模型或上一个可用模型,再更新 Codex App / CLI。CLI 里用 <code>codex --version</code> 看版本;桌面端可以在设置里更新。不要一上来改一堆配置,先确认是不是“只有某个模型不行”。</dd>
+            <dd>先切回默认推荐模型,再更新桌面端或 CLI。CLI 里用 <code>/model</code> 重新选择,用 <code>codex --version</code> 看版本。旧配置里的 <code>gpt-5.2</code>、<code>gpt-5.3-codex</code> 等名称可能已经弃用;当前复杂任务优先试 GPT-5.6。</dd>
             <dt>参考来源</dt>
-            <dd><a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a> 中有模型 404 与连接类反馈;版本差异可参考 <a href="https://developers.openai.com/codex/app/troubleshooting">Codex App Troubleshooting</a>。</dd>
+            <dd>先看官方 <a href="https://learn.chatgpt.com/docs/models">Models</a> 和 <a href="https://learn.chatgpt.com/docs/reference/troubleshooting">Troubleshooting</a>;仍无法判断时,再查 <a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a>。</dd>
           </dl>
         </div>
       </details>
