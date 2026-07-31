@@ -6,7 +6,7 @@
 <title>App 第 00 章 · 先看懂桌面端里的 Codex · Codex 中文教程</title>
 <meta name="description" content="面向零编程基础读者的 ChatGPT 桌面端与 Codex 入门:先看懂 Chat、Work、Codex 的区别,以及桌面端和 CLI 怎么选。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">内容依据</div>
-        <div class="callout__body">本套 App 教程按 2026 年 7 月 16 日核对的 OpenAI 官方文档整理。按钮名字和入口可能更新,但项目、任务、审查、权限、插件和工作模式这些核心概念会比较稳定。</div>
+        <div class="callout__body">本套 App 教程按 2026 年 7 月 31 日核对的 OpenAI 官方文档整理。官方最新周报覆盖 7 月 20–24 日,另有 7 月 28 日 Codex Security 插件更新。按钮名字和入口可能更新,但项目、任务、审查、权限、插件和工作模式这些核心概念会比较稳定。</div>
       </div>
     </div>
 
@@ -87,7 +87,7 @@
     <div class="feature-grid">
       <div class="feature-card">
         <h3 class="feature-card__title">项目和线程</h3>
-        <p class="feature-card__body">项目就是一个文件夹,线程就是一次对话。一个项目里可以有很多线程。</p>
+        <p class="feature-card__body">项目可以连接一个或多个相关文件夹,线程就是一次对话。一个项目里可以有很多线程。</p>
       </div>
       <div class="feature-card">
         <h3 class="feature-card__title">Local / Worktree / Cloud</h3>
@@ -141,10 +141,18 @@
         <h3 class="feature-card__title">GPT-5.6 与多智能体</h3>
         <p class="feature-card__body">用 Sol、Terra、Luna 匹配任务;复杂工作可由多个子智能体并行处理。</p>
       </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">ChatGPT Voice</h3>
+        <p class="feature-card__body">用自然语音启动、查询和调整 Chat、Work、Codex 任务,也能在 macOS 上让它看看当前窗口。</p>
+      </div>
+      <div class="feature-card">
+        <h3 class="feature-card__title">多文件夹项目</h3>
+        <p class="feature-card__body">一个本地项目可以同时看到网站、文档和后端等相关文件夹,主文件夹负责 Git 和配置发现。</p>
+      </div>
     </div>
 
     <h2 id="latest-feature-notes">最新功能先用人话记</h2>
-    <p>截至 2026 年 7 月 16 日,桌面端 App 里最容易被新手忽略的能力,可以先这样理解:</p>
+    <p>截至 2026 年 7 月 31 日,桌面端 App 里最容易被新手忽略的能力,可以先这样理解:</p>
     <table>
       <thead><tr><th>功能</th><th>一句话理解</th><th>你该怎么开口</th></tr></thead>
       <tbody>
@@ -163,6 +171,8 @@
         <tr><td>Chronicle</td><td>用最近屏幕上下文帮 Codex 建记忆</td><td>“开启前请说明隐私风险,敏感页面我要暂停。”</td></tr>
         <tr><td>Remote connections</td><td>从手机、另一台设备或 SSH 主机继续工作</td><td>“请确认远程主机能看到哪些项目和权限。”</td></tr>
         <tr><td>Memories</td><td>记住长期偏好,但不放秘密</td><td>“请记住我喜欢口语化说明,不要记账号或密钥。”</td></tr>
+        <tr><td>ChatGPT Voice</td><td>用语音启动、查询或调整其他任务</td><td>“开一个 Codex 任务跑测试,有阻塞就回来告诉我。”</td></tr>
+        <tr><td>多文件夹项目</td><td>一个项目同时读取几组相关文件,主文件夹负责 Git 和自动配置</td><td>“主文件夹可修改,辅助资料只读;Git 只针对主仓库。”</td></tr>
       </tbody>
     </table>
     <p>如果你一时分不清,就把场景说清楚,让 Codex 帮你选:“这个任务更适合 Local、Worktree、Browser 还是 Computer Use?请先解释原因,再行动。”</p>
@@ -177,7 +187,7 @@
     <p>自动化、MCP、Chrome、Computer Use、图片生成这些很强,但可以后面再用。你先把“打开项目 → 发指令 → 看改动 → 验收”这条主线跑顺。</p>
 
     <h2 id="how-to-read">这套 App 教程怎么读</h2>
-    <p>如果你是零基础,按 A0 到 A8 顺序读。每章只记一个核心动作:</p>
+    <p>如果你是零基础,按 A0 到 A9 顺序读。每章只记一个核心动作:</p>
     <ol>
       <li>A1: 把 App 装好,打开一个项目,发出第一句话。</li>
       <li>A2: 分清项目、线程和三种模式。</li>
@@ -187,6 +197,7 @@
       <li>A6: 调设置、记快捷键、管理记忆和守住安全边界。</li>
       <li>A7: 认识插件、Sites、Fast mode、Chronicle 和远程连接这些新能力。</li>
       <li>A8: 分清 Chat、Work、Codex,学会选择 GPT-5.6 和使用多智能体。</li>
+      <li>A9: 用语音协调任务,管理多文件夹项目,并从手机继续查看进度。</li>
     </ol>
 
     <div class="prompt-card">
@@ -245,7 +256,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
+<script src="../assets/js/nav.js?v=20260731-voice-projects"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

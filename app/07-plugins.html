@@ -6,7 +6,7 @@
 <title>App 第 07 章 · 插件功能和最新能力 · Codex 中文教程</title>
 <meta name="description" content="Codex 桌面端 App 插件功能介绍:插件是什么、怎么安装、怎么调用,以及 Codex Security、Sites、Gmail、Google Drive、Slack、Record & Replay 等已知插件和能力能做什么。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">本页更新时间</div>
-        <div class="callout__body">本页按 2026-07-16 可查到的 OpenAI 官方文档整理。插件目录会随账号、地区、套餐和工作区策略变化,实际能不能安装,以你 App 里的 Plugins 页面为准。</div>
+        <div class="callout__body">本页按 2026-07-31 可查到的 OpenAI 官方文档整理。Codex Security 托管目录的最新记录是 0.1.14（7 月 28 日）,公开 CLI 插件市场最新记录是 0.1.11。插件目录会随账号、地区、套餐和工作区策略变化,实际能不能安装,以你 App 里的 Plugins 页面为准。</div>
       </div>
     </div>
 
@@ -81,6 +81,19 @@
       </tbody>
     </table>
 
+    <h2 id="security-july-update">Codex Security 7 月 28 日更新了什么</h2>
+    <p>Codex Security 是这次检查里日期最新的一项插件更新。它不是普通杀毒软件,而是结合仓库上下文检查代码风险、整理发现,再把修复工作交回 Codex。0.1.14 主要补强了四件事:</p>
+    <table>
+      <thead><tr><th>更新</th><th>通俗理解</th><th>怎么用</th></tr></thead>
+      <tbody>
+        <tr><td>扫描历史对比</td><td>重跑同一份扫描后,能区分新出现、仍存在、已解决和本轮没扫到的问题。</td><td>适合确认一次修复到底有没有真正消掉风险。</td></tr>
+        <tr><td>仓库安全策略</td><td>可以用 <code>$codex-security:define-security-policy</code> 帮你整理或更新 <code>SECURITY.md</code>,明确边界、严重程度、排除项和已接受风险。</td><td>先生成草稿,再由项目负责人或安全人员确认。</td></tr>
+        <tr><td>批量跟踪</td><td>可从一次完成的扫描中选择最多 25 条发现,交回 Codex 审查后再准备 GitHub Issues 或 Linear 跟踪。</td><td>不会直接悄悄创建工单,先让人确认。</td></tr>
+        <tr><td>标准扫描简化</td><td>减少重复扫描阶段,同时保留报告、覆盖信息和 SARIF 等输出。</td><td>日常仓库检查更清楚,但结果仍要人工复核。</td></tr>
+      </tbody>
+    </table>
+    <p>不同安装来源的版本号可能不一样。看到教程里的功能前,先检查你实际安装的 Codex Security 版本;重新打开旧扫描也不会把插件固定在旧版本。</p>
+
     <h2 id="common-integrations">常见连接器和本教程环境可见能力</h2>
     <p>下面这些不一定都以“插件”两个字出现在你的界面里,有些会以 App 连接器、MCP、技能或内置工具的形式出现。新手可以先按“它能帮我做什么”来记。</p>
     <table>
@@ -105,7 +118,7 @@
     <p>Record & Replay 是一个很适合新手理解的功能:你在 Mac 上把某个重复流程做一遍,Codex 观察这个流程,然后帮你整理成以后可复用的技能。比如每周下载报表、创建固定格式的工单、按固定步骤发布内容。</p>
     <p>它更适合“我说不清,但我会做给你看”的流程。录制时尽量短、完整、只做一件事,不要录到账号密码、客户资料或无关窗口。</p>
 
-    <h2 id="latest-codex-features">2026-07-16 值得补充的新能力</h2>
+    <h2 id="latest-codex-features">2026-07-31 值得补充的新能力</h2>
     <table>
       <thead><tr><th>新能力</th><th>通俗理解</th><th>你可以怎么说</th></tr></thead>
       <tbody>
@@ -118,6 +131,9 @@
         <tr><td>Sites</td><td>直接让 Codex 保存和部署网站版本。</td><td>“请先保存一个可预览版本,我确认后再部署。”</td></tr>
         <tr><td>Chronicle</td><td>用最近屏幕上下文帮 Codex 建记忆,少重复解释背景。</td><td>“开启前先说明隐私风险,我看敏感内容时要能暂停。”</td></tr>
         <tr><td>Remote connections</td><td>从手机、另一台 Codex App 设备或 SSH 主机继续工作。</td><td>“请检查远程连接能看到哪些项目、权限和插件。”</td></tr>
+        <tr><td>ChatGPT Voice</td><td>用语音启动、检查和调整 Chat、Work、Codex 任务。</td><td>“开一个 Codex 任务跑测试,有阻塞就回来告诉我。”</td></tr>
+        <tr><td>多文件夹本地项目</td><td>一个项目同时读取几组相关文件,主文件夹负责 Git 和自动配置发现。</td><td>“主文件夹可改,辅助资料只读;Git 只针对主仓库。”</td></tr>
+        <tr><td>Amazon Bedrock</td><td>企业可以用 AWS 凭据和账单运行 GPT-5.6 的本地 Work 与 Codex。</td><td>“请先检查 AWS 区域、模型权限和当前 provider,不要输出凭据。”</td></tr>
       </tbody>
     </table>
 
@@ -172,10 +188,13 @@
       <li><a href="https://learn.chatgpt.com/docs/sites" target="_blank" rel="noopener">Sites</a>:Sites 插件的保存、部署和权限说明。</li>
       <li><a href="https://learn.chatgpt.com/docs/extend/record-and-replay" target="_blank" rel="noopener">Record & Replay</a>:把演示流程变成可复用技能。</li>
       <li><a href="https://learn.chatgpt.com/docs/security" target="_blank" rel="noopener">Codex Security</a>:安全扫描、深度扫描和云端安全能力。</li>
+      <li><a href="https://learn.chatgpt.com/docs/security/plugin/changelog" target="_blank" rel="noopener">Codex Security plugin changelog</a>:插件版本和每次功能变化。</li>
       <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:GPT-5.6、推荐模型和弃用模型说明。</li>
       <li><a href="https://learn.chatgpt.com/docs/agent-configuration/speed" target="_blank" rel="noopener">Speed</a>:Fast mode 和额度消耗说明。</li>
       <li><a href="https://learn.chatgpt.com/docs/customization/chronicle" target="_blank" rel="noopener">Chronicle</a>:屏幕上下文记忆和隐私风险。</li>
       <li><a href="https://learn.chatgpt.com/docs/remote-connections" target="_blank" rel="noopener">Remote connections</a>:手机、远程设备和 SSH 主机连接。</li>
+      <li><a href="https://learn.chatgpt.com/docs/features/voice" target="_blank" rel="noopener">ChatGPT Voice</a>:语音对话、任务协调和屏幕上下文。</li>
+      <li><a href="https://learn.chatgpt.com/docs/projects" target="_blank" rel="noopener">Projects and chats</a>:多文件夹本地项目。</li>
     </ul>
 
     <div class="chapter-summary chapter-summary--end">
@@ -208,7 +227,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
+<script src="../assets/js/nav.js?v=20260731-voice-projects"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

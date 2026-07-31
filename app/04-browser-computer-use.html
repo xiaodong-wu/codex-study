@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>App 第 04 章 · 浏览器、标注和电脑操作 · Codex 中文教程</title>
-<meta name="description" content="Codex 桌面端 App 的图形化能力说明:内置浏览器、页面标注、Browser Use、Chrome 扩展、Computer Use、Appshots 和图片生成。" />
+<meta name="description" content="Codex 桌面端 App 的图形化能力说明:内置浏览器、页面标注、Browser Use、Chrome 扩展、Computer Use、Appshots、Voice 屏幕上下文和图片生成。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -189,6 +189,10 @@
       <div class="prompt-card__note">先让它复述看到了什么,可以确认它没有误读窗口内容。</div>
     </div>
 
+    <h2 id="voice-screen-context">Voice 也能听懂“看看这个”</h2>
+    <p>使用 ChatGPT Voice 时,可以在 macOS 的 <strong>Settings &gt; Voice</strong> 打开 <strong>Screen context</strong>,再说“Take a look at this”或“看看这个”。ChatGPT 会给最前面的窗口创建 appshot,然后你可以继续用语音讨论或让它新开 Codex 任务。</p>
+    <p>它可能读到窗口里当前没有显示出来的可访问文本。客户资料、聊天记录、账号、付款页面或密钥窗口不要随手共享。Voice 的完整启动方法见 <a href="./09-voice-projects.html">A9</a>。</p>
+
     <h2 id="image-generation">图片生成和非代码文件</h2>
     <p>Codex App 也能处理不只是代码的任务。你可以让它生成或编辑图片资产,也可以让它产出 PDF、表格、文档、演示文稿这类文件。想明确让它走图片生成能力,可以在提示词里写 <code>$imagegen</code>。</p>
     <p>说需求时要补三样东西:</p>
@@ -256,7 +260,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
+<script src="../assets/js/nav.js?v=20260731-voice-projects"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

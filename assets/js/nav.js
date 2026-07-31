@@ -3,7 +3,7 @@
   'use strict';
 
   const STORAGE_KEY = 'codex-tutorial-read';
-  const PARTIAL_VERSION = '20260716-work-agents';
+  const PARTIAL_VERSION = '20260731-voice-projects';
   const PARTIAL_CACHE_PREFIX = 'codex-tutorial-partial:';
 
   function getReadSet() {

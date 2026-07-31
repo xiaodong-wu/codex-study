@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>App 第 02 章 · 项目、线程和三种模式 · Codex 中文教程</title>
-<meta name="description" content="用通俗语言解释 Codex App 里的项目、线程、Local、Worktree、Cloud、Goal、语音输入、弹出窗口和 IDE 同步。" />
+<meta name="description" content="用通俗语言解释 Codex App 里的项目、线程、多文件夹项目、Local、Worktree、Cloud、Goal、语音输入、弹出窗口和 IDE 同步。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
-<link rel="stylesheet" href="../assets/css/layout.css?v=20260716-work-agents" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
 <link rel="stylesheet" href="../assets/css/prose.css" />
 </head>
@@ -31,6 +31,14 @@
     <h2 id="project">项目:把相关资料放在一起</h2>
     <p>新版 Projects 页面会把两类项目放在一起:ChatGPT 项目可以保存上传文件、项目说明和连接来源;本地项目则连接你电脑里的一个或多个文件夹。做代码时,你最常用的是本地项目。</p>
     <p>新手要记住:项目范围越清楚,Codex 越不容易跑偏。不要一上来把整个桌面、整个下载目录都交给它。</p>
+
+    <h2 id="multi-folder-project">多文件夹项目:主次要分清</h2>
+    <p>从 2026 年 7 月更新开始,一个本地项目可以加入多个相关文件夹。打开项目菜单里的 <strong>Edit project</strong>,用 <strong>Add folder</strong> 添加目录,再用 <strong>Make primary</strong> 指定主文件夹。</p>
+    <ul>
+      <li><strong>主文件夹:</strong>新任务默认从这里开始,Git、PR、Worktree 以它为主,并自动发现这里的 <code>AGENTS.md</code>、Skills 和 <code>config.toml</code>。</li>
+      <li><strong>辅助文件夹:</strong>Codex 可以搜索、读取和编辑,但不会自动发现里面的项目配置。</li>
+    </ul>
+    <p>例如把官网仓库设为主文件夹,把产品说明设为辅助文件夹。两套完全无关的项目不要放一起。完整操作和安全边界见 <a href="./09-voice-projects.html">A9 · 语音与多文件夹项目</a>。</p>
 
     <h2 id="thread">Task / 线程:一次任务对话</h2>
     <p>官方界面现在更常写 <strong>Task</strong>,技术说明里也会看到 thread。对新手来说,都可以理解成“一张独立任务单”。一个项目里可以开很多任务:</p>
@@ -136,7 +144,7 @@
       </div>
       <div class="feature-card">
         <h3 class="feature-card__title">语音输入</h3>
-        <p class="feature-card__body">按住语音快捷键说话,再编辑文字发送。适合先把想法倒出来。</p>
+        <p class="feature-card__body">按住语音快捷键说话,再编辑文字发送。想连续对话并协调其他任务,改用 A9 的 ChatGPT Voice。</p>
       </div>
       <div class="feature-card">
         <h3 class="feature-card__title">弹出窗口</h3>
@@ -195,7 +203,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260716-work-agents"></script>
+<script src="../assets/js/nav.js?v=20260731-voice-projects"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">ChatGPT Voice 和多文件夹项目示意图</title>
+  <desc id="desc">左侧展示语音对话协调多个任务，右侧展示一个本地项目包含主文件夹和两个辅助文件夹。</desc>
+  <rect width="1200" height="650" fill="#f7f8fb"/>
+  <rect x="54" y="52" width="510" height="546" rx="18" fill="#ffffff" stroke="#dfe3ea" stroke-width="2"/>
+  <rect x="636" y="52" width="510" height="546" rx="18" fill="#ffffff" stroke="#dfe3ea" stroke-width="2"/>
+
+  <circle cx="104" cy="105" r="22" fill="#4254d8"/>
+  <path d="M97 104v-9a7 7 0 0 1 14 0v9a7 7 0 0 1-14 0Zm-6 0a13 13 0 0 0 26 0M104 117v11M96 128h16" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+  <text x="142" y="114" font-family="Arial, PingFang SC, sans-serif" font-size="28" font-weight="700" fill="#202431">用语音协调工作</text>
+  <text x="86" y="165" font-family="Arial, PingFang SC, sans-serif" font-size="19" fill="#5e6675">“检查网站进度，有阻塞就告诉我。”</text>
+
+  <path d="M308 214v48M308 262H176M308 262h132M176 262v34M440 262v34" fill="none" stroke="#9aa4b3" stroke-width="3" stroke-linecap="round"/>
+  <rect x="91" y="296" width="220" height="106" rx="12" fill="#eef0ff" stroke="#cdd3ff" stroke-width="2"/>
+  <text x="114" y="331" font-family="Arial, PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#3342b5">Codex 任务</text>
+  <text x="114" y="363" font-family="Arial, PingFang SC, sans-serif" font-size="17" fill="#50596a">运行测试、修复问题</text>
+  <circle cx="276" cy="330" r="6" fill="#28a274"/>
+
+  <rect x="327" y="296" width="205" height="106" rx="12" fill="#fff5e9" stroke="#f5d1a7" stroke-width="2"/>
+  <text x="350" y="331" font-family="Arial, PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#9a5418">Work 任务</text>
+  <text x="350" y="363" font-family="Arial, PingFang SC, sans-serif" font-size="17" fill="#50596a">整理报告、交付文件</text>
+  <circle cx="497" cy="330" r="6" fill="#f06b42"/>
+
+  <rect x="91" y="436" width="441" height="112" rx="12" fill="#f5f7fa" stroke="#dfe3ea" stroke-width="2"/>
+  <text x="116" y="472" font-family="Arial, PingFang SC, sans-serif" font-size="17" font-weight="700" fill="#202431">macOS 屏幕上下文</text>
+  <text x="116" y="505" font-family="Arial, PingFang SC, sans-serif" font-size="17" fill="#5e6675">说“看看这个”，把当前窗口作为 appshot</text>
+
+  <circle cx="686" cy="105" r="22" fill="#f06b42"/>
+  <path d="M674 98h11l5 5h16v17h-32Z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+  <text x="724" y="114" font-family="Arial, PingFang SC, sans-serif" font-size="28" font-weight="700" fill="#202431">一个项目，多个文件夹</text>
+
+  <rect x="681" y="168" width="420" height="132" rx="12" fill="#eef0ff" stroke="#8793ee" stroke-width="3"/>
+  <text x="709" y="207" font-family="Arial, PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#3342b5">主文件夹 · website</text>
+  <text x="709" y="241" font-family="Arial, PingFang SC, sans-serif" font-size="17" fill="#50596a">新任务从这里开始 · Git 操作</text>
+  <text x="709" y="270" font-family="Arial, PingFang SC, sans-serif" font-size="17" fill="#50596a">自动发现 AGENTS.md、Skills、config.toml</text>
+
+  <path d="M891 300v54M891 354H758M891 354h133M758 354v34M1024 354v34" fill="none" stroke="#9aa4b3" stroke-width="3" stroke-linecap="round"/>
+  <rect x="681" y="388" width="210" height="126" rx="12" fill="#f5f7fa" stroke="#dfe3ea" stroke-width="2"/>
+  <text x="705" y="426" font-family="Arial, PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#202431">辅助文件夹 · docs</text>
+  <text x="705" y="460" font-family="Arial, PingFang SC, sans-serif" font-size="16" fill="#5e6675">可搜索、读取、编辑</text>
+  <text x="705" y="489" font-family="Arial, PingFang SC, sans-serif" font-size="16" fill="#5e6675">不自动发现项目配置</text>
+
+  <rect x="907" y="388" width="194" height="126" rx="12" fill="#f5f7fa" stroke="#dfe3ea" stroke-width="2"/>
+  <text x="931" y="426" font-family="Arial, PingFang SC, sans-serif" font-size="18" font-weight="700" fill="#202431">辅助文件夹 · api</text>
+  <text x="931" y="460" font-family="Arial, PingFang SC, sans-serif" font-size="16" fill="#5e6675">适合相关联的资料</text>
+  <text x="931" y="489" font-family="Arial, PingFang SC, sans-serif" font-size="16" fill="#5e6675">无关工作另建项目</text>
+
+  <text x="681" y="560" font-family="Arial, PingFang SC, sans-serif" font-size="17" fill="#5e6675">入口：项目菜单 → Edit project → Add folder / Make primary</text>
+</svg>
