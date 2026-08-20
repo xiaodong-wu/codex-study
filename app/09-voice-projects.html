@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>App 第 09 章 · 语音协作、多文件夹项目与移动端 · Codex 中文教程</title>
-<meta name="description" content="通俗介绍 ChatGPT Voice、多文件夹本地项目、Chat 与 Work 对话组织、Codex 移动端接力和 Amazon Bedrock 等 2026 年 7 月更新。" />
+<title>App 第 09 章 · 语音协作、多文件夹项目与移动端 · Codex 中文教程（神灯资讯）</title>
+<meta name="description" content="通俗介绍 ChatGPT Voice、多文件夹本地项目、Codex Remote 手机接力和 Amazon Bedrock，并补充 2026 年 8 月移动端稳定性更新。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -17,7 +17,7 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">App 第 09 章 · 2026 年 7 月最新更新</span>
+    <span class="chapter-meta">App 第 09 章 · 语音、项目与 Remote</span>
     <h1>语音协作、多文件夹项目与移动端</h1>
     <p class="chapter-lede">现在你不只可以打字让 Codex 干活，还可以直接和 ChatGPT Voice 对话，让它新开任务、查进度、换方向。一个本地项目也能同时挂上几个相关文件夹，网站、文档和后端不用再被硬塞进同一个目录。</p>
 
@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">更新核对说明</div>
-        <div class="callout__body">本章在 2026-07-31 核对 OpenAI 官方手册。官方最新周报覆盖 7 月 20–24 日；7 月 28 日还有 Codex Security 插件更新，已单独补进 <a href="./07-plugins.html">A7 插件专章</a>。功能是否出现仍会受套餐、地区、灰度开放和工作区策略影响。</div>
+        <div class="callout__body">本章在 2026-08-20 重新核对 OpenAI 官方文档，补充了 8 月 18 日移动端 Remote、Voice、断线重连和 Diff 审查改进。功能是否出现仍会受套餐、地区、灰度开放和工作区策略影响。</div>
       </div>
     </div>
 
@@ -115,7 +115,23 @@
 
     <h2 id="mobile">手机可以接着看和管任务</h2>
     <p>把 iPhone 与桌面主机配对后，可以在 ChatGPT 手机 App 的 <strong>Remote</strong> 里继续工作。任务实际仍在电脑上运行，所以电脑要在线；手机更像遥控器和随身验收窗口。</p>
-    <p>iOS 1.2026.188 还加入了 Codex 任务内嵌可视化，并改善了从对话创建和管理任务的流程。适合外出时查进度、看图表、补一句方向；大量文件审查和复杂 Diff 仍建议回桌面完成。</p>
+    <ol>
+      <li>电脑打开 <strong>Settings &gt; Connections &gt; Control this Mac or PC</strong>，选择 Set up 或 Add。</li>
+      <li>批准远程访问，用手机扫描二维码。</li>
+      <li>手机用同一个 ChatGPT 账号和工作区确认连接。</li>
+      <li>打开 Remote，选择电脑与项目，再新建任务或继续已有任务。</li>
+    </ol>
+    <p>Remote 可以从手机发起任务、追加方向、处理审批、查看 changed files、Diff 和测试结果。2026 年 8 月 18 日更新还改善了任务重连、长响应加载、语音连接与大工作区 Diff 稳定性；任务消息加载失败时可以使用 Retry。</p>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">配对的是一台真实电脑</div>
+        <div class="callout__body">Remote 会沿用主机上的项目、文件、凭据、权限、插件和本地工具。只连接你自己拥有并信任的设备；手机丢失、账号异常或不再使用时，及时在电脑端撤销连接。</div>
+      </div>
+    </div>
+    <p>外出时适合查进度、看图表、补一句方向和批准清楚的低风险命令；大量文件审查、复杂 Diff、账号操作和高风险命令仍建议回桌面完成。</p>
 
     <h2 id="advanced-latest">两项进阶更新：Codex Micro 和 Amazon Bedrock</h2>
     <table>
@@ -136,6 +152,7 @@
         <tr><td>“看看这个”没有反应</td><td>Settings &gt; Voice 的 Screen context、macOS 屏幕录制与辅助功能权限。</td></tr>
         <tr><td>辅助文件夹里的规则没生效</td><td>这是预期行为；自动发现只看主文件夹。必要时把规则写进主文件夹或在提示词里点名。</td></tr>
         <tr><td>手机看不到本地任务</td><td>桌面主机是否在线、Remote 是否已配对，以及当前账号是否一致。</td></tr>
+        <tr><td>任务消息加载失败</td><td>先点 Retry；再检查主机联网和配对状态。仍反复失败时更新桌面端与手机 App。</td></tr>
       </tbody>
     </table>
 
@@ -162,7 +179,7 @@
       <li><a href="https://learn.chatgpt.com/docs/features/voice" target="_blank" rel="noopener">ChatGPT Voice</a>:开始语音、任务协调、屏幕上下文和限制。</li>
       <li><a href="https://learn.chatgpt.com/docs/projects" target="_blank" rel="noopener">Projects and chats</a>:本地项目、多文件夹、主文件夹和辅助文件夹。</li>
       <li><a href="https://learn.chatgpt.com/docs/appshots" target="_blank" rel="noopener">Appshots</a>:窗口截图、权限和安全说明。</li>
-      <li><a href="https://learn.chatgpt.com/docs/remote-connections" target="_blank" rel="noopener">Remote connections</a>:手机和远程主机接力。</li>
+      <li><a href="https://learn.chatgpt.com/docs/remote" target="_blank" rel="noopener">Codex Remote</a>:手机配对、任务接力、审批和 Diff 审查。</li>
       <li><a href="https://learn.chatgpt.com/docs/amazon-bedrock" target="_blank" rel="noopener">Amazon Bedrock</a>:企业 AWS 配置和支持范围。</li>
     </ul>
 
@@ -181,9 +198,9 @@
         <div class="chapter-nav__dir">上一章</div>
         <div class="chapter-nav__title">← Work、GPT-5.6 和多智能体</div>
       </a>
-      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html">
-        <div class="chapter-nav__dir">继续学习</div>
-        <div class="chapter-nav__title">进入 CLI 教程 →</div>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./10-august-updates.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">2026 年 8 月功能更新 →</div>
       </a>
     </nav>
   </article>

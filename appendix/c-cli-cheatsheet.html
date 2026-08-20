@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>附录 C · Codex CLI 命令速查表 · Codex 口语化编程教程</title>
+<title>附录 C · Codex CLI 命令速查表 · Codex 中文教程（神灯资讯）</title>
 <meta name="description" content="Codex CLI 常用命令速查:安装、升级、登录、启动、执行、审批沙盒选项和卡住时可直接说的短句。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
@@ -37,6 +37,7 @@
       <tbody>
         <tr><td><code>npm install -g @openai/codex</code></td><td>安装或重装 Codex CLI</td><td>第一次安装,或命令坏了想重装</td></tr>
         <tr><td><code>npm update -g @openai/codex</code></td><td>用 npm 升级全局安装包</td><td>你是通过 npm 安装的 Codex</td></tr>
+        <tr><td><code>npm install -g @openai/codex@0.148.0</code></td><td>安装 2026-08-18 发布的 0.148.0</td><td>需要 <code>/export</code>、会话分叉和归档恢复等新功能</td></tr>
         <tr><td><code>codex update</code></td><td>检查并应用 Codex CLI 自更新</td><td>当前安装版本支持自更新时</td></tr>
         <tr><td><code>codex --version</code></td><td>查看当前版本号</td><td>确认装好了,或排查“是不是版本太旧”</td></tr>
         <tr><td><code>codex doctor</code></td><td>生成本地诊断报告</td><td>登录、配置、Git、终端、线程列表等看起来不正常时</td></tr>
@@ -71,6 +72,7 @@
         <tr><td><code>codex exec --json "检查这个项目"</code></td><td>输出 JSONL,适合交给别的脚本处理</td></tr>
         <tr><td><code>codex exec -m gpt-5.6 "审查当前改动"</code></td><td>用 GPT-5.6 跑一次非交互任务</td></tr>
         <tr><td><code>codex exec resume --last "继续实现刚才的计划"</code></td><td>让非交互任务接着上一次会话跑</td></tr>
+        <tr><td><code>codex exec fork --help</code></td><td>查看从旧会话分叉新路线的参数；0.148.0 起可用</td></tr>
       </tbody>
     </table>
     <div class="callout callout--warning">
@@ -92,6 +94,7 @@
         <tr><td><code>--sandbox danger-full-access</code></td><td>绕过更多限制</td><td>慎用,只在隔离环境里考虑</td></tr>
         <tr><td><code>--ask-for-approval on-request</code></td><td>需要越界时再请求批准</td><td>交互式工作推荐</td></tr>
         <tr><td><code>--ask-for-approval never</code></td><td>不弹审批提示</td><td>脚本化环境才考虑,同时要配好沙盒</td></tr>
+        <tr><td><code>--approve-for-me</code></td><td>让支持版本自动审查审批请求</td><td>会改变审批流程；新手先不用，熟悉边界后再考虑</td></tr>
         <tr><td><code>--search</code></td><td>启用 live web search</td><td>需要查最新资料时用,结果仍要当作外部信息审慎处理</td></tr>
         <tr><td><code>-c key=value</code></td><td>临时覆盖配置</td><td>一次性改模型、网络、功能开关等高级设置</td></tr>
       </tbody>
@@ -117,11 +120,14 @@
         <tr><td><code>/mcp</code></td><td>列出 MCP 工具</td><td>排查外部工具有没有接上</td></tr>
         <tr><td><code>/skills</code></td><td>浏览和使用技能</td><td>让 Codex 按某类专门流程工作</td></tr>
         <tr><td><code>/plugins</code></td><td>查看插件</td><td>管理可用插件和插件工具</td></tr>
+        <tr><td><code>/import</code></td><td>从 Claude Code 或 Cursor 导入支持设置和近期聊天</td><td>只在空闲的本地会话中使用；最多导入最近 30 天的 50 条聊天</td></tr>
+        <tr><td><code>/export</code></td><td>把完整 TUI 会话导出到剪贴板或 Markdown 文件</td><td>交接、复盘或保留工作记录</td></tr>
         <tr><td><code>/apps</code></td><td>浏览 app/connectors</td><td>把外部 app 插入提示词里</td></tr>
         <tr><td><code>/copy</code></td><td>复制最新回复</td><td>把总结、计划、命令复制出去</td></tr>
         <tr><td><code>/new</code></td><td>在同一个 CLI 里开新对话</td><td>想换一个干净上下文</td></tr>
         <tr><td><code>/clear</code></td><td>清空终端并开始新聊天</td><td>界面太乱,想重新开始</td></tr>
         <tr><td><code>/resume</code></td><td>恢复已保存会话</td><td>接着以前的任务</td></tr>
+        <tr><td>Resume picker 中 Archive / Restore</td><td>归档或恢复会话</td><td>整理长会话列表；0.148.0 起可用</td></tr>
         <tr><td><code>/quit</code> / <code>/exit</code></td><td>退出 CLI</td><td>确认重要改动已保存后再退出</td></tr>
         <tr><td><kbd>Esc</kbd></td><td>取消当前输入或请求</td><td>发现发错了、想停一下</td></tr>
         <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>强制中断 / 退出</td><td>普通取消没反应时</td></tr>

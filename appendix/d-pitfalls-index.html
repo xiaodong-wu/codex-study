@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>附录 D · 常见踩坑全集 · Codex 中文教程</title>
-<meta name="description" content="Codex 中文教程常见踩坑全集:环境安装、登录网络、Codex App、CLI、Worktree、MCP、浏览器、部署、域名和 AI 协作问题的可搜索排错清单。" />
+<title>附录 D · 常见踩坑全集 · Codex 中文教程（神灯资讯）</title>
+<meta name="description" content="Codex 中文教程常见踩坑全集:环境安装、登录网络、Codex App、CLI、插件、Import、Remote、Computer History、Worktree、MCP、浏览器、部署和域名的可搜索排错清单。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -89,8 +89,8 @@
 
     <div class="pitfall-search" role="search">
       <label class="pitfall-search__label" for="pitfall-search-input">搜索相关问题</label>
-      <input class="pitfall-search__input" id="pitfall-search-input" type="search" autocomplete="off" placeholder="输入关键词: 登录 / model not found / worktree / 沙盒 / Windows / MCP / 404" />
-      <p class="pitfall-search__hint">支持中英文关键词。比如搜 <code>model</code>、<code>worktree</code>、<code>权限</code>、<code>白屏</code>、<code>Computer Use</code>。</p>
+      <input class="pitfall-search__input" id="pitfall-search-input" type="search" autocomplete="off" placeholder="输入关键词: 登录 / plugin / import / remote / worktree / MCP / 404" />
+      <p class="pitfall-search__hint">支持中英文关键词。比如搜 <code>plugin</code>、<code>import</code>、<code>remote</code>、<code>model</code>、<code>权限</code>、<code>Computer History</code>。</p>
       <div class="pitfall-search__count" id="pitfall-search-count" aria-live="polite"></div>
     </div>
     <div class="pitfall-no-results" id="pitfall-no-results" hidden>没找到完全匹配的问题。换个更短的关键词试试,比如只搜“登录”“权限”“404”“终端”。</div>
@@ -388,6 +388,58 @@
             <dd>确认是在 macOS Codex App 里用,按两个 Command 键或你设置的热键。系统设置里检查 Screen &amp; System Audio Recording 与 Accessibility。仍不行时,先用普通截图作为附件。</dd>
             <dt>参考来源</dt>
             <dd><a href="https://developers.openai.com/codex/appshots">Appshots</a> 的权限与排错说明。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="plugin installed not available new session plugins marketplace 插件 安装 不可用 新会话">
+        <summary>插件已经安装,但新任务里还是找不到技能或工具</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>插件是在当前会话开始后安装的,会话还没有重新加载插件能力;也可能是外部连接尚未完成授权,或工作区策略不允许该插件。</dd>
+            <dt>怎么处理</dt>
+            <dd>先打开 Plugins 或 CLI 的 <code>/plugins</code> 确认安装状态和授权提示。完成连接后<strong>新开一条会话</strong>,再让 Codex 列出当前可用技能和工具。IDE 扩展目前不支持插件。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="../app/07-plugins.html#install-use">A7 · 插件安装和调用</a>; <a href="https://learn.chatgpt.com/docs/plugins">OpenAI Plugins</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="import unavailable running task remote app server claude cursor 导入 不可用 50 chats 30 days">
+        <summary><code>/import</code> 不可用,或没有导入想要的旧聊天</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>当前任务还在运行、正在远程会话、连接了本地 app-server daemon,或旧聊天不在支持的最近 30 天范围内。CLI 最多导入 50 条近期聊天。</dd>
+            <dt>怎么处理</dt>
+            <dd>回到空闲的本地 CLI 会话再输入 <code>/import</code>,选择 Claude Code 或 Cursor。桌面端则去 Settings &gt; Import; Claude Cowork 目前只在桌面端导入流程中支持。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="../app/10-august-updates.html#import">A10 · 从其他 Agent 导入</a>; <a href="https://learn.chatgpt.com/docs/import">OpenAI Import from another agent</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="remote reconnect retry host offline qr pairing task missing 手机 断线 配对 任务消失">
+        <summary>手机 Remote 看不到任务、一直重连,或消息加载失败</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>电脑主机休眠或离线,手机和电脑不是同一账号/工作区,配对已失效,或任务消息在网络波动后没有正常加载。</dd>
+            <dt>怎么处理</dt>
+            <dd>保持电脑唤醒和在线,确认账号与工作区一致。消息失败先点 Retry;仍不行就去电脑的 Settings &gt; Connections 检查或重新配对。高风险批准等回电脑再处理。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="../app/09-voice-projects.html#mobile">A9 · Codex Remote</a>; <a href="https://learn.chatgpt.com/docs/remote">OpenAI Codex Remote</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="computer history missing unavailable mac pro business enterprise memories region chronicle 电脑历史 找不到">
+        <summary>Settings 里找不到 Computer History</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>当前不是 macOS 桌面端,套餐或地区不支持,Memories 未启用,企业管理员没有开放,或功能仍在分批推送。它也不支持 API Key 和 Amazon Bedrock 登录。</dd>
+            <dt>怎么处理</dt>
+            <dd>更新桌面端,确认是 Pro、Business 或 Enterprise 账号并检查 Memories。团队账号联系管理员。功能没有开放时不要安装声称能“强制开启”的第三方工具。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="../app/06-settings-shortcuts.html#computer-history">A6 · Computer History</a>; <a href="https://learn.chatgpt.com/docs/customization/computer-history">OpenAI Computer History</a>。</dd>
           </dl>
         </div>
       </details>

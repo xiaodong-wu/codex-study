@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>第 03 章 · Codex 用法手册 · Codex 口语化编程教程</title>
-<meta name="description" content="Codex CLI 基础用法:审批模式、沙盒、diff、GPT-5.6、Fast mode、多智能体、内置命令和 AGENTS.md 长期规则。" />
+<title>第 03 章 · Codex 用法手册 · Codex 中文教程（神灯资讯）</title>
+<meta name="description" content="Codex CLI 基础用法:审批模式、沙盒、diff、GPT-5.6、多智能体、插件、导入、会话导出与分叉,以及 AGENTS.md 长期规则。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -107,6 +107,9 @@
         <tr><td><code>/fast on</code></td><td>打开 Fast mode</td><td>确实赶时间,并愿意多消耗额度时。</td></tr>
         <tr><td><code>/agent</code></td><td>查看和切换子智能体</td><td>让多个智能体并行工作后,想检查各自进度时。</td></tr>
         <tr><td><code>/goal</code></td><td>设置持续目标</td><td>任务步骤多,需要持续推进到明确完成标准时。</td></tr>
+        <tr><td><code>/export</code></td><td>导出完整会话</td><td>把对话复制到剪贴板或保存成 Markdown 文件时。</td></tr>
+        <tr><td><code>/import</code></td><td>从其他 Agent 导入</td><td>想带入 Claude Code 或 Cursor 的支持设置与近期工作时。</td></tr>
+        <tr><td><code>/plugins</code></td><td>打开插件浏览器</td><td>从已配置的市场查找和安装插件时。</td></tr>
         <tr><td><code>/new</code></td><td>开新对话</td><td>当前对话太乱,想重新开始但不退出 CLI。</td></tr>
         <tr><td><code>/resume</code></td><td>恢复旧会话</td><td>昨天做到一半,今天继续。</td></tr>
         <tr><td><code>/quit</code></td><td>退出</td><td>收工时用。</td></tr>
@@ -115,7 +118,7 @@
     <p>不要一口气背所有命令。你真的会高频用到的,前期就是 <code>/plan</code>、<code>/diff</code>、<code>/review</code>、<code>/status</code>。多智能体和 Fast mode 等真正需要时再开。</p>
 
     <h2 id="models-agents">3.5 GPT-5.6、Fast mode 和多智能体</h2>
-    <p>截至 2026 年 7 月,CLI 也可以使用 GPT-5.6 和子智能体。最省心的做法是先用默认推荐模型;需要手动指定时,可以在启动时写:</p>
+    <p>截至 2026 年 8 月,CLI 可以使用 GPT-5.6、Fast mode 和子智能体。最省心的做法是先用默认推荐模型;需要手动指定时,可以在启动时写:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
@@ -137,6 +140,38 @@
       <div class="prompt-card__note">并行检查很合适;让多个智能体同时修改同一批文件容易冲突,新手先从“只读检查”开始。</div>
     </div>
     <p>每个子智能体都会单独使用模型和工具,所以多智能体通常更耗额度。它们会继承当前会话的权限和沙盒,不会因为分工就自动扩大访问范围。</p>
+
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">GPT-5.4 要在 8 月 31 日前迁移</div>
+        <div class="callout__body">ChatGPT 账号登录的 Codex 将停止提供 GPT-5.4 和 GPT-5.4 mini。官方推荐分别换成 <code>gpt-5.6-terra</code> 和 <code>gpt-5.6-luna</code>。检查工作区默认值、自定义智能体和定时任务里有没有写死旧模型。</div>
+      </div>
+    </div>
+
+    <h3 id="august-session-tools">2026 年 8 月新增的会话整理工具</h3>
+    <p>Codex CLI 0.148.0 把长会话的“保存、另开路线和收纳”补得更完整。先升级并确认版本:</p>
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">terminal</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre>npm install -g @openai/codex@0.148.0
+codex --version</pre>
+    </div>
+    <table>
+      <thead><tr><th>功能</th><th>怎么操作</th><th>为什么有用</th></tr></thead>
+      <tbody>
+        <tr><td>导出</td><td>在 TUI 输入 <code>/export</code></td><td>把完整对话复制出去或保存成 Markdown，方便交接和复盘。</td></tr>
+        <tr><td>分叉</td><td>使用 <code>codex exec fork</code>；先运行 <code>codex exec fork --help</code> 查看当前版本参数</td><td>保留原会话，同时尝试另一条实现路线。</td></tr>
+        <tr><td>归档 / 恢复</td><td>在 TUI 的 Resume 会话选择器里操作</td><td>把暂时不用的会话收起来，需要时再恢复。</td></tr>
+        <tr><td>插件</td><td>输入 <code>/plugins</code> 安装，随后新开会话</td><td>让新会话加载插件里的 Skills 和工具。</td></tr>
+        <tr><td>导入</td><td>在空闲的本地会话输入 <code>/import</code></td><td>从 Claude Code 或 Cursor 导入最多 30 天内的 50 条近期聊天及支持设置。</td></tr>
+      </tbody>
+    </table>
+    <p><code>/import</code> 在任务正在运行、远程会话或连接本地 app-server daemon 时不可用。0.147 还加入 <code>--approve-for-me</code> 自动审查审批；它会改变批准流程，新手先保持默认审批，熟悉风险后再考虑。</p>
 
     <h2 id="session-length">3.6 一次会话的健康长度</h2>
     <p>Codex 的会话越聊越长,上下文会越来越复杂。长到一定程度,它可能开始变得迟钝或跑偏。</p>

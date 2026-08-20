@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>App 第 06 章 · 设置、快捷键和安全边界 · Codex 中文教程</title>
+<title>App 第 06 章 · 设置、快捷键和安全边界 · Codex 中文教程（神灯资讯）</title>
 <meta name="description" content="Codex 桌面端 App 设置总览:通用设置、个人资料、外观、Git、浏览器、Computer Use、快捷键、Slash 命令和权限安全边界。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
@@ -43,11 +43,13 @@
         <tr><td>Plugins</td><td>安装、查看和管理 Codex 扩展能力</td><td>想用 Sites、Security、Gmail、Drive、Slack 等能力时。</td></tr>
         <tr><td>Git</td><td>分支命名、提交信息、PR 描述偏好</td><td>团队项目想统一风格时。</td></tr>
         <tr><td>Integrations & MCP</td><td>连接外部工具和 MCP 服务</td><td>需要 GitHub、Figma、内部系统等上下文时。</td></tr>
-        <tr><td>Connections</td><td>远程设备、SSH 主机等连接入口</td><td>想用手机、另一台设备或远程机器继续工作时。</td></tr>
+        <tr><td>Connections</td><td>Codex Remote、远程设备和主机连接入口</td><td>想用手机或另一台受信任设备继续工作时。</td></tr>
         <tr><td>Browser</td><td>浏览器插件、允许/阻止网站、开发者模式</td><td>要让 Codex 检查网页或用 Chrome 时。</td></tr>
         <tr><td>Computer Use</td><td>桌面应用操作权限</td><td>要让 Codex 看见并操作某个 App 时。</td></tr>
         <tr><td>Personalization</td><td>个性、个人说明、自定义偏好</td><td>想让 Codex 更简洁、更友好或按你习惯说话时。</td></tr>
         <tr><td>Memories</td><td>跨线程记住有用信息</td><td>希望它记住长期偏好,且功能可用时。</td></tr>
+        <tr><td>Computer History</td><td>把允许来源里的近期电脑活动整理成时间线和记忆</td><td>想接着上次工作，或把重复流程做成技能时。</td></tr>
+        <tr><td>Import</td><td>从 Claude Code、Claude Cowork 或 Cursor 导入支持的设置和近期工作</td><td>以前在其他 Agent 里已经有项目时。</td></tr>
         <tr><td>Archived tasks</td><td>已归档任务</td><td>想找回旧任务时。</td></tr>
       </tbody>
     </table>
@@ -59,13 +61,23 @@
       <li><strong>Appearance</strong>:主题、强调色、字体都在这里。Pets 也在这一类,喜欢就开,不喜欢完全可以关掉。</li>
       <li><strong>Personalization</strong>:决定 Codex 更友好还是更简洁,也可以写个人偏好。比如“解释术语时先用生活例子”。</li>
       <li><strong>Context-aware suggestions</strong>:App 可能根据当前项目给建议。新手可以参考,但不要把建议当命令。</li>
-      <li><strong>Memories / Chronicle</strong>:Memories 适合记长期偏好;Chronicle 可用时会借助最近屏幕上下文生成记忆,但隐私风险更高,看敏感内容时要暂停。</li>
+      <li><strong>Memories / Computer History</strong>:Memories 适合记长期偏好;Computer History 会把允许来源里的近期电脑活动整理成时间线和记忆,看敏感内容时要暂停。</li>
+      <li><strong>Import</strong>:可以从 Claude Code、Claude Cowork 或 Cursor 导入支持的设置和近期工作。导入后先检查 Hooks、MCP 和外部连接。</li>
       <li><strong>Plugins</strong>:安装后最好新开线程使用。外部 App 授权不确定时,先让 Codex 解释它要读什么、写什么。</li>
       <li><strong>Connections</strong>:远程连接会使用主机上的项目、文件、凭据、权限、插件和本地工具,所以主机要保持在线并受信任。</li>
       <li><strong>Voice</strong>:可以自定义 Voice chat hotkey。macOS 的 Screen context 允许你说“看看这个”来共享最前面的窗口,敏感页面前要关闭。</li>
       <li><strong>Ultra in model picker slider</strong>:打开后才会在模型滑杆里看到 Ultra。它会使用多个子智能体,适合可拆分的大任务,也会消耗更多额度。</li>
     </ul>
     <p>简单说:项目规则放 <code>AGENTS.md</code>,个人偏好放 Personalization / Memories,临时要求就写在当前线程里。</p>
+
+    <h2 id="computer-history">Computer History:不是 Chronicle 简单改名</h2>
+    <p>Computer History 替代了早期的 Chronicle 研究预览，但官方明确说明它是重新构建的系统。它目前只在 macOS 桌面端提供，默认关闭，面向 Pro、Business 和 Enterprise 用户；团队账号还需要管理员先允许。</p>
+    <ul>
+      <li>它会从你允许的 App 和网站收集交互事件与 macOS 辅助功能提供的文字上下文，并生成可查看的文字摘要。</li>
+      <li>它不会把截图存进历史，不录麦克风或系统声音，也不收集隐私浏览活动。</li>
+      <li>你可以从菜单栏暂停，选择允许的来源，并随时查看或删除历史。</li>
+    </ul>
+    <p>别被“没有截图和录音”这句话放松警惕：窗口中的可访问文字仍可能包含客户资料、聊天、账号信息。第一次使用只开放确实需要的 App，敏感工作前先暂停。</p>
 
     <h2 id="starter-settings">零基础推荐初始设置</h2>
     <p>如果你不知道怎么配,先按这个方向来:</p>
@@ -80,7 +92,7 @@
         <tr><td>Computer Use allowlist</td><td>只允许你明确要用的 App</td><td>桌面操作权限更敏感,范围越小越好。</td></tr>
         <tr><td>Personality</td><td>Friendly 或 Pragmatic</td><td>新手通常更适合解释清楚一点;想简洁就 Pragmatic。</td></tr>
         <tr><td>Memories</td><td>先只放偏好,不放秘密</td><td>能改善体验,但不该保存敏感信息。</td></tr>
-        <tr><td>Chronicle</td><td>先了解风险,需要时再开</td><td>它会用屏幕上下文,会议、客户资料、账号页面前要暂停。</td></tr>
+        <tr><td>Computer History</td><td>默认关闭,先选少量可信来源</td><td>它会读取交互事件和可访问文字,会议、客户资料、账号页面前要暂停。</td></tr>
         <tr><td>Plugins</td><td>按任务安装,不用全装</td><td>插件越多不等于越好,授权越清楚越安心。</td></tr>
         <tr><td>模型</td><td>先用默认 Power</td><td>默认 GPT-5.6 Sol + Medium 已适合多数任务,结果不够再调。</td></tr>
         <tr><td>Ultra</td><td>默认不必每次用</td><td>只有任务能清楚拆成多个独立部分时才值得开启。</td></tr>
@@ -193,8 +205,8 @@
         <p class="feature-card__body">用 <code>codex://</code> 打开线程、设置或插件。普通读者不用先记。</p>
       </div>
       <div class="feature-card">
-        <h3 class="feature-card__title">Remote connections</h3>
-        <p class="feature-card__body">连接手机、另一台设备或 SSH 主机。远程会沿用主机项目、权限、插件和本地工具。</p>
+        <h3 class="feature-card__title">Codex Remote</h3>
+        <p class="feature-card__body">用手机启动、指导、批准和审查电脑上的任务。远程会沿用主机项目、权限、插件和本地工具。</p>
       </div>
       <div class="feature-card">
         <h3 class="feature-card__title">Developer mode</h3>
@@ -217,8 +229,8 @@
         <p class="feature-card__body">让支持模型更快回应,但消耗更多额度。轻量急活可以用,长任务先想清楚成本。</p>
       </div>
       <div class="feature-card">
-        <h3 class="feature-card__title">Chronicle</h3>
-        <p class="feature-card__body">用屏幕上下文补充记忆。隐私和提示注入风险更高,不用时就暂停或关闭。</p>
+        <h3 class="feature-card__title">Computer History</h3>
+        <p class="feature-card__body">把近期电脑活动整理成可查看、暂停和删除的时间线。需要 Memories，且受平台、套餐和地区限制。</p>
       </div>
     </div>
 
@@ -250,7 +262,7 @@
       </span>
       <div class="chapter-summary__body">
         <strong>你已经会了</strong>
-        用桌面端打开项目、创建任务、选择工作模式、看 Diff、跑终端、用浏览器标注、理解 Computer Use、设置自动化和技能,并且知道权限应该怎么保守地给。接着看 A7 的插件专章、A8 的 Work 与多智能体,以及 A9 的 Voice 和多文件夹项目。
+        用桌面端打开项目、创建任务、选择工作模式、看 Diff、跑终端、用浏览器标注、理解 Computer Use、设置自动化和技能,并且知道权限应该怎么保守地给。接着看 A7 的插件专章、A8 的 Work 与多智能体、A9 的 Voice 与 Remote，以及 A10 的 8 月更新汇总。
       </div>
     </div>
 
@@ -261,7 +273,7 @@
       </a>
       <a class="chapter-nav__link chapter-nav__link--next" href="./07-plugins.html">
         <div class="chapter-nav__dir">下一章</div>
-        <div class="chapter-nav__title">插件功能和最新能力 →</div>
+        <div class="chapter-nav__title">插件功能全指南 →</div>
       </a>
     </nav>
   </article>

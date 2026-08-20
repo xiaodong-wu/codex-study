@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 10 章 · 2026 年 8 月功能更新 · Codex 中文教程（神灯资讯）</title>
+<meta name="description" content="通俗介绍 Codex 2026 年 8 月最新更新:Computer History、从其他 Agent 导入、Linux 桌面端、Codex Remote、CLI 会话导出与分叉、插件目录和模型迁移。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 10 章 · 2026 年 8 月功能更新" data-chapter="app-10-august-updates">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 10 章 · 更新核对至 2026-08-20</span>
+    <h1>2026 年 8 月功能更新</h1>
+    <p class="chapter-lede">这次不是简单换几个按钮。Codex 开始更方便地接手你在其他 Agent 里的旧项目、从手机遥控电脑上的任务、回看最近的电脑工作线索，也给 CLI 加上了会话导出、分叉和归档。下面只讲普通用户真正用得上的部分。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/app-overview.svg" alt="ChatGPT 桌面端中 Codex 项目、对话、改动和工具区域示意图" loading="eager" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>先抓主线:</b>桌面端负责打开项目和审查结果，手机 Remote 负责远程接力，CLI 负责更直接的终端工作；三者现在能衔接得更顺。</figcaption>
+    </figure>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">这页依据什么</div>
+        <div class="callout__body">本页在 2026 年 8 月 20 日核对 OpenAI 官方文档和更新记录，最新公开记录到 8 月 18 日。功能会分批开放，也可能受系统、套餐、地区和工作区策略影响；你的界面没有某个入口，不一定是你操作错了。</div>
+      </div>
+    </div>
+
+    <h2 id="update-map">先看一张更新地图</h2>
+    <table>
+      <thead><tr><th>新变化</th><th>用人话说</th><th>最适合谁</th></tr></thead>
+      <tbody>
+        <tr><td>Computer History</td><td>把近期电脑活动整理成可查看、可删除的时间线和记忆，方便接着上次的工作。</td><td>经常在多个 App 和网页之间来回切换的人。</td></tr>
+        <tr><td>从其他 Agent 导入</td><td>把 Claude Code、Claude Cowork 或 Cursor 里的设置、项目和近期工作带进来。</td><td>以前已经在其他 AI 编程工具里干过活的人。</td></tr>
+        <tr><td>Linux 桌面端预览</td><td>Ubuntu、Debian、Fedora 用户也可以安装 ChatGPT desktop app。</td><td>使用受支持 Linux 桌面系统的人。</td></tr>
+        <tr><td>Codex Remote</td><td>手机负责发任务、看进度、批准操作和审查 Diff，真正的工作仍在电脑上跑。</td><td>离开电脑后还想盯住任务的人。</td></tr>
+        <tr><td>插件统一目录</td><td>ChatGPT 和 Codex 使用同一套公开插件目录，CLI 也能浏览市场来源。</td><td>需要 Gmail、Drive、Slack、Security 等外部能力的人。</td></tr>
+        <tr><td>CLI 会话管理</td><td>可以导出完整对话、从旧会话分叉新路线、归档或恢复会话。</td><td>经常做长任务、想保留工作记录的 CLI 用户。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="computer-history">Computer History:帮你找回刚才做到哪</h2>
+    <p><strong>Computer History</strong> 是 macOS 桌面端里的可选功能。打开后，它会把你允许的 App 和网站活动整理成文字时间线与记忆。你可以问:“我午饭前在改哪份文档?”或者“把今天反复做的步骤整理成一个技能”。</p>
+    <p>它替代了早期的 Chronicle 研究预览，但不是简单改名，而是一套重新构建的系统。它默认关闭，目前面向 Pro、Business 和 Enterprise 用户；团队账号还需要管理员先开放。</p>
+    <table>
+      <thead><tr><th>它会做什么</th><th>它不会做什么</th><th>你能控制什么</th></tr></thead>
+      <tbody>
+        <tr><td>记录允许来源里的点击、输入、快捷键、App 切换和系统可访问文字，并生成文字摘要。</td><td>不会把屏幕截图放进历史，不录麦克风和系统声音，也不包含隐私浏览活动。</td><td>选择允许的 App 和网站、随时暂停、查看时间线、删除单条或全部历史。</td></tr>
+      </tbody>
+    </table>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">不是截图，也不等于没有隐私风险</div>
+        <div class="callout__body">它仍可能读取 macOS 辅助功能暴露出来的文字和交互信息。处理客户资料、密码、付款、医疗或私人聊天前，先从菜单栏暂停；第一次开启时只允许确实需要的 App 和网站。</div>
+      </div>
+    </div>
+
+    <h2 id="import">换过工具，也不用从头再来</h2>
+    <p>新版桌面端可以从 <strong>Claude Code、Claude Cowork 和 Cursor</strong> 导入支持的设置与近期工作。它不会删除原工具里的内容，也不会覆盖你现有的 ChatGPT/Codex 设置。</p>
+    <ol>
+      <li>打开 <strong>Settings &gt; Import</strong>；如果暂时没有单独的 Import 页面，就去 General 找 <strong>Import other agent setup</strong>。</li>
+      <li>选择要导入的工具，再勾选说明文件、设置、技能、插件、项目或近期聊天。</li>
+      <li>导入结束后，检查哪些插件或连接还需要重新登录授权。</li>
+      <li>需要持续同步时，在 Settings &gt; Import 打开自动更新。</li>
+    </ol>
+    <p>桌面端能导入 Claude Code、Claude Cowork 和 Cursor；CLI 目前支持 Claude Code 与 Cursor。导入的内容可能会被转换成 Codex 使用的 <code>AGENTS.md</code>、<code>config.toml</code>、Skills、Hooks、MCP 配置或子智能体设置，所以完成后最好先让 Codex 解释它带进来了什么。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">导入后先做安全检查</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">我刚从另一个 Agent 导入了设置。请只读检查导入的 AGENTS.md、config.toml、Skills、Plugins、MCP 和 Hooks，用表格说明它们各自会做什么、是否会联网、是否会运行命令。先不要启用或修改任何东西。</div>
+      <div class="prompt-card__note">尤其要看 Hooks 和外部连接。它们可能在特定时机自动运行命令或访问服务。</div>
+    </div>
+
+    <h2 id="linux">Linux 也有桌面端了</h2>
+    <p>ChatGPT desktop app 的 Linux 版目前是<strong>预览</strong>。官方支持 Ubuntu 24.04/26.04 LTS、Debian 13、Fedora 43/44，并提供 x64 与 ARM64 安装包。</p>
+    <ul>
+      <li>Ubuntu / Debian 下载 <code>.deb</code>。</li>
+      <li>Fedora 下载 <code>.rpm</code>。</li>
+      <li>不确定处理器架构时，在终端运行 <code>uname -m</code>；<code>x86_64</code> 是 x64，<code>aarch64</code> 或 <code>arm64</code> 是 ARM64。</li>
+    </ul>
+    <p>预览版不代表所有能力都和 macOS、Windows 完全一致。安装时只用官方页面提供的包，不要从陌生网盘或第三方打包站下载。</p>
+
+    <h2 id="remote">Codex Remote:手机是遥控器，电脑才是主机</h2>
+    <p>Remote 可以在 ChatGPT 手机 App 里启动、指导、批准和审查 Codex 任务。任务实际运行在已经配对的 Mac 或 Windows 电脑上，所以电脑必须保持开机、在线，并使用同一 ChatGPT 账号和工作区。</p>
+    <ol>
+      <li>在电脑端打开 <strong>Settings &gt; Connections &gt; Control this Mac or PC</strong>，选择 Set up 或 Add。</li>
+      <li>批准远程访问，按提示完成验证。</li>
+      <li>用手机扫描二维码，在同一账号和工作区里确认连接。</li>
+      <li>手机打开 Remote，选择电脑与项目，新建任务或接着已有任务。</li>
+    </ol>
+    <p>8 月更新还改善了断线重连、长任务加载、语音连接和 Diff 审查，并在任务消息加载失败时加入 Retry。外出时适合查进度、补方向、批准清楚的命令；涉及大量代码审查、账号操作或高风险命令，仍建议回电脑处理。</p>
+
+    <h2 id="cli-0148">CLI 0.148:会话终于更好整理了</h2>
+    <p>截至 8 月 18 日，官方更新记录中的最新版本是 <strong>Codex CLI 0.148.0</strong>。通过 npm 安装的用户可以这样升级:</p>
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">terminal</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre>npm install -g @openai/codex@0.148.0
+codex --version</pre>
+    </div>
+    <table>
+      <thead><tr><th>功能</th><th>怎么用</th><th>适合场景</th></tr></thead>
+      <tbody>
+        <tr><td>导出完整对话</td><td>在 TUI 输入 <code>/export</code>，复制到剪贴板或保存成 Markdown 文件。</td><td>交接、复盘、写工作记录。</td></tr>
+        <tr><td>分叉会话</td><td>使用 <code>codex exec fork</code> 从已有会话另开一条路线；先用 <code>codex exec fork --help</code> 查看当前版本参数。</td><td>保留原路线，同时试另一种实现。</td></tr>
+        <tr><td>归档和恢复</td><td>在 TUI 的 Resume 会话选择器里归档旧会话，也可以切到归档列表恢复。</td><td>长时间使用后整理会话列表。</td></tr>
+        <tr><td>查看额度或成本估算</td><td>符合条件的工作区可在 <code>/status</code>、状态栏或终端标题看到估算。</td><td>控制长任务和多智能体消耗。</td></tr>
+        <tr><td>Hooks 增强</td><td>Hooks 可以异步运行命令，也可以调用 MCP 工具。</td><td>高级自动化；新手先审查来源和触发时机。</td></tr>
+      </tbody>
+    </table>
+    <p>0.147 还加入了 <code>/plugins</code> 插件浏览器、<code>/import</code> 导入流程和 <code>--approve-for-me</code> 自动审查审批。自动审查不等于“什么都自动允许”，但它会改变批准流程；零基础用户先保持默认审批，熟悉任务边界后再考虑。</p>
+
+    <h2 id="model-change">还在用 GPT-5.4? 现在就换</h2>
+    <p>官方已经说明:2026 年 8 月 31 日起，使用 ChatGPT 账号登录 Codex 的用户将不能再选择 GPT-5.4 和 GPT-5.4 mini。推荐替换关系是:</p>
+    <table>
+      <thead><tr><th>旧模型</th><th>推荐替换</th><th>适合</th></tr></thead>
+      <tbody>
+        <tr><td><code>gpt-5.4</code></td><td><code>gpt-5.6-terra</code></td><td>日常开发、分析和稳定工作流。</td></tr>
+        <tr><td><code>gpt-5.4-mini</code></td><td><code>gpt-5.6-luna</code></td><td>规则清楚、重复、追求速度和效率的任务。</td></tr>
+      </tbody>
+    </table>
+    <p>别只改当前会话。工作区默认值、保存的模型设置、自定义智能体和定时任务里如果写死了旧模型，也要一起更新。API Key 登录的 Codex 会话和 OpenAI API 是否还能使用旧模型，按官方 API 文档与账号实际权限为准。</p>
+
+    <h2 id="quick-check">升级后做一次 5 分钟检查</h2>
+    <ol>
+      <li>桌面端确认 Settings 能打开，Codex 项目和旧任务能正常加载。</li>
+      <li>CLI 运行 <code>codex --version</code>，确认版本符合你要使用的命令。</li>
+      <li>打开插件页，检查已安装插件是否仍需登录；CLI 安装插件后要新开会话。</li>
+      <li>检查模型默认值，替换 GPT-5.4 / GPT-5.4 mini。</li>
+      <li>Remote 用户做一次低风险测试：让手机启动只读检查，再回桌面看结果。</li>
+    </ol>
+
+    <h2 id="official-sources">官方资料入口</h2>
+    <ul>
+      <li><a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">ChatGPT &amp; Codex changelog</a>:8 月桌面端、移动端和 CLI 更新。</li>
+      <li><a href="https://learn.chatgpt.com/docs/customization/computer-history" target="_blank" rel="noopener">Computer History</a>:适用范围、隐私、暂停和删除说明。</li>
+      <li><a href="https://learn.chatgpt.com/docs/import" target="_blank" rel="noopener">Import from another agent</a>:桌面端和 CLI 导入步骤。</li>
+      <li><a href="https://learn.chatgpt.com/docs/linux/linux-app" target="_blank" rel="noopener">ChatGPT desktop app for Linux</a>:支持系统与官方安装包。</li>
+      <li><a href="https://learn.chatgpt.com/docs/remote" target="_blank" rel="noopener">Codex Remote</a>:电脑配对、手机操作和审查。</li>
+      <li><a href="https://learn.chatgpt.com/docs/plugins" target="_blank" rel="noopener">Plugins</a>:通用插件目录、支持端和安装方式。</li>
+    </ul>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>这一章先记住</strong>
+        Computer History 帮你找回近期工作，Import 帮你搬旧工具里的设置，Remote 让手机接力，CLI 的导出、分叉和归档让长任务更好管理。新功能越多，越要先确认平台、权限和数据范围。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./09-voice-projects.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 语音、多文件夹项目和移动端</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html">
+        <div class="chapter-nav__dir">继续学习</div>
+        <div class="chapter-nav__title">进入 CLI 教程 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260731-voice-projects"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>App 第 01 章 · 安装、登录和第一句话 · Codex 中文教程</title>
-<meta name="description" content="Codex 桌面端 App 的零基础上手步骤:下载安装、登录、打开项目文件夹、选择 Local 模式,并发出第一条安全的提示词。" />
+<title>App 第 01 章 · 安装、登录和第一句话 · Codex 中文教程（神灯资讯）</title>
+<meta name="description" content="ChatGPT 桌面端的零基础上手步骤:下载安装、Linux 预览版、从其他 Agent 导入、登录、打开项目文件夹,并发出第一条安全提示词。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -29,7 +29,7 @@
     </figure>
 
     <h2 id="download">第一步 · 下载和安装</h2>
-    <p>去 OpenAI 官方入口下载 <strong>ChatGPT desktop app</strong>。macOS 和 Windows 都支持。旧教程或旧版本里可能仍写着 Codex App,现在 Codex 是桌面端里的一个工作入口。桌面 App 已面向所有 ChatGPT 套餐提供,但 Voice、模型、插件等具体能力仍可能受套餐和灰度开放影响。</p>
+    <p>去 OpenAI 官方入口下载 <strong>ChatGPT desktop app</strong>。macOS 和 Windows 都支持；Linux 版已提供预览。旧教程或旧版本里可能仍写着 Codex App,现在 Codex 是桌面端里的一个工作入口。桌面 App 已面向所有 ChatGPT 套餐提供,但 Voice、模型、插件等具体能力仍可能受套餐和灰度开放影响。</p>
     <div class="callout callout--warning">
       <div class="callout__icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -39,6 +39,15 @@
         <div class="callout__body">Codex 会读你的项目文件,也可能执行命令。安装包一定用官方来源,不要用别人转发的安装包。</div>
       </div>
     </div>
+
+    <h2 id="linux-preview">Linux 用户先确认系统和安装包</h2>
+    <p>截至 2026 年 8 月，Linux 桌面端仍是预览版。官方支持 Ubuntu 24.04/26.04 LTS、Debian 13、Fedora 43/44，并分别提供 x64 和 ARM64 安装包。</p>
+    <ul>
+      <li>Ubuntu / Debian 用 <code>.deb</code> 安装包。</li>
+      <li>Fedora 用 <code>.rpm</code> 安装包。</li>
+      <li>终端运行 <code>uname -m</code> 可以看架构：<code>x86_64</code> 是 x64，<code>aarch64</code> 或 <code>arm64</code> 是 ARM64。</li>
+    </ul>
+    <p>安装步骤和官方下载入口见 <a href="https://learn.chatgpt.com/docs/linux/linux-app" target="_blank" rel="noopener">ChatGPT desktop app for Linux</a>。预览版的功能和稳定性可能与 macOS、Windows 不完全一致。</p>
 
     <h2 id="sign-in">第二步 · 登录</h2>
     <p>打开 App 后,按提示登录。一般有两条路:</p>
@@ -55,7 +64,17 @@
       <li><strong>Work:</strong>做文档、表格、演示稿、研究和较长的日常工作。</li>
       <li><strong>Codex:</strong>打开本地文件夹,读写代码,跑命令,看 Diff。</li>
     </ul>
-    <p>这套教程 A0 到 A7 主要都在 Codex 入口里操作。三种入口的完整区别放在 <a href="./08-work-agents.html">A8 · Work 与多智能体</a>,Voice 和多文件夹项目放在 <a href="./09-voice-projects.html">A9</a>。</p>
+    <p>这套教程 A0 到 A7 主要都在 Codex 入口里操作。三种入口的完整区别放在 <a href="./08-work-agents.html">A8 · Work 与多智能体</a>,Voice 和多文件夹项目放在 <a href="./09-voice-projects.html">A9</a>，2026 年 8 月新增能力汇总在 <a href="./10-august-updates.html">A10</a>。</p>
+
+    <h2 id="import-agent">以前用过 Claude 或 Cursor? 可以导入</h2>
+    <p>如果这不是你第一次用 AI 编程工具，桌面端可以从 Claude Code、Claude Cowork 或 Cursor 导入支持的设置、说明、技能、插件、项目和近期工作。导入不会删除原工具里的内容，也不会覆盖你现有的 ChatGPT/Codex 设置。</p>
+    <ol>
+      <li>打开 <strong>Settings &gt; Import</strong>；如果没有这个分类，就去 General 找 <strong>Import other agent setup</strong>。</li>
+      <li>选择来源和要导入的项目、设置或近期聊天。</li>
+      <li>导入后检查提示卡，完成插件或外部连接的重新授权。</li>
+      <li>需要持续同步时，再打开 automatic updates。</li>
+    </ol>
+    <p>你是第一次使用这类工具的话，直接跳过这一节。导入的 Hooks、MCP、插件和权限设置可能会执行命令或连接外部服务，先看懂再启用。</p>
 
     <h2 id="after-sign-in">登录后先检查三件事</h2>
     <p>登录成功不代表马上就能开工。你先看三件小事:</p>
