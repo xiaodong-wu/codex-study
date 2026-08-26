@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>App 第 04 章 · 浏览器、标注和电脑操作 · Codex 中文教程（神灯资讯）</title>
-<meta name="description" content="Codex 桌面端 App 的图形化能力说明:内置浏览器、页面标注、Browser Use、Chrome 扩展、Computer Use、Appshots、Voice 屏幕上下文和图片生成。" />
+<meta name="description" content="Codex 桌面端 App 的图形化能力说明:内置浏览器、页面标注、Browser Use、多浏览器扩展、WebMCP 站点工具、Computer Use、Appshots、Voice 屏幕上下文和图片生成。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -130,20 +130,45 @@
       <div class="prompt-card__note">先“只读诊断”,能防止它边查边改,把问题来源搅混。</div>
     </div>
 
-    <h2 id="chrome">Chrome 扩展:用你自己的浏览器状态</h2>
-    <p>内置浏览器不带你的登录状态、Cookie、扩展和历史标签页。如果任务必须用你已经登录的 Chrome,就需要 Chrome 扩展或相关设置。</p>
-    <p>新版 Chrome 扩展还可以把当前打开的标签页、你高亮选中的网页文字或 YouTube 视频带进侧边对话。比如你选中一段官方说明，再让 ChatGPT 用三句话解释；或在 YouTube 页面里询问视频讲了什么。它读取的是你主动带入的浏览器上下文，仍要留意私人标签页和账号信息。</p>
+    <h2 id="browser-extension">浏览器扩展:用你自己的登录状态</h2>
+    <p>内置浏览器和你平时使用的浏览器是两套环境。任务必须使用已经登录的网站、Cookie、扩展或现有标签页时,可以安装 ChatGPT 浏览器扩展。</p>
+    <p>截至 2026 年 8 月 25 日,官方扩展支持 <strong>Chrome、Edge、Brave、Opera 和 Vivaldi</strong>。五种浏览器都支持在桌面端提及标签页和控制网页;Chrome、Edge、Brave、Vivaldi 还支持侧边对话,Opera 暂不支持侧边对话,需要回桌面端发起任务。</p>
+    <p>扩展可以把当前标签页、高亮文字或 YouTube 页面带进对话。比如选中一段官方说明,再让 Codex 用三句话解释。它读取的是你主动带入的浏览器上下文,仍要留意私人标签页和账号信息。</p>
     <p>但这也更敏感。因为网页会把 Codex 的点击当成你的点击。涉及账号、付款、隐私设置时,你要在旁边看着,不要让它自己乱点。</p>
 
-    <h2 id="chrome-setup">Chrome 扩展怎么安全使用</h2>
-    <p>Chrome 扩展通常通过 Plugins 里添加 Chrome 插件来设置。装好后,Chrome 扩展图标应该显示 Connected。</p>
+    <h2 id="browser-extension-setup">浏览器扩展怎么设置</h2>
+    <ol>
+      <li>先把 ChatGPT desktop app 更新到最新版。</li>
+      <li>打开 <strong>Settings &gt; Computer Use</strong>,选择你要连接的浏览器。</li>
+      <li>按提示安装扩展,再确认扩展显示 Connected。</li>
+      <li>回桌面端新开任务,提及当前标签页或明确说要操作哪个网站。</li>
+    </ol>
     <p>安全上记住三点:</p>
     <ul>
       <li><strong>网站权限按域名批准。</strong>不确定就只允许当前任务,不要 Always allow。</li>
       <li><strong>浏览历史很敏感。</strong>只有任务真的需要时才允许 Codex 使用。</li>
-      <li><strong>多 Chrome 资料要确认。</strong>你可能装在 A 资料里,但当前打开的是 B 资料。</li>
+      <li><strong>多个浏览器或资料要确认。</strong>扩展可能装在 A 资料里,但当前打开的是 B 资料。</li>
     </ul>
-    <p>如果 Chrome 连不上,先看扩展是否 Connected、插件是否启用、网站是否在 blocklist,再重启 Chrome 和 Codex。</p>
+    <p>如果连不上,先看扩展是否 Connected、当前是否是正确的浏览器资料、网站是否在 blocklist,再重启浏览器和桌面端。</p>
+
+    <h2 id="site-tools">Site tools（WebMCP）:网站直接把工具交给 Codex</h2>
+    <p>有些网站除了让 Codex 看页面,还会主动提供一组结构化操作,比如“查找文档章节”“读取图表数据”“在文章里留下评论”。这套能力叫 <strong>Site tools</strong>,底层使用 WebMCP。你可以把它理解成:网站自己准备好了几个可靠按钮,Codex 不必只靠猜位置和模拟点击。</p>
+    <ol>
+      <li>用桌面端的内置浏览器打开目标网站。</li>
+      <li>查看地址栏里的 <strong>Site tools</strong>,展开 Available site tools。</li>
+      <li>先看清每个工具是只读还是会写入,再让 Codex 使用。</li>
+      <li>完成后打开 Recently used 或 Sources,复核它调用了什么、页面发生了什么变化。</li>
+    </ol>
+    <p>目前要使用最新版桌面端和 <strong>GPT-5.6 Sol 或 Terra</strong>;Luna 暂不支持 WebMCP,Enterprise 和 Edu 工作区暂不可用,实际入口也会受灰度开放和网站本身是否提供工具影响。</p>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">网站提供的工具也不能盲信</div>
+        <div class="callout__body">工具名字写着“只读”不代表它一定安全。发送消息、购买、删除数据、修改权限这类动作,仍要看清网站、操作对象和确认提示。可以在 Settings &gt; Browser &gt; Permissions 关闭 Enable site tools。</div>
+      </div>
+    </div>
 
     <h2 id="computer-use">Computer Use:让 Codex 操作桌面应用</h2>
     <p>Computer Use 是更进一步的能力:Codex 可以看见并操作 macOS 或 Windows 上的图形界面。它适合:</p>
@@ -238,7 +263,7 @@
       </span>
       <div class="chapter-summary__body">
         <strong>这一章的判断题</strong>
-        本地网页用 @Browser,登录网站用 Chrome,桌面 App 用 Computer Use,临时窗口上下文用 Appshots。越接近真实账号和系统操作,权限越窄、人在旁边。
+        内置网页用 @Browser,登录网站用浏览器扩展,支持 WebMCP 的页面优先看 Site tools,桌面 App 用 Computer Use,临时窗口上下文用 Appshots。越接近真实账号和系统操作,权限越窄、人在旁边。
       </div>
     </div>
 

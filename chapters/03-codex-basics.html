@@ -151,14 +151,14 @@
       </div>
     </div>
 
-    <h3 id="august-session-tools">2026 年 8 月新增的会话整理工具</h3>
-    <p>Codex CLI 0.148.0 把长会话的“保存、另开路线和收纳”补得更完整。先升级并确认版本:</p>
+    <h3 id="august-session-tools">2026 年 8 月新增的会话与 Agent 管理工具</h3>
+    <p>Codex CLI 0.148.0 先补齐长会话的导出、分叉和归档,0.149.0 又加入任务 dashboard、消息队列和工作目录命令。要使用本节全部功能,先升级到 0.149.1 并确认版本:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>npm install -g @openai/codex@0.148.0
+<pre>npm install -g @openai/codex@0.149.1
 codex --version</pre>
     </div>
     <table>
@@ -167,11 +167,15 @@ codex --version</pre>
         <tr><td>导出</td><td>在 TUI 输入 <code>/export</code></td><td>把完整对话复制出去或保存成 Markdown，方便交接和复盘。</td></tr>
         <tr><td>分叉</td><td>使用 <code>codex exec fork</code>；先运行 <code>codex exec fork --help</code> 查看当前版本参数</td><td>保留原会话，同时尝试另一条实现路线。</td></tr>
         <tr><td>归档 / 恢复</td><td>在 TUI 的 Resume 会话选择器里操作</td><td>把暂时不用的会话收起来，需要时再恢复。</td></tr>
+        <tr><td>Agents dashboard</td><td>运行 <code>codex agents</code></td><td>搜索、启动、打开、重命名或停止本地和远程任务。</td></tr>
+        <tr><td>消息队列</td><td>运行 <code>codex queue</code></td><td>给已经存在的会话排入下一条消息,不用先打开它。</td></tr>
+        <tr><td>工作目录</td><td>在 TUI 使用 <code>/cd</code>、<code>/pwd</code> 或 <code>/cwd</code></td><td>查看或切换当前工作文件夹,减少改错项目。</td></tr>
+        <tr><td>增强诊断</td><td>运行 <code>codex doctor</code></td><td>排查终端防护软件、网络/代理、桌面端状态和更新连接。</td></tr>
         <tr><td>插件</td><td>输入 <code>/plugins</code> 安装，随后新开会话</td><td>让新会话加载插件里的 Skills 和工具。</td></tr>
         <tr><td>导入</td><td>在空闲的本地会话输入 <code>/import</code></td><td>从 Claude Code 或 Cursor 导入最多 30 天内的 50 条近期聊天及支持设置。</td></tr>
       </tbody>
     </table>
-    <p><code>/import</code> 在任务正在运行、远程会话或连接本地 app-server daemon 时不可用。0.147 还加入 <code>--approve-for-me</code> 自动审查审批；它会改变批准流程，新手先保持默认审批，熟悉风险后再考虑。</p>
+    <p><code>/import</code> 在任务正在运行、远程会话或连接本地 app-server daemon 时不可用。0.147 还加入 <code>--approve-for-me</code> 自动审查审批;它会改变批准流程,新手先保持默认审批,熟悉风险后再考虑。旧的 <code>codex mcp-server</code> 已弃用,嵌入式集成改用 Codex App Server;日常管理 MCP 连接仍使用 <code>codex mcp</code>。</p>
 
     <h2 id="session-length">3.6 一次会话的健康长度</h2>
     <p>Codex 的会话越聊越长,上下文会越来越复杂。长到一定程度,它可能开始变得迟钝或跑偏。</p>

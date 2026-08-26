@@ -37,10 +37,10 @@
       <tbody>
         <tr><td><code>npm install -g @openai/codex</code></td><td>安装或重装 Codex CLI</td><td>第一次安装,或命令坏了想重装</td></tr>
         <tr><td><code>npm update -g @openai/codex</code></td><td>用 npm 升级全局安装包</td><td>你是通过 npm 安装的 Codex</td></tr>
-        <tr><td><code>npm install -g @openai/codex@0.148.0</code></td><td>安装 2026-08-18 发布的 0.148.0</td><td>需要 <code>/export</code>、会话分叉和归档恢复等新功能</td></tr>
+        <tr><td><code>npm install -g @openai/codex@0.149.1</code></td><td>安装 2026-08-24 发布的 0.149.1</td><td>需要 <code>codex agents</code>、<code>codex queue</code>、工作目录命令和增强诊断等新功能</td></tr>
         <tr><td><code>codex update</code></td><td>检查并应用 Codex CLI 自更新</td><td>当前安装版本支持自更新时</td></tr>
         <tr><td><code>codex --version</code></td><td>查看当前版本号</td><td>确认装好了,或排查“是不是版本太旧”</td></tr>
-        <tr><td><code>codex doctor</code></td><td>生成本地诊断报告</td><td>登录、配置、Git、终端、线程列表等看起来不正常时</td></tr>
+        <tr><td><code>codex doctor</code></td><td>生成本地诊断报告</td><td>登录、网络/代理、终端防护软件、桌面端状态或更新连接不正常时</td></tr>
         <tr><td><code>codex login</code></td><td>登录 Codex</td><td>第一次使用,或提示未登录时</td></tr>
         <tr><td><code>codex login --device-auth</code></td><td>用设备码登录</td><td>浏览器登录打不开、远程机器或 SSH 环境</td></tr>
         <tr><td><code>codex logout</code></td><td>退出登录并清除本机凭据</td><td>共用电脑、换账号、排查登录问题</td></tr>
@@ -59,6 +59,8 @@
         <tr><td><code>codex resume</code></td><td>从最近会话列表里恢复</td><td>昨天聊到一半,今天接着来</td></tr>
         <tr><td><code>codex resume --last</code></td><td>直接恢复当前目录最近一次会话</td><td>最省事的“继续上次”</td></tr>
         <tr><td><code>codex app</code></td><td>启动 Codex 桌面端 App</td><td>想从终端打开桌面端时用</td></tr>
+        <tr><td><code>codex agents</code></td><td>打开交互式 Agent dashboard</td><td>搜索、启动、打开、重命名或停止本地和远程任务</td></tr>
+        <tr><td><code>codex queue</code></td><td>向已有本地或远程会话发送排队消息</td><td>任务还在运行,但你想先安排下一条方向</td></tr>
       </tbody>
     </table>
 
@@ -122,12 +124,14 @@
         <tr><td><code>/plugins</code></td><td>查看插件</td><td>管理可用插件和插件工具</td></tr>
         <tr><td><code>/import</code></td><td>从 Claude Code 或 Cursor 导入支持设置和近期聊天</td><td>只在空闲的本地会话中使用；最多导入最近 30 天的 50 条聊天</td></tr>
         <tr><td><code>/export</code></td><td>把完整 TUI 会话导出到剪贴板或 Markdown 文件</td><td>交接、复盘或保留工作记录</td></tr>
+        <tr><td><code>/cd [路径]</code></td><td>切换当前 TUI 会话的工作目录</td><td>要继续处理另一个文件夹时</td></tr>
+        <tr><td><code>/pwd</code> / <code>/cwd</code></td><td>查看当前工作目录</td><td>动手前确认自己没有进错项目</td></tr>
         <tr><td><code>/apps</code></td><td>浏览 app/connectors</td><td>把外部 app 插入提示词里</td></tr>
         <tr><td><code>/copy</code></td><td>复制最新回复</td><td>把总结、计划、命令复制出去</td></tr>
         <tr><td><code>/new</code></td><td>在同一个 CLI 里开新对话</td><td>想换一个干净上下文</td></tr>
         <tr><td><code>/clear</code></td><td>清空终端并开始新聊天</td><td>界面太乱,想重新开始</td></tr>
         <tr><td><code>/resume</code></td><td>恢复已保存会话</td><td>接着以前的任务</td></tr>
-        <tr><td>Resume picker 中 Archive / Restore</td><td>归档或恢复会话</td><td>整理长会话列表；0.148.0 起可用</td></tr>
+        <tr><td>Resume picker 中 Archive / Restore</td><td>归档或恢复会话</td><td>整理长会话列表;0.148.0 起可用</td></tr>
         <tr><td><code>/quit</code> / <code>/exit</code></td><td>退出 CLI</td><td>确认重要改动已保存后再退出</td></tr>
         <tr><td><kbd>Esc</kbd></td><td>取消当前输入或请求</td><td>发现发错了、想停一下</td></tr>
         <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>强制中断 / 退出</td><td>普通取消没反应时</td></tr>
@@ -143,6 +147,7 @@
         <tr><td><code>codex features</code></td><td>查看和开关功能</td><td>某个功能没出现时先查它</td></tr>
         <tr><td><code>codex completion</code></td><td>生成 shell 自动补全脚本</td><td>让终端里敲命令更顺手</td></tr>
         <tr><td><code>codex mcp</code></td><td>管理 MCP server</td><td>连接外部工具、私有数据源、服务 API</td></tr>
+        <tr><td><code>codex mcp-server</code></td><td>已弃用,不要再用于新集成</td><td>需要嵌入 Codex 时改用 Codex App Server</td></tr>
         <tr><td><code>codex plugin</code></td><td>安装、列出、移除插件</td><td>给 Codex 扩能力包</td></tr>
       </tbody>
     </table>

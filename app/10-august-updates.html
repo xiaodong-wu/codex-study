@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>App 第 10 章 · 2026 年 8 月功能更新 · Codex 中文教程（神灯资讯）</title>
-<meta name="description" content="通俗介绍 Codex 2026 年 8 月最新更新:Computer History、从其他 Agent 导入、Linux 桌面端、Codex Remote、CLI 会话导出与分叉、插件目录和模型迁移。" />
+<meta name="description" content="通俗介绍 Codex 2026 年 8 月最新更新:多浏览器扩展、WebMCP 站点工具、事件触发任务、Apple Messages、线程分享、Computer History、Codex Remote、CLI 0.149 和模型迁移。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -17,9 +17,9 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">App 第 10 章 · 更新核对至 2026-08-20</span>
+    <span class="chapter-meta">App 第 10 章 · 更新核对至 2026-08-26</span>
     <h1>2026 年 8 月功能更新</h1>
-    <p class="chapter-lede">这次不是简单换几个按钮。Codex 开始更方便地接手你在其他 Agent 里的旧项目、从手机遥控电脑上的任务、回看最近的电脑工作线索，也给 CLI 加上了会话导出、分叉和归档。下面只讲普通用户真正用得上的部分。</p>
+    <p class="chapter-lede">8 月下旬又补了一批很实用的能力:常用浏览器都能连接桌面端,网站可以把结构化工具直接交给 Codex,任务能被 Gmail、Slack、GitHub 事件叫醒,Mac 还能用 Apple Messages 插件。CLI 也从“管理一条会话”走向“管理一组正在工作的 Agent”。下面只讲普通用户真正用得上的部分。</p>
 
     <figure class="figure">
       <div class="figure__img">
@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">这页依据什么</div>
-        <div class="callout__body">本页在 2026 年 8 月 20 日核对 OpenAI 官方文档和更新记录，最新公开记录到 8 月 18 日。功能会分批开放，也可能受系统、套餐、地区和工作区策略影响；你的界面没有某个入口，不一定是你操作错了。</div>
+        <div class="callout__body">本页在 2026 年 8 月 26 日核对 OpenAI 官方文档和更新记录,最新公开记录到 8 月 25 日。功能会分批开放,也可能受系统、套餐、地区和工作区策略影响;你的界面没有某个入口,不一定是你操作错了。</div>
       </div>
     </div>
 
@@ -42,14 +42,37 @@
     <table>
       <thead><tr><th>新变化</th><th>用人话说</th><th>最适合谁</th></tr></thead>
       <tbody>
+        <tr><td>多浏览器扩展</td><td>除了 Chrome,Edge、Brave、Opera、Vivaldi 也能把已登录网页交给桌面端处理。</td><td>必须使用自己浏览器登录状态的人。</td></tr>
+        <tr><td>Site tools（WebMCP）</td><td>网站可以把查找、读取、评论等结构化工具直接提供给 Codex。</td><td>需要在同一张实时网页上精确协作的人。</td></tr>
+        <tr><td>事件触发任务</td><td>收到指定邮件、Slack 消息或 PR 活动时才运行任务。</td><td>不想一直定时轮询外部消息的人。</td></tr>
+        <tr><td>Apple Messages</td><td>在 Mac 上查找、总结、准备或发送“信息”App 里的消息。</td><td>需要整理 iMessage / SMS / RCS 对话的人。</td></tr>
+        <tr><td>线程只读分享</td><td>把本地 Codex 线程做成静态只读快照链接,不会开放你的电脑或项目。</td><td>需要给别人看任务过程和改动的人。</td></tr>
         <tr><td>Computer History</td><td>把近期电脑活动整理成可查看、可删除的时间线和记忆，方便接着上次的工作。</td><td>经常在多个 App 和网页之间来回切换的人。</td></tr>
         <tr><td>从其他 Agent 导入</td><td>把 Claude Code、Claude Cowork 或 Cursor 里的设置、项目和近期工作带进来。</td><td>以前已经在其他 AI 编程工具里干过活的人。</td></tr>
         <tr><td>Linux 桌面端预览</td><td>Ubuntu、Debian、Fedora 用户也可以安装 ChatGPT desktop app。</td><td>使用受支持 Linux 桌面系统的人。</td></tr>
         <tr><td>Codex Remote</td><td>手机负责发任务、看进度、批准操作和审查 Diff，真正的工作仍在电脑上跑。</td><td>离开电脑后还想盯住任务的人。</td></tr>
         <tr><td>插件统一目录</td><td>ChatGPT 和 Codex 使用同一套公开插件目录，CLI 也能浏览市场来源。</td><td>需要 Gmail、Drive、Slack、Security 等外部能力的人。</td></tr>
-        <tr><td>CLI 会话管理</td><td>可以导出完整对话、从旧会话分叉新路线、归档或恢复会话。</td><td>经常做长任务、想保留工作记录的 CLI 用户。</td></tr>
+        <tr><td>CLI Agent 管理</td><td>除了导出和分叉,还可以用 dashboard 查找任务、向现有会话排队发消息、切换工作目录。</td><td>经常并行跑多条长任务的 CLI 用户。</td></tr>
       </tbody>
     </table>
+
+    <h2 id="august-25">8 月 25 日这批更新,先记住四件事</h2>
+    <h3>1. 浏览器扩展不再只有 Chrome</h3>
+    <p>桌面端现在可以连接 Chrome、Edge、Brave、Opera、Vivaldi。五种浏览器都支持提及标签页和浏览器控制;Chrome、Edge、Brave、Vivaldi 支持侧边对话,Opera 暂时只能从桌面端发起任务。入口在 <strong>Settings &gt; Computer Use</strong>,设置前先把桌面端升级到最新版。</p>
+
+    <h3>2. Site tools 比模拟点击更直接</h3>
+    <p>支持 WebMCP 的网站会在内置浏览器里显示 Site tools。它们可能提供“查找章节”“读取图表数据”“留下评论”这类结构化操作。你可以在地址栏查看 Available site tools,操作后再到 Recently used 或 Sources 复核调用记录。当前需要 GPT-5.6 Sol 或 Terra;Luna、Enterprise、Edu 暂不支持。</p>
+
+    <h3>3. 自动化可以等事件发生再运行</h3>
+    <p>符合条件的账号可以在 ChatGPT 网页版或移动端创建 Gmail、Slack、GitHub 事件触发任务。例如:特定客户邮件到达后整理重点,产品频道出现新消息后生成待办,PR 收到 Review 后汇总修改意见。事件触发任务不能同时再设置时间计划,而且目前不在桌面端、CLI 或 IDE 扩展里创建。</p>
+
+    <h3>4. Cloud browser 登录和本地浏览器不是一回事</h3>
+    <p>符合条件的 ChatGPT Work 用户可以在网页或移动端通过 cloud browser 登录支持的网站。账号密码要填写在专门的登录流程里,不要发进聊天。云端浏览器会话与本地浏览器资料分开;这项能力目前不适用于 Enterprise 和 Edu。只是想使用电脑里已经登录的网页时,应该选上面的浏览器扩展。</p>
+
+    <h2 id="messages-sharing">Apple Messages 和线程分享:开始更方便地交接</h2>
+    <p><strong>Apple Messages 插件</strong>目前面向 Apple Silicon Mac 的桌面端,可以在 Codex 或 Work 里读取、搜索、准备和发送 iMessage、SMS、RCS 消息。默认发送前会让你检查消息和收件人;新手保持 Allow once,不要随手把某个聊天设成永久允许。</p>
+    <p><strong>本地 Codex 线程只读快照</strong>则适合把一条任务交给别人查看。在 macOS 桌面端打开线程后点 Share,或在支持的位置输入 <code>/share</code>,选择访问范围并复制链接。它不会把项目或电脑权限交出去,但快照可能包含消息、推理摘要、图片、文件路径和 Diff。官方会遮盖已知密钥格式,你仍要打开链接自己复核一遍。</p>
+    <p>快照是分享那一刻的静态副本,原线程后续更新不会自动同步。个人账号的链接可能被任何拿到链接的人打开;工作区账号会限制在原工作区成员范围内。已经分享的链接可以到 ChatGPT Data Controls 的 Shared links 里查看或撤销。</p>
 
     <h2 id="computer-history">Computer History:帮你找回刚才做到哪</h2>
     <p><strong>Computer History</strong> 是 macOS 桌面端里的可选功能。打开后，它会把你允许的 App 和网站活动整理成文字时间线与记忆。你可以问:“我午饭前在改哪份文档?”或者“把今天反复做的步骤整理成一个技能”。</p>
@@ -107,14 +130,14 @@
     </ol>
     <p>8 月更新还改善了断线重连、长任务加载、语音连接和 Diff 审查，并在任务消息加载失败时加入 Retry。外出时适合查进度、补方向、批准清楚的命令；涉及大量代码审查、账号操作或高风险命令，仍建议回电脑处理。</p>
 
-    <h2 id="cli-0148">CLI 0.148:会话终于更好整理了</h2>
-    <p>截至 8 月 18 日，官方更新记录中的最新版本是 <strong>Codex CLI 0.148.0</strong>。通过 npm 安装的用户可以这样升级:</p>
+    <h2 id="cli-0149">CLI 0.149:从整理会话走向管理任务</h2>
+    <p>截至 8 月 25 日,官方更新记录中的最新补丁版本是 <strong>Codex CLI 0.149.1</strong>。通过 npm 安装的用户可以这样升级:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>npm install -g @openai/codex@0.148.0
+<pre>npm install -g @openai/codex@0.149.1
 codex --version</pre>
     </div>
     <table>
@@ -123,11 +146,13 @@ codex --version</pre>
         <tr><td>导出完整对话</td><td>在 TUI 输入 <code>/export</code>，复制到剪贴板或保存成 Markdown 文件。</td><td>交接、复盘、写工作记录。</td></tr>
         <tr><td>分叉会话</td><td>使用 <code>codex exec fork</code> 从已有会话另开一条路线；先用 <code>codex exec fork --help</code> 查看当前版本参数。</td><td>保留原路线，同时试另一种实现。</td></tr>
         <tr><td>归档和恢复</td><td>在 TUI 的 Resume 会话选择器里归档旧会话，也可以切到归档列表恢复。</td><td>长时间使用后整理会话列表。</td></tr>
-        <tr><td>查看额度或成本估算</td><td>符合条件的工作区可在 <code>/status</code>、状态栏或终端标题看到估算。</td><td>控制长任务和多智能体消耗。</td></tr>
-        <tr><td>Hooks 增强</td><td>Hooks 可以异步运行命令，也可以调用 MCP 工具。</td><td>高级自动化；新手先审查来源和触发时机。</td></tr>
+        <tr><td>Agents dashboard</td><td>运行 <code>codex agents</code>,搜索、启动、打开、重命名或停止任务。</td><td>同时管理多条本地或远程任务。</td></tr>
+        <tr><td>给已有会话排队</td><td>使用 <code>codex queue</code> 向本地或远程会话发送后续消息。</td><td>任务还在跑时先把下一条方向排进去。</td></tr>
+        <tr><td>切换工作目录</td><td>在 TUI 使用 <code>/cd</code>、<code>/pwd</code>、<code>/cwd</code>。</td><td>确认当前在哪个文件夹工作,或切到另一个目录。</td></tr>
+        <tr><td>增强诊断</td><td><code>codex doctor</code> 现在会检查终端防护软件、网络/代理、桌面端状态和更新连接。</td><td>登录、联网、更新或桌面联动异常时先自检。</td></tr>
       </tbody>
     </table>
-    <p>0.147 还加入了 <code>/plugins</code> 插件浏览器、<code>/import</code> 导入流程和 <code>--approve-for-me</code> 自动审查审批。自动审查不等于“什么都自动允许”，但它会改变批准流程；零基础用户先保持默认审批，熟悉任务边界后再考虑。</p>
+    <p>0.148 加入了 <code>/export</code>、会话分叉、归档与恢复;0.147 加入了 <code>/plugins</code>、<code>/import</code> 和 <code>--approve-for-me</code>。另外,旧的 <code>codex mcp-server</code> 命令已在 8 月 24 日标记为弃用;需要把 Codex 嵌入其他程序时改用 Codex App Server。普通用户管理 MCP 连接仍使用 <code>codex mcp</code>,两者不要混淆。</p>
 
     <h2 id="model-change">还在用 GPT-5.4? 现在就换</h2>
     <p>官方已经说明:2026 年 8 月 31 日起，使用 ChatGPT 账号登录 Codex 的用户将不能再选择 GPT-5.4 和 GPT-5.4 mini。推荐替换关系是:</p>
@@ -143,15 +168,21 @@ codex --version</pre>
     <h2 id="quick-check">升级后做一次 5 分钟检查</h2>
     <ol>
       <li>桌面端确认 Settings 能打开，Codex 项目和旧任务能正常加载。</li>
-      <li>CLI 运行 <code>codex --version</code>，确认版本符合你要使用的命令。</li>
+      <li>CLI 运行 <code>codex --version</code>，需要本章新命令时确认已到 0.149.1。</li>
       <li>打开插件页，检查已安装插件是否仍需登录；CLI 安装插件后要新开会话。</li>
       <li>检查模型默认值，替换 GPT-5.4 / GPT-5.4 mini。</li>
       <li>Remote 用户做一次低风险测试：让手机启动只读检查，再回桌面看结果。</li>
+      <li>浏览器用户检查实际连接的是哪个浏览器和资料,再用公开页面做一次只读测试。</li>
     </ol>
 
     <h2 id="official-sources">官方资料入口</h2>
     <ul>
       <li><a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">ChatGPT &amp; Codex changelog</a>:8 月桌面端、移动端和 CLI 更新。</li>
+      <li><a href="https://learn.chatgpt.com/docs/chrome-extension" target="_blank" rel="noopener">Browser extension</a>:Chrome、Edge、Brave、Opera、Vivaldi 支持范围和设置。</li>
+      <li><a href="https://learn.chatgpt.com/docs/webmcp" target="_blank" rel="noopener">Site tools</a>:WebMCP 工作方式、模型限制和安全控制。</li>
+      <li><a href="https://learn.chatgpt.com/docs/automations?surface=web" target="_blank" rel="noopener">Scheduled tasks</a>:Gmail、Slack、GitHub 事件触发任务。</li>
+      <li><a href="https://learn.chatgpt.com/docs/plugins?surface=app" target="_blank" rel="noopener">Plugins</a>:Apple Messages 和插件目录。</li>
+      <li><a href="https://learn.chatgpt.com/docs/use-chatgpt" target="_blank" rel="noopener">Use ChatGPT</a>:分享本地 Codex 线程只读快照。</li>
       <li><a href="https://learn.chatgpt.com/docs/customization/computer-history" target="_blank" rel="noopener">Computer History</a>:适用范围、隐私、暂停和删除说明。</li>
       <li><a href="https://learn.chatgpt.com/docs/import" target="_blank" rel="noopener">Import from another agent</a>:桌面端和 CLI 导入步骤。</li>
       <li><a href="https://learn.chatgpt.com/docs/linux/linux-app" target="_blank" rel="noopener">ChatGPT desktop app for Linux</a>:支持系统与官方安装包。</li>
@@ -165,7 +196,7 @@ codex --version</pre>
       </span>
       <div class="chapter-summary__body">
         <strong>这一章先记住</strong>
-        Computer History 帮你找回近期工作，Import 帮你搬旧工具里的设置，Remote 让手机接力，CLI 的导出、分叉和归档让长任务更好管理。新功能越多，越要先确认平台、权限和数据范围。
+        多浏览器扩展让 Codex 用上你的登录状态,Site tools 让网站提供更可靠的操作,事件触发任务减少无效轮询,线程快照方便交接。CLI 0.149 又补上任务 dashboard、消息队列和增强诊断。新功能越多,越要先确认平台、权限和数据范围。
       </div>
     </div>
 

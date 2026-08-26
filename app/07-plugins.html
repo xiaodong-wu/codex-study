@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">本页更新时间</div>
-        <div class="callout__body">本页在 2026-08-20 重新核对 OpenAI 官方文档。现在 ChatGPT 和 Codex 使用同一套公开插件目录，CLI 也能浏览已配置的插件市场。插件目录会随账号、地区、套餐和工作区策略变化，实际能不能安装，以你看到的 Plugins 页面为准。</div>
+        <div class="callout__body">本页在 2026-08-26 重新核对 OpenAI 官方文档,最新公开更新记录到 8 月 25 日。现在 ChatGPT 和 Codex 使用同一套公开插件目录,CLI 也能浏览已配置的插件市场。插件目录会随账号、地区、套餐和工作区策略变化,实际能不能安装,以你看到的 Plugins 页面为准。</div>
       </div>
     </div>
 
@@ -81,6 +81,7 @@
         <tr><td>Gmail</td><td>读取和管理 Gmail,比如汇总未读邮件、草拟回复。</td><td>想让 Codex 帮忙处理邮件的人。</td><td>邮件很敏感,发送、删除、归档前都要明确确认。</td></tr>
         <tr><td>Google Drive</td><td>跨 Drive、Docs、Sheets、Slides 查找和处理文件。</td><td>资料分散在 Google 文档体系里的人。</td><td>授权范围越小越好,不要随便让 Codex 访问整个私人云盘。</td></tr>
         <tr><td>Slack</td><td>总结频道、总结线程、草拟回复。</td><td>需要追团队消息、整理讨论结论的人。</td><td>不要让它自动代表你发言;先草拟,你确认后再发。</td></tr>
+        <tr><td>Apple Messages</td><td>在 Mac 上读取、搜索 iMessage / SMS / RCS 对话,准备或发送消息。</td><td>需要从 Codex 或 Work 整理和处理信息的人。</td><td>仅 macOS Apple Silicon 桌面端;默认每次发送前确认内容和收件人,不要轻易设置永久允许。</td></tr>
       </tbody>
     </table>
     <p>这里列的是官方插件说明明确举例，或官方教程中有独立使用文档的能力，不代表你的账号里一定只会出现这些。插件目录会继续增加，名称和可用范围以 App 或 CLI 的实时目录为准。</p>
@@ -122,7 +123,26 @@
     <p>Record & Replay 是一个很适合新手理解的功能:你在 Mac 上把某个重复流程做一遍,Codex 观察这个流程,然后帮你整理成以后可复用的技能。比如每周下载报表、创建固定格式的工单、按固定步骤发布内容。</p>
     <p>它更适合“我说不清,但我会做给你看”的流程。录制时尽量短、完整、只做一件事,不要录到账号密码、客户资料或无关窗口。</p>
 
-    <h2 id="latest-codex-features">2026-08-20 值得补充的新能力</h2>
+    <h2 id="apple-messages">Apple Messages:先帮你找和写,发送前再确认</h2>
+    <p>Apple Messages 插件可以在 macOS 上读取和搜索“信息”App 里的 iMessage、SMS、RCS 对话,也能准备或发送消息。它适合“找出昨天客户发来的地址”“总结家庭群里周末安排”“先帮我写一条回复”这类任务。</p>
+    <ol>
+      <li>在 Plugins 里安装 Apple Messages。</li>
+      <li>新开 Codex 或 ChatGPT Work 对话,说清楚要找哪段聊天、做什么。</li>
+      <li>按 macOS 提示授予必要权限。</li>
+      <li>发送前复核消息正文和收件人,优先选择 Allow once。</li>
+    </ol>
+    <p>它目前只包含在 Apple Silicon（arm64）版 macOS 桌面端中,不能在普通 Chat、网页、移动端、Codex CLI 或 IDE 扩展里直接使用。它也不是“通过短信远程控制 ChatGPT”的入口。</p>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">永久允许会拿掉最后一次人工检查</div>
+        <div class="callout__body">Always allow sending to this chat 之后,同一聊天的后续消息可以不再弹出发送确认。陌生人、客户群、包含转发内容的聊天都保留逐次批准。需要撤销时到 Settings &gt; Computer use &gt; Messages 管理允许列表。</div>
+      </div>
+    </div>
+
+    <h2 id="latest-codex-features">2026-08-26 值得补充的新能力</h2>
     <table>
       <thead><tr><th>新能力</th><th>通俗理解</th><th>你可以怎么说</th></tr></thead>
       <tbody>
@@ -138,6 +158,8 @@
         <tr><td>通用插件目录</td><td>ChatGPT 和 Codex 共用公开插件目录，CLI 也能浏览市场来源。</td><td>“安装前先说明插件包含 Skills、连接器、MCP 还是 Hooks。”</td></tr>
         <tr><td>导入其他 Agent</td><td>从 Claude Code、Claude Cowork 或 Cursor 带入支持的设置、插件和近期工作。</td><td>“导入后先只读审查 Hooks、MCP 和授权，不要直接启用。”</td></tr>
         <tr><td>MCP 表单与可编辑审批</td><td>插件工具可以用标准表单收集输入，审批消息也能在发送前修改。</td><td>“请只询问完成任务必需的字段，并在提交前给我复核。”</td></tr>
+        <tr><td>Apple Messages</td><td>在 Mac 上查找、总结、准备或发送“信息”App 里的消息。</td><td>“只找出昨天的讨论并起草回复,发送前必须让我确认收件人和正文。”</td></tr>
+        <tr><td>事件触发任务</td><td>Gmail、Slack、GitHub 出现指定事件时再运行任务,不用反复定时轮询。</td><td>“PR 收到 Review 时总结反馈,不要自动回复或改代码。”</td></tr>
         <tr><td>ChatGPT Voice</td><td>用语音启动、检查和调整 Chat、Work、Codex 任务。</td><td>“开一个 Codex 任务跑测试,有阻塞就回来告诉我。”</td></tr>
         <tr><td>多文件夹本地项目</td><td>一个项目同时读取几组相关文件,主文件夹负责 Git 和自动配置发现。</td><td>“主文件夹可改,辅助资料只读;Git 只针对主仓库。”</td></tr>
         <tr><td>Amazon Bedrock</td><td>企业可以用 AWS 凭据和账单运行 GPT-5.6 的本地 Work 与 Codex。</td><td>“请先检查 AWS 区域、模型权限和当前 provider,不要输出凭据。”</td></tr>
@@ -191,7 +213,8 @@
     <h2 id="source-notes">官方资料入口</h2>
     <p>想自己继续查,优先看这些官方页面:</p>
     <ul>
-      <li><a href="https://learn.chatgpt.com/docs/plugins" target="_blank" rel="noopener">Plugins</a>:插件是什么、怎么安装、怎么调用。</li>
+      <li><a href="https://learn.chatgpt.com/docs/plugins?surface=app" target="_blank" rel="noopener">Plugins</a>:插件是什么、怎么安装、怎么调用,以及 Apple Messages 使用说明。</li>
+      <li><a href="https://learn.chatgpt.com/docs/automations?surface=web" target="_blank" rel="noopener">Scheduled tasks</a>:Gmail、Slack、GitHub 事件触发任务。</li>
       <li><a href="https://learn.chatgpt.com/docs/sites" target="_blank" rel="noopener">Sites</a>:Sites 插件的保存、部署和权限说明。</li>
       <li><a href="https://learn.chatgpt.com/docs/extend/record-and-replay" target="_blank" rel="noopener">Record & Replay</a>:把演示流程变成可复用技能。</li>
       <li><a href="https://learn.chatgpt.com/docs/security" target="_blank" rel="noopener">Codex Security</a>:安全扫描、深度扫描和云端安全能力。</li>

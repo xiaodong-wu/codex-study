@@ -38,6 +38,26 @@
     </ul>
     <p>它跑完后,如果有发现,通常会进入 App 里的待处理区。没发现就可以自动归档,不会一直打扰你。</p>
 
+    <h2 id="event-triggers">事件触发:不是到点运行,而是有事才运行</h2>
+    <p>2026 年 8 月 25 日开始,符合条件的账号可以让任务在 <strong>Gmail、Slack 或 GitHub</strong> 出现指定事件时运行。它和“每天 9 点检查一次”不一样:只有匹配的邮件、频道消息或 Pull Request 动作出现,任务才会醒来。</p>
+    <table>
+      <thead><tr><th>来源</th><th>可以盯什么</th><th>适合场景</th></tr></thead>
+      <tbody>
+        <tr><td>Gmail</td><td>新收到的邮件,可按发件人或主题过滤。</td><td>客户询盘到达后整理重点并起草回复。</td></tr>
+        <tr><td>Slack</td><td>指定频道的新消息,可筛选作者和是否包含线程回复。</td><td>产品频道出现故障报告时生成待办。</td></tr>
+        <tr><td>GitHub</td><td>PR 的 Review、评论、提交更新或合并,可按仓库、PR、作者、标题、标签过滤。</td><td>有人留下 Review 后总结反馈并准备修复方案。</td></tr>
+      </tbody>
+    </table>
+    <p>事件触发任务目前在 <strong>ChatGPT 网页版和移动端</strong>创建和运行,桌面端、Codex CLI、IDE 扩展暂不提供这个入口。一个任务可以有多个事件触发条件,但不能同时再设定时计划。创建前要先连接对应 App;Slack 还要把 ChatGPT 加入被监控频道,GitHub 连接则要有目标仓库权限。</p>
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">GitHub 事件触发示例</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">当 xiaodong-wu/codex-study 仓库的 Pull Request 收到新的 Review 或评论时运行。请总结对方提出的问题,按“必须修改、建议优化、需要确认”分类,并给出修复计划。不要自动改代码、提交或回复评论。</div>
+      <div class="prompt-card__note">先把触发范围限定到仓库和 PR 活动,再把写入动作留给人工确认。</div>
+    </div>
+
     <h2 id="triage">Triage:自动化的收件箱</h2>
     <p>自动化不是每次都应该打扰你。App 里通常会有类似 <strong>Triage</strong> 的待处理区:</p>
     <ul>
@@ -217,7 +237,7 @@
       </span>
       <div class="chapter-summary__body">
         <strong>这一章的核心</strong>
-        自动化解决重复检查,技能解决固定流程,插件打包能力,MCP 连接外部系统。先手动跑通,再定时运行,权限始终保守;插件清单和新能力放在 A7 继续展开。
+        自动化解决重复检查,也可以由 Gmail、Slack、GitHub 事件叫醒;技能解决固定流程,插件打包能力,MCP 连接外部系统。先手动跑通,再定时或按事件运行,权限始终保守。
       </div>
     </div>
 

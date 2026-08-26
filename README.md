@@ -2,7 +2,7 @@
 
 面向零编程基础读者的中文教程网站,现在分成两条路线:
 
-1. **ChatGPT 桌面端里的 Codex 教程**:偏图文、偏口语化,适合完全没有编程基础的人先上手。覆盖 Chat / Work / Codex、项目/任务、Local/Worktree/Cloud、Review、浏览器标注、Computer Use、自动化、技能、插件、GPT-5.6、多智能体、Voice、多文件夹项目、Codex Remote、Computer History、Agent 导入、设置和安全边界。
+1. **ChatGPT 桌面端里的 Codex 教程**:偏图文、偏口语化,适合完全没有编程基础的人先上手。覆盖 Chat / Work / Codex、项目/任务、Local/Worktree/Cloud、Review、浏览器标注、多浏览器扩展、WebMCP、Computer Use、定时与事件触发任务、技能、插件、GPT-5.6、多智能体、Voice、Codex Remote、Computer History、Agent 导入、线程分享、设置和安全边界。
 2. **Codex CLI 教程**:保留原来的终端路线,教读者用 OpenAI Codex CLI 做出可上线的产品官网。
 
 ## 本地预览
@@ -93,7 +93,7 @@ python3 -m http.server 8000
 - A7 新增插件专章,说明插件是什么、怎么安装、已知插件能做什么、怎样控制授权和写入风险。
 - A8 新增 2026 年 7 月功能专章,说明 Chat / Work / Codex、GPT-5.6、Sol / Terra / Luna、Max / Ultra、多智能体、Goal、文件标注和 Visualize。
 - A9 新增 ChatGPT Voice、Screen context、多文件夹本地项目、桌面与手机接力、Codex Micro 和 Amazon Bedrock 的通俗说明。
-- A10 新增 2026 年 8 月更新专章,说明 Computer History、其他 Agent 导入、Linux 桌面端预览、Codex Remote、CLI 会话导出/分叉/归档和 GPT-5.4 迁移。
+- A10 新增 2026 年 8 月更新专章,说明多浏览器扩展、WebMCP、事件触发任务、Apple Messages、线程分享、Computer History、Agent 导入、Codex Remote、CLI 0.149 和 GPT-5.4 迁移。
 
 本次最新功能补充:
 - A0 增加 Codex 桌面端最新功能总览:Worktree、线程自动化、内置浏览器、Computer Use、Appshots、Skills、Memories。
@@ -108,6 +108,7 @@ python3 -m http.server 8000
 - A7 补充 Codex Security 0.1.14 的扫描历史对比、安全策略、批量跟踪和标准扫描更新。
 - CLI 第 03 章与附录同步补充 GPT-5.6、<code>/fast</code>、<code>/agent</code> 和多智能体使用边界。
 - A1/A3/A4/A6/A7/A9 与 CLI 第 03 章同步补充 2026 年 8 月功能,并把已被替代的 Chronicle 说明更新为 Computer History。
+- A2/A4/A5/A7/A10 与 CLI 第 03 章、附录 C 同步补充 2026 年 8 月 24-25 日更新:线程只读快照、五种浏览器扩展、Site tools（WebMCP）、Gmail/Slack/GitHub 事件触发任务、Apple Messages、CLI Agent dashboard、消息队列、工作目录命令和增强版 <code>codex doctor</code>。
 
 ## 继续维护内容
 
@@ -121,8 +122,9 @@ python3 -m http.server 8000
 
 ## 官方资料维护
 
-App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-08-20,最新公开更新记录到 2026-08-18。桌面端功能和入口会更新,维护时优先核对:
+App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-08-26,最新公开更新记录到 2026-08-25。桌面端功能和入口会更新,维护时优先核对:
 
+- Changelog: <https://learn.chatgpt.com/docs/changelog>
 - What's new: <https://learn.chatgpt.com/docs/whats-new>
 - ChatGPT desktop app: <https://learn.chatgpt.com/docs/app>
 - Get started with Work: <https://learn.chatgpt.com/docs/get-started-with-work>
@@ -133,6 +135,8 @@ App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-08-20,最�
 - Commands: <https://learn.chatgpt.com/docs/reference/commands>
 - Settings: <https://learn.chatgpt.com/docs/reference/settings>
 - Browser: <https://learn.chatgpt.com/docs/browser>
+- Browser extension: <https://learn.chatgpt.com/docs/chrome-extension>
+- Site tools (WebMCP): <https://learn.chatgpt.com/docs/webmcp>
 - Computer Use: <https://learn.chatgpt.com/docs/computer-use>
 - Scheduled tasks: <https://learn.chatgpt.com/docs/automations>
 - Long-running work / Goal: <https://learn.chatgpt.com/docs/long-running-work>
@@ -140,6 +144,7 @@ App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-08-20,最�
 - Appshots: <https://learn.chatgpt.com/docs/appshots>
 - ChatGPT Voice: <https://learn.chatgpt.com/docs/features/voice>
 - Plugins: <https://learn.chatgpt.com/docs/plugins>
+- Use ChatGPT / thread sharing: <https://learn.chatgpt.com/docs/use-chatgpt>
 - Codex Security plugin changelog: <https://learn.chatgpt.com/docs/security/plugin/changelog>
 - Sites: <https://learn.chatgpt.com/docs/sites>
 - Amazon Bedrock: <https://learn.chatgpt.com/docs/amazon-bedrock>
@@ -148,8 +153,8 @@ App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-08-20,最�
 - Computer History: <https://learn.chatgpt.com/docs/customization/computer-history>
 - Import from another agent: <https://learn.chatgpt.com/docs/import>
 - Linux desktop app: <https://learn.chatgpt.com/docs/linux/linux-app>
+- Codex App Server: <https://learn.chatgpt.com/docs/app-server>
 - Codex Remote: <https://learn.chatgpt.com/docs/remote>
-- Changelog: <https://learn.chatgpt.com/docs/changelog>
 - Visualizations: <https://learn.chatgpt.com/docs/visualizations>
 - Work with files: <https://learn.chatgpt.com/docs/artifacts-viewer>
 
