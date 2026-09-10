@@ -3,7 +3,7 @@
   'use strict';
 
   const STORAGE_KEY = 'codex-tutorial-read';
-  const PARTIAL_VERSION = '20260910-september-updates';
+  const PARTIAL_VERSION = '20260910-brand';
   const PARTIAL_CACHE_PREFIX = 'codex-tutorial-partial:';
 
   function getReadSet() {
@@ -73,7 +73,7 @@
           <span class="brand__mark">
             <img class="brand__logo" src="${base}assets/img/brand/codex-app-logo.png" alt="" width="28" height="28" loading="eager" decoding="async" />
           </span>
-          <span class="brand__text">Codex 中文教程（神灯资讯）</span>
+          <span class="brand__text">Codex 中文教程</span>
         </a>
         <div class="site-header__actions">
           <a class="nav-link nav-link--hide-on-mobile" href="${base}index.html">首页</a>
