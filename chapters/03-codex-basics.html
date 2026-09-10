@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>第 03 章 · Codex 用法手册 · Codex 中文教程（神灯资讯）</title>
-<meta name="description" content="Codex CLI 基础用法:审批模式、沙盒、diff、GPT-5.6、多智能体、插件、导入、会话导出与分叉,以及 AGENTS.md 长期规则。" />
+<meta name="description" content="Codex CLI 基础用法:审批模式、沙盒、diff、GPT-6 Astra、多智能体、Worktree、插件、导入、会话导出与分叉,以及 AGENTS.md 长期规则。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -103,13 +103,14 @@
         <tr><td><code>/diff</code></td><td>看改动</td><td>想确认当前文件改了什么时。</td></tr>
         <tr><td><code>/review</code></td><td>让 Codex 自查</td><td>提交前让它找风险、bug、遗漏测试。</td></tr>
         <tr><td><code>/status</code></td><td>看会话状态</td><td>想知道当前目录、权限、模型、上下文时。</td></tr>
-        <tr><td><code>/model</code></td><td>选择模型和推理强度</td><td>想换 GPT-5.6,或调整速度与思考深度时。</td></tr>
+        <tr><td><code>/model</code></td><td>选择模型和推理强度</td><td>想换 GPT-6 Astra,或调整速度与思考深度时。</td></tr>
         <tr><td><code>/fast on</code></td><td>打开 Fast mode</td><td>确实赶时间,并愿意多消耗额度时。</td></tr>
         <tr><td><code>/agent</code></td><td>查看和切换子智能体</td><td>让多个智能体并行工作后,想检查各自进度时。</td></tr>
         <tr><td><code>/goal</code></td><td>设置持续目标</td><td>任务步骤多,需要持续推进到明确完成标准时。</td></tr>
         <tr><td><code>/export</code></td><td>导出完整会话</td><td>把对话复制到剪贴板或保存成 Markdown 文件时。</td></tr>
         <tr><td><code>/import</code></td><td>从其他 Agent 导入</td><td>想带入 Claude Code 或 Cursor 的支持设置与近期工作时。</td></tr>
         <tr><td><code>/plugins</code></td><td>打开插件浏览器</td><td>从已配置的市场查找和安装插件时。</td></tr>
+        <tr><td><code>/worktree</code></td><td>创建或浏览隔离工作目录</td><td>想并行试一个方案,又不影响当前项目文件时。</td></tr>
         <tr><td><code>/new</code></td><td>开新对话</td><td>当前对话太乱,想重新开始但不退出 CLI。</td></tr>
         <tr><td><code>/resume</code></td><td>恢复旧会话</td><td>昨天做到一半,今天继续。</td></tr>
         <tr><td><code>/quit</code></td><td>退出</td><td>收工时用。</td></tr>
@@ -117,18 +118,18 @@
     </table>
     <p>不要一口气背所有命令。你真的会高频用到的,前期就是 <code>/plan</code>、<code>/diff</code>、<code>/review</code>、<code>/status</code>。多智能体和 Fast mode 等真正需要时再开。</p>
 
-    <h2 id="models-agents">3.5 GPT-5.6、Fast mode 和多智能体</h2>
-    <p>截至 2026 年 8 月,CLI 可以使用 GPT-5.6、Fast mode 和子智能体。最省心的做法是先用默认推荐模型;需要手动指定时,可以在启动时写:</p>
+    <h2 id="models-agents">3.5 GPT-6 Astra、Fast mode 和多智能体</h2>
+    <p>截至 2026 年 9 月,CLI 可以使用 GPT-6 Astra、GPT-5.6、Fast mode 和子智能体。最省心的做法是先用默认推荐模型;遇到跨项目、网页、资料和文件的复杂任务时,可以明确指定 Astra:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>codex --model gpt-5.6</pre>
+<pre>codex --model gpt-6-astra</pre>
     </div>
     <ul>
-      <li><strong><code>/model</code>:</strong>在当前会话里切换模型和推理强度。复杂任务先用 GPT-5.6,轻量任务再选更快的模型。</li>
-      <li><strong><code>/fast on</code>:</strong>让支持模型约快 1.5 倍,但 ChatGPT 额度消耗更高。用 <code>/fast off</code> 关闭,<code>/fast status</code> 查看状态。</li>
+      <li><strong><code>/model</code>:</strong>在当前会话里切换模型和推理强度。复杂跨工具任务优先考虑 Astra,日常任务再按需选 Sol、Terra 或 Luna。</li>
+      <li><strong><code>/fast on</code>:</strong>用更多 ChatGPT 额度换更快响应;Astra 当前标注约 2 倍速度。用 <code>/fast off</code> 关闭,<code>/fast status</code> 查看状态。</li>
       <li><strong><code>/agent</code>:</strong>查看并切换正在运行的子智能体线程。你也可以直接要求 Codex 停止或调整某个子智能体。</li>
     </ul>
     <div class="prompt-card">
@@ -146,19 +147,19 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
       </div>
       <div>
-        <div class="callout__title">GPT-5.4 要在 8 月 31 日前迁移</div>
-        <div class="callout__body">ChatGPT 账号登录的 Codex 将停止提供 GPT-5.4 和 GPT-5.4 mini。官方推荐分别换成 <code>gpt-5.6-terra</code> 和 <code>gpt-5.6-luna</code>。检查工作区默认值、自定义智能体和定时任务里有没有写死旧模型。</div>
+        <div class="callout__title">GPT-5.4 已经不能再作为当前教程选项</div>
+        <div class="callout__body">从 2026 年 8 月 31 日起,ChatGPT 账号登录的 Codex 已停止提供 GPT-5.4 和 GPT-5.4 mini。旧配置分别换成 <code>gpt-5.6-terra</code> 和 <code>gpt-5.6-luna</code>,复杂新任务也可以评估 <code>gpt-6-astra</code>。工作区默认值、自定义智能体和定时任务里写死的旧模型要一起更新。</div>
       </div>
     </div>
 
-    <h3 id="august-session-tools">2026 年 8 月新增的会话与 Agent 管理工具</h3>
-    <p>Codex CLI 0.148.0 先补齐长会话的导出、分叉和归档,0.149.0 又加入任务 dashboard、消息队列和工作目录命令。要使用本节全部功能,先升级到 0.149.1 并确认版本:</p>
+    <h3 id="august-session-tools">2026 年 8-9 月新增的会话与 Agent 管理工具</h3>
+    <p>Codex CLI 0.148.0 先补齐长会话的导出、分叉和归档,0.149.0 加入任务 dashboard、消息队列和工作目录命令,0.154.0 又加入实验性 Worktree、运行中提问和插件即时刷新。要使用本节全部功能,先升级并确认版本:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>npm install -g @openai/codex@0.149.1
+<pre>npm install -g @openai/codex@0.154.0
 codex --version</pre>
     </div>
     <table>
@@ -171,11 +172,14 @@ codex --version</pre>
         <tr><td>消息队列</td><td>运行 <code>codex queue</code></td><td>给已经存在的会话排入下一条消息,不用先打开它。</td></tr>
         <tr><td>工作目录</td><td>在 TUI 使用 <code>/cd</code>、<code>/pwd</code> 或 <code>/cwd</code></td><td>查看或切换当前工作文件夹,减少改错项目。</td></tr>
         <tr><td>增强诊断</td><td>运行 <code>codex doctor</code></td><td>排查终端防护软件、网络/代理、桌面端状态和更新连接。</td></tr>
-        <tr><td>插件</td><td>输入 <code>/plugins</code> 安装，随后新开会话</td><td>让新会话加载插件里的 Skills 和工具。</td></tr>
+        <tr><td>实验性 Worktree</td><td>启动时用 <code>--worktree</code>,或在 TUI 输入 <code>/worktree</code></td><td>为新任务或分叉任务创建隔离的 Git 工作目录。</td></tr>
+        <tr><td>运行中提问</td><td>在问题卡片选择建议答案,或输入自己的回答</td><td>Codex 继续工作的同时回答澄清问题,不丢掉主输入框草稿。</td></tr>
+        <tr><td>插件</td><td>输入 <code>/plugins</code> 安装,或使用 <code>codex plugin</code></td><td>0.154.0 起当前会话通常会刷新插件工具、Skills 和 Hooks。</td></tr>
+        <tr><td>增强复制</td><td>使用 <code>/copy</code></td><td>复制回复、状态输出或单项会话信息,粘贴到富文本软件时保留更多格式。</td></tr>
         <tr><td>导入</td><td>在空闲的本地会话输入 <code>/import</code></td><td>从 Claude Code 或 Cursor 导入最多 30 天内的 50 条近期聊天及支持设置。</td></tr>
       </tbody>
     </table>
-    <p><code>/import</code> 在任务正在运行、远程会话或连接本地 app-server daemon 时不可用。0.147 还加入 <code>--approve-for-me</code> 自动审查审批;它会改变批准流程,新手先保持默认审批,熟悉风险后再考虑。旧的 <code>codex mcp-server</code> 已弃用,嵌入式集成改用 Codex App Server;日常管理 MCP 连接仍使用 <code>codex mcp</code>。</p>
+    <p><code>/import</code> 在任务正在运行、远程会话或连接本地 app-server daemon 时不可用。0.147 还加入 <code>--approve-for-me</code> 自动审查审批;它会改变批准流程,新手先保持默认审批,熟悉风险后再考虑。旧的 <code>codex mcp-server</code> 已在 0.154.0 移除,嵌入式集成改用 Codex App Server;日常管理 MCP 连接仍使用 <code>codex mcp</code>。</p>
 
     <h2 id="session-length">3.6 一次会话的健康长度</h2>
     <p>Codex 的会话越聊越长,上下文会越来越复杂。长到一定程度,它可能开始变得迟钝或跑偏。</p>
@@ -280,7 +284,7 @@ codex --version</pre>
       </span>
       <div class="chapter-summary__body">
         <strong>你已经会了</strong>
-        控制 Codex 的权限边界、读懂 diff 的大方向、选择 GPT-5.6、按需使用 Fast mode 和子智能体,并知道如何用 AGENTS.md 把反复约定沉淀成项目规则。
+        控制 Codex 的权限边界、读懂 diff 的大方向、按任务选择 Astra 或 GPT-5.6、按需使用 Fast mode、Worktree 和子智能体,并知道如何用 AGENTS.md 把反复约定沉淀成项目规则。
       </div>
     </div>
 
@@ -304,7 +308,7 @@ codex --version</pre>
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260731-voice-projects"></script>
+<script src="../assets/js/nav.js?v=20260910-september-updates"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

@@ -2,7 +2,7 @@
 
 面向零编程基础读者的中文教程网站,现在分成两条路线:
 
-1. **ChatGPT 桌面端里的 Codex 教程**:偏图文、偏口语化,适合完全没有编程基础的人先上手。覆盖 Chat / Work / Codex、项目/任务、Local/Worktree/Cloud、Review、浏览器标注、多浏览器扩展、WebMCP、Computer Use、定时与事件触发任务、技能、插件、GPT-5.6、多智能体、Voice、Codex Remote、Computer History、Agent 导入、线程分享、设置和安全边界。
+1. **ChatGPT 桌面端里的 Codex 教程**:偏图文、偏口语化,适合完全没有编程基础的人先上手。覆盖 Chat / Work / Codex、项目/任务、Local/Worktree/Cloud、Review、浏览器标注、多浏览器扩展、WebMCP、Computer Use、定时与事件触发任务、技能、插件、GPT-6 Astra、GPT-5.6、多智能体、Voice、Codex Remote、Computer History、Agent 导入、线程分享、设置和安全边界。
 2. **Codex CLI 教程**:保留原来的终端路线,教读者用 OpenAI Codex CLI 做出可上线的产品官网。
 
 ## 本地预览
@@ -26,7 +26,7 @@ python3 -m http.server 8000
 ├── 404.html
 ├── _headers                         Cloudflare Pages 响应头配置
 ├── wrangler.toml                    Cloudflare Pages / Wrangler 配置
-├── app/                             桌面端 App 教程 11 章(A0-A10)
+├── app/                             桌面端 App 教程 12 章(A0-A11)
 ├── chapters/                        Codex CLI 教程 12 章(00-11)
 ├── appendix/                        附录 4 篇(A-D)
 ├── partials/                        全站共用 sidebar / header / footer
@@ -58,9 +58,10 @@ python3 -m http.server 8000
 - App A5 · 自动化、技能和外部工具
 - App A6 · 设置、快捷键和安全边界
 - App A7 · 插件功能全指南
-- App A8 · Chat、Work、Codex 与多智能体
+- App A8 · Chat、Work、Codex、模型与多智能体
 - App A9 · 语音协作、多文件夹项目与移动端
 - App A10 · 2026 年 8 月功能更新
+- App A11 · 2026 年 9 月功能更新
 
 完整 CLI 正文章节:
 - 第 00 章 · 写在前面
@@ -91,9 +92,10 @@ python3 -m http.server 8000
 - A5 增加 Triage、耐用自动化提示词、技能/插件/MCP 选择表、AGENTS.md 示例。
 - A6 增加推荐初始设置、命令菜单、权限范围、故障入口、Deep links 和设置体检。
 - A7 新增插件专章,说明插件是什么、怎么安装、已知插件能做什么、怎样控制授权和写入风险。
-- A8 新增 2026 年 7 月功能专章,说明 Chat / Work / Codex、GPT-5.6、Sol / Terra / Luna、Max / Ultra、多智能体、Goal、文件标注和 Visualize。
+- A8 新增模型与多智能体专章,说明 Chat / Work / Codex、GPT-6 Astra、GPT-5.6、Sol / Terra / Luna、Max / Ultra、多智能体、Goal、文件标注和 Visualize。
 - A9 新增 ChatGPT Voice、Screen context、多文件夹本地项目、桌面与手机接力、Codex Micro 和 Amazon Bedrock 的通俗说明。
 - A10 新增 2026 年 8 月更新专章,说明多浏览器扩展、WebMCP、事件触发任务、Apple Messages、线程分享、Computer History、Agent 导入、Codex Remote、CLI 0.149 和 GPT-5.4 迁移。
+- A11 新增 2026 年 9 月更新专章,说明 GPT-6 Astra、CLI 0.154、实验性 Worktree、运行中提问、插件即时刷新、MCP 重新登录和移动端 Remote 改进。
 
 本次最新功能补充:
 - A0 增加 Codex 桌面端最新功能总览:Worktree、线程自动化、内置浏览器、Computer Use、Appshots、Skills、Memories。
@@ -103,16 +105,17 @@ python3 -m http.server 8000
 - A6 补充 Profile、Appearance、Pets、Personalization、Context-aware suggestions、Memories、Web search、Appshots hotkey 和更多快捷键。
 - A7 补充 Codex Security、Sites、Gmail、Google Drive、Slack、Record & Replay、Computer History、Codex Remote 和常见连接能力。
 - A0/A1/A2/A6/A7 更新为 ChatGPT desktop app 最新名称与入口,并修正最新快捷键、任务术语和模型说明。
-- A8 补充 ChatGPT Work、GPT-5.6 模型家族、子智能体、长任务、通知、Pets、文件交付和 Visualizations。
+- A8 补充 ChatGPT Work、GPT-6 Astra、GPT-5.6 模型家族、子智能体、长任务、通知、Pets、文件交付和 Visualizations。
 - A2/A4/A6/A7/A9 补充 2026 年 7 月最新能力:Voice、Screen context、多文件夹本地项目、移动端任务可视化和 Amazon Bedrock。
 - A7 补充 Codex Security 0.1.14 的扫描历史对比、安全策略、批量跟踪和标准扫描更新。
 - CLI 第 03 章与附录同步补充 GPT-5.6、<code>/fast</code>、<code>/agent</code> 和多智能体使用边界。
 - A1/A3/A4/A6/A7/A9 与 CLI 第 03 章同步补充 2026 年 8 月功能,并把已被替代的 Chronicle 说明更新为 Computer History。
 - A2/A4/A5/A7/A10 与 CLI 第 03 章、附录 C 同步补充 2026 年 8 月 24-25 日更新:线程只读快照、五种浏览器扩展、Site tools（WebMCP）、Gmail/Slack/GitHub 事件触发任务、Apple Messages、CLI Agent dashboard、消息队列、工作目录命令和增强版 <code>codex doctor</code>。
+- A0/A7/A8/A11 与 CLI 第 03 章、附录 C-D 同步补充 2026 年 9 月更新:GPT-6 Astra、CLI 0.154.0、实验性 Worktree、运行中提问、插件即时刷新、OAuth 登录挑战、安全修复和移动端 Remote 改进;同时把 <code>codex mcp-server</code> 从“已弃用”更新为“已移除”。
 
 ## 继续维护内容
 
-打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A10 的写法:
+打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A11 的写法:
 
 - 每章 5-8 个 H2 小节
 - 每章至少一个 `.exercise` 或 `.prompt-card`
@@ -122,7 +125,7 @@ python3 -m http.server 8000
 
 ## 官方资料维护
 
-App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-08-26,最新公开更新记录到 2026-08-25。桌面端功能和入口会更新,维护时优先核对:
+App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-09-10,最新公开更新记录到 2026-09-09。桌面端功能和入口会更新,维护时优先核对:
 
 - Changelog: <https://learn.chatgpt.com/docs/changelog>
 - What's new: <https://learn.chatgpt.com/docs/whats-new>

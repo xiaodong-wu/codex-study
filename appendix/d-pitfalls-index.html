@@ -222,14 +222,14 @@
 
     <h2 id="codex-common-online">Codex App / CLI 高频问题</h2>
     <div class="pitfall-group">
-      <details class="pitfall" data-keywords="404 model not found gpt-5.6 sol terra luna gpt-5.5 gpt-5.4 gpt-5.3 deprecated 模型不可用 selected model unavailable">
+      <details class="pitfall" data-keywords="404 model not found gpt-6 astra gpt-5.6 sol terra luna gpt-5.5 gpt-5.4 gpt-5.3 deprecated 模型不可用 selected model unavailable">
         <summary>模型报 <code>404</code>、<code>model not found</code>,但换别的模型能跑</summary>
         <div class="pitfall__body">
           <dl>
             <dt>常见原因</dt>
             <dd>当前账号、地区、组织策略或这一个 Codex 版本暂时拿不到你选的模型;也可能是配置里手动写了一个过新的模型名。</dd>
             <dt>怎么处理</dt>
-            <dd>先切回默认推荐模型,再更新桌面端或 CLI。CLI 里用 <code>/model</code> 重新选择,用 <code>codex --version</code> 看版本。旧配置里的 <code>gpt-5.2</code>、<code>gpt-5.3-codex</code> 等名称可能已经弃用;当前复杂任务优先试 GPT-5.6。</dd>
+            <dd>先切回默认推荐模型,再更新桌面端或 CLI。CLI 里用 <code>/model</code> 重新选择,用 <code>codex --version</code> 看版本。Astra 需要新版客户端并且会分批开放;复杂任务可优先试 GPT-6 Astra,看不到时先用账号里可用的 Sol 或 Terra。GPT-5.4 和 GPT-5.4 mini 已不再提供给 ChatGPT 账号登录的 Codex。</dd>
             <dt>参考来源</dt>
             <dd>先看官方 <a href="https://learn.chatgpt.com/docs/models">Models</a> 和 <a href="https://learn.chatgpt.com/docs/reference/troubleshooting">Troubleshooting</a>;仍无法判断时,再查 <a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a>。</dd>
           </dl>
@@ -396,11 +396,24 @@
         <div class="pitfall__body">
           <dl>
             <dt>常见原因</dt>
-            <dd>插件是在当前会话开始后安装的,会话还没有重新加载插件能力;也可能是外部连接尚未完成授权,或工作区策略不允许该插件。</dd>
+            <dd>CLI 版本过旧、插件刷新失败、外部连接尚未完成授权,或工作区策略不允许该插件。</dd>
             <dt>怎么处理</dt>
-            <dd>先打开 Plugins 或 CLI 的 <code>/plugins</code> 确认安装状态和授权提示。完成连接后<strong>新开一条会话</strong>,再让 Codex 列出当前可用技能和工具。IDE 扩展目前不支持插件。</dd>
+            <dd>先把 CLI 更新到 0.154.0 或更高,再打开 Plugins 或 <code>/plugins</code> 确认安装状态和授权提示。新版当前会话通常会自动刷新工具、Skills 和 Hooks;仍没出现时再新开会话,并让 Codex 列出当前可用能力。IDE 扩展目前不支持插件。</dd>
             <dt>参考来源</dt>
             <dd><a href="../app/07-plugins.html#install-use">A7 · 插件安装和调用</a>; <a href="https://learn.chatgpt.com/docs/plugins">OpenAI Plugins</a>。</dd>
+          </dl>
+        </div>
+      </details>
+      <details class="pitfall" data-keywords="mcp oauth login challenge refresh rejected retry 插件 登录 授权 失效 自动重试">
+        <summary>MCP 或插件突然要求重新登录,授权后刚才的操作也没有继续</summary>
+        <div class="pitfall__body">
+          <dl>
+            <dt>常见原因</dt>
+            <dd>OAuth 凭据已经过期或刷新失败。CLI 0.154.0 会显示新的登录挑战,但为了避免重复写入,被拒绝的工具调用不会自动重跑。</dd>
+            <dt>怎么处理</dt>
+            <dd>按可信的官方登录流程重新授权,然后先确认刚才的读取、发送或写入是否已经发生。确认没有重复风险后,再手动重新提交那一步;不要连续猛点重试。</dd>
+            <dt>参考来源</dt>
+            <dd><a href="../app/11-september-updates.html#plugins-auth">A11 · 插件和 MCP 更新</a>; <a href="https://learn.chatgpt.com/docs/changelog">OpenAI Changelog</a>。</dd>
           </dl>
         </div>
       </details>
@@ -816,7 +829,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260731-voice-projects"></script>
+<script src="../assets/js/nav.js?v=20260910-september-updates"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/pitfall-search.js?v=20260623-pitfall-search"></script>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 11 章 · 2026 年 9 月功能更新 · Codex 中文教程（神灯资讯）</title>
+<meta name="description" content="通俗介绍 Codex 2026 年 9 月最新更新:GPT-6 Astra、CLI 0.154、实验性 Worktree、运行中提问、插件热刷新、MCP 登录修复和移动端 Remote 改进。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260910-september-updates" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260910-september-updates" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 11 章 · 2026 年 9 月功能更新" data-chapter="app-11-september-updates">
+<header class="site-header" id="site-header"></header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+
+  <article class="content prose">
+    <span class="chapter-meta">App 第 11 章 · 更新核对至 2026-09-10</span>
+    <h1>2026 年 9 月功能更新</h1>
+    <p class="chapter-lede">这次最大的变化叫 <strong>GPT-6 Astra</strong>。它更适合把代码、网页、资料和办公文件串成一件复杂任务。Codex CLI 也更新到 0.154.0,加入实验性 Worktree、运行中提问、插件即时刷新和一批安全修复。下面不背版本流水账,只讲这些变化会怎样影响你。</p>
+
+    <figure class="figure">
+      <div class="figure__img">
+        <img src="../assets/img/app/app-overview.svg" alt="ChatGPT 桌面端中项目、任务、改动和工具区域示意图" loading="eager" decoding="async" />
+      </div>
+      <figcaption class="figure__cap"><b>这轮更新横跨三个地方:</b>桌面端负责选模型和审查结果,CLI 负责更直接的项目操作,手机 Remote 负责在离开电脑时继续盯任务。</figcaption>
+    </figure>
+
+    <div class="callout callout--note">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8h.01"/><path d="M11 12h1v4h1"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">为什么你的界面可能不一样</div>
+        <div class="callout__body">本页依据 OpenAI 官方 What's new、Models 和 Changelog,核对到 2026 年 9 月 10 日。Astra 和部分新入口会分批开放,还会受套餐、地区、系统和工作区管理员设置影响。没有看到某个按钮时,先更新应用并检查账号可用范围,不必反复重装。</div>
+      </div>
+    </div>
+
+    <h2 id="astra">GPT-6 Astra:复杂任务优先考虑它</h2>
+    <p>Astra 是目前官方推荐列表里能力最强的模型,重点不是“聊天更会说”,而是<strong>更会处理跨步骤、跨工具的复杂工作</strong>。比如先查资料,再操作网页,接着修改项目,最后交付符合模板的文档、表格或演示稿。</p>
+    <table>
+      <thead><tr><th>模型</th><th>用人话说</th><th>适合什么</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Astra</strong></td><td>最强主力,判断更稳,也擅长电脑操作</td><td>复杂开发、跨 App 工作、深度研究、重要交付物。</td></tr>
+        <tr><td><strong>5.6 Sol</strong></td><td>GPT-5.6 里的高能力型号</td><td>复杂编码、Computer Use、研究和安全工作。</td></tr>
+        <tr><td><strong>5.6 Terra</strong></td><td>日常能力和消耗更平衡</td><td>一般开发、内容整理、常规工具调用。</td></tr>
+        <tr><td><strong>5.6 Luna</strong></td><td>更快、更省</td><td>规则清楚的提取、分类、格式转换和批量任务。</td></tr>
+      </tbody>
+    </table>
+    <p>桌面端或 ChatGPT Work 网页版里,从输入框下面的模型选择器找 Astra。CLI 里可以明确指定:</p>
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">terminal</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre>codex -m gpt-6-astra</pre>
+    </div>
+    <p>别把“最强”理解成“每次都该用”。简单改字、批量整理和格式转换继续用 Terra 或 Luna 更划算。Astra 的 Fast tier 标注为约 2 倍速度,同时会增加额度消耗;开始大任务前先看看自己的用量。</p>
+
+    <h2 id="cli-0154">CLI 0.154.0:这次哪些功能真有用</h2>
+    <p>截至 9 月 10 日,官方更新记录中的最新版本是 <strong>Codex CLI 0.154.0</strong>。npm 用户可以这样升级:</p>
+    <div class="code">
+      <div class="code__bar">
+        <span class="code__bar-lang">terminal</span>
+        <button class="code__copy" type="button">复制</button>
+      </div>
+<pre>npm install -g @openai/codex@0.154.0
+codex --version</pre>
+    </div>
+    <table>
+      <thead><tr><th>新变化</th><th>怎么用</th><th>对你有什么帮助</th></tr></thead>
+      <tbody>
+        <tr><td>Astra 进入模型列表</td><td>输入 <code>/model</code>,或启动时加 <code>-m gpt-6-astra</code>。</td><td>不用手动猜模型名,可以直接从列表选择。</td></tr>
+        <tr><td>实验性 Worktree</td><td>启动时使用 <code>--worktree</code>,或在 TUI 里输入 <code>/worktree</code>。</td><td>给新任务或分叉任务建隔离副本,减少互相改乱文件。</td></tr>
+        <tr><td>运行中提问</td><td>Codex 工作时出现问题卡片,可选建议答案或填写自己的回答。</td><td>回答问题时不会挤掉你正在写的下一条消息。</td></tr>
+        <tr><td>复制更完整</td><td><code>/copy</code> 可以复制状态输出或单项会话信息。</td><td>粘贴到富文本编辑器时更容易保留格式。</td></tr>
+        <tr><td>Windows 后台服务</td><td>多个会话可共用后台 Codex server。</td><td>Windows 上的会话管理和更新更稳定。</td></tr>
+        <tr><td>Vim 编辑增强</td><td>新增 <code>R</code> 替换模式,并改进撤销、重做和 Escape。</td><td>只对已经习惯 Vim 键位的人有用,新手可以跳过。</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="worktree">Worktree 到底解决什么问题</h2>
+    <p>Worktree 可以理解成“同一个 Git 项目的另一张工作桌”。主项目继续保持原样,新任务在隔离目录里改文件。你想同时试两个设计方案,或者让两条任务并行工作时,它会比大家挤在同一个文件夹里稳得多。</p>
+    <ol>
+      <li>确认项目已经是 Git 仓库,并先保存重要的未提交改动。</li>
+      <li>用 <code>codex --worktree</code> 启动隔离会话,或在当前 TUI 输入 <code>/worktree</code>。</li>
+      <li>让 Codex 说明新 Worktree 从哪个分支开始、实际目录在哪里。</li>
+      <li>完成后先看 Diff 和测试结果,再决定合并、保留还是删除。</li>
+    </ol>
+    <div class="callout callout--warning">
+      <div class="callout__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div>
+        <div class="callout__title">CLI 里的这套 Worktree 仍是实验功能</div>
+        <div class="callout__body">实验功能可能改入口、参数或行为。第一次先拿不重要的测试仓库练习,别把唯一一份未提交工作当试验品。桌面端已经有更直观的 Worktree 流程,零基础用户优先从 App 学。</div>
+      </div>
+    </div>
+
+    <h2 id="plugins-auth">插件和 MCP:少重启,登录失败更说得清</h2>
+    <p>0.154.0 会让<strong>已经打开的会话</strong>发现新安装的插件工具,外部升级或回退插件后,也会刷新 Skills 和 Hooks。也就是说,新版 CLI 通常不必为了一个新插件整条会话重开;如果入口仍没出现,再检查版本、插件状态和工作区策略。</p>
+    <p>MCP 的 OAuth 刷新也更稳了。刷新失败时会明确显示登录挑战,让你重新授权;被拒绝的工具调用不会悄悄自动再跑一遍。看到登录提示时,完成授权后要自己确认是否重新提交刚才的操作。</p>
+    <p>另外,旧的 <code>codex mcp-server</code> 入口在 0.154.0 已经<strong>移除</strong>。普通用户连接外部工具仍用 <code>codex mcp</code>;开发者把 Codex 嵌进其他程序时使用 Codex App Server。</p>
+
+    <h2 id="security-reliability">几项看不见,但很重要的安全修复</h2>
+    <ul>
+      <li>工作区还没有被信任前,启动过程不会运行由工作区控制的辅助程序。</li>
+      <li>macOS 沙盒加强了对终端输入注入的阻挡。</li>
+      <li>恢复或分叉远程任务时,会保留已经保存的权限设置。</li>
+      <li>新会话和分叉会话会尊重服务器默认模型,除非你明确覆盖。</li>
+      <li>同一条对话正在另一个 App 里写入时,恢复会先显示只读记录和重试入口,保护你还没发送的草稿。</li>
+    </ul>
+    <p>这些变化不需要你打开某个开关,但能减少“还没确认就运行”“恢复后权限突然变了”这类风险。升级 CLI 的价值不只是拿新功能,也包括带上这些修复。</p>
+
+    <h2 id="mobile-remote">手机 Remote 也更像真正的任务面板了</h2>
+    <p>9 月 8 日的 iOS 更新补强了远程协作:输入框里可以用 <code>@</code> 提及其他任务;Codex 运行时提出问题,你可以直接回答而不丢草稿;文件浏览加入返回、最近文件和阅读位置记忆;新 Worktree 可以选择起始分支,也可以带上电脑当前的本地改动。</p>
+    <p>Voice 现在会尊重你选中的模型和推理强度,代码审查、断线重连和 Queue / Steer 切换也更可靠。手机仍然只是遥控器,任务真正运行在已连接的电脑上;涉及大段 Diff、账号操作和高风险审批时,回到电脑处理更稳妥。</p>
+
+    <h2 id="quick-check">升级后做一次 6 分钟检查</h2>
+    <div class="exercise">
+      <div class="exercise__head">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.4 2 7L12 16l-6.5 4.4 2-7L2 9h7z"/></svg>
+        动手试试
+      </div>
+      <div class="exercise__title">确认新功能真的在你的账号上可用</div>
+      <div class="exercise__body">
+        <ol class="exercise__steps">
+          <li>运行 <code>codex --version</code>,确认 CLI 已到 0.154.0。</li>
+          <li>打开 <code>/model</code>,看看 Astra 是否已经出现在你的模型列表。</li>
+          <li>在测试仓库尝试 <code>/worktree</code>,只让 Codex 说明新目录,先不改文件。</li>
+          <li>安装或更新一个可信插件,观察当前会话是否自动出现新工具。</li>
+          <li>打开手机 Remote,检查任务提及、问题回答和文件返回是否可用。</li>
+          <li>最后用 <code>/status</code> 和 <code>/diff</code> 确认模型、权限、目录和改动都符合预期。</li>
+        </ol>
+        <div class="exercise__done"><strong>完成标志:</strong>你能说清楚 Astra、实验性 Worktree 和插件刷新是否已在自己的账号与设备上生效。</div>
+      </div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="prompt-card__head">
+        <span class="prompt-card__label">升级后第一次任务</span>
+        <button class="prompt-card__copy" type="button">复制</button>
+      </div>
+      <div class="prompt-card__body">请先只读检查当前环境,告诉我 Codex 版本、当前模型、推理强度、权限模式、工作目录、是否处于 Worktree,以及已经加载的插件和 MCP 工具。先不要修改文件或调用写入型工具。</div>
+      <div class="prompt-card__note">先让它报环境,再开始真正任务,最容易发现“我以为已经升级,其实还没生效”的问题。</div>
+    </div>
+
+    <h2 id="official-sources">官方资料入口</h2>
+    <ul>
+      <li><a href="https://learn.chatgpt.com/docs/whats-new" target="_blank" rel="noopener">What's new</a>:Astra 和每周重要功能摘要。</li>
+      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:Astra、Sol、Terra、Luna 和推理强度选择。</li>
+      <li><a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">ChatGPT &amp; Codex changelog</a>:CLI 0.154.0、iOS 远程任务和具体修复。</li>
+      <li><a href="https://learn.chatgpt.com/docs/environments/git-worktrees" target="_blank" rel="noopener">Git worktrees</a>:Worktree 的用途和完整工作流。</li>
+      <li><a href="https://learn.chatgpt.com/docs/plugins" target="_blank" rel="noopener">Plugins</a>:插件安装、授权和使用范围。</li>
+      <li><a href="https://learn.chatgpt.com/docs/remote" target="_blank" rel="noopener">Codex Remote</a>:电脑配对、手机操作和审查。</li>
+    </ul>
+
+    <div class="chapter-summary chapter-summary--end">
+      <span class="chapter-summary__icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+      <div class="chapter-summary__body">
+        <strong>这一章先记住</strong>
+        复杂任务优先考虑 Astra,日常小活继续用合适的轻量模型。CLI 0.154.0 的重点是实验性 Worktree、运行中提问、插件即时刷新和安全修复。新功能有没有出现,最终以你自己的模型列表、版本号和工作区设置为准。
+      </div>
+    </div>
+
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./10-august-updates.html">
+        <div class="chapter-nav__dir">上一章</div>
+        <div class="chapter-nav__title">← 2026 年 8 月功能更新</div>
+      </a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html">
+        <div class="chapter-nav__dir">继续学习</div>
+        <div class="chapter-nav__title">进入 CLI 教程 →</div>
+      </a>
+    </nav>
+  </article>
+
+  <aside class="toc">
+    <div class="toc__title">本章目录</div>
+    <ul class="toc__list" id="toc-list"></ul>
+  </aside>
+</div>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="../assets/js/nav.js?v=20260910-september-updates"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

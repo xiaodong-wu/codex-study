@@ -152,7 +152,7 @@ codex --version</pre>
         <tr><td>增强诊断</td><td><code>codex doctor</code> 现在会检查终端防护软件、网络/代理、桌面端状态和更新连接。</td><td>登录、联网、更新或桌面联动异常时先自检。</td></tr>
       </tbody>
     </table>
-    <p>0.148 加入了 <code>/export</code>、会话分叉、归档与恢复;0.147 加入了 <code>/plugins</code>、<code>/import</code> 和 <code>--approve-for-me</code>。另外,旧的 <code>codex mcp-server</code> 命令已在 8 月 24 日标记为弃用;需要把 Codex 嵌入其他程序时改用 Codex App Server。普通用户管理 MCP 连接仍使用 <code>codex mcp</code>,两者不要混淆。</p>
+    <p>0.148 加入了 <code>/export</code>、会话分叉、归档与恢复;0.147 加入了 <code>/plugins</code>、<code>/import</code> 和 <code>--approve-for-me</code>。另外,旧的 <code>codex mcp-server</code> 命令在 8 月 24 日被标记为弃用,随后已在 0.154.0 移除;需要把 Codex 嵌入其他程序时改用 Codex App Server。普通用户管理 MCP 连接仍使用 <code>codex mcp</code>,两者不要混淆。</p>
 
     <h2 id="model-change">还在用 GPT-5.4? 现在就换</h2>
     <p>官方已经说明:2026 年 8 月 31 日起，使用 ChatGPT 账号登录 Codex 的用户将不能再选择 GPT-5.4 和 GPT-5.4 mini。推荐替换关系是:</p>
@@ -169,7 +169,7 @@ codex --version</pre>
     <ol>
       <li>桌面端确认 Settings 能打开，Codex 项目和旧任务能正常加载。</li>
       <li>CLI 运行 <code>codex --version</code>，需要本章新命令时确认已到 0.149.1。</li>
-      <li>打开插件页，检查已安装插件是否仍需登录；CLI 安装插件后要新开会话。</li>
+      <li>打开插件页，检查已安装插件是否仍需登录；CLI 0.154.0 起通常会在当前会话刷新插件能力,旧版本或未刷新时再新开会话。</li>
       <li>检查模型默认值，替换 GPT-5.4 / GPT-5.4 mini。</li>
       <li>Remote 用户做一次低风险测试：让手机启动只读检查，再回桌面看结果。</li>
       <li>浏览器用户检查实际连接的是哪个浏览器和资料,再用公开页面做一次只读测试。</li>
@@ -205,9 +205,9 @@ codex --version</pre>
         <div class="chapter-nav__dir">上一章</div>
         <div class="chapter-nav__title">← 语音、多文件夹项目和移动端</div>
       </a>
-      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html">
-        <div class="chapter-nav__dir">继续学习</div>
-        <div class="chapter-nav__title">进入 CLI 教程 →</div>
+      <a class="chapter-nav__link chapter-nav__link--next" href="./11-september-updates.html">
+        <div class="chapter-nav__dir">下一章</div>
+        <div class="chapter-nav__title">2026 年 9 月功能更新 →</div>
       </a>
     </nav>
   </article>
@@ -220,7 +220,7 @@ codex --version</pre>
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260731-voice-projects"></script>
+<script src="../assets/js/nav.js?v=20260910-september-updates"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

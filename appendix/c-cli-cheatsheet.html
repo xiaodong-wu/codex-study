@@ -37,7 +37,7 @@
       <tbody>
         <tr><td><code>npm install -g @openai/codex</code></td><td>安装或重装 Codex CLI</td><td>第一次安装,或命令坏了想重装</td></tr>
         <tr><td><code>npm update -g @openai/codex</code></td><td>用 npm 升级全局安装包</td><td>你是通过 npm 安装的 Codex</td></tr>
-        <tr><td><code>npm install -g @openai/codex@0.149.1</code></td><td>安装 2026-08-24 发布的 0.149.1</td><td>需要 <code>codex agents</code>、<code>codex queue</code>、工作目录命令和增强诊断等新功能</td></tr>
+        <tr><td><code>npm install -g @openai/codex@0.154.0</code></td><td>安装 2026-09-09 发布的 0.154.0</td><td>需要 GPT-6 Astra、实验性 Worktree、运行中提问和插件即时刷新等新功能</td></tr>
         <tr><td><code>codex update</code></td><td>检查并应用 Codex CLI 自更新</td><td>当前安装版本支持自更新时</td></tr>
         <tr><td><code>codex --version</code></td><td>查看当前版本号</td><td>确认装好了,或排查“是不是版本太旧”</td></tr>
         <tr><td><code>codex doctor</code></td><td>生成本地诊断报告</td><td>登录、网络/代理、终端防护软件、桌面端状态或更新连接不正常时</td></tr>
@@ -55,7 +55,8 @@
         <tr><td><code>codex "请总结这个项目结构"</code></td><td>启动时顺便发第一句话</td><td>省一步打开后再输入</td></tr>
         <tr><td><code>codex -C [项目路径]</code></td><td>指定工作目录后启动</td><td>你不想先 <code>cd</code> 到项目目录时用</td></tr>
         <tr><td><code>codex --image [图片路径]</code></td><td>启动时附带图片</td><td>让 Codex 看截图、设计稿、报错图</td></tr>
-        <tr><td><code>codex --model gpt-5.6</code></td><td>指定 GPT-5.6 启动</td><td>想明确使用当前推荐的复杂任务模型</td></tr>
+        <tr><td><code>codex --model gpt-6-astra</code></td><td>指定 GPT-6 Astra 启动</td><td>要处理代码、网页、研究或文件交付串在一起的复杂任务</td></tr>
+        <tr><td><code>codex --worktree</code></td><td>用实验性 Worktree 启动隔离会话</td><td>想让新任务在独立 Git 工作目录中进行</td></tr>
         <tr><td><code>codex resume</code></td><td>从最近会话列表里恢复</td><td>昨天聊到一半,今天接着来</td></tr>
         <tr><td><code>codex resume --last</code></td><td>直接恢复当前目录最近一次会话</td><td>最省事的“继续上次”</td></tr>
         <tr><td><code>codex app</code></td><td>启动 Codex 桌面端 App</td><td>想从终端打开桌面端时用</td></tr>
@@ -72,7 +73,7 @@
         <tr><td><code>codex exec "总结这个仓库的结构"</code></td><td>只跑一次任务,输出最终答案</td></tr>
         <tr><td><code>codex exec --sandbox workspace-write "修复这个 lint 错误"</code></td><td>允许它在当前工作区改文件</td></tr>
         <tr><td><code>codex exec --json "检查这个项目"</code></td><td>输出 JSONL,适合交给别的脚本处理</td></tr>
-        <tr><td><code>codex exec -m gpt-5.6 "审查当前改动"</code></td><td>用 GPT-5.6 跑一次非交互任务</td></tr>
+        <tr><td><code>codex exec -m gpt-6-astra "审查当前改动"</code></td><td>用 GPT-6 Astra 跑一次非交互复杂任务</td></tr>
         <tr><td><code>codex exec resume --last "继续实现刚才的计划"</code></td><td>让非交互任务接着上一次会话跑</td></tr>
         <tr><td><code>codex exec fork --help</code></td><td>查看从旧会话分叉新路线的参数；0.148.0 起可用</td></tr>
       </tbody>
@@ -122,12 +123,13 @@
         <tr><td><code>/mcp</code></td><td>列出 MCP 工具</td><td>排查外部工具有没有接上</td></tr>
         <tr><td><code>/skills</code></td><td>浏览和使用技能</td><td>让 Codex 按某类专门流程工作</td></tr>
         <tr><td><code>/plugins</code></td><td>查看插件</td><td>管理可用插件和插件工具</td></tr>
+        <tr><td><code>/worktree</code></td><td>创建或浏览实验性 Worktree</td><td>让新任务或分叉任务在隔离目录里工作;0.154.0 起可用</td></tr>
         <tr><td><code>/import</code></td><td>从 Claude Code 或 Cursor 导入支持设置和近期聊天</td><td>只在空闲的本地会话中使用；最多导入最近 30 天的 50 条聊天</td></tr>
         <tr><td><code>/export</code></td><td>把完整 TUI 会话导出到剪贴板或 Markdown 文件</td><td>交接、复盘或保留工作记录</td></tr>
         <tr><td><code>/cd [路径]</code></td><td>切换当前 TUI 会话的工作目录</td><td>要继续处理另一个文件夹时</td></tr>
         <tr><td><code>/pwd</code> / <code>/cwd</code></td><td>查看当前工作目录</td><td>动手前确认自己没有进错项目</td></tr>
         <tr><td><code>/apps</code></td><td>浏览 app/connectors</td><td>把外部 app 插入提示词里</td></tr>
-        <tr><td><code>/copy</code></td><td>复制最新回复</td><td>把总结、计划、命令复制出去</td></tr>
+        <tr><td><code>/copy</code></td><td>复制回复、状态或单项会话信息</td><td>把结果复制出去;0.154.0 对富文本格式和状态字段支持更完整</td></tr>
         <tr><td><code>/new</code></td><td>在同一个 CLI 里开新对话</td><td>想换一个干净上下文</td></tr>
         <tr><td><code>/clear</code></td><td>清空终端并开始新聊天</td><td>界面太乱,想重新开始</td></tr>
         <tr><td><code>/resume</code></td><td>恢复已保存会话</td><td>接着以前的任务</td></tr>
@@ -147,7 +149,7 @@
         <tr><td><code>codex features</code></td><td>查看和开关功能</td><td>某个功能没出现时先查它</td></tr>
         <tr><td><code>codex completion</code></td><td>生成 shell 自动补全脚本</td><td>让终端里敲命令更顺手</td></tr>
         <tr><td><code>codex mcp</code></td><td>管理 MCP server</td><td>连接外部工具、私有数据源、服务 API</td></tr>
-        <tr><td><code>codex mcp-server</code></td><td>已弃用,不要再用于新集成</td><td>需要嵌入 Codex 时改用 Codex App Server</td></tr>
+        <tr><td><code>codex mcp-server</code></td><td>0.154.0 已移除,不要再使用</td><td>需要嵌入 Codex 时改用 Codex App Server</td></tr>
         <tr><td><code>codex plugin</code></td><td>安装、列出、移除插件</td><td>给 Codex 扩能力包</td></tr>
       </tbody>
     </table>
@@ -195,7 +197,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260731-voice-projects"></script>
+<script src="../assets/js/nav.js?v=20260910-september-updates"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>
