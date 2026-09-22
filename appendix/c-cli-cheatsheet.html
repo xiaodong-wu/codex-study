@@ -37,7 +37,7 @@
       <tbody>
         <tr><td><code>npm install -g @openai/codex</code></td><td>安装或重装 Codex CLI</td><td>第一次安装,或命令坏了想重装</td></tr>
         <tr><td><code>npm update -g @openai/codex</code></td><td>用 npm 升级全局安装包</td><td>你是通过 npm 安装的 Codex</td></tr>
-        <tr><td><code>npm install -g @openai/codex@0.154.0</code></td><td>安装 2026-09-09 发布的 0.154.0</td><td>需要 GPT-6 Astra、实验性 Worktree、运行中提问和插件即时刷新等新功能</td></tr>
+        <tr><td><code>npm install -g @openai/codex@0.155.1</code></td><td>安装本教程 2026-09-22 核对的稳定版</td><td>包含 0.155 新能力与推理摘要兼容性修复;实验性语音还需支持的构建和开关</td></tr>
         <tr><td><code>codex update</code></td><td>检查并应用 Codex CLI 自更新</td><td>当前安装版本支持自更新时</td></tr>
         <tr><td><code>codex --version</code></td><td>查看当前版本号</td><td>确认装好了,或排查“是不是版本太旧”</td></tr>
         <tr><td><code>codex doctor</code></td><td>生成本地诊断报告</td><td>登录、网络/代理、终端防护软件、桌面端状态或更新连接不正常时</td></tr>
@@ -124,6 +124,8 @@
         <tr><td><code>/skills</code></td><td>浏览和使用技能</td><td>让 Codex 按某类专门流程工作</td></tr>
         <tr><td><code>/plugins</code></td><td>查看插件</td><td>管理可用插件和插件工具</td></tr>
         <tr><td><code>/worktree</code></td><td>创建或浏览实验性 Worktree</td><td>让新任务或分叉任务在隔离目录里工作;0.154.0 起可用</td></tr>
+        <tr><td><code>/experimental</code></td><td>管理实验功能开关</td><td>只启用自己要试的功能,按提示重启;不建议一次全部打开</td></tr>
+        <tr><td><code>/voice</code></td><td>开始实验性语音对话</td><td>0.155 起受支持构建可用;先启用实验选项并检查麦克风权限</td></tr>
         <tr><td><code>/import</code></td><td>从 Claude Code 或 Cursor 导入支持设置和近期聊天</td><td>只在空闲的本地会话中使用；最多导入最近 30 天的 50 条聊天</td></tr>
         <tr><td><code>/export</code></td><td>把完整 TUI 会话导出到剪贴板或 Markdown 文件</td><td>交接、复盘或保留工作记录</td></tr>
         <tr><td><code>/cd [路径]</code></td><td>切换当前 TUI 会话的工作目录</td><td>要继续处理另一个文件夹时</td></tr>

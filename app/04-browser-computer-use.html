@@ -201,11 +201,24 @@
     </div>
 
     <h2 id="appshots">Appshots:把当前窗口发给 Codex</h2>
-    <p>Appshots 可以把 Mac 上最前面的窗口作为上下文发给 Codex。适合你正在看一个错误弹窗、设计稿、说明页,懒得描述时。</p>
+    <p>Appshots 可以把 macOS 或 Windows 上最前面的窗口作为上下文发给 Codex。适合你正在看一个错误弹窗、设计稿、说明页,懒得描述时。Windows 支持已在 2026 年 9 月加入,不再是 Mac 专属。</p>
     <p>你可以把它理解成“更顺手的截图 + 文本”。但敏感内容一样要小心:不该给人的窗口,也不要发给 Codex。</p>
 
     <h2 id="appshots-steps">Appshots 怎么用</h2>
-    <p>macOS 上可以按两个 Command 键,或你自己设置的 Appshots 快捷键,把最前面的窗口发给 Codex。它通常会捕获窗口图片,有些 App 还能提供可读文本。</p>
+    <table>
+      <thead><tr><th>系统</th><th>默认操作</th><th>截图去哪儿</th></tr></thead>
+      <tbody>
+        <tr><td>macOS</td><td>同时按左右两个 Command 键。</td><td>按 Appshot destination 设置进入对话;Automatic 配合已显示的悬浮控件、且主 App 在后台时,会在那里开新聊天。</td></tr>
+        <tr><td>Windows</td><td>同时按左右两个 Alt 键。</td><td>在主 ChatGPT App 中打开,不是 Mac 的悬浮截图流程。</td></tr>
+      </tbody>
+    </table>
+    <ol>
+      <li>先把要说明的窗口放到最前面,关掉无关或敏感内容。</li>
+      <li>按系统对应的快捷键;第一次按提示完成权限设置。</li>
+      <li>确认对话里的附件是你要分享的窗口,再发送具体问题。</li>
+    </ol>
+    <p>默认 Automatic 通常新建对话,但你在最近 60 秒操作过某条对话时,会送到那一条。希望固定去当前或新对话,在设置里选 <strong>Current chat</strong> 或 <strong>New chat</strong>。Mac 使用悬浮截图前,先在主 App 完成授权。</p>
+    <p>截图可能附带窗口可读文本,但不保证包含整份文档。CLI 可以继续阅读历史 Appshot 附件,不能自己创建新 Appshot。完整规则见 <a href="https://learn.chatgpt.com/docs/appshots" target="_blank" rel="noopener">官方 Appshots 文档</a>。</p>
     <p>适合这样说:</p>
     <div class="prompt-card">
       <div class="prompt-card__head">

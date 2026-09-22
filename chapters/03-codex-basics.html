@@ -153,13 +153,13 @@
     </div>
 
     <h3 id="august-session-tools">2026 年 8-9 月新增的会话与 Agent 管理工具</h3>
-    <p>Codex CLI 0.148.0 先补齐长会话的导出、分叉和归档,0.149.0 加入任务 dashboard、消息队列和工作目录命令,0.154.0 又加入实验性 Worktree、运行中提问和插件即时刷新。要使用本节全部功能,先升级并确认版本:</p>
+    <p>下面覆盖会话导出、任务 dashboard、消息队列、实验性 Worktree 和插件刷新等能力。本节在 2026-09-22 核对,安装示例已更新到 9 月 18 日发布的 0.155.1;实验功能仍取决于构建与开关。npm 用户先升级并确认版本:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>npm install -g @openai/codex@0.154.0
+<pre>npm install -g @openai/codex@0.155.1
 codex --version</pre>
     </div>
     <table>
@@ -180,6 +180,19 @@ codex --version</pre>
       </tbody>
     </table>
     <p><code>/import</code> 在任务正在运行、远程会话或连接本地 app-server daemon 时不可用。0.147 还加入 <code>--approve-for-me</code> 自动审查审批;它会改变批准流程,新手先保持默认审批,熟悉风险后再考虑。旧的 <code>codex mcp-server</code> 已在 0.154.0 移除,嵌入式集成改用 Codex App Server;日常管理 MCP 连接仍使用 <code>codex mcp</code>。</p>
+
+    <h3 id="september-cli">0.155 新增能力:语音、任务整理和身份验证</h3>
+    <p><strong>语音仍是实验功能。</strong>受支持的构建中,先在交互会话输入 <code>/experimental</code> 启用语音相关选项,按提示重启,再用 <code>/voice</code> 开始。它会提供实时转写和麦克风控制。没看到选项就先继续用文字,不要从网上抄一堆不认识的配置强行打开。</p>
+    <ol>
+      <li>先用 <code>codex --version</code> 确认运行的是更新后的版本。</li>
+      <li>在支持语音的版本里检查实验开关和系统麦克风权限。</li>
+      <li>试一句“只读介绍这个项目,不要改文件”,再核对转写和结果。</li>
+      <li>涉及删除、发送或上线时,仍检查具体操作和审批内容。</li>
+    </ol>
+    <p><code>codex agents</code> 的任务总览增加了隐藏、归档、删除和 Worktree 归属信息。整理列表先用隐藏或归档;删除托管 Worktree 前看清路径和归属,确认改动已保存。支持的 Mac 本地终端会话还可对 MCP 请求做 Touch ID 验证,它和服务登录、工具写入审批不是一回事。</p>
+    <p>0.155.1 修复的是<strong>推理摘要</strong>默认设置,不是“让模型不思考”。遇到服务商不支持摘要的报错,先升级;你手动设置过的摘要选项仍会保留,因此也要检查配置。<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">官方 0.155.0 / 0.155.1 记录</a></p>
+    <p>进阶用户若使用后台 app-server daemon,可先看 <code>codex app-server daemon update --help</code>,再决定是否更新。普通 CLI 用户无需为语音单独配置后台服务。切换账号后,旧身份的远程会话和缓存会失效,应按新账号重新核对连接。</p>
+    <p>模型也要一并检查:Spark 已在 9 月 14 日停用;ChatGPT 登录的 GPT-5.5 将在 10 月 14 日退役。按 <a href="../app/08-work-agents.html#model-migration">模型迁移清单</a> 检查默认值、任务与脚本。</p>
 
     <h2 id="session-length">3.6 一次会话的健康长度</h2>
     <p>Codex 的会话越聊越长,上下文会越来越复杂。长到一定程度,它可能开始变得迟钝或跑偏。</p>

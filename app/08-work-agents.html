@@ -17,7 +17,7 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">App 第 08 章 · 模型说明更新至 2026-09-10</span>
+    <span class="chapter-meta">App 第 08 章 · 模型说明更新至 2026-09-22</span>
     <h1>Chat、Work、Codex、模型与多智能体</h1>
     <p class="chapter-lede">新版桌面端不再只有“让 Codex 改代码”这一条路。你可以快速聊天、让 Work 交付文档和表格，也可以继续用 Codex 处理项目。再配合 GPT-6 Astra、GPT-5.6 和多个子智能体,大任务可以被拆开并行完成。</p>
 
@@ -61,6 +61,25 @@
       </tbody>
     </table>
     <p>不同账号看到的选择器文案可能不同。你只要记住:模型决定“派谁来做”,推理强度决定“让它想多深”。默认档适合日常任务,任务越难再逐级提高,不要为了看起来厉害而每次都选最高档。</p>
+
+    <h3 id="model-migration">旧模型别只改聊天框,任务设置也要检查</h3>
+    <p><strong>GPT-5.5 将在 2026 年 10 月 14 日退役</strong>,范围是 ChatGPT、ChatGPT Work 和 Codex,不包括 OpenAI API。ChatGPT 账号登录的 Codex 用户,官方建议换成 <code>gpt-5.6-sol</code>。GPT-5.3-Codex-Spark 的研究预览则已在 9 月 14 日结束,不再作为本教程可选模型。</p>
+    <ol>
+      <li>在模型选择器里换好当前对话的模型,先用一个熟悉的小任务试效果。</li>
+      <li>检查项目默认配置、自定义智能体和定时任务,别让它们继续指定旧模型。</li>
+      <li>用过脚本的人,再查启动命令中的 <code>--model</code> 和 <code>config.toml</code>;只用 App 的人不必专门学脚本。</li>
+    </ol>
+    <p>这是模型服务调整,不是额度用完或密码失效,反复登录不能让退役模型回来。依据:<a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>、<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">9 月 14 日更新记录</a>。</p>
+
+    <h3 id="context-management">进阶选读:Astra 的实验性上下文管理</h3>
+    <p>可以把它理解成“长任务边做边记笔记,需要时回查同一任务的旧消息和工具结果”。它不是随意读取其他项目,也不是 Memories 的替代品。官方目前注明:支持的客户端上,ChatGPT Plus / Pro 登录可主动试用;默认关闭,初始范围不含 Business、Enterprise 或 API Key 登录。</p>
+    <p>确实需要试验时,先备份配置,再在用户 <code>config.toml</code> 中设置下面的值并开一个<strong>新任务</strong>。把它交给 Codex 修改时,要求保留已有配置和权限,先展示差异再确认。</p>
+    <div class="code">
+      <div class="code__bar"><span class="code__bar-lang">TOML · 配置项,不是终端命令</span><button class="code__copy" type="button">复制</button></div>
+<pre>[features.context_management]
+experimental_mode = true</pre>
+    </div>
+    <p>已有 <code>[features.context_management]</code> 表时只改里面的值,不要再贴一份表头。想退出实验就设为 <code>false</code> 并新开任务。新手保持默认即可,也别把“记得更多”当成不用核对结果。<a href="https://learn.chatgpt.com/docs/models#experimental-context-management" target="_blank" rel="noopener">模型说明</a>介绍了初始适用范围,<a href="https://learn.chatgpt.com/docs/config-file/config-reference" target="_blank" rel="noopener">配置参考</a>另外列出 Pro Lite;最终以账号和支持的客户端为准。</p>
 
     <h2 id="reasoning">Light、Max、Ultra 有什么区别</h2>
     <table>

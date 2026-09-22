@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>App 第 11 章 · 2026 年 9 月功能更新 · Codex 中文教程（神灯资讯）</title>
-<meta name="description" content="通俗介绍 Codex 2026 年 9 月最新更新:GPT-6 Astra、CLI 0.154、实验性 Worktree、运行中提问、插件热刷新、MCP 登录修复和移动端 Remote 改进。" />
+<meta name="description" content="核对至 2026-09-22:悬浮快捷聊天、Windows Appshots、CLI 0.155.1 与实验性语音、Spark 停用、GPT-5.5 迁移、Security 插件和移动端更新。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260910-september-updates" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260910-september-updates" />
@@ -17,9 +17,9 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">App 第 11 章 · 更新核对至 2026-09-10</span>
+    <span class="chapter-meta">App 第 11 章 · 更新核对至 2026-09-22</span>
     <h1>2026 年 9 月功能更新</h1>
-    <p class="chapter-lede">这次最大的变化叫 <strong>GPT-6 Astra</strong>。它更适合把代码、网页、资料和办公文件串成一件复杂任务。Codex CLI 也更新到 0.154.0,加入实验性 Worktree、运行中提问、插件即时刷新和一批安全修复。下面不背版本流水账,只讲这些变化会怎样影响你。</p>
+    <p class="chapter-lede">这轮先看三件和日常使用最有关的事:不用切回主窗口也能发起快捷聊天,Windows 也能直接把当前窗口交给 Codex,旧模型需要按时间表换掉。CLI 用户再看 0.155.1 和实验性语音。只用桌面端的话,不用为了这些更新先去装终端工具。</p>
 
     <figure class="figure">
       <div class="figure__img">
@@ -34,9 +34,32 @@
       </div>
       <div>
         <div class="callout__title">为什么你的界面可能不一样</div>
-        <div class="callout__body">本页依据 OpenAI 官方 What's new、Models 和 Changelog,核对到 2026 年 9 月 10 日。Astra 和部分新入口会分批开放,还会受套餐、地区、系统和工作区管理员设置影响。没有看到某个按钮时,先更新应用并检查账号可用范围,不必反复重装。</div>
+        <div class="callout__body">本页在 2026 年 9 月 22 日核对官方文档,目前查到的公开更新记录最新到 9 月 18 日,不是说 9 月 22 日发布了下面所有功能。入口仍受客户端版本、系统、套餐和工作区设置影响。实验功能会明确标注,没看到入口先查适用范围。</div>
       </div>
     </div>
+
+    <h2 id="desktop-quick-chat">桌面端:在别的窗口工作,也能随口交代任务</h2>
+    <p>9 月 11 日的桌面端更新补上了悬浮快捷聊天。比如你正在整理一份文案,只想临时问一句,不用先找回主窗口。到 <strong>Settings &gt; Pets</strong> 选 <strong>Mini</strong>,就能使用简洁的悬浮控件。</p>
+    <ol>
+      <li>保持桌面 App 运行。Mac 按 <kbd>Option</kbd>+<kbd>Space</kbd>,Windows 按 <kbd>Windows</kbd>+<kbd>Alt</kbd>+<kbd>P</kbd>。</li>
+      <li>在快捷输入框写下需求,按 Enter 发送。需要补上下文时用 <code>@</code>,指定技能时用 <code>$</code>。</li>
+      <li>点铃铛看任务进度,再点对应任务回到完整对话。</li>
+    </ol>
+    <p><strong>这类快捷聊天不属于某个项目。</strong>要修改已有网站、沿用项目规则或读取指定仓库,回主 App 从那个项目里开始。快捷键冲突时,到 Settings &gt; Keyboard shortcuts 修改 Show pet。<a href="https://learn.chatgpt.com/docs/pets" target="_blank" rel="noopener">官方悬浮控件说明</a></p>
+
+    <h2 id="windows-appshots">Windows 也能发窗口截图了</h2>
+    <p>把错误弹窗放到最前面,Mac 同时按左右两个 Command,Windows 同时按左右两个 Alt,就能把窗口作为 Appshot 交给 ChatGPT。它是“给对方看一眼”,不是自动授权对方操作电脑。</p>
+    <p>截图发到哪里、首次权限怎么检查,看 <a href="./04-browser-computer-use.html#appshots-steps">A4 的分系统操作步骤</a>。Windows 截图在主 App 打开;Mac 还可以配合悬浮控件。别把密码、付款信息和无关聊天一起发出去。<a href="https://learn.chatgpt.com/docs/appshots" target="_blank" rel="noopener">官方 Appshots 说明</a></p>
+
+    <h2 id="model-retirement">旧模型:一个已停用,一个要提前迁移</h2>
+    <table>
+      <thead><tr><th>模型</th><th>截至 9 月 22 日的状态</th><th>你需要做什么</th></tr></thead>
+      <tbody>
+        <tr><td>GPT-5.3-Codex-Spark</td><td>9 月 14 日已结束研究预览,App、CLI 和 IDE 扩展不再提供。</td><td>不要继续照旧教程找 Spark;改选账号当前支持的模型。</td></tr>
+        <tr><td>GPT-5.5</td><td>已公告将于 10 月 14 日从 ChatGPT、Work 和 Codex 退役;现在不是已经停用。</td><td>ChatGPT 登录的 Codex 用户按官方建议迁移到 <code>gpt-5.6-sol</code>;此次退役不影响 OpenAI API。</td></tr>
+      </tbody>
+    </table>
+    <p>别只改眼前这条对话。还要检查工作区默认模型、自定义智能体、定时任务和脚本里有没有写死旧名字。详细清单见 <a href="./08-work-agents.html#model-migration">A8 模型迁移</a>。依据:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">9 月 14 日公告</a>、<a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>。</p>
 
     <h2 id="astra">GPT-6 Astra:复杂任务优先考虑它</h2>
     <p>Astra 是目前官方推荐列表里能力最强的模型,重点不是“聊天更会说”,而是<strong>更会处理跨步骤、跨工具的复杂工作</strong>。比如先查资料,再操作网页,接着修改项目,最后交付符合模板的文档、表格或演示稿。</p>
@@ -59,16 +82,19 @@
     </div>
     <p>别把“最强”理解成“每次都该用”。简单改字、批量整理和格式转换继续用 Terra 或 Luna 更划算。Astra 的 Fast tier 标注为约 2 倍速度,同时会增加额度消耗;开始大任务前先看看自己的用量。</p>
 
-    <h2 id="cli-0154">CLI 0.154.0:这次哪些功能真有用</h2>
-    <p>截至 9 月 10 日,官方更新记录中的最新版本是 <strong>Codex CLI 0.154.0</strong>。npm 用户可以这样升级:</p>
+    <p>官方模型文档还列出了<strong>实验性上下文管理</strong>:让 Astra 在同一任务的长对话里记笔记、找回早先的信息。它默认关闭,不等于跨项目的永久记忆;适用账号和启用、关闭方法见 <a href="./08-work-agents.html#context-management">A8 进阶说明</a>。</p>
+
+    <h2 id="cli-0155"><span id="cli-0154"></span>CLI 0.155.1:终端用户再看这一节</h2>
+    <p>本次查到的最新稳定版记录是 9 月 18 日的 <strong>0.155.1</strong>。它在 0.155.0 的基础上修正了推理摘要默认值导致部分服务商拒绝请求的问题。此前 0.154.0 引入的 Worktree、运行中提问和插件刷新仍保留。npm 安装的用户可以这样升级:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>npm install -g @openai/codex@0.154.0
+<pre>npm install -g @openai/codex@0.155.1
 codex --version</pre>
     </div>
+    <p>0.155 新增的实验性 <code>/voice</code>、任务整理、MCP Touch ID 验证和后台服务更新,已经放进 <a href="../chapters/03-codex-basics.html#september-cli">CLI 第 03 章</a>。这里和桌面端 Voice 是两套入口,不要把 App 快捷键拿到终端里试。下面这张表保留 0.154 的基础能力,方便补课。</p>
     <table>
       <thead><tr><th>新变化</th><th>怎么用</th><th>对你有什么帮助</th></tr></thead>
       <tbody>
@@ -100,6 +126,7 @@ codex --version</pre>
     </div>
 
     <h2 id="plugins-auth">插件和 MCP:少重启,登录失败更说得清</h2>
+    <p>插件专章也补到了 Codex Security 0.1.24:检查修复是否有效、评估补丁风险、找回失败扫描里已保存的发现。它们不是“一键自动修复并合并”,实际操作和安全边界见 <a href="./07-plugins.html#security-september-update">A7 最新插件说明</a>。</p>
     <p>0.154.0 会让<strong>已经打开的会话</strong>发现新安装的插件工具,外部升级或回退插件后,也会刷新 Skills 和 Hooks。也就是说,新版 CLI 通常不必为了一个新插件整条会话重开;如果入口仍没出现,再检查版本、插件状态和工作区策略。</p>
     <p>MCP 的 OAuth 刷新也更稳了。刷新失败时会明确显示登录挑战,让你重新授权;被拒绝的工具调用不会悄悄自动再跑一遍。看到登录提示时,完成授权后要自己确认是否重新提交刚才的操作。</p>
     <p>另外,旧的 <code>codex mcp-server</code> 入口在 0.154.0 已经<strong>移除</strong>。普通用户连接外部工具仍用 <code>codex mcp</code>;开发者把 Codex 嵌进其他程序时使用 Codex App Server。</p>
@@ -115,6 +142,7 @@ codex --version</pre>
     <p>这些变化不需要你打开某个开关,但能减少“还没确认就运行”“恢复后权限突然变了”这类风险。升级 CLI 的价值不只是拿新功能,也包括带上这些修复。</p>
 
     <h2 id="mobile-remote">手机 Remote 也更像真正的任务面板了</h2>
+    <p>9 月 18 日的 iOS 1.2026.251 进一步改善了文件选择、任务队列和 Worktree 设置记忆。手机端的操作提醒已经同步到 <a href="./09-voice-projects.html#mobile">A9 Remote 教程</a>;下面保留 9 月 8 日开始可用的基础能力。</p>
     <p>9 月 8 日的 iOS 更新补强了远程协作:输入框里可以用 <code>@</code> 提及其他任务;Codex 运行时提出问题,你可以直接回答而不丢草稿;文件浏览加入返回、最近文件和阅读位置记忆;新 Worktree 可以选择起始分支,也可以带上电脑当前的本地改动。</p>
     <p>Voice 现在会尊重你选中的模型和推理强度,代码审查、断线重连和 Queue / Steer 切换也更可靠。手机仍然只是遥控器,任务真正运行在已连接的电脑上;涉及大段 Diff、账号操作和高风险审批时,回到电脑处理更稳妥。</p>
 
@@ -127,14 +155,14 @@ codex --version</pre>
       <div class="exercise__title">确认新功能真的在你的账号上可用</div>
       <div class="exercise__body">
         <ol class="exercise__steps">
-          <li>运行 <code>codex --version</code>,确认 CLI 已到 0.154.0。</li>
-          <li>打开 <code>/model</code>,看看 Astra 是否已经出现在你的模型列表。</li>
-          <li>在测试仓库尝试 <code>/worktree</code>,只让 Codex 说明新目录,先不改文件。</li>
-          <li>安装或更新一个可信插件,观察当前会话是否自动出现新工具。</li>
-          <li>打开手机 Remote,检查任务提及、问题回答和文件返回是否可用。</li>
-          <li>最后用 <code>/status</code> 和 <code>/diff</code> 确认模型、权限、目录和改动都符合预期。</li>
+          <li>更新桌面 App,试一次悬浮快捷聊天;修改项目仍从项目入口开始。</li>
+          <li>拿一个不含隐私的窗口试 Appshots,确认截图进了正确对话。</li>
+          <li>检查模型列表和定时任务,清理 Spark,为 GPT-5.5 做迁移准备。</li>
+          <li>用 CLI 的人运行 <code>codex --version</code>,确认本轮示例对应 0.155.1;纯 App 用户跳过。</li>
+          <li>用手机的人检查 Remote 项目、工作目录和排队消息;没有配对也不影响桌面端使用。</li>
+          <li>发起一项只读小任务,核对模型、权限、文件范围和输出,再恢复正式工作。</li>
         </ol>
-        <div class="exercise__done"><strong>完成标志:</strong>你能说清楚 Astra、实验性 Worktree 和插件刷新是否已在自己的账号与设备上生效。</div>
+        <div class="exercise__done"><strong>完成标志:</strong>你知道自己设备上哪些入口可用,旧模型在哪里还被引用,实验功能是否真的需要开启。</div>
       </div>
     </div>
 
@@ -151,7 +179,7 @@ codex --version</pre>
     <ul>
       <li><a href="https://learn.chatgpt.com/docs/whats-new" target="_blank" rel="noopener">What's new</a>:Astra 和每周重要功能摘要。</li>
       <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:Astra、Sol、Terra、Luna 和推理强度选择。</li>
-      <li><a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">ChatGPT &amp; Codex changelog</a>:CLI 0.154.0、iOS 远程任务和具体修复。</li>
+      <li><a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">ChatGPT &amp; Codex changelog</a>:9 月 11 日桌面更新、9 月 14 日模型公告、9 月 17-18 日 CLI 与 iOS 更新。</li>
       <li><a href="https://learn.chatgpt.com/docs/environments/git-worktrees" target="_blank" rel="noopener">Git worktrees</a>:Worktree 的用途和完整工作流。</li>
       <li><a href="https://learn.chatgpt.com/docs/plugins" target="_blank" rel="noopener">Plugins</a>:插件安装、授权和使用范围。</li>
       <li><a href="https://learn.chatgpt.com/docs/remote" target="_blank" rel="noopener">Codex Remote</a>:电脑配对、手机操作和审查。</li>
@@ -163,7 +191,7 @@ codex --version</pre>
       </span>
       <div class="chapter-summary__body">
         <strong>这一章先记住</strong>
-        复杂任务优先考虑 Astra,日常小活继续用合适的轻量模型。CLI 0.154.0 的重点是实验性 Worktree、运行中提问、插件即时刷新和安全修复。新功能有没有出现,最终以你自己的模型列表、版本号和工作区设置为准。
+        桌面端先试快捷聊天和 Appshots,做项目时仍回到项目对话。Spark 已停用,GPT-5.5 的退役日是 10 月 14 日。CLI 示例已更新到 0.155.1,实验功能按需开启,以自己的账号和设备实际可用范围为准。
       </div>
     </div>
 

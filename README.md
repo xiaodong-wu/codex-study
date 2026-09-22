@@ -7,10 +7,10 @@
 
 ## 本地预览
 
-进入项目目录,起一个本地服务器:
+进入你本机克隆的项目目录,起一个本地服务器（文件夹名称以实际为准）:
 
 ```bash
-cd /Users/wuxiaodong/Desktop/Codex教程
+cd codex-study
 python3 -m http.server 8000
 ```
 
@@ -95,7 +95,7 @@ python3 -m http.server 8000
 - A8 新增模型与多智能体专章,说明 Chat / Work / Codex、GPT-6 Astra、GPT-5.6、Sol / Terra / Luna、Max / Ultra、多智能体、Goal、文件标注和 Visualize。
 - A9 新增 ChatGPT Voice、Screen context、多文件夹本地项目、桌面与手机接力、Codex Micro 和 Amazon Bedrock 的通俗说明。
 - A10 新增 2026 年 8 月更新专章,说明多浏览器扩展、WebMCP、事件触发任务、Apple Messages、线程分享、Computer History、Agent 导入、Codex Remote、CLI 0.149 和 GPT-5.4 迁移。
-- A11 新增 2026 年 9 月更新专章,说明 GPT-6 Astra、CLI 0.154、实验性 Worktree、运行中提问、插件即时刷新、MCP 重新登录和移动端 Remote 改进。
+- A11 的 2026 年 9 月更新专章已补充到 9 月 22 日核对结果,保留月初功能并加入悬浮快捷聊天、Windows Appshots、CLI 0.155.1、模型迁移和最新插件说明。
 
 本次最新功能补充:
 - A0 增加 Codex 桌面端最新功能总览:Worktree、线程自动化、内置浏览器、Computer Use、Appshots、Skills、Memories。
@@ -115,6 +115,15 @@ python3 -m http.server 8000
 
 ## 继续维护内容
 
+### 2026-09-22 本轮补充
+
+- A4/A6/A11:悬浮 Quick Chat、Mini、Mac/Windows 快捷键、Appshots 接收位置与项目上下文边界。
+- A8/A11:Spark 9 月 14 日停用,GPT-5.5 将于 10 月 14 日退役的范围与迁移清单;补充 Astra 实验性上下文管理的适用账号、配置和退出方法。
+- A7:Codex Security 0.1.24、修复验证、补丁风险评估、失败扫描结果恢复、访问资格提示;纠正 Spark 可用的旧说明。
+- CLI 第 03 章/附录 C:示例更新到 0.155.1,补充实验性 `/voice`、任务整理、MCP Touch ID 和摘要兼容性修复。
+- A9/附录 D:手机队列与 Worktree 改进;增加可搜索的 CLI 语音、推理摘要、Quick Chat 项目上下文排错,修正 Windows Appshots 说明。
+- 日期分开记录:本轮核对日期是 9 月 22 日,查到的产品更新记录截至 9 月 18 日,Security 插件记录截至 9 月 9 日。实验功能和未来退役不写成全量已生效。
+
 打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A11 的写法:
 
 - 每章 5-8 个 H2 小节
@@ -125,7 +134,7 @@ python3 -m http.server 8000
 
 ## 官方资料维护
 
-App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-09-10,最新公开更新记录到 2026-09-09。桌面端功能和入口会更新,维护时优先核对:
+App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-09-22,查到的最新公开产品更新记录到 2026-09-18。桌面端功能和入口会更新,维护时优先核对:
 
 - Changelog: <https://learn.chatgpt.com/docs/changelog>
 - What's new: <https://learn.chatgpt.com/docs/whats-new>
@@ -145,6 +154,8 @@ App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-09-10,最�
 - Long-running work / Goal: <https://learn.chatgpt.com/docs/long-running-work>
 - Worktrees: <https://learn.chatgpt.com/docs/environments/git-worktrees>
 - Appshots: <https://learn.chatgpt.com/docs/appshots>
+- 悬浮快捷聊天 / Pets: <https://learn.chatgpt.com/docs/pets>
+- CLI 实验功能命令: <https://learn.chatgpt.com/docs/cli/slash-commands>
 - ChatGPT Voice: <https://learn.chatgpt.com/docs/features/voice>
 - Plugins: <https://learn.chatgpt.com/docs/plugins>
 - Use ChatGPT / thread sharing: <https://learn.chatgpt.com/docs/use-chatgpt>

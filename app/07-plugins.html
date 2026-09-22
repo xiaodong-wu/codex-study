@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">本页更新时间</div>
-        <div class="callout__body">本页在 2026-09-10 重新核对 OpenAI 官方文档,最新公开更新记录到 9 月 9 日。现在 ChatGPT 和 Codex 使用同一套公开插件目录,CLI 也能浏览远程插件市场。插件目录会随账号、地区、套餐和工作区策略变化,实际能不能安装,以你看到的 Plugins 页面为准。</div>
+        <div class="callout__body">本页在 2026-09-22 重新核对官方文档。ChatGPT 和 Codex 共用公开插件目录,但没有一份对所有账号永远完整的固定名单。下面分清插件、连接器和内置能力;实际能不能安装,以账号的 Plugins 页面和工作区策略为准。</div>
       </div>
     </div>
 
@@ -86,18 +86,20 @@
     </table>
     <p>这里列的是官方插件说明明确举例，或官方教程中有独立使用文档的能力，不代表你的账号里一定只会出现这些。插件目录会继续增加，名称和可用范围以 App 或 CLI 的实时目录为准。</p>
 
-    <h2 id="security-july-update">Codex Security 7 月 28 日更新了什么</h2>
-    <p>Codex Security 是这次检查里日期最新的一项插件更新。它不是普通杀毒软件,而是结合仓库上下文检查代码风险、整理发现,再把修复工作交回 Codex。0.1.14 主要补强了四件事:</p>
+    <h2 id="security-september-update"><span id="security-july-update"></span>Codex Security:不只找漏洞,也能检查修复</h2>
+    <p>截至本次核对,官方插件更新页最新列出的是 <strong>0.1.24（9 月 9 日）</strong>,不是之前教程里的 0.1.14。它更像代码安全检查员,不是电脑杀毒软件。插件版本和安装包版本可能不同,先确认自己装的是哪一版。</p>
     <table>
       <thead><tr><th>更新</th><th>通俗理解</th><th>怎么用</th></tr></thead>
       <tbody>
-        <tr><td>扫描历史对比</td><td>重跑同一份扫描后,能区分新出现、仍存在、已解决和本轮没扫到的问题。</td><td>适合确认一次修复到底有没有真正消掉风险。</td></tr>
-        <tr><td>仓库安全策略</td><td>可以用 <code>$codex-security:define-security-policy</code> 帮你整理或更新 <code>SECURITY.md</code>,明确边界、严重程度、排除项和已接受风险。</td><td>先生成草稿,再由项目负责人或安全人员确认。</td></tr>
-        <tr><td>批量跟踪</td><td>可从一次完成的扫描中选择最多 25 条发现,交回 Codex 审查后再准备 GitHub Issues 或 Linear 跟踪。</td><td>不会直接悄悄创建工单,先让人确认。</td></tr>
-        <tr><td>标准扫描简化</td><td>减少重复扫描阶段,同时保留报告、覆盖信息和 SARIF 等输出。</td><td>日常仓库检查更清楚,但结果仍要人工复核。</td></tr>
+        <tr><td>验证已有修复</td><td><code>$codex-security:verify-fix</code> 检查补丁,给出已修复、仍有漏洞或证据不足。</td><td>明确要求“验证这次安全修复”;普通跑测试不会自动变成这套流程。</td></tr>
+        <tr><td>评估补丁风险</td><td><code>$codex-security:assess-patch-risk</code> 按指定版本检查改动影响、发生概率和恢复难度。</td><td>合并前多看一眼;结论是建议,不会替你合并代码。</td></tr>
+        <tr><td>找回失败扫描中的结果</td><td>可以按要求恢复某次失败扫描里有效的已保存发现。</td><td>先找回结果,不急着重扫;失败状态和覆盖不完整的事实仍保留。</td></tr>
+        <tr><td>Daybreak 访问提示</td><td>ChatGPT 登录会话可以在扫描前核对访问资格;API Key 单独登录不能验证账号资格。</td><td>提醒不等于授予权限,也不决定扫描是否继续。按实际提示查看申请或访问限制。</td></tr>
       </tbody>
     </table>
-    <p>不同安装来源的版本号可能不一样。看到教程里的功能前,先检查你实际安装的 Codex Security 版本;重新打开旧扫描也不会把插件固定在旧版本。</p>
+    <p>例如你可以说:“请用 Codex Security 验证刚才那项安全修复,列出证据和没法验证的部分,不要修改文件或创建工单。”先点名仓库、补丁或发现,避免检查错版本。<a href="https://learn.chatgpt.com/docs/security/plugin/changelog" target="_blank" rel="noopener">官方插件版本记录</a></p>
+
+    <p>之前的扫描历史对比、用 <code>$codex-security:define-security-policy</code> 整理 <code>SECURITY.md</code>、准备跟踪工单和导出报告等能力也值得保留在日常流程里。新手先做“扫描并出报告”,再按需要验证修复;安全策略和对外工单都先让负责人确认。</p>
 
     <h2 id="common-integrations">常见连接器和本教程环境可见能力</h2>
     <p>下面这些不一定都以“插件”两个字出现在你的界面里,有些会以 App 连接器、MCP、技能或内置工具的形式出现。新手可以先按“它能帮我做什么”来记。</p>
@@ -142,7 +144,8 @@
       </div>
     </div>
 
-    <h2 id="latest-codex-features">2026-09-10 值得补充的新能力</h2>
+    <h2 id="latest-codex-features">相关能力地图:不全是插件</h2>
+    <p>下面把容易混淆的能力放在一起对照。模型、语音和 Appshots 是产品能力,不要因为它们在这张表里,就去插件市场搜同名安装包。</p>
     <table>
       <thead><tr><th>新能力</th><th>通俗理解</th><th>你可以怎么说</th></tr></thead>
       <tbody>
@@ -151,7 +154,7 @@
         <tr><td>GPT-5.6</td><td>Sol 做高难度工作,Terra 做日常任务,Luna 做清楚的重复活。</td><td>“这个任务规则很明确,可以用更快的 Luna 吗?”</td></tr>
         <tr><td>Ultra / 子智能体</td><td>把可以拆开的任务分给多个帮手并行完成。</td><td>“请分成内容、链接、移动端三个子任务,全部完成后汇总。”</td></tr>
         <tr><td>Fast mode</td><td>用更多额度换更快响应;Astra 当前标注约 2 倍速度。</td><td>“这轮确实赶时间,请说明额度成本后再开 Fast mode。”</td></tr>
-        <tr><td>Codex-Spark</td><td>Pro 用户可用的近实时、文本型编码模型研究预览。</td><td>“这是快速小改,适合用 Spark 试一版吗?”</td></tr>
+        <tr><td>Codex-Spark（已停用）</td><td>研究预览于 2026-09-14 结束,不再作为可选能力。</td><td>改选当前账号支持的模型,不要寻找所谓“Spark 解锁插件”。</td></tr>
         <tr><td>Visualize</td><td>在 Chat 或 Work 里生成可互动的图表、地图、流程和模拟器。</td><td>“@Visualize 把这组数据做成可调参数的对比图。”</td></tr>
         <tr><td>Sites</td><td>直接让 Codex 保存和部署网站版本。</td><td>“请先保存一个可预览版本,我确认后再部署。”</td></tr>
         <tr><td>Computer History</td><td>把允许来源里的近期电脑活动整理成可查看、暂停和删除的时间线，替代早期 Chronicle 预览。</td><td>“开启前先列出允许的 App 和网站，敏感工作时提醒我暂停。”</td></tr>
@@ -159,6 +162,7 @@
         <tr><td>通用插件目录</td><td>ChatGPT 和 Codex 共用公开插件目录，CLI 也能浏览市场来源。</td><td>“安装前先说明插件包含 Skills、连接器、MCP 还是 Hooks。”</td></tr>
         <tr><td>插件即时刷新</td><td>CLI 0.154.0 起,当前会话可发现新插件工具,外部升级后也会刷新 Skills 和 Hooks。</td><td>“请列出刚安装插件新增了哪些工具和权限,先不要调用写入功能。”</td></tr>
         <tr><td>MCP 重新登录提示</td><td>OAuth 刷新失败时会明确要求重新授权,失败的工具调用不会自动重跑。</td><td>“授权完成后先告诉我刚才的操作是否执行过,不要自动重试。”</td></tr>
+        <tr><td>MCP Touch ID 验证</td><td>CLI 0.155 在受支持的 Mac 本地终端会话中加入身份验证,并非所有系统都支持。</td><td>先核对请求来自哪个服务、要做什么,再按系统提示验证;指纹验证不等于永久放开权限。</td></tr>
         <tr><td>导入其他 Agent</td><td>从 Claude Code、Claude Cowork 或 Cursor 带入支持的设置、插件和近期工作。</td><td>“导入后先只读审查 Hooks、MCP 和授权，不要直接启用。”</td></tr>
         <tr><td>MCP 表单与可编辑审批</td><td>插件工具可以用标准表单收集输入，审批消息也能在发送前修改。</td><td>“请只询问完成任务必需的字段，并在提交前给我复核。”</td></tr>
         <tr><td>Apple Messages</td><td>在 Mac 上查找、总结、准备或发送“信息”App 里的消息。</td><td>“只找出昨天的讨论并起草回复,发送前必须让我确认收件人和正文。”</td></tr>

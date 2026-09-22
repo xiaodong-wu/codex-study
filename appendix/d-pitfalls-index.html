@@ -17,7 +17,7 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">附录 D</span>
+    <span class="chapter-meta">附录 D · 最新补充 2026-09-22</span>
     <h1>常见踩坑全集索引</h1>
     <p class="chapter-lede">每章末尾的「常见踩坑」卡片散落在各处,这里按问题类型聚合成一张速查地图。你卡住时,先到这里按现象找对应小节。</p>
 
@@ -222,14 +222,14 @@
 
     <h2 id="codex-common-online">Codex App / CLI 高频问题</h2>
     <div class="pitfall-group">
-      <details class="pitfall" data-keywords="404 model not found gpt-6 astra gpt-5.6 sol terra luna gpt-5.5 gpt-5.4 gpt-5.3 deprecated 模型不可用 selected model unavailable">
+      <details class="pitfall" data-keywords="404 model not found gpt-6 astra gpt-5.6 sol terra luna gpt-5.5 gpt-5.4 gpt-5.3-codex-spark deprecated retired 退役 停用 模型不可用 selected model unavailable">
         <summary>模型报 <code>404</code>、<code>model not found</code>,但换别的模型能跑</summary>
         <div class="pitfall__body">
           <dl>
             <dt>常见原因</dt>
             <dd>当前账号、地区、组织策略或这一个 Codex 版本暂时拿不到你选的模型;也可能是配置里手动写了一个过新的模型名。</dd>
             <dt>怎么处理</dt>
-            <dd>先切回默认推荐模型,再更新桌面端或 CLI。CLI 里用 <code>/model</code> 重新选择,用 <code>codex --version</code> 看版本。Astra 需要新版客户端并且会分批开放;复杂任务可优先试 GPT-6 Astra,看不到时先用账号里可用的 Sol 或 Terra。GPT-5.4 和 GPT-5.4 mini 已不再提供给 ChatGPT 账号登录的 Codex。</dd>
+            <dd>先切回默认推荐模型,再更新客户端。CLI 用 <code>/model</code> 重新选择。Spark 已于 2026-09-14 停用;GPT-5.5 是将在 10 月 14 日退役,ChatGPT 登录的 Codex 按官方建议迁移到 <code>gpt-5.6-sol</code>,此次不影响 OpenAI API。GPT-5.4 / mini 也已不再提供给 ChatGPT 登录的 Codex。别忘了检查定时任务和脚本,详见 <a href="../app/08-work-agents.html#model-migration">模型迁移清单</a>。</dd>
             <dt>参考来源</dt>
             <dd>先看官方 <a href="https://learn.chatgpt.com/docs/models">Models</a> 和 <a href="https://learn.chatgpt.com/docs/reference/troubleshooting">Troubleshooting</a>;仍无法判断时,再查 <a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a>。</dd>
           </dl>
@@ -378,16 +378,16 @@
           </dl>
         </div>
       </details>
-      <details class="pitfall" data-keywords="appshots hotkey both command screenshot accessibility screen system audio recording 截图 快捷键">
+      <details class="pitfall" data-keywords="appshots hotkey both command both alt windows screenshot accessibility screen system audio recording 截图 快捷键 传错对话">
         <summary>Appshots 快捷键没反应,截图传不到线程里</summary>
         <div class="pitfall__body">
           <dl>
             <dt>常见原因</dt>
-            <dd>Appshots 是 macOS 桌面端能力,需要前台窗口和系统权限;有些 App 只能给可见截图,拿不到完整离屏文本。</dd>
+            <dd>Appshots 现在支持 macOS 和 Windows 桌面端,但不能从 CLI 新建。快捷键、接收对话或组织权限不对,都可能看起来像“没反应”。</dd>
             <dt>怎么处理</dt>
-            <dd>确认是在 macOS Codex App 里用,按两个 Command 键或你设置的热键。系统设置里检查 Screen &amp; System Audio Recording 与 Accessibility。仍不行时,先用普通截图作为附件。</dd>
+            <dd>先更新桌面 App:Mac 同时按左右 Command,Windows 同时按左右 Alt,或使用自定义热键。检查 Appshot destination,避免传到最近操作的另一条对话。Mac 还要检查屏幕录制和辅助功能权限;Windows 截图在主 App 打开。仍失败可先手动附截图,详见 <a href="../app/04-browser-computer-use.html#appshots-steps">分系统步骤</a>。</dd>
             <dt>参考来源</dt>
-            <dd><a href="https://developers.openai.com/codex/appshots">Appshots</a> 的权限与排错说明。</dd>
+            <dd><a href="https://learn.chatgpt.com/docs/appshots">Appshots</a> 的权限与排错说明。</dd>
           </dl>
         </div>
       </details>
@@ -520,6 +520,34 @@
             <dd><a href="https://developers.openai.com/codex/cli">Codex CLI 官方入口</a>; 第三方假包风险可在安全新闻和 npm/GitHub 页面交叉确认。</dd>
           </dl>
         </div>
+      </details>
+    </div>
+
+    <h2 id="september-troubleshooting">9 月更新后遇到的问题</h2>
+    <div class="pitfall-group">
+      <details class="pitfall" data-keywords="voice experimental 麦克风 microphone 语音 CLI command not found 0.155">
+        <summary>CLI 输入 <code>/voice</code> 没反应,或者没有语音选项</summary>
+        <div class="pitfall__body"><dl>
+          <dt>常见原因</dt><dd>这是 0.155 起受支持构建中的实验功能,不是所有终端都默认开启。</dd>
+          <dt>怎么处理</dt><dd>运行 <code>codex --version</code> 核对版本,在 Codex 交互界面检查 <code>/experimental</code> 的语音选项,按提示重启并确认麦克风权限。选项不存在就继续用文字,不要降低沙盒权限。App 的 Voice 入口不等于 CLI 的语音开关。</dd>
+          <dt>相关章节</dt><dd><a href="../chapters/03-codex-basics.html#september-cli">CLI 0.155 操作说明与官方来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="reasoning summary summaries unsupported provider request rejected 0.155.1 推理摘要 请求拒绝">
+        <summary>升级后服务商提示不支持 reasoning summary,请求被拒绝</summary>
+        <div class="pitfall__body"><dl>
+          <dt>常见原因</dt><dd>部分服务商不接受推理摘要选项;0.155.1 调整了新建本地终端会话的默认值。</dd>
+          <dt>怎么处理</dt><dd>先升级到 0.155.1 或更新稳定版,再开新会话测试。手动配置的摘要设置仍会保留,必要时核对该项和服务商支持范围。摘要开关不等于推理强度,不要顺手改模型、清空全部配置或更换账号。</dd>
+          <dt>参考来源</dt><dd><a href="https://learn.chatgpt.com/docs/changelog">官方 9 月 18 日 0.155.1 修复记录</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="quick chat mini pet 悬浮 快捷聊天 项目文件 找不到 上下文 Option Space Windows Alt P">
+        <summary>悬浮 Quick Chat 打开了,却不知道我在改哪个项目</summary>
+        <div class="pitfall__body"><dl>
+          <dt>常见原因</dt><dd>悬浮控件新建的聊天在项目之外,不会自动变成当前仓库里的任务。</dd>
+          <dt>怎么处理</dt><dd>回主 App,选择正确项目并从那里继续或新建任务。临时问答可用 Quick Chat,但不要因为找不到文件就授权整个磁盘。入口不出现时检查客户端版本、Settings &gt; Pets 和工作区策略。</dd>
+          <dt>参考来源</dt><dd><a href="https://learn.chatgpt.com/docs/pets">官方悬浮快捷聊天说明</a></dd>
+        </dl></div>
       </details>
     </div>
 
