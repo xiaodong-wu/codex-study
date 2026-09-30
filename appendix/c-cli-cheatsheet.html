@@ -37,7 +37,7 @@
       <tbody>
         <tr><td><code>npm install -g @openai/codex</code></td><td>安装或重装 Codex CLI</td><td>第一次安装,或命令坏了想重装</td></tr>
         <tr><td><code>npm update -g @openai/codex</code></td><td>用 npm 升级全局安装包</td><td>你是通过 npm 安装的 Codex</td></tr>
-        <tr><td><code>npm install -g @openai/codex@0.155.1</code></td><td>安装本教程 2026-09-22 核对的稳定版</td><td>包含 0.155 新能力与推理摘要兼容性修复;实验性语音还需支持的构建和开关</td></tr>
+        <tr><td><code>npm install -g @openai/codex@0.159.2</code></td><td>安装本教程 2026-09-30 核对的稳定版</td><td>npm 安装用户使用;包含 6.1 Sol 模型目录与 Windows 闪窗修复,详见 <a href="../chapters/03-codex-basics.html#cli-0159">最新变化</a></td></tr>
         <tr><td><code>codex update</code></td><td>检查并应用 Codex CLI 自更新</td><td>当前安装版本支持自更新时</td></tr>
         <tr><td><code>codex --version</code></td><td>查看当前版本号</td><td>确认装好了,或排查“是不是版本太旧”</td></tr>
         <tr><td><code>codex doctor</code></td><td>生成本地诊断报告</td><td>登录、网络/代理、终端防护软件、桌面端状态或更新连接不正常时</td></tr>
@@ -56,7 +56,7 @@
         <tr><td><code>codex -C [项目路径]</code></td><td>指定工作目录后启动</td><td>你不想先 <code>cd</code> 到项目目录时用</td></tr>
         <tr><td><code>codex --image [图片路径]</code></td><td>启动时附带图片</td><td>让 Codex 看截图、设计稿、报错图</td></tr>
         <tr><td><code>codex --model gpt-6-astra</code></td><td>指定 GPT-6 Astra 启动</td><td>要处理代码、网页、研究或文件交付串在一起的复杂任务</td></tr>
-        <tr><td><code>codex --worktree</code></td><td>用实验性 Worktree 启动隔离会话</td><td>想让新任务在独立 Git 工作目录中进行</td></tr>
+        <tr><td><code>codex --worktree</code></td><td>用 Worktree 启动隔离会话</td><td>想让新任务在独立 Git 工作目录中进行;0.156 起默认开启支持</td></tr>
         <tr><td><code>codex resume</code></td><td>从最近会话列表里恢复</td><td>昨天聊到一半,今天接着来</td></tr>
         <tr><td><code>codex resume --last</code></td><td>直接恢复当前目录最近一次会话</td><td>最省事的“继续上次”</td></tr>
         <tr><td><code>codex app</code></td><td>启动 Codex 桌面端 App</td><td>想从终端打开桌面端时用</td></tr>
@@ -123,9 +123,13 @@
         <tr><td><code>/mcp</code></td><td>列出 MCP 工具</td><td>排查外部工具有没有接上</td></tr>
         <tr><td><code>/skills</code></td><td>浏览和使用技能</td><td>让 Codex 按某类专门流程工作</td></tr>
         <tr><td><code>/plugins</code></td><td>查看插件</td><td>管理可用插件和插件工具</td></tr>
-        <tr><td><code>/worktree</code></td><td>创建或浏览实验性 Worktree</td><td>让新任务或分叉任务在隔离目录里工作;0.154.0 起可用</td></tr>
+        <tr><td><code>/worktree</code></td><td>创建或浏览 Worktree</td><td>让新任务或分叉任务在隔离目录里工作;先核对分支和未提交改动</td></tr>
         <tr><td><code>/experimental</code></td><td>管理实验功能开关</td><td>只启用自己要试的功能,按提示重启;不建议一次全部打开</td></tr>
-        <tr><td><code>/voice</code></td><td>开始实验性语音对话</td><td>0.155 起受支持构建可用;先启用实验选项并检查麦克风权限</td></tr>
+        <tr><td><kbd>F8</kbd> / <code>/voice</code></td><td>切换语音会话</td><td>0.156 起默认开启支持;先检查终端麦克风权限,不是先找实验开关</td></tr>
+        <tr><td><code>/voice settings</code></td><td>选择语音声音</td><td>开始正式语音任务前做一次短测试</td></tr>
+        <tr><td><code>/usage daily</code></td><td>查看每日 token 活动</td><td>只看用量;无需领取或使用重置,详见 <a href="https://learn.chatgpt.com/docs/cli/slash-commands">官方命令说明</a></td></tr>
+        <tr><td><code>/tui</code></td><td>选择终端界面</td><td>全屏体验和复制习惯不同,按当前版本提示设置下一次启动</td></tr>
+        <tr><td><code>/daemon</code></td><td>管理本地后台服务</td><td>先确认现有会话和服务状态,再决定是否更新</td></tr>
         <tr><td><code>/import</code></td><td>从 Claude Code 或 Cursor 导入支持设置和近期聊天</td><td>只在空闲的本地会话中使用；最多导入最近 30 天的 50 条聊天</td></tr>
         <tr><td><code>/export</code></td><td>把完整 TUI 会话导出到剪贴板或 Markdown 文件</td><td>交接、复盘或保留工作记录</td></tr>
         <tr><td><code>/cd [路径]</code></td><td>切换当前 TUI 会话的工作目录</td><td>要继续处理另一个文件夹时</td></tr>

@@ -61,7 +61,7 @@
     <p>桌面端现在可以连接 Chrome、Edge、Brave、Opera、Vivaldi。五种浏览器都支持提及标签页和浏览器控制;Chrome、Edge、Brave、Vivaldi 支持侧边对话,Opera 暂时只能从桌面端发起任务。入口在 <strong>Settings &gt; Computer Use</strong>,设置前先把桌面端升级到最新版。</p>
 
     <h3>2. Site tools 比模拟点击更直接</h3>
-    <p>支持 WebMCP 的网站会在内置浏览器里显示 Site tools。它们可能提供“查找章节”“读取图表数据”“留下评论”这类结构化操作。你可以在地址栏查看 Available site tools,操作后再到 Recently used 或 Sources 复核调用记录。当前需要 GPT-5.6 Sol 或 Terra;Luna、Enterprise、Edu 暂不支持。</p>
+    <p>支持 WebMCP 的网站会在内置浏览器里显示 Site tools。它们可能提供“查找章节”“读取图表数据”“留下评论”这类结构化操作。你可以在地址栏查看 Available site tools,操作后再到 Recently used 或 Sources 复核调用记录。9 月底模型与 Enterprise 范围有调整,请以 <a href="./04-browser-computer-use.html#site-tools">A4 的当前适用范围</a> 为准。</p>
 
     <h3>3. 自动化可以等事件发生再运行</h3>
     <p>符合条件的账号可以在 ChatGPT 网页版或移动端创建 Gmail、Slack、GitHub 事件触发任务。例如:特定客户邮件到达后整理重点,产品频道出现新消息后生成待办,PR 收到 Review 后汇总修改意见。事件触发任务不能同时再设置时间计划,而且目前不在桌面端、CLI 或 IDE 扩展里创建。</p>
@@ -155,12 +155,12 @@ codex --version</pre>
     <p>0.148 加入了 <code>/export</code>、会话分叉、归档与恢复;0.147 加入了 <code>/plugins</code>、<code>/import</code> 和 <code>--approve-for-me</code>。另外,旧的 <code>codex mcp-server</code> 命令在 8 月 24 日被标记为弃用,随后已在 0.154.0 移除;需要把 Codex 嵌入其他程序时改用 Codex App Server。普通用户管理 MCP 连接仍使用 <code>codex mcp</code>,两者不要混淆。</p>
 
     <h2 id="model-change">还在用 GPT-5.4? 现在就换</h2>
-    <p>官方已经说明:2026 年 8 月 31 日起，使用 ChatGPT 账号登录 Codex 的用户将不能再选择 GPT-5.4 和 GPT-5.4 mini。推荐替换关系是:</p>
+    <p>2026 年 8 月 31 日起,使用 ChatGPT 账号登录 Codex 的用户已不能再选择 GPT-5.4 和 GPT-5.4 mini。下表按 9 月 30 日的官方建议更新;先确认账号和客户端支持替代型号:</p>
     <table>
       <thead><tr><th>旧模型</th><th>推荐替换</th><th>适合</th></tr></thead>
       <tbody>
-        <tr><td><code>gpt-5.4</code></td><td><code>gpt-5.6-terra</code></td><td>日常开发、分析和稳定工作流。</td></tr>
-        <tr><td><code>gpt-5.4-mini</code></td><td><code>gpt-5.6-luna</code></td><td>规则清楚、重复、追求速度和效率的任务。</td></tr>
+        <tr><td><code>gpt-5.4</code></td><td><code>gpt-6-sol</code></td><td>开发、分析和已有工作流迁移。</td></tr>
+        <tr><td><code>gpt-5.4-mini</code></td><td><code>gpt-6-luna</code></td><td>规则清楚的重复任务;Enterprise / Edu 需管理员先允许 Luna。</td></tr>
       </tbody>
     </table>
     <p>别只改当前会话。工作区默认值、保存的模型设置、自定义智能体和定时任务里如果写死了旧模型，也要一起更新。API Key 登录的 Codex 会话和 OpenAI API 是否还能使用旧模型，按官方 API 文档与账号实际权限为准。</p>

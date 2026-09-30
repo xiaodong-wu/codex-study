@@ -17,7 +17,7 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">附录 D · 最新补充 2026-09-22</span>
+    <span class="chapter-meta">附录 D · 最新补充 2026-09-30</span>
     <h1>常见踩坑全集索引</h1>
     <p class="chapter-lede">每章末尾的「常见踩坑」卡片散落在各处,这里按问题类型聚合成一张速查地图。你卡住时,先到这里按现象找对应小节。</p>
 
@@ -229,7 +229,7 @@
             <dt>常见原因</dt>
             <dd>当前账号、地区、组织策略或这一个 Codex 版本暂时拿不到你选的模型;也可能是配置里手动写了一个过新的模型名。</dd>
             <dt>怎么处理</dt>
-            <dd>先切回默认推荐模型,再更新客户端。CLI 用 <code>/model</code> 重新选择。Spark 已于 2026-09-14 停用;GPT-5.5 是将在 10 月 14 日退役,ChatGPT 登录的 Codex 按官方建议迁移到 <code>gpt-5.6-sol</code>,此次不影响 OpenAI API。GPT-5.4 / mini 也已不再提供给 ChatGPT 登录的 Codex。别忘了检查定时任务和脚本,详见 <a href="../app/08-work-agents.html#model-migration">模型迁移清单</a>。</dd>
+            <dd>先切回默认推荐模型,再更新客户端。CLI 用 <code>/model</code> 重新选择。Spark 已于 2026-09-14 停用;GPT-5.5 将在 10 月 14 日退役,不是已经停用。替代型号要看套餐和工作区权限,最新建议见 <a href="../app/08-work-agents.html#model-migration">模型迁移清单</a>。GPT-5.4 / mini 也已不再提供给 ChatGPT 登录的 Codex。别忘了检查定时任务和脚本;不要把 ChatGPT 登录的退役公告直接套用到 OpenAI API。</dd>
             <dt>参考来源</dt>
             <dd>先看官方 <a href="https://learn.chatgpt.com/docs/models">Models</a> 和 <a href="https://learn.chatgpt.com/docs/reference/troubleshooting">Troubleshooting</a>;仍无法判断时,再查 <a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a>。</dd>
           </dl>
@@ -525,12 +525,68 @@
 
     <h2 id="september-troubleshooting">9 月更新后遇到的问题</h2>
     <div class="pitfall-group">
+      <details class="pitfall" data-keywords="gpt-6.1-sol 6.1 Sol model 模型 找不到 Plus Pro Business Enterprise Edu Free Go admin 灰度">
+        <summary>已经升级了,为什么模型列表没有 GPT-6.1 Sol?</summary>
+        <div class="pitfall__body"><dl>
+          <dt>先看哪里</dt><dd>确认是在 Work / Codex,而不是普通 Chat;再核对账号套餐、工作区和客户端版本。</dd>
+          <dt>怎么处理</dt><dd>Free / Go 不在首发范围,Enterprise / Edu 默认需要管理员开启。符合范围也可能仍在分批开放,先用当前可选模型。不要为了找入口购买来路不明的账号或修改权限文件。</dd>
+          <dt>参考来源</dt><dd><a href="https://learn.chatgpt.com/docs/models">官方模型范围</a>; <a href="../app/11-september-updates.html#astra">新模型上手</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="Ultrafast Ultra Fast 8x 加速 额度 消耗 用量 Pro 500 Luna">
+        <summary>找不到 Ultrafast,或者开了加速后额度消耗很快</summary>
+        <div class="pitfall__body"><dl>
+          <dt>常见原因</dt><dd>Ultra 是推理与多智能体档位,Ultrafast 是速度档位,有独立的模型、套餐和管理员限制。</dd>
+          <dt>怎么处理</dt><dd>先切回 Standard 核对用量,查自己的套餐是否符合要求。更快输出不代表整项工作同比加速,用量倍率也不是速度倍率。GPT-6 Luna 没有 Ultra,GPT-6.1 Sol 当前也没有 Ultrafast。</dd>
+          <dt>参考来源</dt><dd><a href="https://learn.chatgpt.com/docs/agent-configuration/speed">官方 Speed</a>; <a href="../app/08-work-agents.html#reasoning">档位对照</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="Work Cloud Remote dots 同步 离线 关机 睡眠 offline 本地文件 手机 连接">
+        <summary>Work 已同步到手机,为什么电脑一睡眠任务就卡住?</summary>
+        <div class="pitfall__body"><dl>
+          <dt>常见原因</dt><dd>聊天可以跨设备继续,但某一步仍依赖本地文件、程序或登录状态。云端协调不等于所有操作都在云端运行。</dd>
+          <dt>怎么处理</dt><dd>让任务说明卡在哪台电脑、哪个步骤,恢复那台电脑联网并核对连接。确认之前操作有没有成功再重试,尤其不要重复发送、付款或部署。想脱离本地电脑运行,要另外准备适合的云端环境。</dd>
+          <dt>参考来源</dt><dd><a href="https://learn.chatgpt.com/docs/enterprise/cloud-local-access">本地访问条件</a>; <a href="../app/09-voice-projects.html#work-sync">Remote 与同步的区别</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="plugin extensions 插件 扩展 侧边栏 表单 面板 mentions MCP Events webhook 事件 订阅">
+        <summary>安装插件后没有面板,也不能监控新消息?</summary>
+        <div class="pitfall__body"><dl>
+          <dt>常见原因</dt><dd>工具调用、插件界面和事件订阅是不同能力,要服务分别接入。旧插件不会自动支持全部新功能。</dd>
+          <dt>怎么处理</dt><dd>先查该插件实际提供什么和当前账号范围。输入框提及限桌面端,网页扩展对 Free / Go 尚待开放。事件要服务支持 MCP 2.0 和 webhook;确认订阅真的建立后再依赖它,不能把“好的,我会关注”当成成功凭证。</dd>
+          <dt>相关章节</dt><dd><a href="../app/07-plugins.html#plugin-extensions">插件扩展</a>与<a href="../app/07-plugins.html#mcp-events">事件订阅和官方来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="context_management experimental_mode 上下文 管理 实验 不可用 true 配置">
+        <summary>照旧教程打开实验性上下文管理,为什么没效果?</summary>
+        <div class="pitfall__body"><dl>
+          <dt>原因</dt><dd>9 月 30 日的官方配置参考已将这个功能标为当前不可用,不是再加一个开关就能解决。</dd>
+          <dt>怎么处理</dt><dd>停止照抄旧开启示例。先备份配置,只检查这一项,不要清空其他模型、连接和权限设置。长任务可先用进度文档记录已完成事项与下一步。</dd>
+          <dt>相关章节</dt><dd><a href="../app/08-work-agents.html#context-management">更正说明及官方配置来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="Windows console 闪窗 黑框 控制台 0.159.2 终端 后台 MCP">
+        <summary>Windows 运行后台命令时,总有黑色窗口一闪而过</summary>
+        <div class="pitfall__body"><dl>
+          <dt>先做什么</dt><dd>记录触发动作和 <code>codex --version</code>。0.159.2 的修复针对这类后台进程和沙盒命令闪窗。</dd>
+          <dt>怎么处理</dt><dd>用原安装渠道升级 CLI,重新打开终端验证实际版本;只升级 App 不一定升级独立 CLI。仍有问题再保留日志排查,不要禁用沙盒或系统安全软件来掩盖现象。</dd>
+          <dt>参考来源</dt><dd><a href="https://learn.chatgpt.com/docs/changelog">官方 0.159.2 修复</a>; <a href="../chapters/03-codex-basics.html#cli-0159">升级说明</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="plugin-creator tui.prompt_suggestions 技能 消失 自动 追问 建议 0.159">
+        <summary>升级后 plugin-creator 或自动追问建议不见了</summary>
+        <div class="pitfall__body"><dl>
+          <dt>原因</dt><dd>CLI 0.159 已移除随包提供的 plugin-creator 技能、自动追问建议及对应设置,不代表插件市场整体失效。</dd>
+          <dt>怎么处理</dt><dd>继续用现有已安装插件;开发插件时查当前官方流程。无需为了找回旧入口反复重装或清掉所有配置。</dd>
+          <dt>相关章节</dt><dd><a href="../chapters/03-codex-basics.html#cli-0159">CLI 新旧入口对照与来源</a></dd>
+        </dl></div>
+      </details>
       <details class="pitfall" data-keywords="voice experimental 麦克风 microphone 语音 CLI command not found 0.155">
         <summary>CLI 输入 <code>/voice</code> 没反应,或者没有语音选项</summary>
         <div class="pitfall__body"><dl>
-          <dt>常见原因</dt><dd>这是 0.155 起受支持构建中的实验功能,不是所有终端都默认开启。</dd>
-          <dt>怎么处理</dt><dd>运行 <code>codex --version</code> 核对版本,在 Codex 交互界面检查 <code>/experimental</code> 的语音选项,按提示重启并确认麦克风权限。选项不存在就继续用文字,不要降低沙盒权限。App 的 Voice 入口不等于 CLI 的语音开关。</dd>
-          <dt>相关章节</dt><dd><a href="../chapters/03-codex-basics.html#september-cli">CLI 0.155 操作说明与官方来源</a></dd>
+          <dt>先分版本</dt><dd>0.155 时需要实验开关,0.156 起已默认开启语音支持,旧教程步骤不应继续套用。</dd>
+          <dt>怎么处理</dt><dd>运行 <code>codex --version</code> 确认实际版本,检查终端麦克风权限。新版可按 F8 切换,用 <code>/voice settings</code> 选声音;F8 被系统占用时先查功能键设置。暂不可用就继续文字,不要降低沙盒权限。App Voice 和 CLI 是不同入口。</dd>
+          <dt>相关章节</dt><dd><a href="../chapters/03-codex-basics.html#september-cli">CLI 语音操作与版本来源</a></dd>
         </dl></div>
       </details>
       <details class="pitfall" data-keywords="reasoning summary summaries unsupported provider request rejected 0.155.1 推理摘要 请求拒绝">

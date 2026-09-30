@@ -122,7 +122,8 @@
       <li>打开 Remote，选择电脑与项目，再新建任务或继续已有任务。</li>
     </ol>
     <p>Remote 可以从手机发起任务、追加方向、处理审批、查看 changed files、Diff 和测试结果。任务消息加载失败时可以使用 Retry。</p>
-    <p><strong>2026 年 9 月 18 日补充:</strong>iOS 1.2026.251 支持在文件选择器里新建文件夹,并改善按项目记住 Worktree 模式和环境、排队长消息预览、任务重新打开及语音重连。新建任务前仍检查电脑、项目和模式,别因为系统记住上一次选择,就默认这一次也适合。来源:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">iOS 更新记录</a>。</p>
+    <p><strong>2026 年 9 月 23 日更新:</strong>iOS 1.2026.258 加入 iPad 横屏分栏,一边保留任务列表、一边看当前任务,也支持浏览嵌套 Git 仓库里的改动。旁聊会带上附件、选中文字和审查评论;排队消息开始后回复显示空白的问题也有修复。</p>
+    <p>配对失败时先检查设备时钟是否正确,这轮修复包含时钟导致的失败和 Mac / Linux SSH 连接问题。新建任务前仍核对所选电脑、项目和工作目录,不要因为它记住上次选择就跳过检查。来源:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">iOS 1.2026.258 更新记录</a>。</p>
     <div class="callout callout--warning">
       <div class="callout__icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
@@ -133,6 +134,11 @@
       </div>
     </div>
     <p>外出时适合查进度、看图表、补一句方向和批准清楚的低风险命令；大量文件审查、复杂 Diff、账号操作和高风险命令仍建议回桌面完成。</p>
+
+    <h3 id="work-sync">9 月底补充:Remote 和 Work 同步不是一回事</h3>
+    <p>上面的 Remote 是连接一台电脑操作任务。新的跨设备 Work 则让同一条受支持任务由云端协调,你可以从桌面、网页或手机继续。它若需要读本地文件或运行本地工具,电脑仍然要在线。</p>
+    <p>先检查同一账号、同一工作区、这条任务是否支持同步,以及本地访问是否获准。另一台设备看不到任务时,先核对这些条件,不要直接重新创建一份重复执行。团队的 Work 和 dots 本地访问需要分别开启,一个开关不代表全部授权。</p>
+    <p>只在云端电脑运行的 dots 或 Codex Cloud 任务是另一种情况,不应套用“手机只是遥控器”来概括它们。新手对照 <a href="./11-september-updates.html#work-cloud-dots">执行位置与首次尝试步骤</a> 先练一次只读任务。依据:<a href="https://learn.chatgpt.com/docs/enterprise/cloud-local-access" target="_blank" rel="noopener">官方跨设备和本地访问说明</a>。</p>
 
     <h2 id="advanced-latest">两项进阶更新：Codex Micro 和 Amazon Bedrock</h2>
     <table>

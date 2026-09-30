@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">本页更新时间</div>
-        <div class="callout__body">本页在 2026-09-22 重新核对官方文档。ChatGPT 和 Codex 共用公开插件目录,但没有一份对所有账号永远完整的固定名单。下面分清插件、连接器和内置能力;实际能不能安装,以账号的 Plugins 页面和工作区策略为准。</div>
+        <div class="callout__body">本页在 2026-09-30 重新核对官方文档。ChatGPT 和 Codex 共用公开插件目录,但没有一份对所有账号永远完整的固定名单。下面分清插件、连接器和内置能力;实际能不能安装,以账号的 Plugins 页面和工作区策略为准。</div>
       </div>
     </div>
 
@@ -76,7 +76,10 @@
     <table>
       <thead><tr><th>插件 / 能力</th><th>能干什么</th><th>适合谁</th><th>注意点</th></tr></thead>
       <tbody>
-        <tr><td>Codex Security</td><td>扫描授权代码、深度扫描、审查改动、整理安全发现、修复并验证问题。</td><td>有代码仓库、PR 或安全 backlog 的个人和团队。</td><td>安全结果要人工复核;云端安全扫描依赖 GitHub 仓库连接和套餐权限。</td></tr>
+        <tr><td>Codex Security</td><td>扫描本地授权代码、深度扫描、审查改动、修复并验证问题。</td><td>有本地仓库、PR 或安全 backlog 的个人和团队。</td><td>不要和独立的 Security Cloud 插件混淆;结果要人工复核。</td></tr>
+        <tr><td><a href="#security-cloud">Codex Security Cloud</a></td><td>在云端扫描连接的 GitHub 仓库,跟踪新提交,准备修复补丁。</td><td>想持续检查远程仓库的团队。</td><td>研究预览,受工作区权限限制;创建草稿 PR 不等于合并。</td></tr>
+        <tr><td>Bits &amp; Bolts</td><td>官方用于体验侧边栏、面板、表单等插件扩展的示例。</td><td>想了解插件界面或准备开发插件的人。</td><td>是能力演示,不是必装的日常工具;入口见下方扩展说明。</td></tr>
+        <tr><td>Annotations Extensibility</td><td>帮助理解并给自己的网站接入增强标注。</td><td>做网站、组件库或编辑器的人。</td><td>普通框选评论不需要它;增强接口目前不面向 Enterprise / Edu。</td></tr>
         <tr><td>Sites</td><td>创建、保存、部署和检查托管网站、Web App、小游戏。</td><td>想快速把页面做成在线站点的人。</td><td>每个部署 URL 都是生产部署;不确定时先保存版本,别直接上线。</td></tr>
         <tr><td>Gmail</td><td>读取和管理 Gmail,比如汇总未读邮件、草拟回复。</td><td>想让 Codex 帮忙处理邮件的人。</td><td>邮件很敏感,发送、删除、归档前都要明确确认。</td></tr>
         <tr><td>Google Drive</td><td>跨 Drive、Docs、Sheets、Slides 查找和处理文件。</td><td>资料分散在 Google 文档体系里的人。</td><td>授权范围越小越好,不要随便让 Codex 访问整个私人云盘。</td></tr>
@@ -87,19 +90,46 @@
     <p>这里列的是官方插件说明明确举例，或官方教程中有独立使用文档的能力，不代表你的账号里一定只会出现这些。插件目录会继续增加，名称和可用范围以 App 或 CLI 的实时目录为准。</p>
 
     <h2 id="security-september-update"><span id="security-july-update"></span>Codex Security:不只找漏洞,也能检查修复</h2>
-    <p>截至本次核对,官方插件更新页最新列出的是 <strong>0.1.24（9 月 9 日）</strong>,不是之前教程里的 0.1.14。它更像代码安全检查员,不是电脑杀毒软件。插件版本和安装包版本可能不同,先确认自己装的是哪一版。</p>
+    <p>截至本次核对,最新插件记录为 <strong>0.1.30（9 月 24 日）</strong>,行为与 <strong>0.1.25（9 月 23 日）</strong> 相同,不要把一次版本号调整理解成又增加了一套功能。它是代码安全检查工具,不是电脑杀毒软件;插件版本与安装包版本也可能不同。</p>
     <table>
       <thead><tr><th>更新</th><th>通俗理解</th><th>怎么用</th></tr></thead>
       <tbody>
+        <tr><td>扫描证据随结果保存</td><td>保留证据和补充文档,过程结果也能进入恢复检查点。</td><td>要求报告附证据位置,不要只接受一句“已检查”。</td></tr>
+        <tr><td>看清扫描阶段</td><td>从威胁建模、发现、验证到报告,能看进度走到哪里。</td><td>中断后先查已保存结果和覆盖范围,别把部分完成当全部完成。</td></tr>
+        <tr><td>扩大文件识别</td><td>改动扫描包含 GitHub Actions 工作流,识别 .cjs / .cts / .mts / .tf。</td><td>把实际要查的目录和排除项写清楚,扫描不会自动代表所有代码都安全。</td></tr>
         <tr><td>验证已有修复</td><td><code>$codex-security:verify-fix</code> 检查补丁,给出已修复、仍有漏洞或证据不足。</td><td>明确要求“验证这次安全修复”;普通跑测试不会自动变成这套流程。</td></tr>
         <tr><td>评估补丁风险</td><td><code>$codex-security:assess-patch-risk</code> 按指定版本检查改动影响、发生概率和恢复难度。</td><td>合并前多看一眼;结论是建议,不会替你合并代码。</td></tr>
         <tr><td>找回失败扫描中的结果</td><td>可以按要求恢复某次失败扫描里有效的已保存发现。</td><td>先找回结果,不急着重扫;失败状态和覆盖不完整的事实仍保留。</td></tr>
-        <tr><td>Daybreak 访问提示</td><td>ChatGPT 登录会话可以在扫描前核对访问资格;API Key 单独登录不能验证账号资格。</td><td>提醒不等于授予权限,也不决定扫描是否继续。按实际提示查看申请或访问限制。</td></tr>
+        <tr><td>Daybreak 访问提示</td><td>0.1.25 起检查不可用或结果不确定时不再弹访问警告;新检查明确无权限时仍提醒。</td><td>没警告不等于已经获得权限,继续按真实授权范围操作。</td></tr>
       </tbody>
     </table>
     <p>例如你可以说:“请用 Codex Security 验证刚才那项安全修复,列出证据和没法验证的部分,不要修改文件或创建工单。”先点名仓库、补丁或发现,避免检查错版本。<a href="https://learn.chatgpt.com/docs/security/plugin/changelog" target="_blank" rel="noopener">官方插件版本记录</a></p>
 
     <p>之前的扫描历史对比、用 <code>$codex-security:define-security-policy</code> 整理 <code>SECURITY.md</code>、准备跟踪工单和导出报告等能力也值得保留在日常流程里。新手先做“扫描并出报告”,再按需要验证修复;安全策略和对外工单都先让负责人确认。</p>
+
+    <h2 id="security-cloud">Security Cloud:远程仓库用这个入口</h2>
+    <p>这是独立的云端安全插件,目前属于研究预览。它在 Codex Cloud 扫描已连接的 GitHub 仓库;本地文件扫描仍用上面的 Codex Security。</p>
+    <ol>
+      <li>在 Plugins 搜索 <strong>Codex Security Cloud</strong>,有权限时安装并启用。</li>
+      <li>打开插件,点 <strong>New scan</strong>,按提示连接 GitHub,只授权要检查的仓库。</li>
+      <li>选仓库和兼容的 Cloud environment;没有环境先按 <a href="./11-september-updates.html#cloud-environments">环境教程</a> 准备。</li>
+      <li>选择 <strong>Repository</strong> 并 Start scan,在 Findings 检查问题、证据和修复建议。</li>
+      <li>有 Fix with Codex 时可以准备补丁;审核后才创建草稿 PR,不要直接合并。</li>
+    </ol>
+    <p>要持续看新提交,在 What to scan 选择 <strong>Commit changes</strong>,并到 Monitoring settings 管理或暂停。看不到仓库先查 GitHub 授权;看不到插件入口先查工作区资格。<a href="https://learn.chatgpt.com/docs/security/setup" target="_blank" rel="noopener">官方设置教程</a></p>
+
+    <h2 id="plugin-extensions">插件扩展:不只聊天,还能直接操作界面</h2>
+    <p>支持 Plugin Extensions 的插件,可以有侧边栏应用、对话旁面板、文件查看和编辑器、设置页,也可以用图片或表单让你选择。比如整理一份材料时,你可以一边讨论,一边在插件面板看结果。</p>
+    <ol>
+      <li>先安装并授权具体插件,看它是否提供侧边栏、面板或文件入口。</li>
+      <li>打开实际内容,明确告诉 Codex 要处理哪份文件、哪条记录。</li>
+      <li>表单出现时检查预填值再提交,有保存或对外写入动作时确认目标。</li>
+    </ol>
+    <p>这要插件作者接入,旧插件不会自动长出全部界面。输入框里的插件内容提及目前只在桌面端提供;Free / Go 的网页扩展仍在等待开放。官方 <strong>Bits &amp; Bolts</strong> 是体验这些能力的示例,安装入口在 <a href="https://developers.openai.com/plugins/build/extensions" target="_blank" rel="noopener">Plugin Extensions 文档</a>。</p>
+
+    <h3 id="mcp-events">MCP Events:有变化时再处理</h3>
+    <p>支持事件的插件可以订阅消息、评论或状态变化。你先指定监控范围,服务收到匹配事件后把通知交给任务处理。它需要 MCP 2.0 和 webhook 支持,不是所有 MCP 连接都能用。</p>
+    <p>可以这样说:“只关注这份文档的新评论,有修改意见就整理成待办,不要直接改原文。请确认订阅已建立,并告诉我怎么停止。”没有实际创建成功的订阅记录,就不要当它已经在监控。<a href="https://developers.openai.com/plugins/build/mcp-events" target="_blank" rel="noopener">MCP Events 官方说明</a></p>
 
     <h2 id="common-integrations">常见连接器和本教程环境可见能力</h2>
     <p>下面这些不一定都以“插件”两个字出现在你的界面里,有些会以 App 连接器、MCP、技能或内置工具的形式出现。新手可以先按“它能帮我做什么”来记。</p>
@@ -151,9 +181,9 @@
       <tbody>
         <tr><td>ChatGPT Work</td><td>把文件、插件和工具串起来,完成文档、表格、研究或长期工作。</td><td>“请根据这些资料交付一份可直接汇报的方案。”</td></tr>
         <tr><td>GPT-6 Astra</td><td>目前最强主力,适合代码、App、研究和电脑操作串在一起的复杂工作。</td><td>“这是跨网页、项目和文档的复杂任务,适合用 Astra 吗?”</td></tr>
-        <tr><td>GPT-5.6</td><td>Sol 做高难度工作,Terra 做日常任务,Luna 做清楚的重复活。</td><td>“这个任务规则很明确,可以用更快的 Luna 吗?”</td></tr>
+        <tr><td>GPT-6.1 Sol / GPT-6 Luna</td><td>前者处理复杂和持续工作,后者处理目标清楚的重复活;以账号可用范围为准。</td><td>“先用默认模型做一小段,让我确认效果再继续。”</td></tr>
         <tr><td>Ultra / 子智能体</td><td>把可以拆开的任务分给多个帮手并行完成。</td><td>“请分成内容、链接、移动端三个子任务,全部完成后汇总。”</td></tr>
-        <tr><td>Fast mode</td><td>用更多额度换更快响应;Astra 当前标注约 2 倍速度。</td><td>“这轮确实赶时间,请说明额度成本后再开 Fast mode。”</td></tr>
+        <tr><td>Fast / Ultrafast</td><td>速度档位,不是插件。会多用额度,Ultrafast 还有套餐限制。</td><td>“先说明我能用哪一档及用量变化,暂时不要改设置。”</td></tr>
         <tr><td>Codex-Spark（已停用）</td><td>研究预览于 2026-09-14 结束,不再作为可选能力。</td><td>改选当前账号支持的模型,不要寻找所谓“Spark 解锁插件”。</td></tr>
         <tr><td>Visualize</td><td>在 Chat 或 Work 里生成可互动的图表、地图、流程和模拟器。</td><td>“@Visualize 把这组数据做成可调参数的对比图。”</td></tr>
         <tr><td>Sites</td><td>直接让 Codex 保存和部署网站版本。</td><td>“请先保存一个可预览版本,我确认后再部署。”</td></tr>
@@ -226,7 +256,7 @@
       <li><a href="https://learn.chatgpt.com/docs/extend/record-and-replay" target="_blank" rel="noopener">Record & Replay</a>:把演示流程变成可复用技能。</li>
       <li><a href="https://learn.chatgpt.com/docs/security" target="_blank" rel="noopener">Codex Security</a>:安全扫描、深度扫描和云端安全能力。</li>
       <li><a href="https://learn.chatgpt.com/docs/security/plugin/changelog" target="_blank" rel="noopener">Codex Security plugin changelog</a>:插件版本和每次功能变化。</li>
-      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:GPT-6 Astra、GPT-5.6、推荐模型和弃用模型说明。</li>
+      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:当前模型、套餐范围和弃用模型说明。</li>
       <li><a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">Changelog</a>:CLI 插件即时刷新、远程市场和 MCP 登录修复。</li>
       <li><a href="https://learn.chatgpt.com/docs/agent-configuration/speed" target="_blank" rel="noopener">Speed</a>:Fast mode 和额度消耗说明。</li>
       <li><a href="https://learn.chatgpt.com/docs/customization/computer-history" target="_blank" rel="noopener">Computer History</a>:近期电脑活动、时间线、暂停和隐私说明。</li>

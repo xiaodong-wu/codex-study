@@ -118,18 +118,18 @@
     </table>
     <p>不要一口气背所有命令。你真的会高频用到的,前期就是 <code>/plan</code>、<code>/diff</code>、<code>/review</code>、<code>/status</code>。多智能体和 Fast mode 等真正需要时再开。</p>
 
-    <h2 id="models-agents">3.5 GPT-6 Astra、Fast mode 和多智能体</h2>
-    <p>截至 2026 年 9 月,CLI 可以使用 GPT-6 Astra、GPT-5.6、Fast mode 和子智能体。最省心的做法是先用默认推荐模型;遇到跨项目、网页、资料和文件的复杂任务时,可以明确指定 Astra:</p>
+    <h2 id="models-agents">3.5 模型、Fast mode 和多智能体</h2>
+    <p>截至 2026 年 9 月 30 日,复杂任务可以先试账号可用的 GPT-6.1 Sol,最难的工作再考虑 Astra。清楚的提取、分类等重复活可用 GPT-6 Luna。先用 <code>/model</code> 看当前账号有哪些选项,不要照抄无权限的型号。启动时也可以指定:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>codex --model gpt-6-astra</pre>
+<pre>codex --model gpt-6.1-sol</pre>
     </div>
     <ul>
-      <li><strong><code>/model</code>:</strong>在当前会话里切换模型和推理强度。复杂跨工具任务优先考虑 Astra,日常任务再按需选 Sol、Terra 或 Luna。</li>
-      <li><strong><code>/fast on</code>:</strong>用更多 ChatGPT 额度换更快响应;Astra 当前标注约 2 倍速度。用 <code>/fast off</code> 关闭,<code>/fast status</code> 查看状态。</li>
+      <li><strong><code>/model</code>:</strong>在当前会话里切换模型和推理强度。新型号的套餐和灰度限制见 <a href="../app/11-september-updates.html#astra">最新模型说明</a>。</li>
+      <li><strong><code>/fast</code>:</strong>切换受支持模型的 Fast 模式,用更多额度换速度。额度倍率不是速度倍率;Astra Ultrafast 也不是 Ultra 多智能体,详见 <a href="https://learn.chatgpt.com/docs/agent-configuration/speed" target="_blank" rel="noopener">官方速度说明</a>。</li>
       <li><strong><code>/agent</code>:</strong>查看并切换正在运行的子智能体线程。你也可以直接要求 Codex 停止或调整某个子智能体。</li>
     </ul>
     <div class="prompt-card">
@@ -148,18 +148,18 @@
       </div>
       <div>
         <div class="callout__title">GPT-5.4 已经不能再作为当前教程选项</div>
-        <div class="callout__body">从 2026 年 8 月 31 日起,ChatGPT 账号登录的 Codex 已停止提供 GPT-5.4 和 GPT-5.4 mini。旧配置分别换成 <code>gpt-5.6-terra</code> 和 <code>gpt-5.6-luna</code>,复杂新任务也可以评估 <code>gpt-6-astra</code>。工作区默认值、自定义智能体和定时任务里写死的旧模型要一起更新。</div>
+        <div class="callout__body">从 2026 年 8 月 31 日起,ChatGPT 账号登录的 Codex 已停止提供 GPT-5.4 和 GPT-5.4 mini。当前官方建议在账号和客户端支持时分别换成 <code>gpt-6-sol</code> 和 <code>gpt-6-luna</code>。工作区默认值、自定义智能体和定时任务里写死的旧模型要一起检查,不要只改眼前这条会话。</div>
       </div>
     </div>
 
     <h3 id="august-session-tools">2026 年 8-9 月新增的会话与 Agent 管理工具</h3>
-    <p>下面覆盖会话导出、任务 dashboard、消息队列、实验性 Worktree 和插件刷新等能力。本节在 2026-09-22 核对,安装示例已更新到 9 月 18 日发布的 0.155.1;实验功能仍取决于构建与开关。npm 用户先升级并确认版本:</p>
+    <p>下面覆盖会话导出、任务 dashboard、消息队列、Worktree 和插件刷新等能力。本节在 2026-09-30 核对,安装示例更新到 9 月 29 日的 0.159.2。npm 用户先升级并确认版本;用其他渠道安装的,沿用原渠道更新,不要混装:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>npm install -g @openai/codex@0.155.1
+<pre>npm install -g @openai/codex@0.159.2
 codex --version</pre>
     </div>
     <table>
@@ -172,7 +172,7 @@ codex --version</pre>
         <tr><td>消息队列</td><td>运行 <code>codex queue</code></td><td>给已经存在的会话排入下一条消息,不用先打开它。</td></tr>
         <tr><td>工作目录</td><td>在 TUI 使用 <code>/cd</code>、<code>/pwd</code> 或 <code>/cwd</code></td><td>查看或切换当前工作文件夹,减少改错项目。</td></tr>
         <tr><td>增强诊断</td><td>运行 <code>codex doctor</code></td><td>排查终端防护软件、网络/代理、桌面端状态和更新连接。</td></tr>
-        <tr><td>实验性 Worktree</td><td>启动时用 <code>--worktree</code>,或在 TUI 输入 <code>/worktree</code></td><td>为新任务或分叉任务创建隔离的 Git 工作目录。</td></tr>
+        <tr><td>Worktree</td><td>启动时用 <code>--worktree</code>,或在 TUI 输入 <code>/worktree</code></td><td>为新任务或分叉任务创建隔离的 Git 工作目录;0.156 起默认开启支持。</td></tr>
         <tr><td>运行中提问</td><td>在问题卡片选择建议答案,或输入自己的回答</td><td>Codex 继续工作的同时回答澄清问题,不丢掉主输入框草稿。</td></tr>
         <tr><td>插件</td><td>输入 <code>/plugins</code> 安装,或使用 <code>codex plugin</code></td><td>0.154.0 起当前会话通常会刷新插件工具、Skills 和 Hooks。</td></tr>
         <tr><td>增强复制</td><td>使用 <code>/copy</code></td><td>复制回复、状态输出或单项会话信息,粘贴到富文本软件时保留更多格式。</td></tr>
@@ -181,14 +181,29 @@ codex --version</pre>
     </table>
     <p><code>/import</code> 在任务正在运行、远程会话或连接本地 app-server daemon 时不可用。0.147 还加入 <code>--approve-for-me</code> 自动审查审批;它会改变批准流程,新手先保持默认审批,熟悉风险后再考虑。旧的 <code>codex mcp-server</code> 已在 0.154.0 移除,嵌入式集成改用 Codex App Server;日常管理 MCP 连接仍使用 <code>codex mcp</code>。</p>
 
-    <h3 id="september-cli">0.155 新增能力:语音、任务整理和身份验证</h3>
-    <p><strong>语音仍是实验功能。</strong>受支持的构建中,先在交互会话输入 <code>/experimental</code> 启用语音相关选项,按提示重启,再用 <code>/voice</code> 开始。它会提供实时转写和麦克风控制。没看到选项就先继续用文字,不要从网上抄一堆不认识的配置强行打开。</p>
+    <h3 id="cli-0159">0.158 / 0.159:复制、插话和升级后的小变化</h3>
+    <table>
+      <thead><tr><th>变化</th><th>你怎么用</th><th>别误会</th></tr></thead>
+      <tbody>
+        <tr><td>复制保留格式</td><td>在终端会话中选择一段含列表或表格的回复,粘贴到文档里检查。</td><td>复制和右键行为仍取决于终端设置,重要内容贴完再核对。</td></tr>
+        <tr><td>主动启用的 instant_interrupt</td><td>支持时,新输入可以在模型回复或较长工具执行期间调整方向。</td><td>不是默认开启,也不保证撤销已经发生的写入。涉及删除或上线,直接暂停并确认状态。</td></tr>
+        <tr><td>警告查看器</td><td>看完关闭会移除已查看的警告;想保留某条时按 <kbd>k</kbd>。</td><td>收起警告不等于问题已经修好。</td></tr>
+        <tr><td>输入和登录更稳</td><td>新空会话切换任务时保留草稿;登录时也可以复制登录链接。</td><td>授权要在自己的浏览器完成,不要把验证码或凭据发给别人。</td></tr>
+        <tr><td>Windows 闪窗修复</td><td>0.159.2 改善后台命令启动时弹出控制台窗口的问题。</td><td>仍有闪窗先确认实际运行版本,不要直接关闭系统安全功能。</td></tr>
+      </tbody>
+    </table>
+    <p>0.158 还支持明确要求图片使用透明背景,并改进部分 MCP OAuth 连接。配置这类连接前先看服务商要求,不要把 client secret 放进公开教程、聊天截图或 Git 仓库。</p>
+    <p><strong>两个旧入口已移除:</strong>自动追问建议及 <code>tui.prompt_suggestions</code> 设置,还有随 CLI 打包的 <code>plugin-creator</code> 技能。看不到它们不是安装损坏。要做插件,使用当前 <a href="https://developers.openai.com/plugins/build/extensions" target="_blank" rel="noopener">插件开发文档</a>,不必反复重装找旧技能。版本依据:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">0.158 / 0.159 更新记录</a>。</p>
+
+    <h3 id="september-cli">语音已默认开启支持,不必照旧教程找实验开关</h3>
+    <p><strong>0.156 起语音会话默认开启支持</strong>,不再沿用 0.155 的实验开关步骤。在支持的终端会话按 <kbd>F8</kbd> 切换语音,用 <code>/voice settings</code> 选择声音。功能默认支持不等于麦克风已经获得系统授权。</p>
     <ol>
       <li>先用 <code>codex --version</code> 确认运行的是更新后的版本。</li>
-      <li>在支持语音的版本里检查实验开关和系统麦克风权限。</li>
+      <li>检查终端的系统麦克风权限;F8 被系统占用时,检查功能键设置或使用会话里的语音入口。</li>
       <li>试一句“只读介绍这个项目,不要改文件”,再核对转写和结果。</li>
       <li>涉及删除、发送或上线时,仍检查具体操作和审批内容。</li>
     </ol>
+    <p>同一轮也加入了 <code>/tui</code> 全屏界面选择、<code>/usage</code> 用量面板和 <code>/daemon</code> 后台服务管理。先用 <code>/usage daily</code> 只查看一天的用量,不必领取或消耗任何重置。纯 App 用户不用为这些终端功能额外安装 CLI。依据:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">0.156 发布记录</a>、<a href="https://learn.chatgpt.com/docs/cli/slash-commands" target="_blank" rel="noopener">CLI 用量命令</a>。</p>
     <p><code>codex agents</code> 的任务总览增加了隐藏、归档、删除和 Worktree 归属信息。整理列表先用隐藏或归档;删除托管 Worktree 前看清路径和归属,确认改动已保存。支持的 Mac 本地终端会话还可对 MCP 请求做 Touch ID 验证,它和服务登录、工具写入审批不是一回事。</p>
     <p>0.155.1 修复的是<strong>推理摘要</strong>默认设置,不是“让模型不思考”。遇到服务商不支持摘要的报错,先升级;你手动设置过的摘要选项仍会保留,因此也要检查配置。<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">官方 0.155.0 / 0.155.1 记录</a></p>
     <p>进阶用户若使用后台 app-server daemon,可先看 <code>codex app-server daemon update --help</code>,再决定是否更新。普通 CLI 用户无需为语音单独配置后台服务。切换账号后,旧身份的远程会话和缓存会失效,应按新账号重新核对连接。</p>
@@ -297,7 +312,7 @@ codex --version</pre>
       </span>
       <div class="chapter-summary__body">
         <strong>你已经会了</strong>
-        控制 Codex 的权限边界、读懂 diff 的大方向、按任务选择 Astra 或 GPT-5.6、按需使用 Fast mode、Worktree 和子智能体,并知道如何用 AGENTS.md 把反复约定沉淀成项目规则。
+        控制 Codex 的权限边界、读懂 diff 的大方向、按任务选择可用模型、按需使用 Fast mode、Worktree 和子智能体,并知道如何用 AGENTS.md 把反复约定沉淀成项目规则。
       </div>
     </div>
 

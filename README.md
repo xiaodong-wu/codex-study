@@ -95,7 +95,7 @@ python3 -m http.server 8000
 - A8 新增模型与多智能体专章,说明 Chat / Work / Codex、GPT-6 Astra、GPT-5.6、Sol / Terra / Luna、Max / Ultra、多智能体、Goal、文件标注和 Visualize。
 - A9 新增 ChatGPT Voice、Screen context、多文件夹本地项目、桌面与手机接力、Codex Micro 和 Amazon Bedrock 的通俗说明。
 - A10 新增 2026 年 8 月更新专章,说明多浏览器扩展、WebMCP、事件触发任务、Apple Messages、线程分享、Computer History、Agent 导入、Codex Remote、CLI 0.149 和 GPT-5.4 迁移。
-- A11 的 2026 年 9 月更新专章已补充到 9 月 22 日核对结果,保留月初功能并加入悬浮快捷聊天、Windows Appshots、CLI 0.155.1、模型迁移和最新插件说明。
+- A11 的 2026 年 9 月更新专章已补充到 9 月 30 日核对结果,保留月初功能,增加 6.1 Sol、跨设备 Work、dots、云端环境、插件扩展、Security Cloud 与 CLI 0.159.2。
 
 本次最新功能补充:
 - A0 增加 Codex 桌面端最新功能总览:Worktree、线程自动化、内置浏览器、Computer Use、Appshots、Skills、Memories。
@@ -115,10 +115,21 @@ python3 -m http.server 8000
 
 ## 继续维护内容
 
-### 2026-09-22 本轮补充
+### 2026-09-30 本轮补充
+
+- A11:增加月底功能导读、跨设备 Work 与 dots 的执行边界、Cloud 环境准备与发布步骤、Space / Team Tasks 入门。逐步开放和团队功能不写成全账号默认可用。
+- A8/A11:更新 GPT-6.1 Sol、GPT-6 Luna 与模型迁移建议,区分 Ultra 与 Ultrafast,纠正速度和额度倍率混用。
+- A8:官方当前将实验性上下文管理标为不可用,撤下旧开启示例并保留更正锚点。
+- A7:区分本地 Codex Security 与 Security Cloud,增加 Plugin Extensions、MCP Events、Bits & Bolts 和 Annotations Extensibility。Security 0.1.30 与 0.1.25 行为相同,不虚构版本新能力。
+- A4/A9/A10:补充标注扩展、更新 WebMCP 的模型与 Enterprise 范围,区分 Remote、同步 Work 和纯云端任务。
+- CLI 第 03 章/附录 C:升级示例到 0.159.2,补充复制、主动启用的 instant_interrupt、Windows 闪窗修复及已移除入口;同步 0.156 起语音和 Worktree 默认支持、F8、声音设置与用量查看。
+- 附录 D:新增 7 条可搜索排错,覆盖 6.1 Sol 不可见、Ultrafast、离线同步、插件界面与事件、上下文实验、Windows 闪窗和旧技能移除。
+- 核对日期是 9 月 30 日;带日期的产品更新日志到 9 月 29 日,Security 插件日志到 9 月 24 日。另参考官方本周功能页及专项文档,不把周标题中的未来日期当作已发生的发布。
+
+### 2026-09-22 历史补充
 
 - A4/A6/A11:悬浮 Quick Chat、Mini、Mac/Windows 快捷键、Appshots 接收位置与项目上下文边界。
-- A8/A11:Spark 9 月 14 日停用,GPT-5.5 将于 10 月 14 日退役的范围与迁移清单;补充 Astra 实验性上下文管理的适用账号、配置和退出方法。
+- A8/A11:Spark 9 月 14 日停用,GPT-5.5 将于 10 月 14 日退役的范围与迁移清单;当时的上下文管理试用说明已在 9 月 30 日按新状态更正。
 - A7:Codex Security 0.1.24、修复验证、补丁风险评估、失败扫描结果恢复、访问资格提示;纠正 Spark 可用的旧说明。
 - CLI 第 03 章/附录 C:示例更新到 0.155.1,补充实验性 `/voice`、任务整理、MCP Touch ID 和摘要兼容性修复。
 - A9/附录 D:手机队列与 Worktree 改进;增加可搜索的 CLI 语音、推理摘要、Quick Chat 项目上下文排错,修正 Windows Appshots 说明。
@@ -134,10 +145,19 @@ python3 -m http.server 8000
 
 ## 官方资料维护
 
-App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-09-22,查到的最新公开产品更新记录到 2026-09-18。桌面端功能和入口会更新,维护时优先核对:
+App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-09-30,查到的最新带日期产品更新记录到 2026-09-29,并核对官方本周功能页与专项说明。核对日期不等于功能发布日期。维护时优先核对:
 
 - Changelog: <https://learn.chatgpt.com/docs/changelog>
 - What's new: <https://learn.chatgpt.com/docs/whats-new>
+- dots: <https://learn.chatgpt.com/docs/dots>
+- 跨设备 Work 与本地访问: <https://learn.chatgpt.com/docs/enterprise/cloud-local-access>
+- Cloud environments: <https://learn.chatgpt.com/docs/environments/cloud-environments>
+- Space Pages: <https://learn.chatgpt.com/docs/space/pages>
+- Team Tasks: <https://learn.chatgpt.com/docs/enterprise/teams>
+- Plugin Extensions: <https://developers.openai.com/plugins/build/extensions>
+- MCP Events: <https://developers.openai.com/plugins/build/mcp-events>
+- Annotations Extensibility: <https://learn.chatgpt.com/docs/annotations-extensibility>
+- Security Cloud: <https://learn.chatgpt.com/docs/security/setup>
 - ChatGPT desktop app: <https://learn.chatgpt.com/docs/app>
 - Get started with Work: <https://learn.chatgpt.com/docs/get-started-with-work>
 - Projects, chats, and tasks: <https://learn.chatgpt.com/docs/projects>

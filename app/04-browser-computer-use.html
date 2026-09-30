@@ -90,6 +90,11 @@
     </ol>
     <p>如果你只是想快速发一条评论,某些版本里可以按住 Cmd 点击直接发送。具体快捷方式以你 App 里提示为准。</p>
 
+    <h3 id="annotation-api">9 月补充:有些网站的标注还能带预览选项</h3>
+    <p>普通框选、写评论、发给 Codex,不需要网站做任何改造。新的 <strong>Browser Annotation API</strong> 是给网站开发者用的:可以把组件名称、相关背景和预览控件一起带进标注,例如在组件展示页先切换一个样式再提出修改。</p>
+    <p>想体验时,用内置浏览器打开 <a href="https://learn.chatgpt.com/docs/annotations-extensibility" target="_blank" rel="noopener">官方演示页</a>,进入 Annotation mode,选中示例表格或代码块,查看页面提供的选项。自己的网站没有这些控件也不影响基础标注。</p>
+    <p>准备给网站接入时,可以使用官方 <strong>Annotations Extensibility</strong> 插件了解实现方式,它不是所有读者都必须安装的工具。增强接口目前不面向 Enterprise / Edu;提交前仍检查评论和附带上下文,别把秘密信息带出去。</p>
+
     <h2 id="browser-use">Browser Use:让 Codex 自己点网页</h2>
     <p>如果你想让 Codex 自己打开页面、点击、输入、检查状态,可以让它使用 Browser Use。新手可以先记这条规则:</p>
     <div class="callout callout--tip">
@@ -159,7 +164,7 @@
       <li>先看清每个工具是只读还是会写入,再让 Codex 使用。</li>
       <li>完成后打开 Recently used 或 Sources,复核它调用了什么、页面发生了什么变化。</li>
     </ol>
-    <p>目前要使用最新版桌面端和 <strong>GPT-5.6 Sol 或 Terra</strong>;Luna 暂不支持 WebMCP,Enterprise 和 Edu 工作区暂不可用,实际入口也会受灰度开放和网站本身是否提供工具影响。</p>
+    <p><strong>2026-09-30 核对:</strong>官方目前列出 <strong>GPT-5.6 Sol 或 GPT-6 Sol</strong> 支持 Site tools,GPT-5.6 Luna 仍禁用 WebMCP。Enterprise 需要管理员通过工作区策略允许,Edu 暂不可用。使用最新版桌面端,同时确认当前页面确实提供工具;不要把其他模型的普通浏览器能力直接当成 WebMCP 支持。<a href="https://learn.chatgpt.com/docs/webmcp" target="_blank" rel="noopener">官方 Site tools 范围</a></p>
     <div class="callout callout--warning">
       <div class="callout__icon">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>

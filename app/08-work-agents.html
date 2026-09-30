@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>App 第 08 章 · Chat、Work、Codex、模型与多智能体 · Codex 中文教程（神灯资讯）</title>
-<meta name="description" content="通俗介绍 ChatGPT 桌面端里的 Chat、Work、Codex、GPT-6 Astra、GPT-5.6 模型、Ultra 多智能体、Goal、可视化和文件交付功能。" />
+<meta name="description" content="通俗介绍 Chat、Work、Codex、GPT-6.1 Sol、Astra、Luna、Ultra 与 Ultrafast 的区别、模型迁移和多智能体。模型说明核对至 2026-09-30。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -17,9 +17,9 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">App 第 08 章 · 模型说明更新至 2026-09-22</span>
+    <span class="chapter-meta">App 第 08 章 · 模型说明更新至 2026-09-30</span>
     <h1>Chat、Work、Codex、模型与多智能体</h1>
-    <p class="chapter-lede">新版桌面端不再只有“让 Codex 改代码”这一条路。你可以快速聊天、让 Work 交付文档和表格，也可以继续用 Codex 处理项目。再配合 GPT-6 Astra、GPT-5.6 和多个子智能体,大任务可以被拆开并行完成。</p>
+    <p class="chapter-lede">新版桌面端不再只有“让 Codex 改代码”这一条路。你可以快速聊天、让 Work 交付文档和表格，也可以继续用 Codex 处理项目。模型先从默认值开始,理解 GPT-6.1 Sol、Astra、Luna 分别适合什么,再考虑要不要让多个子智能体一起做。</p>
 
     <figure class="figure">
       <div class="figure__img">
@@ -49,21 +49,22 @@
     </table>
     <p>Work 和 Codex 不是互相替代。比如你可以先用 Work 整理产品需求，再把明确的需求交给 Codex 开发；也可以让 Codex 做出数据文件，再用 Work 把它整理成演示稿。</p>
 
-    <h2 id="gpt-56">Astra、Sol、Terra、Luna 怎么选</h2>
-    <p>模型名字看起来很多,其实先按任务难度判断就够。官方当前把 <strong>GPT-6 Astra</strong> 放在推荐列表首位;新手平时可以先保留模型选择器里的默认值,真正遇到复杂任务再主动选 Astra:</p>
+    <h2 id="gpt-56">6.1 Sol、Astra、Luna 怎么选</h2>
+    <p>截至 9 月 30 日,官方建议复杂编码和工具工作优先考虑账号可用的 <strong>GPT-6.1 Sol</strong>,最难的任务用 Astra,清楚的重复活用 GPT-6 Luna。模型不是成绩排名,先看它适不适合这件事。</p>
     <table>
       <thead><tr><th>模型</th><th>通俗理解</th><th>适合任务</th></tr></thead>
       <tbody>
         <tr><td><strong>Astra</strong></td><td>目前最强,更会处理跨步骤和跨工具工作</td><td>复杂开发、电脑操作、深度研究、重要文档和多种文件交付。</td></tr>
-        <tr><td><strong>Sol</strong></td><td>更仔细、更会处理模糊问题</td><td>复杂改造、深度研究、安全检查、重要成品。</td></tr>
-        <tr><td><strong>Terra</strong></td><td>日常主力，能力和成本更平衡</td><td>一般开发、资料整理、常规工具调用。</td></tr>
-        <tr><td><strong>Luna</strong></td><td>更快、更省，适合规则清楚的重复活</td><td>提取、分类、格式转换、批量摘要。</td></tr>
+        <tr><td><strong>6.1 Sol</strong></td><td>复杂工作的常用选择,比 Astra 消耗低</td><td>反复做的项目开发、资料分析和文档交付。</td></tr>
+        <tr><td><strong>6 Luna</strong></td><td>适合规则清楚的重复活</td><td>提取、分类、格式转换、批量摘要。</td></tr>
+        <tr><td><strong>6 Sol / 5.6 系列</strong></td><td>过渡期间仍可能出现在列表中</td><td>已有工作先验证再迁移,不要只凭版本号批量改配置。</td></tr>
       </tbody>
     </table>
     <p>不同账号看到的选择器文案可能不同。你只要记住:模型决定“派谁来做”,推理强度决定“让它想多深”。默认档适合日常任务,任务越难再逐级提高,不要为了看起来厉害而每次都选最高档。</p>
+    <p>有 Power 控件时可以打开 Advanced 选具体模型。找不到 6.1 Sol,先看 <a href="./11-september-updates.html#astra">首发套餐和管理员限制</a>;升级版本不能自动解除账号限制。</p>
 
     <h3 id="model-migration">旧模型别只改聊天框,任务设置也要检查</h3>
-    <p><strong>GPT-5.5 将在 2026 年 10 月 14 日退役</strong>,范围是 ChatGPT、ChatGPT Work 和 Codex,不包括 OpenAI API。ChatGPT 账号登录的 Codex 用户,官方建议换成 <code>gpt-5.6-sol</code>。GPT-5.3-Codex-Spark 的研究预览则已在 9 月 14 日结束,不再作为本教程可选模型。</p>
+    <p><strong>GPT-5.5 将在 2026 年 10 月 14 日退役</strong>,范围是 ChatGPT、ChatGPT Work 和 Codex,不包括 OpenAI API。官方迁移说明已更新:Plus / Pro / Business / Enterprise / Edu 的 ChatGPT 登录用户可在有权限时换成 <code>gpt-6-sol</code>;Free / Go 在桌面端可选可用的 <code>gpt-6-luna</code>。6.1 Sol 是另一次新模型开放,不要默认所有套餐都能选。Spark 已在 9 月 14 日停用。</p>
     <ol>
       <li>在模型选择器里换好当前对话的模型,先用一个熟悉的小任务试效果。</li>
       <li>检查项目默认配置、自定义智能体和定时任务,别让它们继续指定旧模型。</li>
@@ -71,15 +72,9 @@
     </ol>
     <p>这是模型服务调整,不是额度用完或密码失效,反复登录不能让退役模型回来。依据:<a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>、<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">9 月 14 日更新记录</a>。</p>
 
-    <h3 id="context-management">进阶选读:Astra 的实验性上下文管理</h3>
-    <p>可以把它理解成“长任务边做边记笔记,需要时回查同一任务的旧消息和工具结果”。它不是随意读取其他项目,也不是 Memories 的替代品。官方目前注明:支持的客户端上,ChatGPT Plus / Pro 登录可主动试用;默认关闭,初始范围不含 Business、Enterprise 或 API Key 登录。</p>
-    <p>确实需要试验时,先备份配置,再在用户 <code>config.toml</code> 中设置下面的值并开一个<strong>新任务</strong>。把它交给 Codex 修改时,要求保留已有配置和权限,先展示差异再确认。</p>
-    <div class="code">
-      <div class="code__bar"><span class="code__bar-lang">TOML · 配置项,不是终端命令</span><button class="code__copy" type="button">复制</button></div>
-<pre>[features.context_management]
-experimental_mode = true</pre>
-    </div>
-    <p>已有 <code>[features.context_management]</code> 表时只改里面的值,不要再贴一份表头。想退出实验就设为 <code>false</code> 并新开任务。新手保持默认即可,也别把“记得更多”当成不用核对结果。<a href="https://learn.chatgpt.com/docs/models#experimental-context-management" target="_blank" rel="noopener">模型说明</a>介绍了初始适用范围,<a href="https://learn.chatgpt.com/docs/config-file/config-reference" target="_blank" rel="noopener">配置参考</a>另外列出 Pro Lite;最终以账号和支持的客户端为准。</p>
+    <h3 id="context-management">旧教程更正:实验性上下文管理目前不可用</h3>
+    <p>9 月 30 日核对时,官方配置参考已把 <code>features.<wbr>context_management.<wbr>experimental_mode</code> 标为<strong>当前不可用</strong>。本教程移除了原先的开启示例,不要再照旧说明改成 <code>true</code>,也不要把这个实验选项当成 Memories 或跨设备同步。</p>
+    <p>以前改过配置的人,先备份并让 Codex 只检查这一项,不要为了恢复默认而清空整个配置文件。长任务仍可以让它定期整理进展、决策和待办,重要结果保存在项目文档里。<a href="https://learn.chatgpt.com/docs/config-file/config-reference" target="_blank" rel="noopener">当前配置参考</a></p>
 
     <h2 id="reasoning">Light、Max、Ultra 有什么区别</h2>
     <table>
@@ -88,10 +83,12 @@ experimental_mode = true</pre>
         <tr><td>Light / Medium / High</td><td>同一个任务思考得更浅或更深。</td><td>从默认档开始，结果不够再提高。</td></tr>
         <tr><td>Max</td><td>让一个模型花更多时间深挖同一件事。</td><td>问题很难，但不容易拆成几块。</td></tr>
         <tr><td>Ultra</td><td>启动多个子智能体，把独立部分并行处理。</td><td>大型审查、调研、测试和多模块任务。</td></tr>
-        <tr><td>Fast mode</td><td>用更多额度换更快响应;Astra 当前标注约 2 倍速度。</td><td>确实赶时间，并且你清楚额度成本时。</td></tr>
+        <tr><td>Fast mode</td><td>提高响应速度,会多用额度;计费倍率不是速度倍率。</td><td>确实赶时间,并且你清楚用量成本时。</td></tr>
+        <tr><td>Astra Ultrafast</td><td>速度档位,不是 Ultra 多智能体。</td><td>符合套餐和工作区要求时再考虑,先看 <a href="./11-september-updates.html#ultrafast">适用范围</a>。</td></tr>
       </tbody>
     </table>
     <p>如果模型滑杆里看不到 Ultra，可以去 <strong>Settings &gt; Configuration</strong> 检查是否有 <strong>Ultra in model picker slider</strong>。功能能否出现还会受套餐、账号、地区和工作区策略影响。</p>
+    <p>GPT-6 Luna 最高支持 Max,不支持 Ultra,所以开了显示选项也不会多出这一档。Fast / Ultrafast 的用量规则会变化,以 <a href="https://learn.chatgpt.com/docs/agent-configuration/speed" target="_blank" rel="noopener">官方 Speed 说明</a> 和账号显示为准。</p>
 
     <h2 id="subagents">多智能体：像把任务分给一个小组</h2>
     <p>子智能体就是主任务临时叫来的帮手。主智能体负责听懂目标、分工和合并结果；子智能体分别去查代码、跑测试、看安全风险，做完再把结论交回来。</p>
@@ -166,7 +163,7 @@ experimental_mode = true</pre>
     <ul>
       <li><a href="https://learn.chatgpt.com/docs/whats-new" target="_blank" rel="noopener">What's new</a>:每周重要功能摘要。</li>
       <li><a href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank" rel="noopener">Get started with Work</a>:Work 的定位与使用方法。</li>
-      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:GPT-6 Astra、GPT-5.6、Sol、Terra、Luna、Max 和 Ultra。</li>
+      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:GPT-6.1 Sol、Astra、Luna、Max、Ultra 和模型迁移。</li>
       <li><a href="https://learn.chatgpt.com/docs/agent-configuration/subagents" target="_blank" rel="noopener">Subagents</a>:多智能体、分工、权限和消耗。</li>
       <li><a href="https://learn.chatgpt.com/docs/long-running-work" target="_blank" rel="noopener">Long-running work</a>:Goal 和长任务。</li>
       <li><a href="https://learn.chatgpt.com/docs/visualizations" target="_blank" rel="noopener">Visualizations</a>:互动图表和可视化预览。</li>
