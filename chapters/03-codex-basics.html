@@ -153,13 +153,13 @@
     </div>
 
     <h3 id="august-session-tools">2026 年 8-9 月新增的会话与 Agent 管理工具</h3>
-    <p>下面覆盖会话导出、任务 dashboard、消息队列、Worktree 和插件刷新等能力。本节在 2026-09-30 核对,安装示例更新到 9 月 29 日的 0.159.2。npm 用户先升级并确认版本;用其他渠道安装的,沿用原渠道更新,不要混装:</p>
+    <p>下面覆盖会话导出、任务 dashboard、消息队列、Worktree 和插件刷新等能力。安装示例于 2026-10-08 更新到 10 月 7 日发布的 0.161.0。npm 用户先升级并确认版本;用其他渠道安装的,沿用原渠道更新,不要混装:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>npm install -g @openai/codex@0.159.2
+<pre>npm install -g @openai/codex@0.161.0
 codex --version</pre>
     </div>
     <table>
@@ -180,6 +180,16 @@ codex --version</pre>
       </tbody>
     </table>
     <p><code>/import</code> 在任务正在运行、远程会话或连接本地 app-server daemon 时不可用。0.147 还加入 <code>--approve-for-me</code> 自动审查审批;它会改变批准流程,新手先保持默认审批,熟悉风险后再考虑。旧的 <code>codex mcp-server</code> 已在 0.154.0 移除,嵌入式集成改用 Codex App Server;日常管理 MCP 连接仍使用 <code>codex mcp</code>。</p>
+
+    <h3 id="cli-0161">10 月新增:会话内登录 MCP,选对语音设备</h3>
+    <p><strong>工具提示未登录:</strong>在 Codex 输入框用 <code>/mcp</code> 找到已配置的服务,再输入 <code>/mcp login &lt;name&gt;</code>,把 name 换成实际服务名。跟着授权提示完成登录,回来先试读取。不是在普通终端里直接运行斜杠命令,也不是用它安装插件。见 <a href="../app/07-plugins.html#mcp-session-login">MCP 登录步骤</a>。</p>
+    <p><strong>听不到、说了没反应:</strong>打开 <code>/voice settings</code>,分别检查麦克风、扬声器和麦克风输入通道。0.161.0 支持把这些选择保存在本机,外接声卡或换耳机后尤其值得检查。收音设备与回答的声音是两回事。</p>
+    <ol>
+      <li>先确认终端有系统麦克风权限,再选择实际连接的设备。</li>
+      <li>按 F8 开始短测试,说“只复述我刚才说的话,不要运行命令”。</li>
+      <li>确认输入和播放都正常后,再用语音交代任务。别通过放开文件权限来解决收音问题。</li>
+    </ol>
+    <p>0.160 / 0.161 还改善了断线后的消息队列和历史恢复。重新连接后先看任务有没有完成,再决定重发,尤其是提交、发信和部署。更多版本边界、Daybreak 与恢复步骤见 <a href="../app/12-october-updates.html">10 月更新专章</a>。依据:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">官方发布记录</a>。</p>
 
     <h3 id="cli-0159">0.158 / 0.159:复制、插话和升级后的小变化</h3>
     <table>
@@ -336,7 +346,7 @@ codex --version</pre>
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260910-brand"></script>
+<script src="../assets/js/nav.js?v=20261008-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

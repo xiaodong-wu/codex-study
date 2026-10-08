@@ -17,7 +17,7 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">附录 C</span>
+    <span class="chapter-meta">附录 C · 最新补充 2026-10-08</span>
     <h1>Codex CLI 命令速查表</h1>
     <p class="chapter-lede">一页纸版本。下次卡住时打开这页,九成你要的命令都在这里。</p>
 
@@ -37,7 +37,7 @@
       <tbody>
         <tr><td><code>npm install -g @openai/codex</code></td><td>安装或重装 Codex CLI</td><td>第一次安装,或命令坏了想重装</td></tr>
         <tr><td><code>npm update -g @openai/codex</code></td><td>用 npm 升级全局安装包</td><td>你是通过 npm 安装的 Codex</td></tr>
-        <tr><td><code>npm install -g @openai/codex@0.159.2</code></td><td>安装本教程 2026-09-30 核对的稳定版</td><td>npm 安装用户使用;包含 6.1 Sol 模型目录与 Windows 闪窗修复,详见 <a href="../chapters/03-codex-basics.html#cli-0159">最新变化</a></td></tr>
+        <tr><td><code>npm install -g @openai/codex@0.161.0</code></td><td>安装本教程 2026-10-08 核对的稳定版</td><td>npm 安装用户使用;新增 MCP 会话内登录、语音设备设置,详见 <a href="../chapters/03-codex-basics.html#cli-0161">最新变化</a></td></tr>
         <tr><td><code>codex update</code></td><td>检查并应用 Codex CLI 自更新</td><td>当前安装版本支持自更新时</td></tr>
         <tr><td><code>codex --version</code></td><td>查看当前版本号</td><td>确认装好了,或排查“是不是版本太旧”</td></tr>
         <tr><td><code>codex doctor</code></td><td>生成本地诊断报告</td><td>登录、网络/代理、终端防护软件、桌面端状态或更新连接不正常时</td></tr>
@@ -121,12 +121,13 @@
         <tr><td><code>/mention</code></td><td>把文件或文件夹点给 Codex</td><td>想让它重点看某个文件时</td></tr>
         <tr><td><code>/init</code></td><td>生成 <code>AGENTS.md</code> 草稿</td><td>给项目写长期规则</td></tr>
         <tr><td><code>/mcp</code></td><td>列出 MCP 工具</td><td>排查外部工具有没有接上</td></tr>
+        <tr><td><code>/mcp login &lt;name&gt;</code></td><td>在当前会话登录已配置的 MCP 服务</td><td>0.161.0 新增;把 name 换成实际服务名,在 Codex 输入框使用,按提示授权后先测试读取</td></tr>
         <tr><td><code>/skills</code></td><td>浏览和使用技能</td><td>让 Codex 按某类专门流程工作</td></tr>
         <tr><td><code>/plugins</code></td><td>查看插件</td><td>管理可用插件和插件工具</td></tr>
         <tr><td><code>/worktree</code></td><td>创建或浏览 Worktree</td><td>让新任务或分叉任务在隔离目录里工作;先核对分支和未提交改动</td></tr>
         <tr><td><code>/experimental</code></td><td>管理实验功能开关</td><td>只启用自己要试的功能,按提示重启;不建议一次全部打开</td></tr>
         <tr><td><kbd>F8</kbd> / <code>/voice</code></td><td>切换语音会话</td><td>0.156 起默认开启支持;先检查终端麦克风权限,不是先找实验开关</td></tr>
-        <tr><td><code>/voice settings</code></td><td>选择语音声音</td><td>开始正式语音任务前做一次短测试</td></tr>
+        <tr><td><code>/voice settings</code></td><td>调整语音声音和本机音频设备</td><td>0.161.0 可选麦克风、扬声器和输入通道;更换耳机后没声音时先检查这里</td></tr>
         <tr><td><code>/usage daily</code></td><td>查看每日 token 活动</td><td>只看用量;无需领取或使用重置,详见 <a href="https://learn.chatgpt.com/docs/cli/slash-commands">官方命令说明</a></td></tr>
         <tr><td><code>/tui</code></td><td>选择终端界面</td><td>全屏体验和复制习惯不同,按当前版本提示设置下一次启动</td></tr>
         <tr><td><code>/daemon</code></td><td>管理本地后台服务</td><td>先确认现有会话和服务状态,再决定是否更新</td></tr>
@@ -203,7 +204,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260910-brand"></script>
+<script src="../assets/js/nav.js?v=20261008-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

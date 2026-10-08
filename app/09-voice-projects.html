@@ -135,6 +135,17 @@
     </div>
     <p>外出时适合查进度、看图表、补一句方向和批准清楚的低风险命令；大量文件审查、复杂 Diff、账号操作和高风险命令仍建议回桌面完成。</p>
 
+    <h3 id="mobile-october">10 月补充:主屏幕看任务,锁屏看额度</h3>
+    <p>iOS 1.2026.267 新增任务和额度小组件:最近任务放主屏幕,剩余额度与重置时间可放主屏幕或锁屏。1.2026.272 还支持直接打开 Codex 任务链接,把插件统一放到输入框加号菜单的 Plugins。下面是上手顺序,不需要写代码。</p>
+    <ol>
+      <li>先更新并打开手机 ChatGPT,确认能看到已连接的电脑和一条现有任务。</li>
+      <li>从 iOS 的添加小组件入口选择 ChatGPT 提供的任务或额度组件。没有看到时先确认版本和该设备的可用选项,不要下载第三方“额度助手”。</li>
+      <li>任务组件支持配置电脑时,选对设备;点开一条熟悉任务,检查标题、项目和最后一条结果。</li>
+      <li>锁屏可能让旁人看到任务或用量信息,共用设备上谨慎放置。需要详细审批时回完整任务,不要只凭组件状态判断。</li>
+    </ol>
+    <p><strong>手机断线时别急着重新发:</strong>新版改善了任务列表空白、电脑选择和 Worktree 对齐。先恢复原电脑连接,打开原任务检查最新结果,再决定是否重试。取消排队消息后若内容回到输入框,确认原请求没有开始执行,再编辑发送。</p>
+    <p>这部分来自 iOS 的发布记录,不等于桌面端新增了小组件,也没有据此承诺 Android 同步提供。来源:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">10 月 2 日、7 日 iOS 更新</a>、<a href="https://learn.chatgpt.com/docs/mobile" target="_blank" rel="noopener">手机使用边界</a>。</p>
+
     <h3 id="work-sync">9 月底补充:Remote 和 Work 同步不是一回事</h3>
     <p>上面的 Remote 是连接一台电脑操作任务。新的跨设备 Work 则让同一条受支持任务由云端协调,你可以从桌面、网页或手机继续。它若需要读本地文件或运行本地工具,电脑仍然要在线。</p>
     <p>先检查同一账号、同一工作区、这条任务是否支持同步,以及本地访问是否获准。另一台设备看不到任务时,先核对这些条件,不要直接重新创建一份重复执行。团队的 Work 和 dots 本地访问需要分别开启,一个开关不代表全部授权。</p>
@@ -145,10 +156,11 @@
       <thead><tr><th>功能</th><th>它是什么</th><th>零基础用户要不要管</th></tr></thead>
       <tbody>
         <tr><td>Codex Micro</td><td>OpenAI 与 Work Louder 推出的限量实体控制器，可以用按键切换最多六条任务、触发技能、按住说话或调整推理强度。</td><td>不用。它是可选硬件，不影响普通 App 的完整使用。</td></tr>
-        <tr><td>Amazon Bedrock</td><td>企业可让本地 Work、Codex、CLI、IDE 和 SDK 通过 AWS 身份与账单使用 GPT-6 Astra 和 GPT-5.6 Sol、Terra、Luna。</td><td>个人用户可以先跳过。它需要 AWS 区域、模型权限和凭据配置，且不支持 Fast mode。</td></tr>
+        <tr><td>Amazon Bedrock</td><td>企业可让本地 Work、Codex、CLI、IDE 和 SDK 通过 AWS 身份与账单使用受支持模型。当前专项文档列出 GPT-6 Astra、Sol、Luna,具体还要看区域和模型目录。</td><td>个人用户可以先跳过。它需要 AWS 区域、模型权限和凭据配置,且不支持 Fast mode。</td></tr>
       </tbody>
     </table>
     <p>Bedrock 模式只覆盖本地工作流，不等同于 ChatGPT 登录；OpenAI 云端托管功能和部分插件发现也不可用。公司要求走 AWS 账号体系时，再让管理员按官方文档配置。</p>
+    <p>10 月 7 日 CLI 日志还记录了 Bedrock 模型目录更新及兼容模型的多智能体 V2 / Ultra 支持。目录更新不等于所有 AWS 区域已开放所有型号;专项文档与发布记录的覆盖可能不同,配置前由管理员核对区域、权限和实际目录。<a href="https://learn.chatgpt.com/docs/amazon-bedrock" target="_blank" rel="noopener">Bedrock 当前支持范围</a></p>
 
     <h2 id="troubleshooting">新版功能找不到时先查什么</h2>
     <table>
@@ -220,7 +232,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260910-brand"></script>
+<script src="../assets/js/nav.js?v=20261008-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

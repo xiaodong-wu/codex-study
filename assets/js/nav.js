@@ -3,7 +3,7 @@
   'use strict';
 
   const STORAGE_KEY = 'codex-tutorial-read';
-  const PARTIAL_VERSION = '20260910-brand';
+  const PARTIAL_VERSION = '20261008-october';
   const PARTIAL_CACHE_PREFIX = 'codex-tutorial-partial:';
 
   function getReadSet() {

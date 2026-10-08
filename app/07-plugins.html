@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">本页更新时间</div>
-        <div class="callout__body">本页在 2026-09-30 重新核对官方文档。ChatGPT 和 Codex 共用公开插件目录,但没有一份对所有账号永远完整的固定名单。下面分清插件、连接器和内置能力;实际能不能安装,以账号的 Plugins 页面和工作区策略为准。</div>
+        <div class="callout__body">本页于 2026-10-08 补充 CLI 的 MCP 会话内登录和手机插件入口,并复核 Security 插件日志;插件清单与扩展说明上次整体核对于 9 月 30 日。没有一份对所有账号永远完整的固定名单,实际安装范围以 Plugins 页面和工作区策略为准。</div>
       </div>
     </div>
 
@@ -130,6 +130,16 @@
     <h3 id="mcp-events">MCP Events:有变化时再处理</h3>
     <p>支持事件的插件可以订阅消息、评论或状态变化。你先指定监控范围,服务收到匹配事件后把通知交给任务处理。它需要 MCP 2.0 和 webhook 支持,不是所有 MCP 连接都能用。</p>
     <p>可以这样说:“只关注这份文档的新评论,有修改意见就整理成待办,不要直接改原文。请确认订阅已建立,并告诉我怎么停止。”没有实际创建成功的订阅记录,就不要当它已经在监控。<a href="https://developers.openai.com/plugins/build/mcp-events" target="_blank" rel="noopener">MCP Events 官方说明</a></p>
+
+    <h3 id="mcp-session-login">10 月补充:工具掉登录了,怎么接回来</h3>
+    <p><strong>桌面用户:</strong>到插件或连接设置查看授权状态,按该服务提示重新登录。<strong>iOS 用户:</strong>1.2026.272 把插件集中到输入框加号菜单的 Plugins。<strong>CLI 用户:</strong>0.161.0 可以在当前会话输入 <code>/mcp login &lt;name&gt;</code>,不必为登录退出整条聊天。</p>
+    <ol>
+      <li>CLI 先输入 <code>/mcp</code>,确认服务名和状态。服务都没配置时,登录命令不会替你安装它。</li>
+      <li>把 name 换成实际服务名。例如已有服务叫 company-docs,就输入 <code>/mcp login company-docs</code>。这写在 Codex 的输入框里,不是普通 shell。</li>
+      <li>按提示完成授权,确认域名、账号和允许访问的数据。不是所有 MCP 都采用相同登录方式,公司统一管理的连接要按管理员要求处理。</li>
+      <li>回会话先试“列出我能访问的文档标题,不要修改”。若原操作会写入或发送,核对是否已执行后再决定重试。</li>
+    </ol>
+    <p>不要把验证码、Cookie 或令牌贴进聊天。“登录成功”只说明连接获得授权,不等于失败的任务已经重跑。MCP 登录与每次危险操作的审批也不是一回事。来源:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">10 月 7 日 CLI / iOS 更新记录</a>。</p>
 
     <h2 id="common-integrations">常见连接器和本教程环境可见能力</h2>
     <p>下面这些不一定都以“插件”两个字出现在你的界面里,有些会以 App 连接器、MCP、技能或内置工具的形式出现。新手可以先按“它能帮我做什么”来记。</p>
@@ -296,7 +306,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260910-brand"></script>
+<script src="../assets/js/nav.js?v=20261008-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

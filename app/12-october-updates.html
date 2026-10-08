@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>App 第 12 章 · 2026 年 10 月功能更新 · Codex 中文教程（神灯资讯）</title>
+<meta name="description" content="核对至 2026-10-08:手机任务与额度小组件、CLI 0.161.0 的 MCP 登录和语音设备选择、断线恢复、Daybreak 开启条件与模型迁移提醒。按 App、手机、CLI 分清适用范围。" />
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css?v=20260910-september-updates" />
+<link rel="stylesheet" href="../assets/css/components.css?v=20260910-september-updates" />
+<link rel="stylesheet" href="../assets/css/prose.css" />
+</head>
+<body data-title="App 第 12 章 · 2026 年 10 月功能更新" data-chapter="app-12-october-updates">
+<header class="site-header" id="site-header"></header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+  <article class="content prose">
+    <span class="chapter-meta">App 第 12 章 · 核对于 2026-10-08 · 发布记录截至 10-07</span>
+    <h1>2026 年 10 月功能更新</h1>
+    <p class="chapter-lede">这轮最实用的变化是:手机看任务更方便,终端里的工具登录和语音设置更顺手。你不用每项都学。只用桌面 App 的人,先看手机接力和升级前检查;用 CLI 的人再看中间的命令。</p>
+
+    <h2 id="start-here">先看清楚:更新的是哪一个端</h2>
+    <table>
+      <thead><tr><th>你在用什么</th><th>这次关注什么</th><th>在哪里看步骤</th></tr></thead>
+      <tbody>
+        <tr><td>桌面 App</td><td>继续使用已有功能,检查模型和任务权限。</td><td><a href="#before-update">升级前检查</a></td></tr>
+        <tr><td>ChatGPT 手机 App / iOS</td><td>任务与额度小组件、任务链接、插件入口。</td><td><a href="#mobile">手机接力</a></td></tr>
+        <tr><td>独立安装的 Codex CLI</td><td>0.161.0 的 MCP 登录、音频设备选择和恢复改进。</td><td><a href="#cli">终端怎么升级</a></td></tr>
+        <tr><td>公司统一配置的账号</td><td>模型提供商、Bedrock 和安全功能的条件。</td><td><a href="#advanced">进阶功能边界</a></td></tr>
+      </tbody>
+    </table>
+    <p><strong>核对日期不等于发布日期。</strong>截至 10 月 8 日,本次查到最新的带日期记录是 10 月 7 日的 CLI 和 iOS 更新,没有据此宣称桌面 App 同日发布了新版本。下文的手机变化也不自动适用于 Android。来源:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">官方更新日志</a>。</p>
+
+    <h2 id="mobile">手机:看进度、看额度,少来回切换</h2>
+    <p>10 月 2 日的 iOS 1.2026.267 加入任务和额度小组件;10 月 7 日的 1.2026.272 加入 Page 内嵌预览和直接打开 Codex 任务链接,插件统一放在输入框加号菜单的 Plugins 里。它们改善的是查看和接力,不是让手机代替电脑执行本地任务。</p>
+    <ol>
+      <li>先在手机更新 ChatGPT,打开 App,核对账号、工作区和已连接电脑。</li>
+      <li>想在主屏幕看进度,从 iOS 的添加小组件入口查找 ChatGPT 提供的任务组件;额度组件还可放在锁屏。实际名称和选项以当前系统为准。</li>
+      <li>组件支持选择电脑时,选中这次工作的那台。先点开一条熟悉的任务,核对标题与项目。</li>
+      <li>需要插件时,从输入框加号进入 Plugins。先读授权范围,只做一个查看资料的小测试。</li>
+    </ol>
+    <p>小组件只适合扫一眼。涉及发布、发送或文件改动,打开完整任务核对结果;不要把状态卡片当成验收报告。手机显示电脑离线时,先恢复连接,不要重复新建同一任务。完整配对与排错放在 <a href="./09-voice-projects.html#mobile-october">A9 手机使用步骤</a>。来源:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">10 月 iOS 发布记录</a>、<a href="https://learn.chatgpt.com/docs/mobile" target="_blank" rel="noopener">Codex on mobile</a>。</p>
+
+    <h2 id="cli">CLI 0.161.0:按原安装渠道更新</h2>
+    <p>本轮核对的稳定版记录为 <strong>10 月 7 日的 0.161.0</strong>。用 npm 安装的人可以运行下面两行;用其他渠道安装就沿用原渠道,不要为了升级再装一份。只用 App 的读者不用额外安装 CLI。</p>
+    <div class="code">
+      <div class="code__bar"><span class="code__bar-lang">terminal</span><button class="code__copy" type="button">复制</button></div>
+<pre>npm install -g @openai/codex@0.161.0
+codex --version</pre>
+    </div>
+    <p>更新后先做只读小任务,确认能启动、能回复,再回到重要项目。命令速查见 <a href="../appendix/c-cli-cheatsheet.html#install">附录 C</a>。</p>
+
+    <h3 id="mcp-login">工具要重新登录,不用退出整条会话</h3>
+    <p>CLI 0.161.0 支持在当前会话输入 <code>/mcp login &lt;name&gt;</code>。这里的 name 是已配置的 MCP 服务名,不是你自己的名字,也不是让你输入密码。先用 <code>/mcp</code> 看服务,再按实际名字登录。</p>
+    <p>例如配置中确实有一个叫 <code>company-docs</code> 的服务,就在 Codex 聊天输入框写 <code>/mcp login company-docs</code>。按提示在可信的授权页面完成登录,回到会话后先测试读取。登录成功不代表刚才失败的写入已经完成。详细步骤与桌面入口区别见 <a href="./07-plugins.html#mcp-session-login">A7 MCP 登录</a>。</p>
+
+    <h3 id="audio-devices">语音没声音,先选对设备</h3>
+    <p>新版 CLI 可以选择麦克风、扬声器和麦克风输入通道,选择保存在本机。输入 <code>/voice settings</code> 查看设置:输入选实际使用的麦克风,输出选耳机或扬声器;用外接声卡时再检查通道。它与“选择回答的声音”是不同设置。</p>
+    <p>先说一句“只复述这句话,不要操作文件”,确认收音和播放都正常。切换蓝牙耳机或拔插声卡后若没声音,重新检查设备和系统麦克风权限。桌面 App 的 Voice 设置不在这个终端命令里。见 <a href="../chapters/03-codex-basics.html#cli-0161">CLI 操作小练习</a>。以上两项依据:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">0.161.0 发布记录</a>。</p>
+
+    <h2 id="recovery">断线或卡住了,先确认上一步有没有完成</h2>
+    <p>0.160 / 0.161 改善了断线队列、恢复历史、粘贴后发送和部分 Windows 启动问题,也增加了 SQLite 损坏的早期检测与备份保护。这些修复能减少干扰,但不保证任何外部操作都只执行一次。</p>
+    <ol>
+      <li>恢复连接后,先看最后一条已完成回复、工具结果和待发送消息。</li>
+      <li>对已经发出的邮件、Git 提交或线上发布,到对应服务核对是否成功。</li>
+      <li>确认未完成后,只重试缺少的那一步,不要把整个任务再发一遍。</li>
+      <li>仍卡住时记录版本、报错和触发步骤,优先运行诊断;不要先删会话数据库。</li>
+    </ol>
+    <div class="prompt-card">
+      <div class="prompt-card__head"><span class="prompt-card__label">恢复连接后先说这句</span><button class="prompt-card__copy" type="button">复制</button></div>
+      <div class="prompt-card__body">刚才连接断开了。请先只读核对最后一步是否完成,列出已有结果、未完成步骤和状态不明的操作。不要重复发送、提交、付款或部署;不确定的地方先问我。</div>
+      <div class="prompt-card__note">先对齐实际状态,再继续工作。版本修复记录见下方官方来源。</div>
+    </div>
+
+    <h2 id="advanced">进阶功能:知道边界就够了</h2>
+    <h3 id="daybreak">Daybreak 默认隐藏,不是安装坏了</h3>
+    <p>Daybreak 面向符合条件的安全工作流,不是提速按钮,也不等于安装 Codex Security 插件。0.161.0 要先显式启用 <code>cli_daybreak</code>;仅有旧的 <code>daybreak=true</code> 不够,已保存任务也不会因此自动启用 Cyber 路由。</p>
+    <p>确实有授权的进阶用户,可用 <code>codex --enable cli_daybreak</code> 启动后再检查入口。自动路由还需要符合资格的 ChatGPT 登录、OpenAI 提供商及模型和访问计划支持。普通新手保持默认即可;开关不会替你获取资格或越过组织策略。依据:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">0.161.0 的开启条件</a>。</p>
+    <h3 id="providers">公司网关和 Bedrock,不要照抄个人账号配置</h3>
+    <p>CLI 0.161.0 为 Bedrock 的兼容模型补充多智能体 V2 和 Ultra 支持。是否能用仍要看模型目录、AWS 区域和公司授权,不是每个模型都有每个档位。</p>
+    <p>自定义模型网关则要兼容 <strong>Responses API</strong>,当前不支持只提供 Chat Completions 的地址或 <code>wire_api = "chat"</code>。能查到模型列表不代表工具、流式输出和后续对话都兼容。交给管理员先做一条只读测试,不要把密钥贴进公开问题帖。依据:<a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>、<a href="https://learn.chatgpt.com/docs/enterprise/gateway-compatibility" target="_blank" rel="noopener">网关兼容要求</a>。</p>
+
+    <h2 id="before-update">升级前,花两分钟检查这几项</h2>
+    <ul>
+      <li><strong>模型:</strong>截至 10 月 8 日,GPT-5.5 仍是“将于 10 月 14 日退役”,不是已经停用;此次不影响 OpenAI API。按 <a href="./08-work-agents.html#model-migration">A8 清单</a> 检查默认模型、定时任务和脚本。</li>
+      <li><strong>凭据:</strong>登录信息可能保存在系统钥匙串,不一定有 auth.json。别因找不到文件就删除配置或重新搬运令牌。</li>
+      <li><strong>项目:</strong>保存重要改动,记清当前项目路径、分支和执行电脑;先做小测试再恢复长任务。</li>
+      <li><strong>插件:</strong>截至本次核对,本地 Security 插件官方日志仍到 0.1.30,没有把 CLI 版本误当插件版本。插件、MCP 登录和系统审批分别检查。</li>
+    </ul>
+    <p>出现问题可到 <a href="../appendix/d-pitfalls-index.html#october-troubleshooting">10 月可搜索排错</a>,按报错关键词找对应处理办法。</p>
+
+    <h2 id="official-sources">本次核对的官方资料</h2>
+    <ul>
+      <li><a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">ChatGPT &amp; Codex changelog</a>:10 月 1、2、5、7 日的 CLI 与 iOS 记录。</li>
+      <li><a href="https://learn.chatgpt.com/docs/mobile" target="_blank" rel="noopener">Codex on mobile</a>:手机与电脑的连接、操作边界。</li>
+      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:模型支持与 GPT-5.5 退役范围。</li>
+      <li><a href="https://learn.chatgpt.com/docs/config-file/config-advanced" target="_blank" rel="noopener">Advanced Configuration</a>:凭据存储位置与自定义配置。</li>
+      <li><a href="https://learn.chatgpt.com/docs/enterprise/gateway-compatibility" target="_blank" rel="noopener">Gateway compatibility</a>:网关协议与验证要求。</li>
+      <li><a href="https://learn.chatgpt.com/docs/security/plugin/changelog" target="_blank" rel="noopener">Security 插件日志</a>:独立核对插件版本。</li>
+    </ul>
+    <p><strong>这一章先记住:</strong>看准适用端,按原渠道升级,先测试再继续。新功能不会自动代替你核对权限、账号和实际结果。</p>
+    <nav class="chapter-nav">
+      <a class="chapter-nav__link chapter-nav__link--prev" href="./11-september-updates.html"><div class="chapter-nav__dir">上一章</div><div class="chapter-nav__title">← 2026 年 9 月功能更新</div></a>
+      <a class="chapter-nav__link chapter-nav__link--next" href="../chapters/00-intro.html"><div class="chapter-nav__dir">继续学习</div><div class="chapter-nav__title">进入 CLI 教程 →</div></a>
+    </nav>
+  </article>
+  <aside class="toc"><div class="toc__title">本章目录</div><ul class="toc__list" id="toc-list"></ul></aside>
+</div>
+<footer class="site-footer" id="site-footer"></footer>
+<script src="../assets/js/nav.js?v=20261008-october"></script>
+<script src="../assets/js/progress.js"></script>
+<script src="../assets/js/toc.js"></script>
+<script src="../assets/js/code.js"></script>
+</body>
+</html>

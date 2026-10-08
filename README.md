@@ -26,7 +26,7 @@ python3 -m http.server 8000
 ├── 404.html
 ├── _headers                         Cloudflare Pages 响应头配置
 ├── wrangler.toml                    Cloudflare Pages / Wrangler 配置
-├── app/                             桌面端 App 教程 12 章(A0-A11)
+├── app/                             桌面端 App 教程 13 章(A0-A12)
 ├── chapters/                        Codex CLI 教程 12 章(00-11)
 ├── appendix/                        附录 4 篇(A-D)
 ├── partials/                        全站共用 sidebar / header / footer
@@ -62,6 +62,7 @@ python3 -m http.server 8000
 - App A9 · 语音协作、多文件夹项目与移动端
 - App A10 · 2026 年 8 月功能更新
 - App A11 · 2026 年 9 月功能更新
+- App A12 · 2026 年 10 月功能更新
 
 完整 CLI 正文章节:
 - 第 00 章 · 写在前面
@@ -115,7 +116,17 @@ python3 -m http.server 8000
 
 ## 继续维护内容
 
-### 2026-09-30 本轮补充
+### 2026-10-08 本轮补充
+
+- 新增 A12 十月更新专章,连接首页、侧边栏、A0 和 A11 前后章导航。保留九月历史,不把 CLI / iOS 更新写成桌面 App 同日发布。
+- A7 / CLI 第 03 章 / 附录 C:补充 `/mcp login <name>`、语音输入输出设备与通道,安装示例更新到 CLI 0.161.0。
+- A9:加入 iOS 任务与额度小组件、任务链接和统一 Plugins 入口,说明手机重连、队列恢复的检查顺序;修正 Bedrock 的旧模型清单。
+- A8 / A12:补充 Responses 网关兼容边界,复核 GPT-5.5 仍将于 10 月 14 日退役;Daybreak 按主动开启和账号资格解释,不建议普通用户盲目启用。
+- 附录 D 新增 7 条可搜索排错:MCP 登录、音频设备、Daybreak、网关协议、断线重复提交、手机小组件、钥匙串凭据存储。
+- 本次查到最新带日期产品日志为 10 月 7 日;Security 插件独立日志仍为 9 月 24 日的 0.1.30。功能可见性仍受账号、客户端、模型与管理策略限制。
+- 导航脚本与共享片段同步更新缓存版本,避免老访客看不到新增章节。
+
+### 2026-09-30 历史补充
 
 - A11:增加月底功能导读、跨设备 Work 与 dots 的执行边界、Cloud 环境准备与发布步骤、Space / Team Tasks 入门。逐步开放和团队功能不写成全账号默认可用。
 - A8/A11:更新 GPT-6.1 Sol、GPT-6 Luna 与模型迁移建议,区分 Ultra 与 Ultrafast,纠正速度和额度倍率混用。
@@ -135,7 +146,7 @@ python3 -m http.server 8000
 - A9/附录 D:手机队列与 Worktree 改进;增加可搜索的 CLI 语音、推理摘要、Quick Chat 项目上下文排错,修正 Windows Appshots 说明。
 - 日期分开记录:本轮核对日期是 9 月 22 日,查到的产品更新记录截至 9 月 18 日,Security 插件记录截至 9 月 9 日。实验功能和未来退役不写成全量已生效。
 
-打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A11 的写法:
+打开对应的 `app/*.html`、`chapters/XX-name.html` 或 `appendix/*.html`,按下面的口径继续补案例、截图、提示词或官方功能更新。可以参考第 02/04/05/08/09 章、附录 A-D 和 App A0-A12 的写法:
 
 - 每章 5-8 个 H2 小节
 - 每章至少一个 `.exercise` 或 `.prompt-card`
@@ -145,9 +156,12 @@ python3 -m http.server 8000
 
 ## 官方资料维护
 
-App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-09-30,查到的最新带日期产品更新记录到 2026-09-29,并核对官方本周功能页与专项说明。核对日期不等于功能发布日期。维护时优先核对:
+App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-10-08,查到的最新带日期产品更新记录到 2026-10-07,并核对模型、手机、网关、配置和 Security 专项说明。核对日期不等于功能发布日期,不同端与插件版本分开记录。维护时优先核对:
 
 - Changelog: <https://learn.chatgpt.com/docs/changelog>
+- Codex on mobile: <https://learn.chatgpt.com/docs/mobile>
+- 网关兼容要求: <https://learn.chatgpt.com/docs/enterprise/gateway-compatibility>
+- 配置与凭据存储: <https://learn.chatgpt.com/docs/config-file/config-advanced>
 - What's new: <https://learn.chatgpt.com/docs/whats-new>
 - dots: <https://learn.chatgpt.com/docs/dots>
 - 跨设备 Work 与本地访问: <https://learn.chatgpt.com/docs/enterprise/cloud-local-access>

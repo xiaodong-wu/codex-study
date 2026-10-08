@@ -17,7 +17,7 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">附录 D · 最新补充 2026-09-30</span>
+    <span class="chapter-meta">附录 D · 最新补充 2026-10-08</span>
     <h1>常见踩坑全集索引</h1>
     <p class="chapter-lede">每章末尾的「常见踩坑」卡片散落在各处,这里按问题类型聚合成一张速查地图。你卡住时,先到这里按现象找对应小节。</p>
 
@@ -523,6 +523,66 @@
       </details>
     </div>
 
+    <h2 id="october-troubleshooting">10 月更新后遇到的问题</h2>
+    <div class="pitfall-group">
+      <details class="pitfall" data-keywords="MCP login 登录 OAuth authorization name command not found 0.161">
+        <summary><code>/mcp login</code> 没反应,或者不知道 name 填什么</summary>
+        <div class="pitfall__body"><dl>
+          <dt>先分入口</dt><dd>这是 CLI 0.161.0 新增的会话命令,写在 Codex 输入框,不是普通 shell。name 是已配置的 MCP 服务名。</dd>
+          <dt>怎么处理</dt><dd>先查 <code>codex --version</code>,在会话用 <code>/mcp</code> 找到服务。按实际名字登录,完成可信页面授权后先测试读取。没有服务先配置,不支持这种登录方式或被组织限制时按服务说明处理。</dd>
+          <dt>相关章节</dt><dd><a href="../app/07-plugins.html#mcp-session-login">MCP 登录步骤与官方来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="voice microphone speaker channel 语音 麦克风 扬声器 耳机 声卡 通道 没声音">
+        <summary>CLI 语音打开了,却收不到声音或耳机没声</summary>
+        <div class="pitfall__body"><dl>
+          <dt>常见原因</dt><dd>麦克风权限没开,输入输出设备选错,或声卡输入通道不匹配。换耳机后原来的设备选择也可能不适用。</dd>
+          <dt>怎么处理</dt><dd>在 0.161.0 的 <code>/voice settings</code> 检查麦克风、扬声器和输入通道,再做一句话测试。系统授权给实际运行的终端,不要用扩大文件或联网权限的方法修复收音。</dd>
+          <dt>相关章节</dt><dd><a href="../chapters/03-codex-basics.html#cli-0161">CLI 语音设置与来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="Daybreak cli_daybreak cyber 入口 消失 默认 隐藏 0.161">
+        <summary>升级后找不到 Daybreak,旧设置也没生效</summary>
+        <div class="pitfall__body"><dl>
+          <dt>原因</dt><dd>0.161.0 的 Daybreak 默认隐藏,需要显式开启 cli_daybreak;仅设置 daybreak=true 不够。</dd>
+          <dt>怎么处理</dt><dd>普通用户保持默认即可。确实开展获授权安全工作的人,再检查启用标志、登录资格、提供商和模型支持。入口缺失不代表所有安全插件坏了,开关也不会自动授予访问资格。</dd>
+          <dt>相关章节</dt><dd><a href="../app/12-october-updates.html#daybreak">Daybreak 的适用条件与来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="wire_api chat Chat Completions responses 网关 gateway provider 404 400 协议">
+        <summary>网关能列模型、能聊天,但 Codex 请求一直失败</summary>
+        <div class="pitfall__body"><dl>
+          <dt>常见原因</dt><dd>网关只支持 Chat Completions,或没有完整转发 Responses 的流式输出、工具调用和多轮状态。</dd>
+          <dt>怎么处理</dt><dd>当前 Codex 要求兼容 Responses API,不能靠把 wire_api 改成 chat 解决。让管理员核对协议,用临时目录做只读工具测试和一次追问。不要先关沙盒,也不要公开密钥。</dd>
+          <dt>相关章节</dt><dd><a href="../app/08-work-agents.html#custom-provider">模型网关兼容说明与来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="queue reconnect duplicate 断线 重连 排队 重复 提交 消息 卡住">
+        <summary>断线后不知道消息有没有发出去,能直接再发吗?</summary>
+        <div class="pitfall__body"><dl>
+          <dt>先别重复</dt><dd>界面没有结果不代表服务没有执行。新版改善队列恢复,仍不能替所有外部操作保证不重复。</dd>
+          <dt>怎么处理</dt><dd>回原任务看最新历史与队列,去目标服务核对邮件、提交或部署状态。只重试确认未完成的步骤,不要同时开多条相同任务。仍异常就保留版本和报错做诊断。</dd>
+          <dt>相关章节</dt><dd><a href="../app/12-october-updates.html#recovery">断线恢复步骤和可复制提示词</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="widget widgets iOS 小组件 锁屏 主屏幕 手机 额度 空白 电脑 offline">
+        <summary>手机小组件没出现,或者打开后找不到电脑上的任务</summary>
+        <div class="pitfall__body"><dl>
+          <dt>先查什么</dt><dd>任务和额度小组件记录来自 iOS 1.2026.267,不能直接套到 Android 或桌面。还要确认账号、工作区、所选电脑和连接状态。</dd>
+          <dt>怎么处理</dt><dd>先更新并打开手机 App,确认完整任务列表可用后再添加组件。空白时先恢复原电脑连接,核对任务归属,不要重建一份任务。仅凭组件状态不能证明结果已保存或发布。</dd>
+          <dt>相关章节</dt><dd><a href="../app/09-voice-projects.html#mobile-october">手机小组件和接力步骤</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="auth.json keyring keychain 凭据 钥匙串 登录 文件 找不到 token">
+        <summary>已经登录,为什么找不到 <code>auth.json</code>?</summary>
+        <div class="pitfall__body"><dl>
+          <dt>原因</dt><dd>凭据可能使用系统钥匙串或 keyring 存储,只有文件存储模式才一定要找对应文件。</dd>
+          <dt>怎么处理</dt><dd>以实际登录状态为准。没有文件不等于登录失败,不要为此删除整个 .codex 目录,也不要让别人发一份凭据文件给你。分享诊断只保留脱敏错误,不贴登录令牌。</dd>
+          <dt>参考来源</dt><dd><a href="https://learn.chatgpt.com/docs/config-file/config-advanced">官方配置与状态存储说明</a></dd>
+        </dl></div>
+      </details>
+    </div>
+
     <h2 id="september-troubleshooting">9 月更新后遇到的问题</h2>
     <div class="pitfall-group">
       <details class="pitfall" data-keywords="gpt-6.1-sol 6.1 Sol model 模型 找不到 Plus Pro Business Enterprise Edu Free Go admin 灰度">
@@ -913,7 +973,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20260910-brand"></script>
+<script src="../assets/js/nav.js?v=20261008-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/pitfall-search.js?v=20260623-pitfall-search"></script>
