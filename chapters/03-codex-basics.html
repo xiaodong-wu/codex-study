@@ -153,13 +153,13 @@
     </div>
 
     <h3 id="august-session-tools">2026 年 8-9 月新增的会话与 Agent 管理工具</h3>
-    <p>下面覆盖会话导出、任务 dashboard、消息队列、Worktree 和插件刷新等能力。安装示例于 2026-10-08 更新到 10 月 7 日发布的 0.161.0。npm 用户先升级并确认版本;用其他渠道安装的,沿用原渠道更新,不要混装:</p>
+    <p>下面覆盖会话导出、任务 dashboard、消息队列、Worktree 和插件刷新等能力。安装示例于 2026-10-29 更新到 10 月 27 日发布的 0.165.0。npm 用户先升级并确认版本;用其他渠道安装的,沿用原渠道更新,不要混装:</p>
     <div class="code">
       <div class="code__bar">
         <span class="code__bar-lang">terminal</span>
         <button class="code__copy" type="button">复制</button>
       </div>
-<pre>npm install -g @openai/codex@0.161.0
+<pre>npm install -g @openai/codex@0.165.0
 codex --version</pre>
     </div>
     <table>
@@ -181,6 +181,17 @@ codex --version</pre>
     </table>
     <p><code>/import</code> 在任务正在运行、远程会话或连接本地 app-server daemon 时不可用。0.147 还加入 <code>--approve-for-me</code> 自动审查审批;它会改变批准流程,新手先保持默认审批,熟悉风险后再考虑。旧的 <code>codex mcp-server</code> 已在 0.154.0 移除,嵌入式集成改用 Codex App Server;日常管理 MCP 连接仍使用 <code>codex mcp</code>。</p>
 
+    <h3 id="cli-0165">10 月下旬:设置、常用提示词和临时插话</h3>
+    <p>下面的斜杠命令写在 <strong>Codex 会话输入框</strong>,不是普通终端。先升级到上方已核对的版本,再做一次不修改文件的小练习。</p>
+    <ol>
+      <li>输入 <code>/config</code>,搜索一个你想查看的设置。只看当前值也可以;真要修改时,留意立即生效还是需要重启。</li>
+      <li>输入 <code>/presets</code>,按菜单把“只读检查当前项目,列出三个优先问题,不要改文件”存进一个空编号。它有 10 个位置,以后可从菜单调用;避免保存密钥和未经确认的发布命令。</li>
+      <li>输入 <code>/keymap</code> 看键位。默认按 <kbd>Ctrl</kbd>+<kbd>X</kbd> 会进入操作菜单,选择或取消即可。</li>
+      <li>做一条只读检查时补一句“先只检查首页”。0.163 起运行中追问会立即调整当前方向;要彻底停下则用中断,再核对已经做过的事。</li>
+    </ol>
+    <p>语音中 <kbd>F9</kbd> 是静音麦克风,<kbd>F8</kbd> 是切换语音会话,不是同一个动作。0.164 的全屏图片查看需要终端支持 Kitty 或 Sixel,看不到图片时先换成文件查看器,不要为此扩大权限。</p>
+    <p>0.165 把 Terra 加进模型目录,支持时可以用 <code>/model</code> 选择。会话选择器也增加仓库筛选,多个项目名字相似时先核对目录。<code>/daemon</code> 可以重启受管理的后台服务,但可能打断活动任务,别把它当普通刷新按钮。来源:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">0.163–0.165 记录</a>;进阶提供商和 Daybreak 条件见 <a href="../app/12-october-updates.html#advanced">A12</a>。</p>
+
     <h3 id="cli-0161">10 月新增:会话内登录 MCP,选对语音设备</h3>
     <p><strong>工具提示未登录:</strong>在 Codex 输入框用 <code>/mcp</code> 找到已配置的服务,再输入 <code>/mcp login &lt;name&gt;</code>,把 name 换成实际服务名。跟着授权提示完成登录,回来先试读取。不是在普通终端里直接运行斜杠命令,也不是用它安装插件。见 <a href="../app/07-plugins.html#mcp-session-login">MCP 登录步骤</a>。</p>
     <p><strong>听不到、说了没反应:</strong>打开 <code>/voice settings</code>,分别检查麦克风、扬声器和麦克风输入通道。0.161.0 支持把这些选择保存在本机,外接声卡或换耳机后尤其值得检查。收音设备与回答的声音是两回事。</p>
@@ -196,7 +207,7 @@ codex --version</pre>
       <thead><tr><th>变化</th><th>你怎么用</th><th>别误会</th></tr></thead>
       <tbody>
         <tr><td>复制保留格式</td><td>在终端会话中选择一段含列表或表格的回复,粘贴到文档里检查。</td><td>复制和右键行为仍取决于终端设置,重要内容贴完再核对。</td></tr>
-        <tr><td>主动启用的 instant_interrupt</td><td>支持时,新输入可以在模型回复或较长工具执行期间调整方向。</td><td>不是默认开启,也不保证撤销已经发生的写入。涉及删除或上线,直接暂停并确认状态。</td></tr>
+        <tr><td>早期 instant_interrupt</td><td>0.159 时需要主动启用;0.163 起运行中追问已支持直接调整当前方向。</td><td>旧开关说明不要当最新操作;插话或中断都不保证撤销已发生的写入。</td></tr>
         <tr><td>警告查看器</td><td>看完关闭会移除已查看的警告;想保留某条时按 <kbd>k</kbd>。</td><td>收起警告不等于问题已经修好。</td></tr>
         <tr><td>输入和登录更稳</td><td>新空会话切换任务时保留草稿;登录时也可以复制登录链接。</td><td>授权要在自己的浏览器完成,不要把验证码或凭据发给别人。</td></tr>
         <tr><td>Windows 闪窗修复</td><td>0.159.2 改善后台命令启动时弹出控制台窗口的问题。</td><td>仍有闪窗先确认实际运行版本,不要直接关闭系统安全功能。</td></tr>
@@ -217,7 +228,7 @@ codex --version</pre>
     <p><code>codex agents</code> 的任务总览增加了隐藏、归档、删除和 Worktree 归属信息。整理列表先用隐藏或归档;删除托管 Worktree 前看清路径和归属,确认改动已保存。支持的 Mac 本地终端会话还可对 MCP 请求做 Touch ID 验证,它和服务登录、工具写入审批不是一回事。</p>
     <p>0.155.1 修复的是<strong>推理摘要</strong>默认设置,不是“让模型不思考”。遇到服务商不支持摘要的报错,先升级;你手动设置过的摘要选项仍会保留,因此也要检查配置。<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">官方 0.155.0 / 0.155.1 记录</a></p>
     <p>进阶用户若使用后台 app-server daemon,可先看 <code>codex app-server daemon update --help</code>,再决定是否更新。普通 CLI 用户无需为语音单独配置后台服务。切换账号后,旧身份的远程会话和缓存会失效,应按新账号重新核对连接。</p>
-    <p>模型也要一并检查:Spark 已在 9 月 14 日停用;ChatGPT 登录的 GPT-5.5 将在 10 月 14 日退役。按 <a href="../app/08-work-agents.html#model-migration">模型迁移清单</a> 检查默认值、任务与脚本。</p>
+    <p>模型也要一并检查:Spark 已在 9 月 14 日停用;ChatGPT 登录的 GPT-5.5 退役也已生效,API Key 登录不受此次调整影响。按 <a href="../app/08-work-agents.html#model-migration">模型迁移清单</a> 检查默认值、任务与脚本。</p>
 
     <h2 id="session-length">3.6 一次会话的健康长度</h2>
     <p>Codex 的会话越聊越长,上下文会越来越复杂。长到一定程度,它可能开始变得迟钝或跑偏。</p>
@@ -346,7 +357,7 @@ codex --version</pre>
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20261008-october"></script>
+<script src="../assets/js/nav.js?v=20261029-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

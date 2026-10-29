@@ -116,7 +116,19 @@ python3 -m http.server 8000
 
 ## 继续维护内容
 
-### 2026-10-08 本轮补充
+### 2026-10-29 本轮补充
+
+- A12 更新十月功能导读;A6 补充 Composer Predictions 操作、关闭入口、账号条件及草稿不会自动发送的边界。
+- A8 补充 GPT-6.1 Terra,更新 Sol Ultrafast 的资格与用量,把 GPT-5.5 迁移从预告改为已生效;API Key 登录不受此次退役影响。
+- A7 更新 Security 0.1.32、Deep scan 操作与 `report.md` 完成标准、企业 MCP 登录及插件来源校验提醒。插件日志未标明 0.1.32 发布日期,不自行补日期。
+- A9 补充 iOS 1.2026.279 / 286 的文件引用、后台命令及跨电脑任务提及,说明停止不等于撤销;另介绍 Text your dot 的美国 Pro 测试范围与审批边界。
+- CLI 第 03 章 / 附录 C 安装示例更新到 0.165.0,加入 `/config`、`/presets`、`/keymap`、F9 静音、运行中插话与终端图片条件。
+- 附录 D 新增 7 条可搜索排错,并修正 Daybreak 默认规则、Sol Ultrafast 和退役模型旧说法。保留九月历史并添加当前状态提示。
+- 首页、A0、页脚与共享片段缓存版本同步更新。功能核对于 10 月 29 日,最新带日期产品日志到 10 月 27 日,不把核对日期当发布日期。
+
+### 2026-10-08 历史补充
+
+以下记录当时的维护情况;安装版本、模型退役和 Daybreak 默认规则以 10 月 29 日补充及当前正文为准。
 
 - 新增 A12 十月更新专章,连接首页、侧边栏、A0 和 A11 前后章导航。保留九月历史,不把 CLI / iOS 更新写成桌面 App 同日发布。
 - A7 / CLI 第 03 章 / 附录 C:补充 `/mcp login <name>`、语音输入输出设备与通道,安装示例更新到 CLI 0.161.0。
@@ -156,9 +168,12 @@ python3 -m http.server 8000
 
 ## 官方资料维护
 
-App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-10-08,查到的最新带日期产品更新记录到 2026-10-07,并核对模型、手机、网关、配置和 Security 专项说明。核对日期不等于功能发布日期,不同端与插件版本分开记录。维护时优先核对:
+App 教程内容参考 OpenAI 官方文档,本次整理日期为 2026-10-29,查到的最新带日期产品更新记录到 2026-10-27,并核对模型、输入预测、速度档和 Security 专项说明。核对日期不等于功能发布日期,不同端与插件版本分开记录。维护时优先核对:
 
 - Changelog: <https://learn.chatgpt.com/docs/changelog>
+- Composer Predictions: <https://learn.chatgpt.com/docs/features/composer-predictions>
+- Text your dot: <https://learn.chatgpt.com/docs/whats-new/dots-october-28-2026>
+- Security Deep scan: <https://learn.chatgpt.com/docs/security/plugin/deep-scans>
 - Codex on mobile: <https://learn.chatgpt.com/docs/mobile>
 - 网关兼容要求: <https://learn.chatgpt.com/docs/enterprise/gateway-compatibility>
 - 配置与凭据存储: <https://learn.chatgpt.com/docs/config-file/config-advanced>

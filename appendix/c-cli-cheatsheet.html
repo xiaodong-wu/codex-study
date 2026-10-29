@@ -17,7 +17,7 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">附录 C · 最新补充 2026-10-08</span>
+    <span class="chapter-meta">附录 C · 最新补充 2026-10-29</span>
     <h1>Codex CLI 命令速查表</h1>
     <p class="chapter-lede">一页纸版本。下次卡住时打开这页,九成你要的命令都在这里。</p>
 
@@ -37,7 +37,7 @@
       <tbody>
         <tr><td><code>npm install -g @openai/codex</code></td><td>安装或重装 Codex CLI</td><td>第一次安装,或命令坏了想重装</td></tr>
         <tr><td><code>npm update -g @openai/codex</code></td><td>用 npm 升级全局安装包</td><td>你是通过 npm 安装的 Codex</td></tr>
-        <tr><td><code>npm install -g @openai/codex@0.161.0</code></td><td>安装本教程 2026-10-08 核对的稳定版</td><td>npm 安装用户使用;新增 MCP 会话内登录、语音设备设置,详见 <a href="../chapters/03-codex-basics.html#cli-0161">最新变化</a></td></tr>
+        <tr><td><code>npm install -g @openai/codex@0.165.0</code></td><td>安装本教程 2026-10-29 核对的稳定版</td><td>npm 安装用户使用;支持新模型目录和新操作,详见 <a href="../chapters/03-codex-basics.html#cli-0165">最新变化</a></td></tr>
         <tr><td><code>codex update</code></td><td>检查并应用 Codex CLI 自更新</td><td>当前安装版本支持自更新时</td></tr>
         <tr><td><code>codex --version</code></td><td>查看当前版本号</td><td>确认装好了,或排查“是不是版本太旧”</td></tr>
         <tr><td><code>codex doctor</code></td><td>生成本地诊断报告</td><td>登录、网络/代理、终端防护软件、桌面端状态或更新连接不正常时</td></tr>
@@ -124,6 +124,10 @@
         <tr><td><code>/mcp login &lt;name&gt;</code></td><td>在当前会话登录已配置的 MCP 服务</td><td>0.161.0 新增;把 name 换成实际服务名,在 Codex 输入框使用,按提示授权后先测试读取</td></tr>
         <tr><td><code>/skills</code></td><td>浏览和使用技能</td><td>让 Codex 按某类专门流程工作</td></tr>
         <tr><td><code>/plugins</code></td><td>查看插件</td><td>管理可用插件和插件工具</td></tr>
+        <tr><td><code>/config</code></td><td>搜索和调整 CLI 设置</td><td>0.163 新增;留意即时生效与重启提示,不必先手改配置文件</td></tr>
+        <tr><td><code>/presets</code></td><td>保存常用提示词或斜杠命令</td><td>0.164 新增;10 个编号位置,先用只读提示词练习</td></tr>
+        <tr><td><code>/keymap</code> / <kbd>Ctrl</kbd>+<kbd>X</kbd></td><td>查看键位 / 默认前缀键菜单</td><td>0.163 新增;以自己的键位设置为准,选择操作或取消</td></tr>
+        <tr><td><kbd>F9</kbd></td><td>语音会话中静音麦克风</td><td>0.163 新增;不是 F8 的开始/结束语音,也不会停止正在运行的任务</td></tr>
         <tr><td><code>/worktree</code></td><td>创建或浏览 Worktree</td><td>让新任务或分叉任务在隔离目录里工作;先核对分支和未提交改动</td></tr>
         <tr><td><code>/experimental</code></td><td>管理实验功能开关</td><td>只启用自己要试的功能,按提示重启;不建议一次全部打开</td></tr>
         <tr><td><kbd>F8</kbd> / <code>/voice</code></td><td>切换语音会话</td><td>0.156 起默认开启支持;先检查终端麦克风权限,不是先找实验开关</td></tr>
@@ -204,7 +208,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20261008-october"></script>
+<script src="../assets/js/nav.js?v=20261029-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

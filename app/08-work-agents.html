@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>App 第 08 章 · Chat、Work、Codex、模型与多智能体 · Codex 中文教程（神灯资讯）</title>
-<meta name="description" content="通俗介绍 Chat、Work、Codex、GPT-6.1 Sol、Astra、Luna、Ultra 与 Ultrafast 的区别、模型迁移和多智能体。模型说明核对至 2026-09-30。" />
+<meta name="description" content="通俗介绍 Chat、Work、Codex、GPT-6.1 Terra、Sol、Astra、Luna 的选择,Ultra 与 Ultrafast 的区别及 GPT-5.5 退役迁移。核对至 2026-10-29。" />
 <link rel="stylesheet" href="../assets/css/base.css" />
 <link rel="stylesheet" href="../assets/css/layout.css?v=20260731-voice-projects" />
 <link rel="stylesheet" href="../assets/css/components.css?v=20260623-figure-fit" />
@@ -17,9 +17,9 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">App 第 08 章 · 模型说明更新至 2026-09-30</span>
+    <span class="chapter-meta">App 第 08 章 · 模型说明更新至 2026-10-29</span>
     <h1>Chat、Work、Codex、模型与多智能体</h1>
-    <p class="chapter-lede">新版桌面端不再只有“让 Codex 改代码”这一条路。你可以快速聊天、让 Work 交付文档和表格，也可以继续用 Codex 处理项目。模型先从默认值开始,理解 GPT-6.1 Sol、Astra、Luna 分别适合什么,再考虑要不要让多个子智能体一起做。</p>
+    <p class="chapter-lede">新版桌面端不再只有“让 Codex 改代码”这一条路。你可以快速聊天、让 Work 交付文档和表格，也可以继续用 Codex 处理项目。模型先从默认值开始,理解 6.1 Terra、Sol、Astra、Luna 分别适合什么,再考虑要不要让多个子智能体一起做。</p>
 
     <figure class="figure">
       <div class="figure__img">
@@ -49,23 +49,25 @@
     </table>
     <p>Work 和 Codex 不是互相替代。比如你可以先用 Work 整理产品需求，再把明确的需求交给 Codex 开发；也可以让 Codex 做出数据文件，再用 Work 把它整理成演示稿。</p>
 
-    <h2 id="gpt-56">6.1 Sol、Astra、Luna 怎么选</h2>
-    <p>截至 9 月 30 日,官方建议复杂编码和工具工作优先考虑账号可用的 <strong>GPT-6.1 Sol</strong>,最难的任务用 Astra,清楚的重复活用 GPT-6 Luna。模型不是成绩排名,先看它适不适合这件事。</p>
+    <h2 id="gpt-56">6.1 Terra、Sol、Astra、Luna 怎么选</h2>
+    <p>截至 10 月 29 日,除了 Sol、Astra 和 Luna,还多了侧重看图、电脑操作和文字表达的 <strong>GPT-6.1 Terra</strong>。别只看哪个名字更新:先用你熟悉的小任务试一次,比较理解是否准确、结果是否好用。</p>
     <table>
       <thead><tr><th>模型</th><th>通俗理解</th><th>适合任务</th></tr></thead>
       <tbody>
         <tr><td><strong>Astra</strong></td><td>目前最强,更会处理跨步骤和跨工具工作</td><td>复杂开发、电脑操作、深度研究、重要文档和多种文件交付。</td></tr>
         <tr><td><strong>6.1 Sol</strong></td><td>复杂工作的常用选择,比 Astra 消耗低</td><td>反复做的项目开发、资料分析和文档交付。</td></tr>
+        <tr><td><strong>6.1 Terra</strong></td><td>更侧重看懂画面与清楚表达</td><td>分析界面截图、配合工具操作电脑、整理面向读者的内容。</td></tr>
         <tr><td><strong>6 Luna</strong></td><td>适合规则清楚的重复活</td><td>提取、分类、格式转换、批量摘要。</td></tr>
         <tr><td><strong>6 Sol / 5.6 系列</strong></td><td>过渡期间仍可能出现在列表中</td><td>已有工作先验证再迁移,不要只凭版本号批量改配置。</td></tr>
       </tbody>
     </table>
     <p>不同账号看到的选择器文案可能不同。你只要记住:模型决定“派谁来做”,推理强度决定“让它想多深”。默认档适合日常任务,任务越难再逐级提高,不要为了看起来厉害而每次都选最高档。</p>
-    <p>有 Power 控件时可以打开 Advanced 选具体模型。找不到 6.1 Sol,先看 <a href="./11-september-updates.html#astra">首发套餐和管理员限制</a>;升级版本不能自动解除账号限制。</p>
+    <p>有 Power 控件时可以打开 Advanced 选具体模型。Terra 于 10 月 26 日加入 Work / Codex,面向 Plus、Pro、Business、Enterprise、Edu,不是 Chat 入口的模型;团队管理员或推理驻留设置仍可能限制使用,目前不支持 UAE 推理驻留。CLI 从 0.159.0 起支持 <code>codex -m gpt-6.1-terra</code>,本教程安装示例已更新至 0.165.0。<a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">官方模型范围</a></p>
+    <p>第一次试 Terra 可以发一张不含隐私的页面截图,说:“只检查文字层级和布局,列出最值得改的三点,先不要改文件。”模型换了不等于工具、系统权限也自动开放。</p>
 
     <h3 id="model-migration">旧模型别只改聊天框,任务设置也要检查</h3>
-    <p><strong>2026-10-08 复核:</strong>下面的 10 月 14 日仍是未来退役日期。先做迁移准备,不要把它写成今天已经不能使用。</p>
-    <p><strong>GPT-5.5 将在 2026 年 10 月 14 日退役</strong>,范围是 ChatGPT、ChatGPT Work 和 Codex,不包括 OpenAI API。官方迁移说明已更新:Plus / Pro / Business / Enterprise / Edu 的 ChatGPT 登录用户可在有权限时换成 <code>gpt-6-sol</code>;Free / Go 在桌面端可选可用的 <code>gpt-6-luna</code>。6.1 Sol 是另一次新模型开放,不要默认所有套餐都能选。Spark 已在 9 月 14 日停用。</p>
+    <p><strong>2026-10-29 复核:GPT-5.5 退役已经生效。</strong>官方时间为 10 月 14 日 19:00 UTC,即北京时间 10 月 15 日 03:00,不是仍在等待退役。</p>
+    <p>此次范围是 ChatGPT、Work 和使用 ChatGPT 登录的 Codex;OpenAI API 与 API Key 登录的 Codex 会话不受影响。Plus / Pro / Business / Enterprise / Edu 可在有权限时改用 <code>gpt-6.1-sol</code>;Free / Go 桌面端可用 <code>gpt-6-luna</code>。Spark 也已在 9 月 14 日停用。</p>
     <ol>
       <li>在模型选择器里换好当前对话的模型,先用一个熟悉的小任务试效果。</li>
       <li>检查项目默认配置、自定义智能体和定时任务,别让它们继续指定旧模型。</li>
@@ -89,11 +91,15 @@
         <tr><td>Max</td><td>让一个模型花更多时间深挖同一件事。</td><td>问题很难，但不容易拆成几块。</td></tr>
         <tr><td>Ultra</td><td>启动多个子智能体，把独立部分并行处理。</td><td>大型审查、调研、测试和多模块任务。</td></tr>
         <tr><td>Fast mode</td><td>提高响应速度,会多用额度;计费倍率不是速度倍率。</td><td>确实赶时间,并且你清楚用量成本时。</td></tr>
-        <tr><td>Astra Ultrafast</td><td>速度档位,不是 Ultra 多智能体。</td><td>符合套餐和工作区要求时再考虑,先看 <a href="./11-september-updates.html#ultrafast">适用范围</a>。</td></tr>
+        <tr><td>Astra / 6.1 Sol Ultrafast</td><td>速度档位,不是 Ultra 多智能体。</td><td>符合套餐、地区和工作区要求时再考虑,先看 <a href="#speed-current">适用范围</a>。</td></tr>
       </tbody>
     </table>
     <p>如果模型滑杆里看不到 Ultra，可以去 <strong>Settings &gt; Configuration</strong> 检查是否有 <strong>Ultra in model picker slider</strong>。功能能否出现还会受套餐、账号、地区和工作区策略影响。</p>
     <p>GPT-6 Luna 最高支持 Max,不支持 Ultra,所以开了显示选项也不会多出这一档。Fast / Ultrafast 的用量规则会变化,以 <a href="https://learn.chatgpt.com/docs/agent-configuration/speed" target="_blank" rel="noopener">官方 Speed 说明</a> 和账号显示为准。</p>
+
+    <h3 id="speed-current">6.1 Sol 的 Ultrafast 已开放,但不是所有套餐都有</h3>
+    <p>10 月 29 日复核时,Ultrafast 支持 Astra 和 6.1 Sol,面向 Pro $500 及符合条件的 Enterprise / Edu。企业工作区默认关闭,需要管理员允许。Sol 的支持地区为美国和欧洲（EEA、瑞士）,Astra 目前仅美国;其他套餐不能只靠购买额外额度来解锁。</p>
+    <p>开始前先看账号的用量提示。当前 Ultrafast 的套餐内用量按 Standard 的 8 倍计算,购买额度按 6 倍;这不是说整项任务一定快 8 倍。普通任务先用 Standard,确实赶时间再开。API Key 用户遵循 API 定价,不能照搬 ChatGPT 套餐倍率。<a href="https://learn.chatgpt.com/docs/agent-configuration/speed" target="_blank" rel="noopener">官方速度与用量规则</a></p>
 
     <h2 id="subagents">多智能体：像把任务分给一个小组</h2>
     <p>子智能体就是主任务临时叫来的帮手。主智能体负责听懂目标、分工和合并结果；子智能体分别去查代码、跑测试、看安全风险，做完再把结论交回来。</p>
@@ -168,7 +174,7 @@
     <ul>
       <li><a href="https://learn.chatgpt.com/docs/whats-new" target="_blank" rel="noopener">What's new</a>:每周重要功能摘要。</li>
       <li><a href="https://learn.chatgpt.com/docs/get-started-with-work" target="_blank" rel="noopener">Get started with Work</a>:Work 的定位与使用方法。</li>
-      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:GPT-6.1 Sol、Astra、Luna、Max、Ultra 和模型迁移。</li>
+      <li><a href="https://learn.chatgpt.com/docs/models" target="_blank" rel="noopener">Models</a>:GPT-6.1 Terra、Sol、Astra、Luna、Max、Ultra 和模型迁移。</li>
       <li><a href="https://learn.chatgpt.com/docs/agent-configuration/subagents" target="_blank" rel="noopener">Subagents</a>:多智能体、分工、权限和消耗。</li>
       <li><a href="https://learn.chatgpt.com/docs/long-running-work" target="_blank" rel="noopener">Long-running work</a>:Goal 和长任务。</li>
       <li><a href="https://learn.chatgpt.com/docs/visualizations" target="_blank" rel="noopener">Visualizations</a>:互动图表和可视化预览。</li>
@@ -205,7 +211,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20261008-october"></script>
+<script src="../assets/js/nav.js?v=20261029-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

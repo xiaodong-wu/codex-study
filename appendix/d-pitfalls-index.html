@@ -17,7 +17,7 @@
   <aside class="sidebar" id="sidebar"></aside>
 
   <article class="content prose">
-    <span class="chapter-meta">附录 D · 最新补充 2026-10-08</span>
+    <span class="chapter-meta">附录 D · 最新补充 2026-10-29</span>
     <h1>常见踩坑全集索引</h1>
     <p class="chapter-lede">每章末尾的「常见踩坑」卡片散落在各处,这里按问题类型聚合成一张速查地图。你卡住时,先到这里按现象找对应小节。</p>
 
@@ -229,7 +229,7 @@
             <dt>常见原因</dt>
             <dd>当前账号、地区、组织策略或这一个 Codex 版本暂时拿不到你选的模型;也可能是配置里手动写了一个过新的模型名。</dd>
             <dt>怎么处理</dt>
-            <dd>先切回默认推荐模型,再更新客户端。CLI 用 <code>/model</code> 重新选择。Spark 已于 2026-09-14 停用;GPT-5.5 将在 10 月 14 日退役,不是已经停用。替代型号要看套餐和工作区权限,最新建议见 <a href="../app/08-work-agents.html#model-migration">模型迁移清单</a>。GPT-5.4 / mini 也已不再提供给 ChatGPT 登录的 Codex。别忘了检查定时任务和脚本;不要把 ChatGPT 登录的退役公告直接套用到 OpenAI API。</dd>
+            <dd>先切回默认推荐模型,再更新客户端。CLI 用 <code>/model</code> 重新选择。Spark 与 ChatGPT 登录的 GPT-5.5 均已退役,反复登录不会恢复。替代型号要看套餐和工作区权限,最新建议见 <a href="../app/08-work-agents.html#model-migration">模型迁移清单</a>。GPT-5.4 / mini 也已不再提供给 ChatGPT 登录的 Codex。别忘了检查定时任务和脚本;GPT-5.5 的此次调整不影响 OpenAI API 或 API Key 登录会话。</dd>
             <dt>参考来源</dt>
             <dd>先看官方 <a href="https://learn.chatgpt.com/docs/models">Models</a> 和 <a href="https://learn.chatgpt.com/docs/reference/troubleshooting">Troubleshooting</a>;仍无法判断时,再查 <a href="https://github.com/openai/codex/issues">OpenAI Codex GitHub issues</a>。</dd>
           </dl>
@@ -525,6 +525,62 @@
 
     <h2 id="october-troubleshooting">10 月更新后遇到的问题</h2>
     <div class="pitfall-group">
+      <details class="pitfall" data-keywords="Terra gpt-6.1-terra model not found 找不到 模型 UAE Work Chat Advanced">
+        <summary>为什么找不到 GPT-6.1 Terra,手填名称也报错?</summary>
+        <div class="pitfall__body"><dl>
+          <dt>先查什么</dt><dd>Terra 面向支持套餐的 Work / Codex,不是 Chat 模型。还受管理员、推理驻留和客户端版本限制。</dd>
+          <dt>怎么处理</dt><dd>在 Work / Codex 的 Advanced 模型列表确认;CLI 至少 0.159.0,可按教程升到 0.165.0。没有权限就用账号实际可选的模型,别无限重试同一名称。0.165 对 model-not-found 会停止重试并保留错误,这是预期行为。</dd>
+          <dt>相关章节</dt><dd><a href="../app/08-work-agents.html#gpt-56">模型范围</a>; <a href="../app/12-october-updates.html#cli">CLI 版本与来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="Composer Predictions Show predictions Tab 输入预测 自动发送 追问 草稿 Pro">
+        <summary>输入框没有预测建议,或者按 Tab 会不会自动发送?</summary>
+        <div class="pitfall__body"><dl>
+          <dt>原因</dt><dd>这是有账号、年龄、地区、模型和任务类型限制的测试功能,不是所有用户默认可见。</dd>
+          <dt>怎么处理</dt><dd>检查 Settings &gt; General &gt; Composer 的 Show predictions 及支持条件。Tab 只把建议变成可编辑草稿,不会发送;发送前检查范围与动作。不想用就直接输入自己的内容。</dd>
+          <dt>相关章节</dt><dd><a href="../app/06-settings-shortcuts.html#composer-predictions">输入预测步骤、用量与官方来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="presets config keymap command not found 斜杠命令 设置 快捷提示词 0.163 0.164">
+        <summary><code>/presets</code> 或 <code>/config</code> 提示找不到命令</summary>
+        <div class="pitfall__body"><dl>
+          <dt>常见原因</dt><dd>在普通 shell 里输入了会话命令,或 CLI 版本太旧;更新桌面 App 也不会更新独立安装的 CLI。</dd>
+          <dt>怎么处理</dt><dd>普通终端先运行 codex --version;按原安装渠道更新。进入 Codex 后再输入斜杠命令:/config 从 0.163 开始,/presets 从 0.164 开始。新版仍找不到时先确认实际运行的是哪份安装,不要叠装多个渠道。</dd>
+          <dt>相关章节</dt><dd><a href="../chapters/03-codex-basics.html#cli-0165">CLI 操作练习与来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="F9 F8 mute 静音 插话 steering interrupt 中断 没停止 撤销">
+        <summary>按了 F9 或补了一句话,为什么任务还在做?</summary>
+        <div class="pitfall__body"><dl>
+          <dt>先分动作</dt><dd>F9 只是语音静音,不是停止任务;运行中追问是调整方向,不是回滚。</dd>
+          <dt>怎么处理</dt><dd>明确要求暂停并使用任务中断入口,再核对已完成的命令、文件与外部服务状态。需要撤销时单独检查可恢复办法,不要假定文件、邮件或部署已经自动恢复。</dd>
+          <dt>相关章节</dt><dd><a href="../chapters/03-codex-basics.html#cli-0165">快捷键和插话边界</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="Kitty Sixel 图片 image 终端 全屏 看不到 渲染 0.164">
+        <summary>CLI 更新了,终端还是不能全屏看图片</summary>
+        <div class="pitfall__body"><dl>
+          <dt>原因</dt><dd>0.164 的图片查看依赖 Kitty 或 Sixel 协议,终端软件也要支持,不是装新版 CLI 就足够。</dd>
+          <dt>怎么处理</dt><dd>先用系统文件查看器打开实际图片,确认文件正常;需要终端内查看再核对终端协议支持。不要把图片不显示当作生成失败而重复生成。</dd>
+          <dt>相关章节</dt><dd><a href="../app/12-october-updates.html#cli-daily">终端新功能与来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="Security Deep scan report.md scan-manifest.json aggregate 汇总 报告 没生成 0.1.32 超时">
+        <summary>Security 说汇总完成,却找不到 report.md</summary>
+        <div class="pitfall__body"><dl>
+          <dt>先别判定成功</dt><dd>Deep scan 需要收尾成功并生成报告。只有 manifest 或汇总消息不算完成;等待超时也不一定代表扫描取消。</dd>
+          <dt>怎么处理</dt><dd>打开原扫描看状态,仍在运行就继续跟进,失败则保留扫描目录和错误。记录当时的插件与客户端版本;0.1.32 有相关收尾修复,但更新不会把旧失败自动变成成功。</dd>
+          <dt>相关章节</dt><dd><a href="../app/07-plugins.html#security-deep-scan">深度扫描验收与官方来源</a></dd>
+        </dl></div>
+      </details>
+      <details class="pitfall" data-keywords="iOS background command 后台命令 手机 停止 超时 1.2026.286 @ 跨电脑">
+        <summary>手机看不到后台命令入口,或者显示超时却还在运行</summary>
+        <div class="pitfall__body"><dl>
+          <dt>先查什么</dt><dd>该入口来自 iOS 1.2026.286,还要求远程主机支持,并非所有手机和任务都有。</dd>
+          <dt>怎么处理</dt><dd>确认账号、原任务、执行电脑和连接状态。超时后先回原任务看最新记录,必要时回桌面查看命令。服务器持续运行不一定是卡住,未经核对不要停止或重新部署。</dd>
+          <dt>相关章节</dt><dd><a href="../app/09-voice-projects.html#mobile-background">手机查看与停止步骤</a></dd>
+        </dl></div>
+      </details>
       <details class="pitfall" data-keywords="MCP login 登录 OAuth authorization name command not found 0.161">
         <summary><code>/mcp login</code> 没反应,或者不知道 name 填什么</summary>
         <div class="pitfall__body"><dl>
@@ -544,8 +600,8 @@
       <details class="pitfall" data-keywords="Daybreak cli_daybreak cyber 入口 消失 默认 隐藏 0.161">
         <summary>升级后找不到 Daybreak,旧设置也没生效</summary>
         <div class="pitfall__body"><dl>
-          <dt>原因</dt><dd>0.161.0 的 Daybreak 默认隐藏,需要显式开启 cli_daybreak;仅设置 daybreak=true 不够。</dd>
-          <dt>怎么处理</dt><dd>普通用户保持默认即可。确实开展获授权安全工作的人,再检查启用标志、登录资格、提供商和模型支持。入口缺失不代表所有安全插件坏了,开关也不会自动授予访问资格。</dd>
+          <dt>版本区别</dt><dd>0.161 的手动开启说明已过时;0.163 起对符合资格的账号默认开启,不是对所有账号开放。</dd>
+          <dt>怎么处理</dt><dd>普通用户保持默认即可。获授权的安全工作先检查实际版本、账号资格、提供商和组织策略。入口缺失不代表所有安全插件坏了,手动开关也不会自动授予访问资格。</dd>
           <dt>相关章节</dt><dd><a href="../app/12-october-updates.html#daybreak">Daybreak 的适用条件与来源</a></dd>
         </dl></div>
       </details>
@@ -597,7 +653,7 @@
         <summary>找不到 Ultrafast,或者开了加速后额度消耗很快</summary>
         <div class="pitfall__body"><dl>
           <dt>常见原因</dt><dd>Ultra 是推理与多智能体档位,Ultrafast 是速度档位,有独立的模型、套餐和管理员限制。</dd>
-          <dt>怎么处理</dt><dd>先切回 Standard 核对用量,查自己的套餐是否符合要求。更快输出不代表整项工作同比加速,用量倍率也不是速度倍率。GPT-6 Luna 没有 Ultra,GPT-6.1 Sol 当前也没有 Ultrafast。</dd>
+          <dt>怎么处理</dt><dd>先切回 Standard 核对用量。当前 Astra 和 6.1 Sol 均支持有资格的 Ultrafast,但要符合 Pro $500 或 Enterprise / Edu、地区和管理员条件。GPT-6 Luna 仍没有 Ultra。更多额度不代表能解锁套餐外功能,用量倍率也不是速度倍率。</dd>
           <dt>参考来源</dt><dd><a href="https://learn.chatgpt.com/docs/agent-configuration/speed">官方 Speed</a>; <a href="../app/08-work-agents.html#reasoning">档位对照</a></dd>
         </dl></div>
       </details>
@@ -973,7 +1029,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20261008-october"></script>
+<script src="../assets/js/nav.js?v=20261029-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/pitfall-search.js?v=20260623-pitfall-search"></script>

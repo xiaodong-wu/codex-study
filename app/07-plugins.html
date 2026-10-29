@@ -34,7 +34,7 @@
       </div>
       <div>
         <div class="callout__title">本页更新时间</div>
-        <div class="callout__body">本页于 2026-10-08 补充 CLI 的 MCP 会话内登录和手机插件入口,并复核 Security 插件日志;插件清单与扩展说明上次整体核对于 9 月 30 日。没有一份对所有账号永远完整的固定名单,实际安装范围以 Plugins 页面和工作区策略为准。</div>
+        <div class="callout__body">本页于 2026-10-29 更新 Security 0.1.32、深度扫描完成标准和企业 MCP 登录;插件清单与扩展说明上次整体核对于 9 月 30 日。没有一份对所有账号永远完整的固定名单,实际安装范围以 Plugins 页面和工作区策略为准。</div>
       </div>
     </div>
 
@@ -90,7 +90,7 @@
     <p>这里列的是官方插件说明明确举例，或官方教程中有独立使用文档的能力，不代表你的账号里一定只会出现这些。插件目录会继续增加，名称和可用范围以 App 或 CLI 的实时目录为准。</p>
 
     <h2 id="security-september-update"><span id="security-july-update"></span>Codex Security:不只找漏洞,也能检查修复</h2>
-    <p>截至本次核对,最新插件记录为 <strong>0.1.30（9 月 24 日）</strong>,行为与 <strong>0.1.25（9 月 23 日）</strong> 相同,不要把一次版本号调整理解成又增加了一套功能。它是代码安全检查工具,不是电脑杀毒软件;插件版本与安装包版本也可能不同。</p>
+    <p>10 月 29 日核对时,最新插件记录为 <strong>0.1.32</strong>,该条没有单列发布日期。它改进深度扫描报告收尾、大结果分页和可恢复解析错误的重试。它是代码安全检查工具,不是电脑杀毒软件;插件版本与安装包版本也可能不同。</p>
     <table>
       <thead><tr><th>更新</th><th>通俗理解</th><th>怎么用</th></tr></thead>
       <tbody>
@@ -106,6 +106,17 @@
     <p>例如你可以说:“请用 Codex Security 验证刚才那项安全修复,列出证据和没法验证的部分,不要修改文件或创建工单。”先点名仓库、补丁或发现,避免检查错版本。<a href="https://learn.chatgpt.com/docs/security/plugin/changelog" target="_blank" rel="noopener">官方插件版本记录</a></p>
 
     <p>之前的扫描历史对比、用 <code>$codex-security:define-security-policy</code> 整理 <code>SECURITY.md</code>、准备跟踪工单和导出报告等能力也值得保留在日常流程里。新手先做“扫描并出报告”,再按需要验证修复;安全策略和对外工单都先让负责人确认。</p>
+
+    <h3 id="security-deep-scan">Deep scan:多检查几轮,怎样才算真正完成</h3>
+    <p>先做普通扫描确认仓库和检查范围。想对同一个仓库或文件夹多做几轮独立检查,再选 Deep scan;它会用更多时间和额度,也不能保证找出所有问题。</p>
+    <ol>
+      <li>有插件权限时打开 <strong>Security &gt; Scans &gt; + Scan</strong>。</li>
+      <li>选择正确仓库或文件夹,选 <strong>Codebase</strong>,开启 <strong>Deep scan</strong>;补充实际部署环境与关注范围。</li>
+      <li>确认模型、推理档位和运行限制,再开始。只查一个 PR 或补丁,用改动审查流程,不是 Deep scan。</li>
+      <li>回到同一次扫描看状态,等收尾成功并生成 <code>report.md</code>。只有“汇总完成”或 <code>scan-manifest.json</code> 不算完成。</li>
+      <li>先看覆盖范围和未验证部分,再读发现。分享报告时保留它链接的 <code>findings/</code>、<code>hardening/</code> 目录。</li>
+    </ol>
+    <p>等待超时不一定表示扫描停止。先查看原扫描;失败或取消则保留错误和已保存发现,不要把空列表理解成“没有漏洞”。<a href="https://learn.chatgpt.com/docs/security/plugin/deep-scans" target="_blank" rel="noopener">官方深度扫描与恢复说明</a></p>
 
     <h2 id="security-cloud">Security Cloud:远程仓库用这个入口</h2>
     <p>这是独立的云端安全插件,目前属于研究预览。它在 Codex Cloud 扫描已连接的 GitHub 仓库;本地文件扫描仍用上面的 Codex Security。</p>
@@ -140,6 +151,7 @@
       <li>回会话先试“列出我能访问的文档标题,不要修改”。若原操作会写入或发送,核对是否已执行后再决定重试。</li>
     </ol>
     <p>不要把验证码、Cookie 或令牌贴进聊天。“登录成功”只说明连接获得授权,不等于失败的任务已经重跑。MCP 登录与每次危险操作的审批也不是一回事。来源:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">10 月 7 日 CLI / iOS 更新记录</a>。</p>
+    <p><strong>10 月下旬补充:</strong>CLI 0.164 支持企业 MCP 的账号授权或专门登录,具体取决于组织配置,并不表示任意外部服务都免登录。0.165 修复插件市场 URL 校验问题;使用外部市场时先升级,再检查发布者和来源,不要为了安装而关闭来源限制。<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">0.164 / 0.165 记录</a></p>
 
     <h2 id="common-integrations">常见连接器和本教程环境可见能力</h2>
     <p>下面这些不一定都以“插件”两个字出现在你的界面里,有些会以 App 连接器、MCP、技能或内置工具的形式出现。新手可以先按“它能帮我做什么”来记。</p>
@@ -306,7 +318,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20261008-october"></script>
+<script src="../assets/js/nav.js?v=20261029-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

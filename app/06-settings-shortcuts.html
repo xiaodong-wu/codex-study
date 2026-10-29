@@ -70,6 +70,17 @@
     </ul>
     <p>简单说:项目规则放 <code>AGENTS.md</code>,个人偏好放 Personalization / Memories,临时要求就写在当前线程里。</p>
 
+    <h2 id="composer-predictions">输入预测:下一句可以参考,发送由你决定</h2>
+    <p><strong>Composer Predictions</strong> 是输入框里的追问建议。Codex 回复完后,它可能帮你起草“接下来要说什么”。这不是自动任务,也不是已经替你发出了一条消息。</p>
+    <ol>
+      <li>在支持的任务里完成一轮对话,看看输入框有没有浅色建议。</li>
+      <li>想用就按 <kbd>Tab</kbd>,它会变成可编辑草稿。把目标、范围和限制改准确,再自己发送。</li>
+      <li>不想用就直接打自己的内容;不用等建议出来。</li>
+      <li>要关闭,去 <strong>Settings &gt; General &gt; Composer &gt; Show predictions</strong>。</li>
+    </ol>
+    <p>截至 2026-10-29,它仍是面向个人 Pro、18 岁以上、支持地区用户的 beta 功能,支持桌面端本地和 SSH 任务中的 Astra、6.1 Sol、6.1 Terra。符合条件时默认开启,不是每个账号都能看到。</p>
+    <p>生成建议本身不消耗 Codex 额度或 credits,发出去后按普通任务计算。它只利用当前对话已有的上下文,不会为了预测自行查记忆或外部 App;关闭记忆也可以使用。涉及发布、发送或删除的建议,务必先检查。<a href="https://learn.chatgpt.com/docs/features/composer-predictions" target="_blank" rel="noopener">官方输入预测说明</a></p>
+
     <h2 id="computer-history">Computer History:不是 Chronicle 简单改名</h2>
     <p>Computer History 替代了早期的 Chronicle 研究预览，但官方明确说明它是重新构建的系统。它目前只在 macOS 桌面端提供，默认关闭，面向 Pro、Business 和 Enterprise 用户；团队账号还需要管理员先允许。</p>
     <ul>
@@ -296,7 +307,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20261008-october"></script>
+<script src="../assets/js/nav.js?v=20261029-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>

@@ -146,6 +146,20 @@
     <p><strong>手机断线时别急着重新发:</strong>新版改善了任务列表空白、电脑选择和 Worktree 对齐。先恢复原电脑连接,打开原任务检查最新结果,再决定是否重试。取消排队消息后若内容回到输入框,确认原请求没有开始执行,再编辑发送。</p>
     <p>这部分来自 iOS 的发布记录,不等于桌面端新增了小组件,也没有据此承诺 Android 同步提供。来源:<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">10 月 2 日、7 日 iOS 更新</a>、<a href="https://learn.chatgpt.com/docs/mobile" target="_blank" rel="noopener">手机使用边界</a>。</p>
 
+    <h3 id="mobile-background">10 月下旬:手机查看后台命令和文件</h3>
+    <p>iOS 1.2026.279 支持点开文件引用查看内容。1.2026.286 则在支持的远程主机任务里,把后台命令入口放到输入框上方,也支持 @ 提及其他已连接电脑的任务。</p>
+    <ol>
+      <li>先打开原任务,确认是哪台电脑、哪个项目,不要只凭任务名判断。</li>
+      <li>有后台命令入口时点开,看命令内容和状态。开发服务器持续运行通常是正常的,不要看到“运行中”就停掉。</li>
+      <li>确实需要停止时,先确认没有正在部署或写入的重要动作,再停止;回任务核对结果。停止不是撤销。</li>
+      <li>点回复中的文件引用检查内容;想关联另一台电脑的任务时用 @ 查找,再次核对归属。</li>
+    </ol>
+    <p>这版还改善待回答问题在重开任务后的保留、超时误报和附件预览。遇到超时先看原任务最新状态,不要重复提交。这些是 iOS 发布记录,不保证 Android 有同样入口。<a href="https://learn.chatgpt.com/docs/changelog" target="_blank" rel="noopener">10 月 13 日、22 日 iOS 说明</a></p>
+
+    <h3 id="dot-texting">用短信找 dot:先确认地区和账号资格</h3>
+    <p>十月底官方还介绍了 <strong>Text your dot</strong>:可以通过 iMessage 或 Android 的 RCS,与自己的 dot 一对一交流文字、照片和语音消息。截至 10 月 29 日,它仍在向<strong>美国的 ChatGPT Pro 用户</strong>测试开放,不是全球用户都能用,也不等于 Android 同步拥有上面所有 iOS 功能。</p>
+    <p>有资格时先从官方说明进入设置,不要添加陌生人提供的“官方号码”。可以告诉 dot:“需要我处理时发短信,日常进度留在 ChatGPT。”它需要审批时会发链接让你回 ChatGPT 查看;先核对请求内容再批准。<a href="https://learn.chatgpt.com/docs/whats-new/dots-october-28-2026" target="_blank" rel="noopener">官方介绍与设置入口</a></p>
+
     <h3 id="work-sync">9 月底补充:Remote 和 Work 同步不是一回事</h3>
     <p>上面的 Remote 是连接一台电脑操作任务。新的跨设备 Work 则让同一条受支持任务由云端协调,你可以从桌面、网页或手机继续。它若需要读本地文件或运行本地工具,电脑仍然要在线。</p>
     <p>先检查同一账号、同一工作区、这条任务是否支持同步,以及本地访问是否获准。另一台设备看不到任务时,先核对这些条件,不要直接重新创建一份重复执行。团队的 Work 和 dots 本地访问需要分别开启,一个开关不代表全部授权。</p>
@@ -232,7 +246,7 @@
 
 <footer class="site-footer" id="site-footer"></footer>
 
-<script src="../assets/js/nav.js?v=20261008-october"></script>
+<script src="../assets/js/nav.js?v=20261029-october"></script>
 <script src="../assets/js/progress.js"></script>
 <script src="../assets/js/toc.js"></script>
 <script src="../assets/js/code.js"></script>
